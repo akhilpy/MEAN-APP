@@ -8,7 +8,7 @@
         <div class="large-hero">
           <div class="large-hero__content">
 
-            <h2 class="large-hero__title">It’s borrowing reinvented. It’s investing on your terms.</h2>
+            <h2 class="large-hero__title" ng-attr-contenteditable="{{ editMode }}" ng-model="hero.title">It’s borrowing reinvented. It’s investing on your terms.</h2>
 
             <h3 class="large-hero__subtitle">Canadian businesses and investors working together.<br>Everybody wins.</h3>
 
@@ -17,6 +17,8 @@
           </div><!-- end of .large-hero__content -->
         </div><!-- end of .large-hero -->
       </div>
+
+      <a ng-click="toggleEditMode()" class="button">{{editMode ? 'Disable Editing' : 'Enable Editing'}}</a>
 
       <div id="primary" class="content-area">
         <main id="main" class="site-main" role="main">
