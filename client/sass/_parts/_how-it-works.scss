@@ -1,0 +1,190 @@
+/*-----  How It Works  ------*/
+
+
+/*-----  Benefits  ------*/
+
+.benefits,
+.benefits__wrapper {
+  @include site-container;
+
+  p {
+    @include font-primary(600);
+    margin-bottom: rem(20);
+  }
+}
+
+.benefits {
+  h4 {
+    margin-bottom: 0;
+  }
+}
+
+.benefits__wrapper {
+  padding-top: rem(20);
+}
+
+.benefits-list {
+  @include list-zero;
+  font-size: 0;
+  margin-bottom: rem(20);
+}
+
+.benefit__wrapper {
+  @include font-size;
+  @include font-primary(600);
+  display: inline-block;
+  vertical-align: top;
+  width: 50%;
+  padding-left: rem(80);
+  margin-bottom: rem(20);
+  position: relative;
+
+  &:before {
+    @include font-size(24);
+    font-family: $font-icons;
+    content: "\f058";
+    color: $color-green-dark;
+    position: absolute;
+    left: rem(45);
+    top: rem(-5);
+  }
+
+  span {
+    display: inline-block;
+    max-width: 75%;
+  }
+
+  @include breakpoint(phone) {
+    width: 100%;
+    padding-left: rem(40);
+
+    &:before {
+      left: 0;
+    }
+
+    span {
+      max-width: none;
+    }
+  }
+}
+
+
+/*-----  CTA  ------*/
+
+.block__cta-block {
+  @include site-container;
+  text-align: center;
+  padding-top: rem(40);
+  padding-bottom: rem(40);
+
+  .block--title {
+    @include font-size(30);
+    color: $color-slate-dark;
+  }
+
+  .block--subtitle {
+    @include font-primary(300);
+    @include font-size(30);
+    color: $color-grey-med;
+    margin: rem(80) auto rem(40);
+  }
+
+}
+
+
+/*-----  Investor Features  ------*/
+
+.investor-features {
+  @include site-container;
+}
+
+.investor-features__list {
+  @include list-zero;
+  font-size: 0;
+  margin-top: rem(40);
+}
+
+.investor-feature__wrapper {
+  @include font-size;
+  display: inline-block;
+  vertical-align: top;
+  width: 25%;
+
+  @include breakpoint(mobile) {
+    width: 50%;
+    margin-bottom: rem(40);
+
+    &:nth-last-child(2),
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  @include breakpoint(phone) {
+    width: 100%;
+    &:nth-last-child(2) {
+      margin-bottom: rem(40);
+    }
+  }
+}
+
+.investor-feature {
+  p {
+    @include font-size(14);
+    max-width: 78%;
+  }
+}
+
+.investor-feature__image {
+  position: relative;
+  display: block;
+  margin: 0 auto rem(20);
+  width: rem(160);
+  height: rem(160);
+  background: $color-white;
+  border-radius: 100%;
+
+  &:before {
+    position: absolute;
+    display: block;
+    content: "";
+    border-radius: 100%;
+    border: 2px solid $color-grey-pale;
+    top: rem(10);
+    left: rem(10);
+    right: rem(10);
+    bottom: rem(10);
+  }
+
+  img {
+    display: block;
+    margin: 0 auto;
+    padding: rem(30);
+    width: 100%;
+    height: auto;
+  }
+}
+
+
+/*-----  Experiences  ------*/
+
+.block__experience-block {
+  @include site-container;
+
+  .block--title {
+    @include font-primary(600);
+    @include font-size(20);
+    display: block;
+    text-align: left;
+    border-bottom: 2px solid $color-grey-pale;
+    color: $color-green;
+    text-transform: uppercase;
+  }
+}
+
+.experiences-list {
+  @include list-zero;
+}
+
+.experience__wrapper {
+  margin-bottom: rem(40);
+}

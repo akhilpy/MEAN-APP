@@ -1,0 +1,253 @@
+/*==============================
+=            Mixins            =
+==============================*/
+
+/*==========  Helpers  ==========*/
+
+@mixin clearfix {
+  *zoom: 1;
+  &:after {
+    clear: both;
+    content: " ";
+    display: table;
+  }
+  &:before {
+    content: " ";
+    display: table;
+  }
+}
+
+@mixin visually-hidden {
+  margin: -1px;
+  padding: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip: rect(0, 0, 0, 0);
+  position: absolute;
+}
+
+@mixin site-container {
+  max-width: $site-width;
+  padding: 0 rem(20);
+  margin: 0 auto;
+}
+
+/*==========  Fonts  ==========*/
+
+@mixin font-setup {
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  vertical-align: text-top;
+  -webkit-font-smoothing: antialiased;
+}
+
+@mixin font-primary($weight: 400, $style: normal, $transform: none) {
+  font-family: $font-open-sans;
+  font-weight: $weight;
+  font-style: $style;
+  text-transform: $transform;
+}
+
+
+/*==========  Lists  ==========*/
+
+@mixin list-zero {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+@mixin list-bullet {
+  list-style-type: none;
+  margin-bottom: rem(10);
+  li {
+    padding-left: rem(20);
+    &:before {
+      @include font-size(20);
+      content: "\2022";
+      margin: 0 rem(10) 0 rem(-20);
+      color: $color-accent;
+      line-height: 0;
+    }
+  }
+}
+
+@mixin list-alpha {
+  list-style-type: lower-alpha;
+  padding-left: rem(20);
+  margin-bottom: rem(10);
+}
+
+@mixin list-roman {
+  list-style-type: lower-roman;
+  padding-left: rem(20);
+  margin-bottom: rem(10);
+}
+
+
+/*==========  Spacing & Sizing  ==========*/
+
+@mixin font-size( $size: $font-base-size ) {
+  font-size: $size + px;
+  font-size: rem($size);
+}
+
+@mixin base-margin {
+  margin: 0 0 rem(15) 0;
+}
+
+
+/*==========  Buttons  ==========*/
+
+@mixin button {
+  @include font-primary(600);
+  @include font-size(24);
+  @include transition;
+  background: $color-accent;
+  color: $color-white;
+  border: none;
+  border-radius: $border-radius;
+  line-height: 1;
+  padding: rem(12) rem(20);
+  outline: none;
+  display: inline-block;
+  &:hover {
+    background: $color-secondary;
+    color: $color-white;
+  }
+
+  @include breakpoint(mobile) {
+    @include font-size(16);
+    padding: rem(15) rem(20);
+  }
+}
+
+
+/*==========  Placeholders  ==========*/
+
+@mixin input-placeholder( $font-size: 16, $color: $color-grey-light ) {
+  &::-webkit-input-placeholder {
+    @include font-primary(300);
+    @include font-size($font-size);
+    color: $color;
+    line-height: 1.3;
+    font-style: italic;
+
+    @include breakpoint(mobile) {
+      @include font-size(18);
+      line-height: 1.4;
+    }
+  }
+  &:-moz-placeholder { /* Firefox 13- */
+    @include font-primary(300);
+    @include font-size($font-size);
+    color: $color;
+    line-height: 1.3;
+    font-style: italic;
+
+    @include breakpoint(mobile) {
+      @include font-size(18);
+      line-height: 1.4;
+    }
+  }
+  &::-moz-placeholder {  /* Firefox 19+ */
+    @include font-primary(300);
+    @include font-size($font-size);
+    color: $color;
+    line-height: 1.3;
+    font-style: italic;
+
+    @include breakpoint(mobile) {
+      @include font-size(18);
+      line-height: 1.4;
+    }
+  }
+  &:-ms-input-placeholder {
+    @include font-primary(300);
+    @include font-size($font-size);
+    color: $color;
+    line-height: 1.3;
+    font-style: italic;
+
+    @include breakpoint(mobile) {
+      @include font-size(18);
+      line-height: 1.4;
+    }
+  }
+}
+
+
+/*==========  Transitions  ==========*/
+
+@mixin transition($property: all, $time: 250ms, $type: linear){
+  transition: $property $time $type;
+}
+
+
+/*==========  Breakpoints  ==========*/
+
+@mixin breakpoint($point) {
+  @if $point == desktop {
+    @media (min-width: 1000px) { @content; }
+  }
+  @else if $point == mobile {
+    @media (max-width: 999px) { @content; }
+  }
+  @else if $point == wp {
+    @media (max-width: 782px) { @content; }
+  }
+  @else if $point == laptop {
+    @media (min-width: 768px) and (max-width: 999px) { @content; }
+  }
+  @else if $point == phone {
+    @media (max-width: 767px)  { @content; }
+  }
+}
+
+
+/*==========  Box Sizing  ==========*/
+
+@mixin box-sizing($sizing-type: border-box){
+  box-sizing: border-box;
+}
+
+
+/*==========  Shadow  ==========*/
+
+@mixin box-shadow {
+  // horizontal, vertical, blur, spread, color
+  box-shadow: 4px 4px 4px 1px rgba($color-black, 0.3);
+}
+
+@mixin box-shadow {
+  // horizontal, vertical, blur, spread, color
+  box-shadow: 4px 4px 4px -6px rgba($color-black, 0.3);
+}
+
+@mixin text-shadow {
+  // horizontal, vertical, blur, color
+  text-shadow: 4px 4px 4px rgba($color-black, 0.3);
+}
+
+
+/*----------  Gradient  ----------*/
+
+@mixin linear-gradient($direction, $color-stops...) {
+  // Direction has been omitted and happens to be a color-stop
+  @if is-direction($direction) == false {
+    $color-stops: $direction, $color-stops;
+    $direction: 180deg;
+  }
+
+  background: nth(nth($color-stops, 1), 1);
+  background: -webkit-linear-gradient(legacy-direction($direction), $color-stops);
+  background: linear-gradient($direction, $color-stops);
+}
+
+/*-----  End of Mixins  ------*/

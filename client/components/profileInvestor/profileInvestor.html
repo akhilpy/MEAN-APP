@@ -1,0 +1,125 @@
+<div class="application-form__wrapper application-form__investor">
+  <form name="investor" ng-submit="profile.updateInvestor(investor)" novalidate>
+    <ul class="form__rows">
+
+      <li class="form__row form__row--split">
+        <div class="form__split--third">
+          <label for="username">Username*</label>
+          <input name="username" type="text" id="username" placeholder="Username" ng-model="profile.user.username" required autofocus>
+          <p class="form__row--description below">
+            This name will appear to other users of the site (i.e. joe123, investor111)
+          </p><!-- /.form__row--description -->
+        </div><!-- /.form__split--third -->
+        <div class="form__split--third">
+          <label for="first-name">First Name*</label>
+          <input name="first-name" type="text" id="first-name" placeholder="First" ng-model="profile.user.name.first" required>
+        </div><!-- /.form__split--third -->
+        <div class="form__split--third">
+          <label for="last-name">Last Name*</label>
+          <input name="last-name" type="text" id="last-name" placeholder="Last" ng-model="profile.user.name.last" required>
+        </div><!-- /.form__split--third -->
+      </li><!-- /.form__row -->
+
+      <li class="form__row form__row--split">
+        <div class="form__split--third">
+          <label for="email">Email*</label>
+          <input name="email" type="text" id="email" placeholder="Email" ng-model="profile.user.email" required>
+        </div><!-- /.form__split--third -->
+        <div class="form__split--third">
+          <label for="phone">Phone*</label>
+          <input name="phone" type="text" id="phone" placeholder="###-###-####" value="{{user.phone}}" required>
+        </div><!-- /.form__split--third -->
+        <div class="form__split--third">
+          &nbsp;
+        </div><!-- /.form__split--third -->
+      </li><!-- /.form__row -->
+
+      <li class="form__row form__row--split">
+        <div class="form__split--third">
+          <label for="dob">Date of Birth*</label>
+          <input name="dob" type="text" id="dob" placeholder="mm-dd-yyyy" value="{{user.dob}}" required>
+          <p class="form__row--description below">
+            We need your birth date for validation purposes.
+          </p><!-- /.form__row--description -->
+        </div><!-- /.form__split--third -->
+        <div class="form__split--third">
+          <label for="social">Social Security Number*</label>
+          <input name="social" type="text" id="social" placeholder="###" value="{{user.social}}" required>
+          <p class="form__row--description below">
+            Please provide the last 3 digits of your social security number, this is required for verification purposes.
+          </p><!-- /.form__row--description -->
+        </div><!-- /.form__split--third -->
+        <div class="form__split--third">
+          &nbsp;
+        </div><!-- /.form__split--third -->
+      </li><!-- /.form__row -->
+
+      <li class="form__row form__row--split">
+        <div class="form__split--third">
+          <label for="street">Street Address*</label>
+          <input name="street" type="text" id="street" placeholder="" value="{{user.address.street}}" required>
+        </div><!-- /.form__split--third -->
+        <div class="form__split--third">
+          <label for="city">City*</label>
+          <input name="city" type="text" id="city" placeholder="" value="{{user.address.city}}" required>
+        </div><!-- /.form__split--third -->
+        <div class="form__split--sixth">
+          <label for="province">Province*</label>
+          <select chosen
+                  option="profile.provinces"
+                  data-placeholder="Select Your Province"
+                  search-threshold="15"
+                  ng-model="user.address.province"
+                  ng-options="province.name for province in profile.provinces track by province.value">
+          </select>
+        </div><!-- /.form__split--sixth -->
+        <div class="form__split--sixth">
+          <label for="postal">Postal Code*</label>
+          <input name="postal" type="text" id="postal" placeholder="" value="{{user.address.postal}}" required>
+        </div><!-- /.form__split--sixth -->
+      </li><!-- /.form__row -->
+
+      <li class="form__row form__row--split">
+        <div class="form__split--third">
+          <label for="increase">
+            <input name="increase" type="checkbox" id="increase" checked>
+            Request increase to $1500 per offer limit.
+          </label>
+          <p class="form__row--description below">
+            Due to securities regulations if you wish to invest more than $1500 in each listing you will need to apply for the appropriate investor status. Please indicate your interest and we will contact you shortly.
+          </p><!-- /.form__row--description -->
+        </div><!-- /.form__split--third -->
+        <div class="form__split--third">
+          <label for="notifications">
+            <input name="notifications" type="checkbox" id="notifications" checked>
+            I wish to be notified when there are new listings.
+          </label>
+          <p class="form__row--description below">
+            Opt in to be notified of new listings so that you don't miss out.
+          </p><!-- /.form__row--description -->
+        </div><!-- /.form__split--third -->
+        <div class="form__split--third">
+          &nbsp;
+        </div><!-- /.form__split--third -->
+      </li><!-- /.form__row -->
+
+      <li class="form__row">
+        <label for="notes">Request</label>
+        <p class="form__row--description">Let us know if there is a type of investment that you are specifically looking for.</p>
+        <textarea name="notes" id="notes" cols="30" rows="10">{{user.investor.notes}}</textarea>
+      </li><!-- /.form__row -->
+
+      <li class="form__row form__row--full form__submit">
+        <ul class="application-form__pagination">
+          <li>&nbsp;</li>
+          <li><button type="submit" name="update" id="update">Save</button></li>
+          <li>&nbsp;</li>
+        </ul><!-- end of .application-form__pagination -->
+      </li><!-- /.form__row form__row--full -->
+    </ul><!-- /.form__rows -->
+  </form>
+</div>
+
+<div class="application-form__footer">
+  <p>While InvestNextDoor wants to support as many businesses as possible we hold the right to reject listings at our discretion.</p>
+</div><!-- /.application-form__footer -->

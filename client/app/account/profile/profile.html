@@ -1,0 +1,29 @@
+<div class="page-template-default">
+  <div id="page" class="site">
+    <navbar></navbar>
+
+      <div id="content" class="site-content">
+        <header class="entry-header">
+          <h1 class="entry-title">Profile</h1>
+        </header>
+
+        <div id="primary" class="content-area">
+          <main id="main" class="site-main" role="main">
+            <div class="content-wrapper">
+
+              <div class="borrower-profile" ng-show="profile.isBorrower()">
+                <profile-borrower></profile-borrower>
+              </div><!-- /.borrower-profile -->
+
+              <div class="investor-profile" ng-show="profile.isInvestor()">
+                <profile-investor></profile-investor>
+              </div><!-- /.investor-profile -->
+
+            </div><!-- /.content-wrapper -->
+          </main><!-- /.site-main -->
+        </div><!-- /.content-area -->
+      </div><!-- #content -->
+
+    <footer></footer>
+  </div><!-- /#page.site -->
+</div>

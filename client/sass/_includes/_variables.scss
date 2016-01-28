@@ -1,0 +1,109 @@
+/*=================================
+=            Variables            =
+=================================*/
+
+/*==========  Colors  ==========*/
+
+/* Color Definitions */
+
+$color-black: #484848;
+$color-white: #fff;
+
+$color-warning: #E5582B;
+$color-success: #66B546;
+
+$color-blue-dark: #0FABE0;
+$color-blue-med: #48BBE1;
+$color-blue: #4ccaf5;
+$color-blue-light: #81DAF7;
+$color-green-dark: #5BA23B;
+$color-green: #6ABD45;
+$color-orange: #ffa200;
+
+$color-slate-dark: #213541;
+$color-slate-med: #294351;
+$color-slate-light: #345a6e;
+
+$color-grey-dark: #313131;
+$color-grey-med: #777777;
+$color-grey-med-light: #9c9c9c;
+$color-grey-light: #c4c4c4;
+$color-grey-pale: #F1F1F1;
+$color-grey-paler: #F9F9F9;
+
+/* Color Assignment */
+
+$color-primary-dark: $color-blue-dark;
+$color-primary-med: $color-blue-med;
+$color-primary: $color-blue;
+$color-primary-light: $color-blue-light;
+$color-secondary-dark: $color-green-dark;
+$color-secondary: $color-green;
+$color-accent: $color-orange;
+
+$color-text: $color-black;
+$color-heading: $color-black;
+$color-links: $color-primary;
+$color-links-hover: $color-accent;
+
+$color-body-background: $color-white;
+
+/*==========  Fonts  ==========*/
+
+/* Font Definitions */
+$font-open-sans: "Open Sans", sans-serif;
+$font-icons: 'FontAwesome';
+
+/* Font Options */
+$font-base-size: 14;
+$font-line-height: 1.5;
+
+
+/*==========  Border Radius  ==========*/
+
+$border-radius: 3px;
+
+
+/*==========  Text Inputs  ==========*/
+
+$text-inputs-list: 'input[type="color"]',
+                   'input[type="date"]',
+                   'input[type="datetime"]',
+                   'input[type="datetime-local"]',
+                   'input[type="email"]',
+                   'input[type="month"]',
+                   'input[type="number"]',
+                   'input[type="password"]',
+                   'input[type="search"]',
+                   'input[type="tel"]',
+                   'input[type="text"]',
+                   'input[type="time"]',
+                   'input[type="url"]',
+                   'input[type="week"]',
+                   'textarea';
+
+$all-text-inputs:        assign-inputs($text-inputs-list);
+$all-text-inputs-active: assign-inputs($text-inputs-list, active);
+$all-text-inputs-focus:  assign-inputs($text-inputs-list, focus);
+$all-text-inputs-hover:  assign-inputs($text-inputs-list, hover);
+
+$text-elements-list:    'h1',
+                        'h2',
+                        'h3',
+                        'h4',
+                        'h5',
+                        'h6',
+                        'ul',
+                        'ol',
+                        'p',
+                        'strong',
+                        'blockquote';
+
+$all-text-elements:     assign-inputs($text-elements-list);
+
+/*----------  Site  ----------*/
+
+$site-width: rem(1360);
+
+
+/*-----  End of Variables  ------*/

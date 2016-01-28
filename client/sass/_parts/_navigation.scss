@@ -1,0 +1,154 @@
+/*==================================
+=            Navigation            =
+==================================*/
+
+.menu-toggle {
+  display: none;
+  position: absolute;
+  top: rem(20);
+  right: rem(20);
+
+  @include breakpoint(mobile) {
+    display: block;
+    padding: rem(10) rem(15);
+  }
+}
+
+.main-navigation {
+  @include font-size;
+  width: 70%;
+  display: inline-block;
+  vertical-align: middle;
+
+  @include breakpoint(mobile) {
+    width: 100%;
+    vertical-align: top;
+    padding-top: 0;
+  }
+}
+
+.main-menu {
+  @include list-zero;
+  text-align: right;
+  line-height: 1;
+  font-size: 0;
+
+  li {
+    display: inline-block;
+    position: relative;
+    margin-left: rem(40);
+
+    &.has-button {
+      a {
+        border: 2px solid $color-white;
+        text-align: center;
+        &:hover {
+          color: $color-slate-med;
+          background: $color-white;
+        }
+      }
+
+      .logged-in & {
+        display: none;
+      }
+    }
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:hover {
+      .sub-menu {
+        display: block;
+        margin: 0 auto;
+
+        @include breakpoint(mobile) {
+          display: none;
+        }
+
+        a {
+          color: $color-white;
+        }
+      }
+      a {
+        color: $color-primary;
+      }
+    }
+
+    @include breakpoint(mobile) {
+      display: block;
+      margin-left: 0;
+      margin-bottom: rem(10);
+    }
+  }
+
+  a {
+    @include font-size(19);
+    @include font-primary(600);
+    text-transform: uppercase;
+    display: block;
+    color: $color-white;
+    padding: rem(10) rem(15);
+    &:hover {
+      color: $color-primary;
+    }
+
+    @include breakpoint(mobile) {
+      padding: rem(10) 0;
+    }
+  }
+
+  .sub-menu {
+    @include list-zero;
+    display: none;
+    position: absolute;
+    width: rem(140);
+    z-index: 9;
+    padding-top: rem(18);
+    left: rem(-70);
+    right: rem(-70);
+
+    &:before {
+      display: block;
+      content: "";
+      position: absolute;
+      margin-top: rem(-8);
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 7px 8px 7px;
+      border-color: transparent transparent $color-white transparent;
+      left: calc(50% - 8px);
+    }
+
+    li {
+      display: block;
+      margin-left: 0;
+      text-align: center;
+    }
+
+    a {
+      @include font-size(13);
+      @include font-primary(300);
+      background: $color-primary-med;
+      display: block;
+
+      &:hover {
+        background: $color-primary-dark;
+        color: $color-white;
+      }
+    }
+  }
+
+  @include breakpoint(mobile) {
+    display: none;
+
+    .main-navigation[collapse="false"] & {
+      display: block;
+      text-align: left;
+      margin-top: rem(20);
+    }
+  }
+}
+
+/*-----  End of Navigation  ------*/

@@ -1,0 +1,130 @@
+/*============================
+=            Page            =
+============================*/
+
+.entry-header {
+  background-color: $color-slate-dark;
+  background-image: linear-gradient(to right, $color-slate-med, $color-slate-dark);
+  padding: rem(30) 0;
+  position: relative;
+
+  &:before,
+  &:after {
+    display: block;
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: rem(9999);
+  }
+
+  &:before {
+    left: rem(-9999);
+    background: $color-slate-med;
+  }
+
+  &:after {
+    right: rem(-9999);
+    background: $color-slate-dark;
+  }
+
+  &.with-image {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center;
+
+    &:before {
+      left: 0;
+      right: 0;
+      background-image: url( '../assets/images/hero-overlay.png' );
+      background-repeat: no-repeat;
+      background-color: rgba($color-slate-med, 0);
+      background-size: cover;
+      width: auto;
+      z-index: 0;
+    }
+
+    &:after {
+      display: none;
+    }
+
+    .page-template-how-it-works &,
+    .page-template-default & {
+      padding-top: rem(280);
+    }
+
+  }
+
+}
+
+.entry-header__inner {
+  @include site-container;
+}
+
+.entry-content {
+
+  figure,
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .wp-caption-text {
+    @include font-size(14);
+    border-top: 1px solid $color-grey-light;
+    border-bottom: 1px solid $color-grey-light;
+    margin-top: rem(10);
+    padding: rem(10) 0;
+    color: $color-grey-med-light;
+    font-style: italic;
+
+    @include breakpoint(mobile) {
+      margin-bottom: rem(20);
+    }
+  }
+
+  .alignleft {
+    display: inline;
+    float: left;
+    margin-right: rem(20);
+
+    @include breakpoint(mobile) {
+      float: none;
+      display: block;
+      margin-bottom: rem(10);
+    }
+  }
+
+  .alignright {
+    display: inline;
+    float: right;
+    margin-left: rem(20);
+
+    @include breakpoint(mobile) {
+      float: none;
+      display: block;
+      margin-bottom: rem(10);
+      margin-left: 0;
+    }
+  }
+
+  .aligncenter {
+    clear: both;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    float: none;
+    margin-bottom: rem(20);
+    margin-top: rem(20);
+  }
+
+}
+
+.entry-content {
+    .page-template-how-it-works & {
+      @include site-container;
+      margin: rem(30) auto rem(40);
+    }
+}
+
+/*=====  End of Page  ======*/

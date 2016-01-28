@@ -1,0 +1,116 @@
+/*==============================
+=            Header            =
+==============================*/
+
+html #wpadminbar {
+
+  @include breakpoint(wp) {
+    position: fixed;
+  }
+}
+
+.site-header__wrapper {
+  @include transition;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: $color-slate-med;
+  padding: 0;
+  border-bottom: 1px solid $color-white;
+  z-index: 9;
+
+  .admin-bar & {
+    top: rem(32);
+
+    @include breakpoint(wp) {
+      top: rem(46);
+    }
+  }
+
+  .home & {
+    background: none;
+
+    &.headroom--not-top {
+      background: $color-slate-med;
+    }
+  }
+}
+
+.site-header {
+  @include site-container;
+  font-size: 0;
+  position: relative;
+  padding-top: rem(15);
+  padding-bottom: rem(15);
+}
+
+.site-header__notice {
+  @include font-primary(600);
+  @include font-size;
+  background: $color-primary-med;
+  color: $color-white;
+  text-transform: uppercase;
+  text-align: center;
+  padding: rem(10);
+  display: table;
+  width: 100%;
+
+  a {
+    @include font-primary(300, italic);
+    color: $color-white;
+    text-decoration: underline;
+    &:hover {
+      color: $color-accent;
+    }
+  }
+
+  p {
+    color: $color-white;
+
+    &:last-of-type {
+      margin: 0;
+    }
+  }
+
+  .site-header__notice--inner {
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  @include breakpoint(phone) {
+    @include font-size(12);
+    height: rem(41);
+    line-height: 1.1;
+    padding: rem(8) rem(10);
+  }
+}
+
+.site-branding {
+  @include font-size;
+  width: 30%;
+  display: inline-block;
+  vertical-align: middle;
+
+  .site-title {
+    margin-bottom: 0;
+
+    a {
+      display: block;
+    }
+
+    img {
+      display: block;
+      width: rem(200);
+      height: auto;
+    }
+  }
+
+  @include breakpoint(mobile) {
+    width: 66.666%;
+    vertical-align: top;
+  }
+}
+
+/*-----  End of Header  ------*/
+

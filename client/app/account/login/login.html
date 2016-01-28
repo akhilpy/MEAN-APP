@@ -1,0 +1,166 @@
+<div class="page-template-default">
+  <div id="page" class="site">
+    <navbar></navbar>
+
+    <div id="content" class="site-content">
+      <header class="entry-header">
+        <h1 class="entry-title">Welcome</h1>
+      </header>
+
+      <div id="primary" class="content-area">
+        <main id="main" class="site-main" role="main">
+          <div class="content-wrapper">
+
+            <ul class="account__forms--list">
+              <li class="account__form">
+                <form class="form" name="signup" ng-submit="vm.register(signup)" novalidate>
+                  <div class="form__wrapper signup-form">
+                  	<h2 class="account__form--title">Sign Up</h2>
+
+                		<ul class="form__rows">
+                  		<li class="form__row form__row--full form__row--social">
+                    		<oauth-buttons></oauth-buttons>
+                  		</li><!-- end of .form__row form__row--full -->
+
+                	    <li class="form__row form__row--full form__row--underline">
+                	      <p>or fill out the info below</p>
+                	    </li><!-- end of .form__row form__row--full -->
+
+                	    <li class="form__row form__row--split">
+                	      <div class="form__split--half" ng-class="{ 'has-success': signup.name.first.$valid && vm.submitted, 'has-error': signup.name.first.$invalid && vm.submitted }">
+                	        <label for="first-name">First Name*</label>
+                	        <input name="first-name" type="text" id="signup-first-name" placeholder="First" ng-model="vm.user.name.first" required autofocus>
+                          <p class="help-block" ng-show="signup.name.first.$error.required && vm.submitted">
+                            A first name is required
+                          </p>
+                	      </div><!-- end of .form__split--half -->
+                	      <div class="form__split--half" ng-class="{ 'has-success': signup.last.name.$valid && vm.submitted,'has-error': signup.last.name.$invalid && vm.submitted }">
+                	        <label for="last-name">Last Name*</label>
+                	        <input name="last-name" type="text" id="signup-last-name" placeholder="Last" ng-model="vm.user.name.last" required>
+                          <p class="help-block" ng-show="signup.name.last.$error.required && vm.submitted">
+                            A last name is required
+                          </p>
+                	      </div><!-- end of .form__split--half -->
+                	    </li><!-- end of .form__row form__row--split -->
+
+                      <li class="form__row form__row--split">
+                        <div class="form__split--half" ng-class="{ 'has-success': signup.email.$valid && vm.submitted, 'has-error': signup.email.$invalid && vm.submitted }">
+                  	      <label for="email">Email Address*</label>
+                  	      <input name="email" type="email" id="signup-email" placeholder="name@host.com" ng-model="vm.user.email" required mongoose-error>
+                          <p class="help-block" ng-show="signup.email.$error.email && vm.submitted">
+                            Doesn't look like a valid email.
+                          </p>
+                          <p class="help-block" ng-show="signup.email.$error.required && vm.submitted">
+                            What's your email address?
+                          </p>
+                          <p class="help-block" ng-show="signup.email.$error.mongoose">
+                            {{ vm.errors.email }}
+                          </p>
+                  	    </div><!-- end of .form__split--half -->
+                        <div class="form__split--half">
+                	        <label for="role">Type of User*</label>
+                          <select chosen="vm.roles"
+                                  data-placeholder="Select"
+                                  disable-search-threshold="15"
+                                  ng-model="vm.user.role"
+                                  ng-options="item.name for item in vm.roles track by item.value">
+                          </select>
+                	      </div><!-- end of .form__split--half -->
+                      </li><!-- /.form__row form__row--split -->
+
+                	    <li class="form__row form__row--split">
+                	      <div class="form__split--half" ng-class="{ 'has-success': signup.password.$valid && vm.submitted,'has-error': signup.password.$invalid && vm.submitted }">
+                	        <label for="password">Password*</label>
+                	        <input name="password" type="password" id="signup-password" placeholder="Password" ng-model="vm.user.password" ng-minlength="3" required mongoose-error required>
+                          <p class="help-block"
+                             ng-show="(signup.password.$error.minlength || signup.password.$error.required) && vm.submitted">
+                            Password must be at least 3 characters.
+                          </p>
+                          <p class="help-block" ng-show="signup.password.$error.mongoose">
+                            {{ vm.errors.password }}
+                          </p>
+                	      </div><!-- end of .form__split--half -->
+                        <div class="form__split--half" ng-class="{ 'has-success': signup.confirmPassword.$valid && vm.submitted, 'has-error': signup.confirmPassword.$invalid && vm.submitted }">
+                	        <label for="confirmPassword">Confirm Password*</label>
+                	        <input name="confirmPassword" type="password" id="signup-password" placeholder="Password" ng-model="vm.user.confirmPassword" match="vm.user.password" ng-minlength="3" required>
+                          <p class="help-block"
+                             ng-show="signup.confirmPassword.$error.match && vm.submitted">
+                            Passwords must match.
+                          </p>
+                	      </div><!-- end of .form__split--half -->
+                	    </li><!-- end of .form__row form__row--split -->
+
+                	    <li class="form__row form__row--full">
+                	      <p>By signing up, you acknowledge that InvestNextDoor is not registered under the Canadian securities legislation, we do not provide advice about the suitability or merits of the security or investments and you agree to our <a ui-sref="legal.privacypolicy">Privacy Policy</a> and the <a ui-sref="legal.termsofservice">Terms of Service</a>.</p>
+                			</li><!-- end of .form__row form__row--full -->
+
+                			<li class="form__row form__row--split form__row--submit">
+                	      <div class="form__split--two-thirds">&nbsp;</div><!-- end of .form__split--two-thirds -->
+                	      <div class="form__split--third">
+                	        <button type="submit" name="signup" id="signup">Signup</button>
+                	      </div><!-- end of .form__split--third -->
+                	    </li><!-- end of .form__row form__row--split -->
+                		</ul><!-- end of .form__rows -->
+
+                	</div><!-- end of .form__wrapper signup-form -->
+                </form>
+
+              </li><!-- end of .account__form -->
+
+              <li class="account__form">
+                <form class="form" name="login" ng-submit="vm.login(login)" novalidate>
+                  <div class="form__wrapper login-form">
+                    <h2 class="account__form--title">Log In</h2>
+
+                    <ul class="form__rows">
+                      <li class="form__row form__row--full form__row--social">
+                        <oauth-buttons></oauth-buttons>
+                      </li><!-- end of .form__row form__row--full -->
+
+                      <li class="form__row form__row--full form__row--underline">
+                        <p>or fill out the info below</p>
+                      </li><!-- end of .form__row form__row--full -->
+
+                      <li class="form__row form__row--full">
+                        <label for="email">Email Address*</label>
+                        <input name="email" type="email" placeholder="name@host.com" id="login-email" ng-model="vm.user.email" required>
+                      </li><!-- end of .form__row form__row--split -->
+
+                      <li class="form__row form__row--full">
+                        <label for="password">Password*</label>
+                        <input name="password" type="password" placeholder="Password" id="login-password" ng-model="vm.user.password" required>
+                        <p class="help-block" ng-show="login.email.$error.required && login.password.$error.required && vm.submitted">
+                          Please enter your email and password.
+                        </p>
+                        <p class="help-block" ng-show="login.email.$error.email && vm.submitted">
+                          Please enter a valid email.
+                        </p>
+                        <p class="help-block">{{ vm.errors.other }}</p>
+                      </li><!-- end of .form__row form__row--full -->
+
+                      <li class="form__row form__row--full">
+                        <label for="login-password">
+                          <input name="remember" value="true" type="checkbox" id="login-remember" checked> Remember Me
+                        </label>
+                      </li><!-- end of .form__row form__row--full -->
+
+                      <li class="form__row form__row--full form__row--submit">
+                        <button type="submit" name="login" id="login">Login</button>
+                        <p>Need help with your password? <a ui-sref="resetpassword">Click Here</a></p>
+                      </li><!-- end of .form__row form__row--full -->
+
+                    </ul><!-- end of .form__rows -->
+                  </div><!-- end of .form__wrapper signup-form -->
+                </form>
+
+              </li><!-- end of .account__form -->
+            </ul><!-- end of .account__forms--list -->
+
+          </div><!-- /.content-wrapper -->
+        </main><!-- /.site-main -->
+      </div><!-- /.content-area -->
+    </div><!-- #content -->
+
+    <footer></footer>
+  </div><!-- /#page.site -->
+</div><!-- /.page-template-default -->

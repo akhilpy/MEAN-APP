@@ -1,0 +1,31 @@
+<div class="page-template-default">
+  <div id="page" class="site">
+    <navbar></navbar>
+
+      <div id="content" class="site-content">
+        <header class="entry-header">
+          <h1 class="entry-title">Application</h1>
+        </header>
+
+        <div id="primary" class="content-area">
+          <main id="main" class="site-main" role="main">
+            <div class="content-wrapper">
+
+              <ul>
+                <li>Name: {{ vm.getCurrentUser().name.first }} {{ vm.getCurrentUser().name.last }}</li>
+                <li>Role: {{ vm.getCurrentUser().role }}</li>
+                <li>Email: {{ vm.getCurrentUser().email }}</li>
+              </ul>
+
+              <a href="/account/profile">Edit Profile</a>
+
+              <a href="/account/application/new">Listing Application</a>
+
+            </div><!-- /.content-wrapper -->
+          </main><!-- /.site-main -->
+        </div><!-- /.content-area -->
+      </div><!-- #content -->
+
+    <footer></footer>
+  </div><!-- /#page.site -->
+</div>

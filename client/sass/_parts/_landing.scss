@@ -1,0 +1,177 @@
+/*===============================
+=            Landing            =
+===============================*/
+
+.hero__wrapper {
+  position: relative;
+  background-color: $color-grey-med;
+  z-index: 0;
+
+  &:before {
+    display: block;
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-image: url('../images/hero.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.2;
+    z-index: -1;
+  }
+}
+
+.hero {
+  @include site-container;
+  padding-top: rem(20);
+  padding-bottom: rem(80);
+}
+
+.hero__content--columns {
+  @include list-zero;
+  font-size: 0;
+
+  #{$all-text-elements} {
+    color: $color-white;
+  }
+}
+
+.hero__content--column {
+  @include font-size;
+  display: inline-block;
+  width: 50%;
+  vertical-align: middle;
+
+  .gform_wrapper {
+    border-radius: ( $border-radius * 2 );
+    background: rgba($color-white, 0.35);
+    margin-left: rem(40);
+    padding: rem(40);
+
+    &.gform_wrapper .gform_body .gform_fields .gfield .ginput_container .gfield_radio li {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .gform_footer {
+      text-align: center;
+      margin-top: rem(40);
+    }
+
+    @include breakpoint(mobile) {
+      margin: rem(40) 0 0 0;
+      padding: rem(20);
+    }
+  }
+
+  .gform_heading {
+    padding: rem(15) rem(40);
+    background: rgba($color-white, 0.15);
+    margin: rem(-40) rem(-40) rem(20) rem(-40);
+    border-radius: ( $border-radius * 2 ) ( $border-radius * 2 ) 0 0;
+
+    .gform_description {
+      @include font-primary(600);
+      @include font-size(26);
+      color: $color-white;
+
+      @include breakpoint(mobile) {
+        @include font-size(22);
+      }
+    }
+
+    @include breakpoint(mobile) {
+      @include font-size(20);
+      margin: rem(-20) rem(-20) rem(20) rem(-20);
+      padding: rem(15) rem(20);
+      line-height: 1.1;
+    }
+  }
+
+  .landing-radio {
+    text-align: center;
+    margin-bottom: rem(20);
+
+    > label {
+      @include visually-hidden;
+    }
+
+    label {
+      @include transition;
+      &:hover {
+        color: $color-accent;
+        cursor: pointer;
+      }
+    }
+
+    @include breakpoint(mobile) {
+      text-align: left;
+    }
+  }
+
+  @include breakpoint(mobile) {
+    width: 100%;
+  }
+}
+
+.landing__header__wrapper {
+  position: relative;
+  background: $color-primary;
+  padding: rem(30) 0;
+
+  &:after {
+    position: absolute;
+    left: calc(50% - 50px);
+    bottom: rem(-30);
+    display: block;
+    content: "";
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 30px 50px 0 50px;
+    border-color: $color-primary transparent transparent transparent;
+  }
+}
+
+.landing__header {
+  @include site-container;
+  text-align: center;
+}
+
+.landing__section {
+  @include site-container;
+  padding-top: rem(40);
+  padding-bottom: rem(40);
+}
+
+.landing__section--blocks {
+  @include list-zero;
+  font-size: 0;
+}
+
+.landing__section--block {
+  @include font-size;
+  display: inline-block;
+  width: 33.333%;
+  vertical-align: top;
+  text-align: center;
+  margin-bottom: rem(20);
+
+  @include breakpoint(mobile) {
+    width: 100%;
+  }
+}
+
+.landing__section--block--image {
+  display: block;
+  margin: 0 auto rem(10);
+}
+
+.landing__section--block--description {
+  max-width: rem(340);
+  margin: rem(20) auto 0;
+}
+
+/*=====  End of Landing  ======*/

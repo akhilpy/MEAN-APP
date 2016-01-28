@@ -1,0 +1,26 @@
+.faq__list {
+  @include list-zero;
+  margin-bottom: rem(60);
+}
+
+.faq__wrapper {
+  margin-bottom: rem(40);
+
+  .button {
+    @include font-size(14);
+  }
+
+  p {
+    @include font-size(18);
+    color: $color-grey-med;
+    font-weight: 600;
+  }
+}
+
+.faq__form--wrapper {
+  background: $color-grey-pale;
+  padding: rem(20);
+  border-radius: $border-radius;
+  margin-bottom: rem(40);
+  margin-top: rem(20);
+}

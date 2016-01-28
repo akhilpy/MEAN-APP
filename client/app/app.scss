@@ -1,0 +1,59 @@
+$fa-font-path: "../bower_components/font-awesome/fonts";
+@import '../bower_components/font-awesome/scss/font-awesome';
+@import '../bower_components/chosen/chosen.min';
+
+/**
+ * App-wide Styles
+ */
+
+.browserupgrade {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+/*==========  Includes  ==========*/
+@import "../sass/_includes/functions";
+@import "../sass/_includes/fonts";
+@import "../sass/_includes/normalize";
+@import "../sass/_includes/variables";
+@import "../sass/_includes/mixins";
+
+/*==========  Elements  ==========*/
+@import "../sass/_elements/typography";
+@import "../sass/_elements/forms";
+@import "../sass/_elements/heroes";
+
+/*==========  Parts  ==========*/
+@import "../sass/_parts/global";
+@import "../sass/_parts/header";
+@import "../sass/_parts/navigation";
+@import "../sass/_parts/main";
+@import "../sass/_parts/page";
+@import "../sass/_parts/home";
+@import "../sass/_parts/about";
+@import "../sass/_parts/account";
+@import "../sass/_parts/application";
+@import "../sass/_parts/welcome";
+@import "../sass/_parts/how-it-works";
+
+
+// Component styles are injected through grunt
+// injector
+@import 'about/about.scss';
+@import 'admin/admin.scss';
+@import 'blog/blog.scss';
+@import 'borrow/borrow.scss';
+@import 'contact/contact.scss';
+@import 'faq/faq.scss';
+@import 'invest/invest.scss';
+@import 'legal/legal.scss';
+@import 'main/main.scss';
+@import '../components/breadcrumbs/breadcrumbs.scss';
+@import '../components/chosen/chosen.scss';
+@import '../components/footer/footer.scss';
+@import '../components/oauth-buttons/oauth-buttons.scss';
+@import '../components/profileBorrower/profileBorrower.scss';
+@import '../components/profileInvestor/profileInvestor.scss';
+// endinjector

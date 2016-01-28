@@ -1,0 +1,37 @@
+<div class="site-header__wrapper" ng-controller="NavbarController">
+  <div class="site-header__notice">
+    <div class="site-header__notice--inner">
+      <p>Know a few small businesses that would make great investments? <a href="#">Recommend one today</a></p>
+    </div><!-- end of .site-header__notice--inner -->
+  </div><!-- end of .site-header__notice -->
+
+  <header id="masthead" class="site-header" role="banner">
+    <div class="site-branding">
+      <h1 class="site-title">
+        <a href="/" rel="home">
+          <img src="assets/images/header-logo.png" alt="{{siteTitle}}">
+        </a>
+      </h1>
+      <h2 class="site-description screen-reader-text">{{siteDescription}}</h2>
+    </div>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation" collapse="{{nav.isCollapsed}}">
+      <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false" type="button" ng-click="nav.isCollapsed = !nav.isCollapsed"><i class="fa fa-navicon"></i></button>
+      <ul class="main-menu">
+        <li ng-repeat="item in nav.menu" ui-sref-active="active" class="{{item.class}}">
+            <a ui-sref="{{item.state}}">{{item.title}}</a>
+        </li>
+        <li ng-hide="nav.isLoggedIn()" ui-sref-active="active"><a ui-sref="login">Signup | Login</a></li>
+        <li ng-show="nav.isLoggedIn()" ui-sref-active="active">
+          <a ui-sref="dashboard">Account</a>
+          <ul class="sub-menu">
+            <li ng-show="nav.isAdmin()"><a ui-sref="admin">Admin</a></li>
+            <li><a ui-sref="profile">Profile</a></li>
+            <li ng-show="nav.isBorrower()"><a ui-sref="application">Application</a></li>
+            <li><a ui-sref="logout">Logout</a></li>
+          </ul><!-- /.sub-menu -->
+        </li>
+      </ul><!-- end of .main-menu -->
+    </nav><!-- #site-navigation -->
+  </header><!-- #masthead -->
+</div>
