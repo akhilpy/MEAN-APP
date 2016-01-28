@@ -103,18 +103,13 @@
   }
 
   img {
-    display: block;
     position: absolute;
     margin: 0 auto;
     max-width: 100%;
     left: 0;
     right: 0;
-    z-index: -3;
+    z-index: 1;
     background: $color-secondary;
-
-    &:first-of-type {
-      z-index: 1;
-    }
   }
 
   @include breakpoint(mobile) {

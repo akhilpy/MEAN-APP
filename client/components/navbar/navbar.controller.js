@@ -28,12 +28,13 @@ class NavbarController {
   isCollapsed = true;
   //end-non-standard
 
-  constructor(Auth) {
+  constructor(Auth, appConfig) {
     this.isLoggedIn = Auth.isLoggedIn;
     this.isAdmin = Auth.isAdmin;
     this.isBorrower = Auth.isBorrower;
     this.isInvestor = Auth.isInvestor;
     this.getCurrentUser = Auth.getCurrentUser;
+    this.site = appConfig.SITE;
   }
 }
 

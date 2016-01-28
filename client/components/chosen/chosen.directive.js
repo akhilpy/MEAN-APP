@@ -1,4 +1,5 @@
 'use strict';
+/*jshint camelcase: false */
 
 angular.module('investnextdoorCaApp')
   .directive('chosen', function($timeout) {

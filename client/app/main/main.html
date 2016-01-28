@@ -40,18 +40,18 @@
               <h3 class="block--title">Investors take note: fixed income just got exciting.</h3>
 
               <div class="block--image block__green-block--image">
-                <img data-image="0" src="assets/images/uploads/icon-1-190x190.png" alt="Double-Digit">
-                <img data-image="1" src="assets/images/uploads/icon-2-190x190.png" alt="Direct investing">
-                <img data-image="2" src="assets/images/uploads/icon-3-190x190.png" alt="Invest in your neighbourhood">
-                <img data-image="3" src="assets/images/uploads/icon-4-190x190.png" alt="Technology makes it simple">
+                <img ng-show="main.image == 0" src="assets/images/uploads/icon-1-190x190.png" alt="Double-Digit">
+                <img ng-show="main.image == 1" src="assets/images/uploads/icon-2-190x190.png" alt="Direct investing">
+                <img ng-show="main.image == 2" src="assets/images/uploads/icon-3-190x190.png" alt="Invest in your neighbourhood">
+                <img ng-show="main.image == 3" src="assets/images/uploads/icon-4-190x190.png" alt="Technology makes it simple">
                     </div><!-- end of .block__green-block--image -->
               <div class="block--text block__green-block--text">
 
                 <ul class="block__green-block--list">
-                  <li data-list="0">Double-Digit <em>6-21%</em></li>
-                  <li data-list="1">Direct investing <em>Minimum $500 investment</em></li>
-                  <li data-list="2">Invest in your neighbourhood <em>1-5 year terms</em></li>
-                  <li data-list="3">Technology makes it simple <em>Automated monthly repayment</em></li>
+                  <li ng-mouseover="main.image = 0" >Double-Digit <em>6-21%</em></li>
+                  <li ng-mouseover="main.image = 1">Direct investing <em>Minimum $500 investment</em></li>
+                  <li ng-mouseover="main.image = 2">Invest in your neighbourhood <em>1-5 year terms</em></li>
+                  <li ng-mouseover="main.image = 3">Technology makes it simple <em>Automated monthly repayment</em></li>
                 </ul><!-- end of .block__green-block--list -->
 
               </div><!-- end of .block__green-block--text -->

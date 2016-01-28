@@ -1,21 +1,12 @@
 'use strict';
 
 class LoginController {
-  constructor(Auth, $state) {
+  constructor(Auth, $state, appConfig) {
     this.user = {};
     this.errors = {};
     this.submitted = false;
 
-    this.roles = [
-      {
-        name: 'Borrower',
-        value: 'borrower'
-      },
-      {
-        name: 'Investor',
-        value: 'investor'
-      }
-    ];
+    this.roles = appConfig.ROLES;
 
     this.Auth = Auth;
     this.$state = $state;

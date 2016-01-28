@@ -1,62 +1,13 @@
 'use strict';
 
 class ProfileController {
-  constructor($http, Auth, $state) {
+  constructor($http, Auth, $state, appConfig) {
     this.$http = $http;
     this.$state = $state;
     this.errors = {};
     this.submitted = false;
 
-    this.provinces = [
-      {
-        name: 'Alberta',
-        value: 'AB'
-      },
-      {
-        name: 'British Columbia',
-        value: 'BC'
-      },
-      {
-        name: 'New Brunswick',
-        value: 'NB'
-      },
-      {
-        name: 'Newfoundland and Labrador',
-        value: 'NL'
-      },
-      {
-        name: 'Nova Scotia',
-        value: 'NS'
-      },
-      {
-        name: 'Northwest Territories',
-        value: 'NT'
-      },
-      {
-        name: 'Nunavut',
-        value: 'NU'
-      },
-      {
-        name: 'Ontario',
-        value: 'ON'
-      },
-      {
-        name: 'Prince Edward Island',
-        value: 'PE'
-      },
-      {
-        name: 'Quebec',
-        value: 'QC'
-      },
-      {
-        name: 'Saskatchewan',
-        value: 'SK'
-      },
-      {
-        name: 'Yukon',
-        value: 'YT'
-      }
-    ];
+    this.provinces = appConfig.PROVINCES;
 
     this.Auth = Auth;
     this.getCurrentUser = Auth.getCurrentUser;

@@ -5,7 +5,7 @@ angular.module('investnextdoorCaApp')
     return {
       templateUrl: 'components/breadcrumbs/breadcrumbs.html',
       restrict: 'EA',
-      link: function (scope, element, attrs) {
+      link: function () {
       }
     };
   });

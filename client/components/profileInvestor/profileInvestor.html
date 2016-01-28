@@ -65,10 +65,9 @@
         </div><!-- /.form__split--third -->
         <div class="form__split--sixth">
           <label for="province">Province*</label>
-          <select chosen
-                  option="profile.provinces"
+          <select chosen="profile.provinces"
                   data-placeholder="Select Your Province"
-                  search-threshold="15"
+                  disable-search-threshold="15"
                   ng-model="user.address.province"
                   ng-options="province.name for province in profile.provinces track by province.value">
           </select>

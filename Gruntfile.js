@@ -339,7 +339,6 @@ module.exports = function (grunt) {
           collapseWhitespace: true,
           removeAttributeQuotes: true,
           removeEmptyAttributes: true,
-          removeRedundantAttributes: true,
           removeScriptTypeAttributes: true,
           removeStyleLinkTypeAttributes: true
         },

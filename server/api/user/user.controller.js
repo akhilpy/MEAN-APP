@@ -89,6 +89,16 @@ export function update(req, res, next) {
       user.name.first = String(req.body.name.first);
       user.name.last = String(req.body.name.last);
       user.email = String(req.body.email);
+      user.phone = String(req.body.phone);
+      user.dob = String(req.body.dob);
+      user.social = String(req.body.social);
+      user.address.street = String(req.body.address.street);
+      user.address.city = String(req.body.address.city);
+      user.address.province = String(req.body.address.province);
+      user.address.postal = String(req.body.address.postal);
+      user.investor.increase = String(req.body.investor.increase);
+      user.investor.notifications = String(req.body.investor.notifications);
+      user.investor.notes = String(req.body.investor.notes);
 
       return user.saveAsync()
         .then(() => {
