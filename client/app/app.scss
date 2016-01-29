@@ -1,6 +1,5 @@
 $fa-font-path: "../bower_components/font-awesome/fonts";
 @import '../bower_components/font-awesome/scss/font-awesome';
-@import '../bower_components/chosen/chosen.min';
 
 /**
  * App-wide Styles
@@ -21,6 +20,7 @@ $fa-font-path: "../bower_components/font-awesome/fonts";
 @import "../sass/_includes/mixins";
 
 /*==========  Elements  ==========*/
+@import "../sass/_elements/chosen";
 @import "../sass/_elements/typography";
 @import "../sass/_elements/forms";
 @import "../sass/_elements/heroes";

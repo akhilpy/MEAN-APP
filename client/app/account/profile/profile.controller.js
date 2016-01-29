@@ -35,7 +35,6 @@ class ProfileController {
 
   updateInvestor(form) {
     this.submitted = true;
-    console.log(this);
 
     if (form.$valid) {
       this.$http.put('/api/users/' + this.user._id, {
@@ -47,7 +46,7 @@ class ProfileController {
         }
       })
       .then(() => {
-        this.$state.go('dashboard');
+        this.$state.go('dashboard.index');
       })
       .catch(err => {
         this.errors.other = err.message;
@@ -68,7 +67,7 @@ class ProfileController {
         }
       })
       .then(() => {
-        this.$state.go('dashboard');
+        this.$state.go('dashboard.index');
       })
       .catch(err => {
         this.errors.other = err.message;

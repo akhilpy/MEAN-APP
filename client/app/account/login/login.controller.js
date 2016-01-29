@@ -22,7 +22,7 @@ class LoginController {
       })
       .then(() => {
         // Logged in, redirect to home
-        this.$state.go('dashboard');
+        this.$state.go('dashboard.index');
       })
       .catch(err => {
         this.errors.other = err.message;
@@ -45,7 +45,7 @@ class LoginController {
       })
       .then(() => {
         // Account created, redirect to home
-        this.$state.go('dashboard');
+        this.$state.go('dashboard.index');
       })
       .catch(err => {
         err = err.data;

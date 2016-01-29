@@ -131,7 +131,7 @@ function InvestorService($location, $cookies, User) {
           debit: '',
           balance: '81795.95'
         }
-      ]
+      ];
       return statements;
     }
 
