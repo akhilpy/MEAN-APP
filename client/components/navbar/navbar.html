@@ -23,11 +23,11 @@
         </li>
         <li ng-hide="nav.isLoggedIn()" ui-sref-active="active"><a ui-sref="login">Signup | Login</a></li>
         <li ng-show="nav.isLoggedIn()" ui-sref-active="active">
-          <a ui-sref="dashboard">Account</a>
+          <a ui-sref="dashboard.index">Account</a>
           <ul class="sub-menu">
             <li ng-show="nav.isAdmin()"><a ui-sref="admin">Admin</a></li>
             <li><a ui-sref="profile">Profile</a></li>
-            <li ng-show="nav.isBorrower()"><a ui-sref="application">Application</a></li>
+            <li ng-show="nav.isBorrower()"><a ui-sref="applications">Applications</a></li>
             <li><a ui-sref="logout">Logout</a></li>
           </ul><!-- /.sub-menu -->
         </li>

@@ -20,10 +20,50 @@ angular.module('investnextdoorCaApp')
         }
       })
       .state('dashboard', {
-        url: '/account',
+        url: '/dashboard',
         templateUrl: 'app/account/dashboard/dashboard.html',
         controller: 'DashboardController',
         controllerAs: 'vm',
+        abstract: true
+      })
+      .state('dashboard.index', {
+        url: '',
+        templateUrl: 'app/account/dashboard/dashboard.index.html',
+        authenticate: true
+      })
+      .state('dashboard.actions', {
+        url: '/actions',
+        templateUrl: 'app/account/dashboard/dashboard.actions.html',
+        authenticate: true
+      })
+      .state('dashboard.investments', {
+        url: '/investments',
+        templateUrl: 'app/account/dashboard/dashboard.investments.html',
+        authenticate: true
+      })
+      .state('dashboard.offers', {
+        url: '/offers',
+        templateUrl: 'app/account/dashboard/dashboard.offers.html',
+        authenticate: true
+      })
+      .state('dashboard.statements', {
+        url: '/statements',
+        templateUrl: 'app/account/dashboard/dashboard.statements.html',
+        authenticate: true
+      })
+      .state('dashboard.watchlist', {
+        url: '/watchlist',
+        templateUrl: 'app/account/dashboard/dashboard.watchlist.html',
+        authenticate: true
+      })
+      .state('dashboard.agreements', {
+        url: '/agreements',
+        templateUrl: 'app/account/dashboard/dashboard.agreements.html',
+        authenticate: true
+      })
+      .state('dashboard.pending', {
+        url: '/pending',
+        templateUrl: 'app/account/dashboard/dashboard.pending.html',
         authenticate: true
       })
       .state('profile', {
@@ -33,9 +73,16 @@ angular.module('investnextdoorCaApp')
         controllerAs: 'profile',
         authenticate: true
       })
-      .state('application', {
-        url: '/account/application',
-        templateUrl: 'app/account/application/application.html',
+      .state('applications', {
+        url: '/account/applications',
+        templateUrl: 'app/account/application/applications.html',
+        controller: 'ApplicationController',
+        controllerAs: 'vm',
+        authenticate: true
+      })
+      .state('application.new', {
+        url: '/account/applications/new',
+        templateUrl: 'app/account/application/applications.new.html',
         controller: 'ApplicationController',
         controllerAs: 'vm',
         authenticate: true

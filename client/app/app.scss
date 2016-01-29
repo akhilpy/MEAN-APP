@@ -24,6 +24,7 @@ $fa-font-path: "../bower_components/font-awesome/fonts";
 @import "../sass/_elements/typography";
 @import "../sass/_elements/forms";
 @import "../sass/_elements/heroes";
+@import "../sass/_elements/tables";
 
 /*==========  Parts  ==========*/
 @import "../sass/_parts/global";
@@ -42,6 +43,7 @@ $fa-font-path: "../bower_components/font-awesome/fonts";
 // Component styles are injected through grunt
 // injector
 @import 'about/about.scss';
+@import 'account/dashboard/dashboard.scss';
 @import 'admin/admin.scss';
 @import 'blog/blog.scss';
 @import 'borrow/borrow.scss';

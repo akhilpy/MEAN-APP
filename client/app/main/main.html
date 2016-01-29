@@ -10,15 +10,15 @@
 
             <h2 class="large-hero__title" ng-attr-contenteditable="{{ editMode }}" ng-model="hero.title">It’s borrowing reinvented. It’s investing on your terms.</h2>
 
-            <h3 class="large-hero__subtitle">Canadian businesses and investors working together.<br>Everybody wins.</h3>
+            <h3 class="large-hero__subtitle" ng-attr-contenteditable="{{ editMode }}" ng-model="hero.subtitle">Canadian businesses and investors working together.<br>Everybody wins.</h3>
 
             <a ui-sref="borrow" class="large-hero__button button large">How it Works</a>
 
           </div><!-- end of .large-hero__content -->
+
+          <a ng-click="toggleEditMode()" ng-show="main.isAdmin()" ng-class="{editing: editMode}" class="button edit-button"><i class="fa fa-{{editMode ? 'save' : 'cog'}}"></i></a>
         </div><!-- end of .large-hero -->
       </div>
-
-      <a ng-click="toggleEditMode()" class="button">{{editMode ? 'Disable Editing' : 'Enable Editing'}}</a>
 
       <div id="primary" class="content-area">
         <main id="main" class="site-main" role="main">

@@ -20,6 +20,11 @@ h6 {
   .entry-content & {
     margin: rem(20) 0;
   }
+
+  &[contenteditable="true"] {
+    outline: none;
+    background: rgba($color-white, 0.1);
+  }
 }
 
 h1 {
@@ -32,6 +37,10 @@ h1 {
     line-height: 1;
     margin: 0;
     position: relative;
+
+    @include breakpoint(phone) {
+      @include font-size(38);
+    }
   }
 
   &.widget-title {
@@ -66,6 +75,16 @@ h2 {
   &.block__grey-block--title {
     color: $color-primary;
     text-transform: uppercase;
+  }
+
+  &.dashboard--details__large {
+    @include font-size(58);
+    @include font-primary(700);
+    color: $color-white;
+
+    @include breakpoint(phone) {
+      @include font-size(38);
+    }
   }
 }
 
@@ -103,6 +122,36 @@ h3 {
     }
 
     @include breakpoint(mobile) {
+      @include font-size(30);
+    }
+  }
+
+  &.dashboard--details__medium {
+    @include font-primary(300);
+    @include font-size(48);
+    color: $color-white;
+    text-transform: uppercase;
+    line-height: 1;
+
+    a {
+      @include font-primary(300);
+      text-transform: uppercase;
+    }
+
+    &.positive,
+    &.negative {
+      @include font-primary(400);
+      @include font-size(40);
+    }
+
+    &.positive {
+      color: $color-success;
+    }
+    &.negative {
+      color: $color-warning;
+    }
+
+    @include breakpoint(phone) {
       @include font-size(30);
     }
   }
@@ -321,6 +370,19 @@ a {
 
     &:hover {
       background: $color-white;
+      color: $color-secondary;
+    }
+  }
+
+  &.edit-button {
+    padding: 0;
+    background: none;
+    border-radius: 0;
+    &:hover {
+      cursor: pointer;
+      color: $color-secondary;
+    }
+    &.editing {
       color: $color-secondary;
     }
   }

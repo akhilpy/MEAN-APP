@@ -1,15 +1,17 @@
 'use strict';
 
 class DashboardController {
-  constructor(Auth) {
+  constructor(Auth, Investor) {
     this.errors = {};
     this.submitted = false;
 
     this.Auth = Auth;
+    this.Investor = Investor;
     this.getCurrentUser = Auth.getCurrentUser;
     this.isAdmin = Auth.isAdmin;
     this.isBorrower = Auth.isBorrower;
     this.isInvestor = Auth.isInvestor;
+    this.statements = Investor.getStatements();
   }
 
   changePassword(form) {

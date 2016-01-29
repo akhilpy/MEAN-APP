@@ -1,0 +1,42 @@
+table {
+  @include font-size(16);
+  width: 100%;
+}
+
+th {
+  text-transform: uppercase;
+  text-align: left;
+  padding-right: rem(5);
+
+  a {
+    display: block;
+    background: $color-grey-pale;
+    border-radius: $border-radius;
+    padding: rem(10) rem(20);
+    color: $color-black;
+    text-transform: uppercase;
+    line-height: 1;
+
+    &:hover {
+      color: $color-primary-med;
+    }
+  }
+}
+
+td {
+  @include font-primary(600);
+  padding: rem(20);
+  border-bottom: 1px solid $color-grey-light;
+  color: $color-slate-med;
+
+  strong {
+    text-transform: uppercase;
+  }
+
+  &.dashboard__table--credits {
+    color: $color-success;
+  }
+  &.dashboard__table--debits {
+    color: $color-warning;
+  }
+}
