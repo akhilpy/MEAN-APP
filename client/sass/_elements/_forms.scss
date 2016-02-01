@@ -23,6 +23,27 @@
   }
 }
 
+input:not([type=submit]):not([type=file]):not([type=radio]):not([type=checkbox]) {
+  @include transition;
+  @include input-placeholder;
+  @include font-size;
+  padding: rem(10);
+  width: 100%;
+  border: 1px solid $color-grey-light;
+  outline: none;
+  border-radius: $border-radius;
+
+  &:-webkit-autofill {
+    -webkit-box-shadow:0 0 0 50px $color-white inset;
+    -webkit-text-fill-color: $color-grey-med;
+  }
+
+  &:-webkit-autofill:focus {
+    -webkit-box-shadow:0 0 0 50px $color-white inset;
+    -webkit-text-fill-color: $color-grey-med;
+  }
+}
+
 #{$all-text-inputs-focus},
 #{$all-text-inputs-hover} {
   border-color: $color-accent;
@@ -364,6 +385,7 @@ input[type="radio"] {
   }
 }
 
+.formly-field-group,
 .form__row {
   @include clearfix;
   display: block;
@@ -414,10 +436,12 @@ input[type="radio"] {
   }
 }
 
+.formly-field-group__social,
 .form__row--social {
   margin-bottom: rem(30);
 }
 
+.formly-field-group__underlined,
 .form__row--underline {
   border-bottom: 1px solid $color-grey-light;
   margin-bottom: rem(20);
@@ -504,9 +528,12 @@ input[type="radio"] {
   }
 }
 
+.formly-submit,
 .form__row--submit {
   margin-bottom: 0;
 
+  .formly-signup,
+  .formly-login,
   button[name="signup"],
   button[name="login"] {
     @include font-primary(700);
@@ -516,6 +543,10 @@ input[type="radio"] {
 
   button[name="login"] {
     margin: 0 auto;
+  }
+
+  &.signup {
+    text-align: right;
   }
 
   .login-form & {

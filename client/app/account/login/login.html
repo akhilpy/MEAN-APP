@@ -13,98 +13,28 @@
 
             <ul class="account__forms--list">
               <li class="account__form">
-                <form class="form" name="signup" ng-submit="vm.register(signup)" novalidate>
+                <form name="signup" ng-submit="vm.register(signup)" novalidate>
                   <div class="form__wrapper signup-form">
-                  	<h2 class="account__form--title">Sign Up</h2>
+                    <h2 class="account__form--title">Sign Up</h2>
 
-                		<ul class="form__rows">
-                  		<li class="form__row form__row--full form__row--social">
-                    		<oauth-buttons></oauth-buttons>
-                  		</li><!-- end of .form__row form__row--full -->
+                		<div class="formly-field-group formly-field-group__social">
+                  		<oauth-buttons></oauth-buttons>
+                		</div><!-- /.formly-field-group -->
 
-                	    <li class="form__row form__row--full form__row--underline">
-                	      <p>or fill out the info below</p>
-                	    </li><!-- end of .form__row form__row--full -->
+              	    <div class="formly-field-group formly-field-group__underlined">
+              	      <p>or fill out the info below</p>
+              	    </div><!-- /.formly-field-group -->
 
-                	    <li class="form__row form__row--split">
-                	      <div class="form__split--half" ng-class="{ 'has-success': signup.name.first.$valid && vm.submitted, 'has-error': signup.name.first.$invalid && vm.submitted }">
-                	        <label for="first-name">First Name*</label>
-                	        <input name="first-name" type="text" id="signup-first-name" placeholder="First" ng-model="vm.user.name.first" required autofocus>
-                          <p class="help-block" ng-show="signup.name.first.$error.required && vm.submitted">
-                            A first name is required
-                          </p>
-                	      </div><!-- end of .form__split--half -->
-                	      <div class="form__split--half" ng-class="{ 'has-success': signup.last.name.$valid && vm.submitted,'has-error': signup.last.name.$invalid && vm.submitted }">
-                	        <label for="last-name">Last Name*</label>
-                	        <input name="last-name" type="text" id="signup-last-name" placeholder="Last" ng-model="vm.user.name.last" required>
-                          <p class="help-block" ng-show="signup.name.last.$error.required && vm.submitted">
-                            A last name is required
-                          </p>
-                	      </div><!-- end of .form__split--half -->
-                	    </li><!-- end of .form__row form__row--split -->
-
-                      <li class="form__row form__row--split">
-                        <div class="form__split--half" ng-class="{ 'has-success': signup.email.$valid && vm.submitted, 'has-error': signup.email.$invalid && vm.submitted }">
-                  	      <label for="email">Email Address*</label>
-                  	      <input name="email" type="email" id="signup-email" placeholder="name@host.com" ng-model="vm.user.email" required mongoose-error>
-                          <p class="help-block" ng-show="signup.email.$error.email && vm.submitted">
-                            Doesn't look like a valid email.
-                          </p>
-                          <p class="help-block" ng-show="signup.email.$error.required && vm.submitted">
-                            What's your email address?
-                          </p>
-                          <p class="help-block" ng-show="signup.email.$error.mongoose">
-                            {{ vm.errors.email }}
-                          </p>
-                  	    </div><!-- end of .form__split--half -->
-                        <div class="form__split--half">
-                	        <label for="role">Type of User*</label>
-                          <select chosen="vm.roles"
-                                  data-placeholder="Select"
-                                  disable-search-threshold="15"
-                                  ng-model="vm.user.role"
-                                  ng-options="item.name for item in vm.roles track by item.value">
-                          </select>
-                	      </div><!-- end of .form__split--half -->
-                      </li><!-- /.form__row form__row--split -->
-
-                	    <li class="form__row form__row--split">
-                	      <div class="form__split--half" ng-class="{ 'has-success': signup.password.$valid && vm.submitted,'has-error': signup.password.$invalid && vm.submitted }">
-                	        <label for="password">Password*</label>
-                	        <input name="password" type="password" id="signup-password" placeholder="Password" ng-model="vm.user.password" ng-minlength="3" required mongoose-error required>
-                          <p class="help-block"
-                             ng-show="(signup.password.$error.minlength || signup.password.$error.required) && vm.submitted">
-                            Password must be at least 3 characters.
-                          </p>
-                          <p class="help-block" ng-show="signup.password.$error.mongoose">
-                            {{ vm.errors.password }}
-                          </p>
-                	      </div><!-- end of .form__split--half -->
-                        <div class="form__split--half" ng-class="{ 'has-success': signup.confirmPassword.$valid && vm.submitted, 'has-error': signup.confirmPassword.$invalid && vm.submitted }">
-                	        <label for="confirmPassword">Confirm Password*</label>
-                	        <input name="confirmPassword" type="password" id="signup-password" placeholder="Password" ng-model="vm.user.confirmPassword" match="vm.user.password" ng-minlength="3" required>
-                          <p class="help-block"
-                             ng-show="signup.confirmPassword.$error.match && vm.submitted">
-                            Passwords must match.
-                          </p>
-                	      </div><!-- end of .form__split--half -->
-                	    </li><!-- end of .form__row form__row--split -->
-
-                	    <li class="form__row form__row--full">
-                	      <p>By signing up, you acknowledge that InvestNextDoor is not registered under the Canadian securities legislation, we do not provide advice about the suitability or merits of the security or investments and you agree to our <a ui-sref="legal.privacypolicy">Privacy Policy</a> and the <a ui-sref="legal.termsofservice">Terms of Service</a>.</p>
-                			</li><!-- end of .form__row form__row--full -->
-
-                			<li class="form__row form__row--split form__row--submit">
-                	      <div class="form__split--two-thirds">&nbsp;</div><!-- end of .form__split--two-thirds -->
-                	      <div class="form__split--third">
-                	        <button type="submit" name="signup" id="signup">Signup</button>
-                	      </div><!-- end of .form__split--third -->
-                	    </li><!-- end of .form__row form__row--split -->
-                		</ul><!-- end of .form__rows -->
-
-                	</div><!-- end of .form__wrapper signup-form -->
+                    <formly-form model="vm.user" fields="vm.signupFields" form="vm.form">
+                      <div class="formly-field-group">
+                        <p>By signing up, you acknowledge that InvestNextDoor is not registered under the Canadian securities legislation, we do not provide advice about the suitability or merits of the security or investments and you agree to our <a ui-sref="legal.privacypolicy">Privacy Policy</a> and the <a ui-sref="legal.termsofservice">Terms of Service</a>.</p>
+                      </div><!-- /.formly-field-group -->
+                      <div class="formly-submit signup">
+                        <button type="submit" class="button formly-signup">Signup</button>
+                      </div><!-- /.formly-submit -->
+                    </formly-form>
+                  </div><!-- /.form__wrapper signup-form -->
                 </form>
-
               </li><!-- end of .account__form -->
 
               <li class="account__form">
