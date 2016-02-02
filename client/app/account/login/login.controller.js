@@ -3,6 +3,7 @@
 class LoginController {
   constructor(Auth, $state, appConfig, Form) {
     this.user = {};
+    this.newUser = {};
     this.errors = {};
     this.submitted = false;
 
@@ -17,12 +18,13 @@ class LoginController {
   }
 
   login(form) {
+    var user = this.user;
     this.submitted = true;
 
     if (form.$valid) {
       this.Auth.login({
-        email: this.user.email,
-        password: this.user.password
+        email: user.email,
+        password: user.password
       })
       .then(() => {
         // Logged in, redirect to home
@@ -35,17 +37,18 @@ class LoginController {
   }
 
   register(form) {
+    var user = this.newUser;
     this.submitted = true;
 
     if (form.$valid) {
       this.Auth.createUser({
         name: {
-          first: this.user.name.first,
-          last: this.user.name.last
+          first: user.name.first,
+          last: user.name.last
         },
-        email: this.user.email,
-        password: this.user.password,
-        role: this.user.role.value
+        email: user.email,
+        password: user.password,
+        role: user.role.value
       })
       .then(() => {
         // Account created, redirect to home
