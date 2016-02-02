@@ -34,8 +34,6 @@ $fa-font-path: "../bower_components/font-awesome/fonts";
 @import "../sass/_parts/page";
 @import "../sass/_parts/home";
 @import "../sass/_parts/about";
-@import "../sass/_parts/account";
-@import "../sass/_parts/application";
 @import "../sass/_parts/welcome";
 @import "../sass/_parts/how-it-works";
 
@@ -43,6 +41,8 @@ $fa-font-path: "../bower_components/font-awesome/fonts";
 // Component styles are injected through grunt
 // injector
 @import 'about/about.scss';
+@import 'account/account.scss';
+@import 'account/application/applications.scss';
 @import 'account/dashboard/dashboard.scss';
 @import 'admin/admin.scss';
 @import 'blog/blog.scss';
@@ -52,10 +52,10 @@ $fa-font-path: "../bower_components/font-awesome/fonts";
 @import 'invest/invest.scss';
 @import 'legal/legal.scss';
 @import 'main/main.scss';
+@import '../components/applicationFormNavigation/applicationFormNavigation.scss';
+@import '../components/applicationFormStatus/applicationFormStatus.scss';
 @import '../components/breadcrumbs/breadcrumbs.scss';
 @import '../components/chosen/chosen.scss';
 @import '../components/footer/footer.scss';
 @import '../components/oauth-buttons/oauth-buttons.scss';
-@import '../components/profileBorrower/profileBorrower.scss';
-@import '../components/profileInvestor/profileInvestor.scss';
 // endinjector

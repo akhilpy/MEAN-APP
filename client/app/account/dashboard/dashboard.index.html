@@ -4,6 +4,6 @@
   <li>Email: {{ vm.getCurrentUser().email }}</li>
 </ul>
 
-<a href="/account/profile">Edit Profile</a>
+<a ui-sref="profile">Edit Profile</a>
 
-<a ng-show="vm.isBorrower()" href="/account/application/new">Listing Application</a>
+<a ng-show="vm.isBorrower()" ui-sref="applications.new">Listing Application</a>

@@ -1,0 +1,38 @@
+<div class="page-template-default">
+  <div id="page" class="site">
+    <navbar></navbar>
+
+      <div id="content" class="site-content">
+        <header class="entry-header">
+          <h1 class="entry-title">Applications</h1>
+        </header>
+
+        <breadcrumbs></breadcrumbs>
+
+        <div id="primary" class="content-area">
+          <main id="main" class="site-main" role="main">
+            <div class="content-wrapper">
+
+              <application-form-status></application-form-status>
+
+              <div class="application-form__wrapper application-form__borrower">
+                <application-form-navigation></application-form-navigation>
+
+                <ul class="application-form__pages">
+                  <li><ui-view class="applications__main"></ui-view></li>
+                </ul><!-- /.application-form__pages -->
+
+              </div><!-- /.application-form__wrapper application-form__borrower -->
+
+              <div class="application-form__footer">
+                <p>While InvestNextDoor wants to support as many businesses as possible we hold the right to reject listings at our discretion.</p>
+              </div><!-- /.application-form__footer -->
+
+            </div><!-- /.content-wrapper -->
+          </main><!-- /.site-main -->
+        </div><!-- /.content-area -->
+      </div><!-- #content -->
+
+    <footer></footer>
+  </div><!-- /#page.site -->
+</div>

@@ -1,0 +1,61 @@
+.application-form__navigation {
+  @include list-zero;
+  font-size: 0;
+  margin: rem(-40) rem(-40) rem(30) rem(-40);
+  border-radius: $border-radius $border-radius 0 0;
+
+  li {
+    @include font-size;
+    display: inline-block;
+    text-align: center;
+
+    .application-form__borrower & {
+      width: 20%;
+    }
+
+    &:first-child {
+      a {
+        border-radius: $border-radius 0 0 0;
+      }
+    }
+
+    &:last-child {
+      a {
+        border-radius: 0 $border-radius 0 0;
+        border-right: 0;
+      }
+    }
+
+    &.next {
+      a {
+        background: $color-primary;
+        color: $color-white;
+        &:hover {
+          color: $color-slate-dark;
+        }
+      }
+    }
+  }
+
+  a {
+    @include font-primary(700);
+    @include font-size(18);
+    display: block;
+    background: $color-slate-dark;
+    padding: rem(10) rem(20);
+    border-right: 3px solid $color-white;
+
+    &:hover,
+    &:focus {
+      color: $color-white;
+    }
+
+    &.active {
+      background: $color-grey-pale;
+      color: $color-primary;
+      &:hover {
+        color: $color-slate-dark;
+      }
+    }
+  }
+}

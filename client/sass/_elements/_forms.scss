@@ -2,6 +2,10 @@
 =            Forms            =
 =============================*/
 
+select {
+  display: none;
+}
+
 input:not([type=submit]):not([type=file]):not([type=radio]):not([type=checkbox]),
 #{$all-text-inputs} {
   @include transition;

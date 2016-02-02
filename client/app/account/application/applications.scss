@@ -1,0 +1,194 @@
+/*===================================
+=            Application            =
+===================================*/
+
+.application-form__wrapper {
+  padding: rem(40) rem(40) 0 rem(40);
+  border-radius: $border-radius;
+  background: $color-grey-pale;
+  margin-bottom: rem(40);
+  position: relative;
+
+  @include breakpoint(mobile) {
+    padding: rem(20) rem(10);
+  }
+
+  .acf-form-submit {
+    position: absolute;
+    left: 40%;
+    right: 40%;
+    bottom: rem(15);
+    text-align: center;
+
+    input[type="submit"] {
+      @include font-primary(700);
+      @include font-size(20);
+      background: $color-primary;
+      padding: rem(10) rem(20);
+    }
+  }
+}
+
+.application-form__status {
+  @include list-zero;
+  font-size: 0;
+  width: 100%;
+  margin-bottom: rem(30);
+
+  li {
+    @include font-size;
+    display: inline-block;
+    text-align: center;
+    position: relative;
+
+    &.fresh {
+      .fa {
+        background: $color-white;
+        color: $color-white;
+        &:before {
+          content: "\f111";
+        }
+      }
+    }
+
+    &.incomplete {
+      .fa {
+        background: $color-warning;
+        &:before {
+          content: "\f12a";
+        }
+      }
+    }
+
+    &.active {
+      .fa {
+        background: $color-primary;
+        color: $color-primary;
+        &:before {
+          content: "\f111";
+        }
+      }
+    }
+
+    &:after {
+      display: block;
+      content: "";
+      height: 2px;
+      background: lighten($color-grey-light, 10%);
+      position: absolute;
+      right: -50%;
+      left: -50%;
+      top: rem(15);
+      z-index: -1;
+    }
+
+    &:first-child {
+      &:after {
+        display: none;
+      }
+    }
+
+    &:last-child {
+      &:after {
+        display: none;
+      }
+    }
+  }
+
+  .fa {
+    background: $color-success;
+    display: block;
+    width: rem(30);
+    height: rem(30);
+    border-radius: 100%;
+    color: $color-white;
+    margin: 0 auto;
+    border: 2px solid lighten($color-grey-light, 10%);
+    box-shadow: inset 0 0 0 3px $color-white;
+    line-height: 1.9;
+  }
+
+  &.application-form__status--borrower {
+    li {
+      width: 20%;
+    }
+  }
+
+}
+
+.application-form__message {
+  @include font-size;
+  @include font-primary(600);
+  background: $color-white;
+  border: 2px solid $color-slate-dark;
+  border-radius: $border-radius;
+  padding: rem(20);
+  display: none;
+  margin-bottom: rem(30);
+  text-align: center;
+
+  p {
+    margin: 0;
+  }
+
+  &.warning {
+    border-color: $color-warning;
+    p {
+      color: $color-warning;
+    }
+  }
+
+  &.success {
+    border-color: $color-success;
+    p {
+      color: $color-success;
+    }
+  }
+}
+
+.application-form__pages {
+  @include list-zero;
+}
+
+.application-form__pagination {
+  @include font-size(35);
+  @include list-zero;
+  background: $color-slate-dark;
+  margin: rem(30) rem(-40);
+  padding: rem(10) rem(52);
+  display: table;
+  width: calc( 100% + 80px );
+
+
+  li {
+    display: table-cell;
+    width: 50%;
+
+    &:last-child {
+      text-align: right;
+    }
+  }
+
+  a {
+    @include font-primary(400);
+    text-transform: uppercase;
+  }
+}
+
+.application-form__submit {
+  text-align: center;
+  margin-bottom: rem(30);
+
+  a {
+    text-transform: uppercase;
+    margin-bottom: rem(30);
+  }
+
+  p {
+    font-style: italic;
+    color: $color-grey-med;
+  }
+}
+
+
+/*=====  End of Application  ======*/

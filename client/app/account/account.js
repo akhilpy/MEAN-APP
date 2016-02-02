@@ -73,18 +73,47 @@ angular.module('investnextdoorCaApp')
         controllerAs: 'profile',
         authenticate: true
       })
-      .state('applications', {
-        url: '/account/applications',
-        templateUrl: 'app/account/application/applications.html',
+      .state('application', {
+        url: '/account/application',
+        templateUrl: 'app/account/application/application.html',
         controller: 'ApplicationController',
         controllerAs: 'vm',
+        abstract: true,
+        authenticate: true
+      })
+      .state('application.index', {
+        url: '',
+        templateUrl: 'app/account/application/application.index.html',
         authenticate: true
       })
       .state('application.new', {
-        url: '/account/applications/new',
-        templateUrl: 'app/account/application/applications.new.html',
-        controller: 'ApplicationController',
-        controllerAs: 'vm',
+        url: '/new',
+        templateUrl: 'app/account/application/application.new.html',
+        authenticate: true
+      })
+      .state('application.general', {
+        url: '/general-info',
+        templateUrl: 'app/account/application/application.general.html',
+        authenticate: true
+      })
+      .state('application.details', {
+        url: '/listing-details',
+        templateUrl: 'app/account/application/application.details.html',
+        authenticate: true
+      })
+      .state('application.financial', {
+        url: '/financial',
+        templateUrl: 'app/account/application/application.financial.html',
+        authenticate: true
+      })
+      .state('application.social', {
+        url: '/social-media',
+        templateUrl: 'app/account/application/application.social.html',
+        authenticate: true
+      })
+      .state('application.terms', {
+        url: '/terms',
+        templateUrl: 'app/account/application/application.terms.html',
         authenticate: true
       });
   })

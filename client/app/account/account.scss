@@ -1,0 +1,167 @@
+/*===============================
+=            Account            =
+===============================*/
+
+.page-template-account.logged-in {
+  .entry-content {
+    padding: rem(30) 0;
+  }
+}
+
+.account__forms--list {
+  @include list-zero;
+  font-size: 0;
+  margin-bottom: rem(60);
+  text-align: center;
+  margin-top: rem(60);
+}
+
+.account__form {
+  @include font-size;
+  display: inline-block;
+  vertical-align: top;
+  width: 50%;
+  text-align: left;
+
+  &:first-child {
+    padding-right: rem(20);
+
+    @include breakpoint(mobile) {
+      padding-right: 0;
+    }
+  }
+  &:last-child {
+    padding-left: rem(20);
+
+    @include breakpoint(mobile) {
+      padding-left: 0;
+    }
+  }
+
+  &.account__form--reset {
+    @include font-primary(600);
+    padding-top: rem(60);
+  }
+
+  @include breakpoint(mobile) {
+    display: block;
+    width: auto;
+    margin-bottom: rem(20);
+  }
+}
+
+.account__form--title {
+  background: $color-slate-dark;
+  color: $color-white;
+  padding: rem(20) rem(30) rem(20);
+  margin: rem(-40) rem(-40) rem(30) rem(-40);
+  border-radius: $border-radius $border-radius 0 0;
+  line-height: 1;
+
+  @include breakpoint(mobile) {
+    margin: rem(-20) rem(-20) rem(30) rem(-20);
+  }
+}
+
+.form__wrapper {
+  padding: rem(40);
+  border-radius: $border-radius;
+  background: $color-grey-pale;
+
+  &:before {
+    display: none;
+  }
+
+  &.reset-form {
+    margin-top: rem(10);
+  }
+
+  @include breakpoint(mobile) {
+    padding: rem(20);
+    margin: 0 rem(-20);
+  }
+}
+
+.form__social {
+  @include list-zero;
+  text-align: right;
+  font-size: 0;
+
+  li {
+    display: inline-block;
+    width: 50%;
+
+    &:first-child {
+      text-align: left;
+
+      @include breakpoint(mobile) {
+        text-align: center;
+      }
+    }
+
+    @include breakpoint(mobile) {
+      display: block;
+      margin: 0 auto;
+      width: auto;
+      margin-bottom: rem(20);
+      text-align: center;
+    }
+  }
+
+  @include breakpoint(mobile) {
+    text-align: center;
+  }
+}
+
+input[name="reg_username"] {
+  display: none;
+}
+
+.account__applications-list {
+  @include list-zero;
+  margin-bottom: rem(30);
+
+  li {
+    display: inline-block;
+    margin-right: rem(20);
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  a {
+    @include button;
+  }
+}
+
+.upgrade-account {
+  margin-bottom: rem(60);
+
+  .button {
+    @include font-size(20);
+    background: $color-primary;
+  }
+}
+
+.borrower-profile,
+.investor-profile {
+  margin-top: rem(40);
+
+  .application-form__pagination {
+    margin-bottom: 0;
+    border-radius: 0 0 $border-radius $border-radius;
+  }
+}
+
+.application-form__footer {
+  text-align: center;
+  margin-bottom: rem(40);
+
+  p {
+    color: $color-grey-med;
+    font-style: italic;
+  }
+}
+
+/*=====  End of Account  ======*/

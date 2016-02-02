@@ -16,6 +16,87 @@ exports = module.exports = {
       value: 'investor'
     }
   ],
+  STRUCTURES: [
+    {
+      name: 'Cooperative',
+      value: 'Cooperative'
+    },{
+      name: 'Federal Corporation',
+      value: 'Federal Corporation'
+    },{
+      name: 'Provincial Corporation',
+      value: 'Provincial Corporation'
+    },{
+      name: 'General Partnership',
+      value: 'General Partnership'
+    },{
+      name: 'Limited Partnership',
+      value: 'Limited Partnership'
+    },{
+      name: 'Sole Proprietorship',
+      value: 'Sole Proprietorship'
+    }
+  ],
+  INDUSTRIES: [
+    {
+      name: 'Arts & Entertainment',
+      value: 'Arts & Entertainment'
+    },{
+      name: 'Automotive',
+      value: 'Automotive'
+    },{
+      name: 'Beauty & Spa',
+      value: 'Beauty & Spa'
+    },{
+      name: 'Commercial Supply/Services',
+      value: 'Commercial Supply/Services'
+    },{
+      name: 'Consumer Products',
+      value: 'Consumer Products'
+    },{
+      name: 'Education',
+      value: 'Education'
+    },{
+      name: 'Event Services',
+      value: 'Event Services'
+    },{
+      name: 'Financial Services',
+      value: 'Financial Services'
+    },{
+      name: 'Food & Restaurant',
+      value: 'Food & Restaurant'
+    },{
+      name: 'Health & Medical',
+      value: 'Health & Medical'
+    },{
+      name: 'Home Services',
+      value: 'Home Services'
+    },{
+      name: 'Hotels & Travel',
+      value: 'Hotels & Travel'
+    },{
+      name: 'Manufacturing',
+      value: 'Manufacturing'
+    },{
+      name: 'Non Profit',
+      value: 'Non Profit'
+    },{
+      name: 'Professional Services',
+      value: 'Professional Services'
+    },{
+      name: 'Public Services',
+      value: 'Public Services'
+    },{
+      name: 'Real Estate',
+      value: 'Real Estate'
+    },{
+      name: 'Retail',
+      value: 'Retail'
+    },{
+      name: 'Shipping & Delivery',
+      value: 'Shipping & Delivery'
+    }
+  ],
   PROVINCES: [
     {
       name: 'Alberta',
