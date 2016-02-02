@@ -398,6 +398,7 @@ input[type="radio"] {
     font-style: italic;
     color: rgba($color-grey-med, 0.8);
 
+    &.help-block,
     &.form__row--description {
       @include font-primary(600);
       @include font-size(12);
@@ -700,5 +701,51 @@ a.social-button {
     }
   }
 }
+
+
+
+/*-----  Flex Form  ------*/
+
+.display-flex {
+  display: flex;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.flex-2 {
+  flex: 2;
+}
+
+.flex-3 {
+  flex: 3;
+}
+
+.flex-4 {
+  flex: 4;
+}
+
+.flex-5 {
+  flex: 5;
+}
+
+.flex-6 {
+  flex: 6;
+}
+
+[class*="flex-"] {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+[class*="flex-"]:first-child {
+  padding-left: 0;
+}
+
+[class*="flex-"]:nth-last-child(2) {
+  padding-right: 0;
+}
+
 
 /*-----  End of Forms  ------*/
