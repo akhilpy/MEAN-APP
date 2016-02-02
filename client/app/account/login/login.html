@@ -13,77 +13,49 @@
 
             <ul class="account__forms--list">
               <li class="account__form">
-                <form name="signup" ng-submit="vm.register(signup)" novalidate>
-                  <div class="form__wrapper signup-form">
-                    <h2 class="account__form--title">Sign Up</h2>
+                <div class="form__wrapper signup-form">
+                  <h2 class="account__form--title">Sign Up</h2>
 
-                		<div class="formly-field-group formly-field-group__social">
-                  		<oauth-buttons></oauth-buttons>
-                		</div><!-- /.formly-field-group -->
+              		<div class="formly-field-group formly-field-group__social">
+                		<oauth-buttons></oauth-buttons>
+              		</div><!-- /.formly-field-group -->
 
-              	    <div class="formly-field-group formly-field-group__underlined">
-              	      <p>or fill out the info below</p>
-              	    </div><!-- /.formly-field-group -->
+            	    <div class="formly-field-group formly-field-group__underlined">
+            	      <p>or fill out the info below</p>
+            	    </div><!-- /.formly-field-group -->
 
-                    <formly-form model="vm.user" fields="vm.signupFields" form="vm.form">
-                      <div class="formly-field-group">
-                        <p>By signing up, you acknowledge that InvestNextDoor is not registered under the Canadian securities legislation, we do not provide advice about the suitability or merits of the security or investments and you agree to our <a ui-sref="legal.privacypolicy">Privacy Policy</a> and the <a ui-sref="legal.termsofservice">Terms of Service</a>.</p>
-                      </div><!-- /.formly-field-group -->
-                      <div class="formly-submit signup">
-                        <button type="submit" class="button formly-signup">Signup</button>
-                      </div><!-- /.formly-submit -->
-                    </formly-form>
-                  </div><!-- /.form__wrapper signup-form -->
-                </form>
+                  <formly-form model="vm.user" fields="vm.signupFields" form="signup">
+                    <div class="formly-field-group">
+                      <p>By signing up, you acknowledge that InvestNextDoor is not registered under the Canadian securities legislation, we do not provide advice about the suitability or merits of the security or investments and you agree to our <a ui-sref="legal.privacypolicy">Privacy Policy</a> and the <a ui-sref="legal.termsofservice">Terms of Service</a>.</p>
+                    </div><!-- /.formly-field-group -->
+                    <div class="formly-submit signup">
+                      <button type="submit" name="signup" class="button formly-signup" ng-click="vm.register(signup)">Signup</button>
+                    </div><!-- /.formly-submit -->
+                  </formly-form>
+                </div><!-- /.form__wrapper signup-form -->
               </li><!-- end of .account__form -->
 
               <li class="account__form">
-                <form class="form" name="login" ng-submit="vm.login(login)" novalidate>
-                  <div class="form__wrapper login-form">
-                    <h2 class="account__form--title">Log In</h2>
+                <div class="form__wrapper login-form">
+                  <h2 class="account__form--title">Log In</h2>
 
-                    <ul class="form__rows">
-                      <li class="form__row form__row--full form__row--social">
-                        <oauth-buttons></oauth-buttons>
-                      </li><!-- end of .form__row form__row--full -->
+              		<div class="formly-field-group formly-field-group__social">
+                		<oauth-buttons></oauth-buttons>
+              		</div><!-- /.formly-field-group -->
 
-                      <li class="form__row form__row--full form__row--underline">
-                        <p>or fill out the info below</p>
-                      </li><!-- end of .form__row form__row--full -->
+            	    <div class="formly-field-group formly-field-group__underlined">
+            	      <p>or fill out the info below</p>
+            	    </div><!-- /.formly-field-group -->
 
-                      <li class="form__row form__row--full">
-                        <label for="email">Email Address*</label>
-                        <input name="email" type="email" placeholder="name@host.com" id="login-email" ng-model="vm.user.email" required>
-                      </li><!-- end of .form__row form__row--split -->
-
-                      <li class="form__row form__row--full">
-                        <label for="password">Password*</label>
-                        <input name="password" type="password" placeholder="Password" id="login-password" ng-model="vm.user.password" required>
-                        <p class="help-block" ng-show="login.email.$error.required && login.password.$error.required && vm.submitted">
-                          Please enter your email and password.
-                        </p>
-                        <p class="help-block" ng-show="login.email.$error.email && vm.submitted">
-                          Please enter a valid email.
-                        </p>
-                        <p class="help-block">{{ vm.errors.other }}</p>
-                      </li><!-- end of .form__row form__row--full -->
-
-                      <li class="form__row form__row--full">
-                        <label for="login-password">
-                          <input name="remember" value="true" type="checkbox" id="login-remember" checked> Remember Me
-                        </label>
-                      </li><!-- end of .form__row form__row--full -->
-
-                      <li class="form__row form__row--full form__row--submit">
-                        <button type="submit" name="login" id="login">Login</button>
-                        <p>Need help with your password? <a ui-sref="resetpassword">Click Here</a></p>
-                      </li><!-- end of .form__row form__row--full -->
-
-                    </ul><!-- end of .form__rows -->
-                  </div><!-- end of .form__wrapper signup-form -->
-                </form>
-
+                  <formly-form model="vm.user" fields="vm.loginFields" form="login">
+                    <div class="formly-submit signup">
+                      <button type="submit" name="login" class="button formly-login" ng-click="vm.login(login)">Login</button>
+                      <p>Need help with your password? <a ui-sref="resetpassword">Click Here</a></p>
+                    </div><!-- /.formly-submit -->
+                  </formly-form>
+                </div><!-- /.form__wrapper signup-form -->
               </li><!-- end of .account__form -->
+
             </ul><!-- end of .account__forms--list -->
 
           </div><!-- /.content-wrapper -->

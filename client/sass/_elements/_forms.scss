@@ -2,6 +2,7 @@
 =            Forms            =
 =============================*/
 
+input:not([type=submit]):not([type=file]):not([type=radio]):not([type=checkbox]),
 #{$all-text-inputs} {
   @include transition;
   @include input-placeholder;
@@ -21,29 +22,24 @@
     -webkit-box-shadow:0 0 0 50px $color-white inset;
     -webkit-text-fill-color: $color-grey-med;
   }
-}
 
-input:not([type=submit]):not([type=file]):not([type=radio]):not([type=checkbox]) {
-  @include transition;
-  @include input-placeholder;
-  @include font-size;
-  padding: rem(10);
-  width: 100%;
-  border: 1px solid $color-grey-light;
-  outline: none;
-  border-radius: $border-radius;
-
-  &:-webkit-autofill {
-    -webkit-box-shadow:0 0 0 50px $color-white inset;
-    -webkit-text-fill-color: $color-grey-med;
+  &.ng-invalid {
+    border-color: $color-warning;
   }
 
-  &:-webkit-autofill:focus {
-    -webkit-box-shadow:0 0 0 50px $color-white inset;
-    -webkit-text-fill-color: $color-grey-med;
+  &.ng-valid {
+    &:not(.ng-pristine) {
+      border-color: $color-success;
+    }
+  }
+
+  &[disabled="disabled"] {
+    background: $color-grey-pale;
   }
 }
 
+input:not([type=submit]):not([type=file]):not([type=radio]):not([type=checkbox]):focus,
+input:not([type=submit]):not([type=file]):not([type=radio]):not([type=checkbox]):hover,
 #{$all-text-inputs-focus},
 #{$all-text-inputs-hover} {
   border-color: $color-accent;
