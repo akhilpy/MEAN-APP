@@ -378,40 +378,6 @@ function FormService(appConfig) {
                 label: 'Email Address',
                 placeholder: 'name@host.com'
               }
-            },
-            {
-              className: 'flex-1',
-              type: 'input',
-              key: 'phone',
-              templateOptions: {
-                label: 'Phone',
-                placeholder: '###-###-####'
-              }
-            },
-          ]
-        },
-        {
-          className: 'display-flex',
-          fieldGroup: [
-            {
-              className: 'flex-1',
-              type: 'input',
-              key: 'password',
-              templateOptions: {
-                type: 'password',
-                label: 'Password',
-                placeholder: 'Password'
-              }
-            },
-            {
-              className: 'flex-1',
-              type: 'input',
-              key: 'confirmPassword',
-              templateOptions: {
-                type: 'password',
-                label: 'Confirm Password',
-                placeholder: 'Password'
-              }
             }
           ]
         }
