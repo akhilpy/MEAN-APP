@@ -773,6 +773,633 @@ function FormService(appConfig) {
             ]
           }
         ];
+
+      } else if( page === 3 ) {
+
+        return [
+          {
+            className: 'display-flex',
+            fieldGroup: [
+              {
+                className: 'flex-1',
+                type: 'input',
+                key: 'businessNumber',
+                templateOptions: {
+                  label: 'Business Number (BN)',
+                  placeholder: '',
+                  description: ''
+                }
+              },
+              {
+                className: 'flex-1',
+                type: 'radio',
+                key: 'commercialSpace',
+                templateOptions: {
+                  label: 'Do you own or rent your commercial space?',
+                  options: [
+                    {
+                      name: 'Own',
+                      value: 'Own'
+                    },
+                    {
+                      name: 'Rent',
+                      value: 'Rent'
+                    }
+                  ],
+                  placeholder: '',
+                  description: ''
+                }
+              }
+            ]
+          },
+          {
+            className: 'display-flex',
+            key: 'owners',
+            type: 'repeatSection',
+            templateOptions: {
+              label: 'Owners',
+              btnText: 'Add Owner',
+              fields: [
+                {
+                  key: 'name',
+                  templateOptions: {
+                    label: 'Owner Name'
+                  },
+                  className: 'flex-3',
+                  type: 'input',
+                },
+                {
+                  key: 'percentage',
+                  templateOptions: {
+                    label: 'Owner Percentage'
+                  },
+                  className: 'flex-1',
+                  type: 'input',
+                },
+                {
+                  key: 'guarantee',
+                  templateOptions: {
+                    label: 'Will provide a guarantee?',
+                    placeholder: 'placeholder',
+                    valueProp: 'value',
+                    keyProp: 'name',
+                    options: [
+                      {
+                        name: 'Yes',
+                        value: 'Yes'
+                      },
+                      {
+                        name: 'No',
+                        value: 'No'
+                      }
+                    ]
+                  },
+                  className: 'flex-1',
+                  type: 'radio'
+                }
+              ]
+            }
+          },
+          {
+            className: 'display-flex',
+            fieldGroup: [
+              {
+                className: 'flex-1',
+                type: 'input',
+                key: 'revenue',
+                templateOptions: {
+                  label: '12 Month Revenue',
+                  placeholder: '$',
+                  description: 'Please make sure that you enter the revenue from the last 12 months.'
+                }
+              },
+              {
+                className: 'flex-1',
+                type: 'input',
+                key: 'projection',
+                templateOptions: {
+                  label: '12 Month Projection',
+                  placeholder: '$',
+                  description: ''
+                }
+              },
+              {
+                className: 'flex-1',
+                type: 'input',
+                key: 'debt',
+                templateOptions: {
+                  label: 'Total Outstanding Debt',
+                  placeholder: '$',
+                  description: ''
+                }
+              },
+              {
+                className: 'flex-1',
+                type: 'input',
+                key: 'repayments',
+                templateOptions: {
+                  label: 'Debt Payments (Monthly)',
+                  placeholder: '$',
+                  description: ''
+                }
+              },
+            ]
+          },
+          {
+            className: 'display-flex',
+            fieldGroup: [
+              {
+                className: 'flex-1',
+                key: 'bankStatements',
+                type: 'repeatSection',
+                templateOptions: {
+                  label: 'Attach Bank Statements (Minimum 3 Months)',
+                  btnText: 'Add Statement',
+                  fields: [
+                    {
+                      className: 'flex-1',
+                      type: 'input',
+                      key: 'statement',
+                      templateOptions: {
+                        type: 'file',
+                        label: 'Bank Statement'
+                      },
+                    }
+                  ]
+                }
+              },
+              {
+                className: 'flex-1',
+                key: 'taxReturns',
+                type: 'repeatSection',
+                templateOptions: {
+                  label: 'Attach Business Tax Returns (Last 2 Years)',
+                  btnText: 'Add Tax Return',
+                  fields: [
+                    {
+                      className: 'flex-1',
+                      type: 'input',
+                      key: 'return',
+                      templateOptions: {
+                        type: 'file',
+                        label: 'Tax Return'
+                      },
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            className: 'display-flex',
+            fieldGroup: [
+              {
+                className: 'flex-1',
+                type: 'textarea',
+                key: 'whyInvest',
+                templateOptions: {
+                  label: 'Why should someone invest in your business?',
+                  description: 'Share why your business is a great investment.'
+                }
+              }
+            ]
+          },
+          {
+            className: 'display-flex',
+            fieldGroup: [
+              {
+                className: 'flex-1',
+                type: 'radio',
+                key: 'provideMore',
+                defaultValue: 'No',
+                templateOptions: {
+                  label: 'Additional Financial Information',
+                  options: [
+                    {
+                      name: 'No',
+                      value: 'No'
+                    },
+                    {
+                      name: 'Yes',
+                      value: 'Yes'
+                    }
+                  ],
+                  placeholder: '',
+                  description: 'Providing additional information may increase investor interest.'
+                }
+              }
+            ]
+          },
+          {
+            className: 'display-flex',
+            fieldGroup: [
+              {
+                className: 'flex-1',
+                type: 'input',
+                key: 'upToDate',
+                templateOptions: {
+                  type: 'date',
+                  label: 'As of Date',
+                  placeholder: '',
+                  description: 'Date of financial information'
+                }
+              },
+              {
+                className: 'flex-1',
+                type: 'input',
+                key: 'assets',
+                templateOptions: {
+                  label: 'Total Assets',
+                  placeholder: '$',
+                  description: ''
+                }
+              },
+              {
+                className: 'flex-1',
+                type: 'input',
+                key: 'inventory',
+                templateOptions: {
+                  label: 'Current Inventory',
+                  placeholder: '$',
+                  description: ''
+                }
+              },
+              {
+                className: 'flex-1',
+                type: 'input',
+                key: 'receivable',
+                templateOptions: {
+                  label: 'Total Liabilities',
+                  placeholder: '$',
+                  description: ''
+                }
+              },
+              {
+                className: 'flex-1',
+                type: 'input',
+                key: 'liabilities',
+                templateOptions: {
+                  label: 'Accounts Receivable',
+                  placeholder: '$',
+                  description: ''
+                }
+              },
+            ],
+            hideExpression: '!model.provideMore || model.provideMore=="No"'
+          },
+          {
+            className: 'display-flex',
+            fieldGroup: [
+              {
+                className: 'flex-1',
+                type: 'chosen',
+                key: 'financialStatements',
+                templateOptions: {
+                  label: 'Financial Statements',
+                  labelProp: 'label',
+                  valueProp: 'value',
+                  options: [
+                    {
+                      name: 'Audited',
+                      value: 'Audited'
+                    },
+                    {
+                      name: 'Reviewed',
+                      value: 'Reviewed'
+                    }
+                  ],
+                  ngOptions: 'option.name for option in to.options track by option.value',
+                  placeholder: 'Select'
+                }
+              },
+              {
+                className: 'flex-1',
+                key: 'additionalDocuments',
+                type: 'repeatSection',
+                templateOptions: {
+                  label: 'Additional Financial Documents',
+                  btnText: 'Add Document',
+                  fields: [
+                    {
+                      className: 'flex-1',
+                      type: 'input',
+                      key: 'document',
+                      templateOptions: {
+                        type: 'document',
+                        label: 'Document'
+                      },
+                    }
+                  ],
+                  description: 'Attach documents up to 2MB (file names will be displayed) such as business plan, forecasts and financial statements.'
+                }
+              }
+            ],
+            hideExpression: '!model.provideMore || model.provideMore=="No"'
+          },
+          {
+            className: 'display-flex',
+            fieldGroup: [
+              {
+                className: 'flex-1',
+                type: 'textarea',
+                key: 'additionalInfo',
+                templateOptions: {
+                  label: 'Additional Information',
+                  description: ''
+                }
+              }
+            ],
+            hideExpression: '!model.provideMore || model.provideMore=="No"'
+          }
+
+        ];
+
+      } else if( page === 4 ) {
+
+        return [
+          {
+            className: 'display-flex',
+            key: 'managers',
+            type: 'repeatSection',
+            templateOptions: {
+              label: 'Management Team',
+              btnText: 'Add Team Member',
+              fields: [
+                {
+                  key: 'name',
+                  templateOptions: {
+                    label: 'Name'
+                  },
+                  className: 'flex-1',
+                  type: 'input',
+                },
+                {
+                  key: 'title',
+                  templateOptions: {
+                    label: 'Title'
+                  },
+                  className: 'flex-1',
+                  type: 'input',
+                },
+                {
+                  key: 'linkedin',
+                  templateOptions: {
+                    label: 'LinkedIn',
+                    placeholder: 'http://'
+                  },
+                  className: 'flex-1',
+                  type: 'input'
+                }
+              ]
+            }
+          },
+          {
+            className: 'display-flex',
+            fieldGroup: [
+              {
+                className: 'flex-1',
+                type: 'input',
+                key: 'video',
+                templateOptions: {
+                  label: 'Feature Video',
+                  placeholder: 'http://',
+                  description: ''
+                }
+              },
+              {
+                className: 'flex-1',
+                type: 'input',
+                key: 'facebook',
+                templateOptions: {
+                  label: 'Facebook',
+                  placeholder: 'http://',
+                  description: ''
+                }
+              },
+              {
+                className: 'flex-1',
+                type: 'input',
+                key: 'twitter',
+                templateOptions: {
+                  label: 'Twitter',
+                  placeholder: 'http://',
+                  description: ''
+                }
+              }
+            ]
+          },
+          {
+            className: 'display-flex',
+            fieldGroup: [
+              {
+                className: 'flex-1',
+                type: 'input',
+                key: 'linkedin',
+                templateOptions: {
+                  label: 'LinkedIn',
+                  placeholder: 'http://',
+                  description: ''
+                }
+              },
+              {
+                className: 'flex-1',
+                type: 'input',
+                key: 'youtube',
+                templateOptions: {
+                  label: 'YouTube',
+                  placeholder: 'http://',
+                  description: ''
+                }
+              },
+              {
+                className: 'flex-1',
+                type: 'input',
+                key: 'yelp',
+                templateOptions: {
+                  label: 'Yelp',
+                  placeholder: 'http://',
+                  description: ''
+                }
+              }
+            ]
+          },
+          {
+            className: 'display-flex',
+            key: 'reviews',
+            type: 'repeatSection',
+            templateOptions: {
+              label: 'Reviews and Endorsements',
+              btnText: 'Add Review or Endorsement',
+              fields: [
+                {
+                  key: 'name',
+                  templateOptions: {
+                    label: 'Name',
+                    description: 'Name of Company/Person'
+                  },
+                  className: 'flex-1',
+                  type: 'input',
+                },
+                {
+                  key: 'link',
+                  templateOptions: {
+                    label: 'Link',
+                    placeholder: 'http://',
+                    description: 'Press, News, Websites'
+                  },
+                  className: 'flex-1',
+                  type: 'input'
+                },
+                {
+                  key: 'review',
+                  templateOptions: {
+                    label: 'Review'
+                  },
+                  className: 'flex-2',
+                  type: 'textarea',
+                }
+              ]
+            }
+          },
+          {
+            className: 'display-flex',
+            key: 'images',
+            type: 'repeatSection',
+            templateOptions: {
+              label: 'Business and Product Images',
+              btnText: 'Add Image',
+              fields: [
+                {
+                  key: 'image',
+                  templateOptions: {
+                    type: 'file',
+                    label: 'Image',
+                    description: ''
+                  },
+                  className: 'flex-1',
+                  type: 'input',
+                }
+              ]
+            }
+          }
+        ];
+
+      } else if( page === 5 ) {
+
+        return [
+          {
+            className: 'display-flex',
+            fieldGroup: [
+              {
+                className: 'flex-1',
+                type: 'checkbox',
+                key: 'businessAgreements',
+                templateOptions: {
+                  label: 'I agree to the InvestNextDoor business agreement and terms of service',
+                  placeholder: '',
+                  description: ''
+                }
+              }
+            ]
+          },
+          {
+            className: 'display-flex',
+            fieldGroup: [
+              {
+                className: 'flex-1',
+                type: 'checkbox',
+                key: 'authority',
+                templateOptions: {
+                  label: 'I agree that I have the authority to place this listing and issue the related security. InvestNextDoor is not, and will not act in any intermediary capacity between my business and investors, and that I am wholly responsible for ensuring all legal and regulatory compliance is completed for my security offering.',
+                  placeholder: '',
+                  description: ''
+                }
+              }
+            ]
+          },
+          {
+            className: 'display-flex',
+            fieldGroup: [
+              {
+                className: 'flex-1',
+                type: 'checkbox',
+                key: 'moreRequired',
+                templateOptions: {
+                  label: 'Based on the securities commission regulations of each province I may be required to provide more information.',
+                  placeholder: '',
+                  description: ''
+                }
+              }
+            ]
+          },
+          {
+            className: 'display-flex',
+            fieldGroup: [
+              {
+                className: 'flex-1',
+                type: 'checkbox',
+                key: 'certified',
+                templateOptions: {
+                  label: 'On behalf of the issuer, I certify that the statements made in this application and offering document are true. ',
+                  placeholder: '',
+                  description: ''
+                }
+              }
+            ]
+          },
+          {
+            className: 'display-flex',
+            fieldGroup: [
+              {
+                className: 'flex-1',
+                type: 'input',
+                key: 'fullName',
+                templateOptions: {
+                  label: 'Full Legal Name',
+                  placeholder: '',
+                  description: '(first name, middle name and last name)'
+                }
+              },
+              {
+                className: 'flex-1',
+                type: 'input',
+                key: 'position',
+                templateOptions: {
+                  label: 'Position',
+                  placeholder: '',
+                  description: 'Director, officer, executive or control person of the business.'
+                }
+              },
+              {
+                className: 'flex-1',
+                type: 'input',
+                key: 'phone',
+                templateOptions: {
+                  label: 'Phone Number',
+                  placeholder: '###-###-####',
+                  description: 'Required so that questions may be asked by purchasers and security regulatory authority or regulators.'
+                }
+              }
+            ]
+          },
+          {
+            className: 'display-flex',
+            fieldGroup: [
+              {
+                className: 'offset-half',
+                type: 'input',
+                key: 'signature',
+                templateOptions: {
+                  label: 'Electronic Signature',
+                  placeholder: '',
+                  description: 'I acknowledge that I am signing this offering document electronically and agree that this is the legal equivalent of my handwritten signature. I will not at any time in the future claim that my electronic signature is not legally binding.'
+                }
+              }
+            ]
+          }
+        ];
+
+
       }
 
     },

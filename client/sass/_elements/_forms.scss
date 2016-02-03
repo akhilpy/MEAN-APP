@@ -39,6 +39,10 @@ input:not([type=submit]):not([type=file]):not([type=radio]):not([type=checkbox])
 
   &[disabled="disabled"] {
     background: $color-grey-pale;
+    &:hover,
+    &:focus {
+      border-color: $color-grey-light;
+    }
   }
 }
 
@@ -389,7 +393,7 @@ input[type="radio"] {
 .form__row {
   @include clearfix;
   display: block;
-  margin-bottom: rem(15);
+  margin-bottom: rem(20);
 
   &.form__row--split {
     font-size: 0;
@@ -585,7 +589,6 @@ input[type="radio"] {
   }
 }
 
-
 /*----------  Zocial  ----------*/
 
 .social-button,
@@ -712,6 +715,111 @@ a.social-button {
 
 .display-flex {
   display: flex;
+}
+
+.display-flex-inline {
+  display: inline-flex;
+}
+
+.formly__repeater--wrapper {
+  @include clearfix;
+  display: block;
+  width: 100%;
+  margin-bottom: rem(20);
+}
+
+.formly__repeater {
+  @include list-zero;
+  display: block;
+  width: 100%;
+  margin-bottom: rem(10);
+  border-radius: $border-radius;
+}
+
+.formly__repeater--section {
+  display: block;
+  width: 100%;
+  border: 1px solid rgba($color-grey-light, 0.4);
+  border-top: none;
+  padding: rem(20);
+  position: relative;
+
+  &:first-of-type {
+    border-top: 1px solid rgba($color-grey-light, 0.4);
+    border-radius: $border-radius $border-radius 0 0;
+  }
+
+  &:last-of-type {
+    border-radius: 0 0 $border-radius $border-radius;
+  }
+
+  .formly {
+    display: flex;
+  }
+
+  .help-block {
+    @include font-primary(600);
+    @include font-size(12);
+    font-style: italic;
+    color: rgba($color-grey-med, 0.6);
+    margin: rem(5) 0 0 0;
+  }
+}
+
+.formly__repeater--add {
+  @include font-size(14);
+  //float: right;
+  background: $color-primary-med;
+
+  &:hover {
+    background: $color-slate-med;
+  }
+}
+
+.formly__repeater--remove {
+  @include font-size(16);
+  position: absolute;
+  right: rem(5);
+  top: rem(5);
+  background: none;
+  padding: 0;
+  color: rgba($color-grey-light, 0.6);
+
+  &:hover {
+    background: none;
+    color: $color-grey-light;
+  }
+}
+
+.radio-group {
+  padding: rem(7) 0;
+  .radio {
+    display: inline-block;
+    margin-right: rem(20);
+    &:last-of-type {
+      margin-right: 0;
+    }
+  }
+
+  input[type="radio"] {
+    margin-right: rem(2);
+  }
+}
+
+.checkbox {
+  input[type="checkbox"] {
+    margin-right: rem(2);
+  }
+}
+
+.offset-half {
+  width: 50%;
+  padding-right: rem(15);
+}
+
+.offset-third {
+  width: 33.333%;
+  padding-right: rem(15);
 }
 
 .flex-1 {

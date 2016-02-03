@@ -72,8 +72,8 @@ var ApplicationSchema = new mongoose.Schema({
 		projection: String,
 		debt: String,
 		repayments: String,
-		bankStatements: [],
-		taxReturns: [],
+		bankStatements: [String],
+		taxReturns: [String],
 		whyInvest: String,
 		provideMore: Boolean,
 		upToDate: Date,
@@ -82,7 +82,7 @@ var ApplicationSchema = new mongoose.Schema({
 		receivable: String,
 		liabilities: String,
 		financialStatements: String,
-		additionalDocuments: [],
+		additionalDocuments: [String],
     additionalInfo: String
 	},
 	socialMedia: {
@@ -94,7 +94,7 @@ var ApplicationSchema = new mongoose.Schema({
 		youtube: String,
 		yelp: String,
 		reviews: [reviews],
-		images: []
+		images: [String]
 	},
 	terms: {
 		businessAgreements: Boolean,
