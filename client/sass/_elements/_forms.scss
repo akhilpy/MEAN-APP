@@ -715,6 +715,10 @@ a.social-button {
 
 .display-flex {
   display: flex;
+
+  @include breakpoint(phone) {
+    display: block;
+  }
 }
 
 .display-flex-inline {
@@ -815,11 +819,21 @@ a.social-button {
 .offset-half {
   width: 50%;
   padding-right: rem(15);
+
+  @include breakpoint(phone) {
+    width: 100%;
+    padding: 0;
+  }
 }
 
 .offset-third {
   width: 33.333%;
   padding-right: rem(15);
+
+  @include breakpoint(phone) {
+    width: 100%;
+    padding: 0;
+  }
 }
 
 .flex-1 {
@@ -849,6 +863,10 @@ a.social-button {
 [class*="flex-"] {
   padding-left: 10px;
   padding-right: 10px;
+
+  @include breakpoint(phone) {
+    padding: 0;
+  }
 }
 
 [class*="flex-"]:first-child {
