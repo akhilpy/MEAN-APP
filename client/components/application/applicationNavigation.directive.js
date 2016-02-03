@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('investnextdoorCaApp')
-  .directive('applicationFormStatus', function () {
+  .directive('applicationNavigation', function () {
     return {
-      templateUrl: 'components/applicationFormStatus/applicationFormStatus.html',
+      templateUrl: 'components/application/applicationNavigation.html',
       restrict: 'EA',
       link: function (scope, element, attrs) {
       }

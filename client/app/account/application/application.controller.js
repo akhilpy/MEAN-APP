@@ -6,7 +6,8 @@ class ApplicationController {
     this.submitted = false;
 
     this.Auth = Auth;
-    this.getCurrentUser = Auth.getCurrentUser;
+    this.user = Auth.getCurrentUser();
+    this.borrower = this.user.borrower;
 
     this.Form = Form;
 
@@ -16,11 +17,60 @@ class ApplicationController {
       three: this.Form.getApplicationPage(3),
       four: this.Form.getApplicationPage(4),
       five: this.Form.getApplicationPage(5)
-    }
+    };
 
   }
 
-  changePassword(form) {
+  saveApplication(form) {
+    var generalInfo = {};
+    var listingDetails = {};
+    var financial = {};
+    var socialMedia = {};
+    var terms = {};
+
+    this.submitted = true;
+
+    if( this.borrower.generalInfo ) {
+      generalInfo = {
+        businessName: this.borrower.generalInfo.businessName,
+    		doingBusinessName: this.borrower.generalInfo.doingBusinessName,
+    		contactName: this.borrower.generalInfo.contactName,
+    		email: this.borrower.generalInfo.email,
+    		phone: this.borrower.generalInfo.phone,
+    		website: this.borrower.generalInfo.website,
+    		address: this.borrower.generalInfo.address,
+    		founded: this.borrower.generalInfo.founded,
+    		structure: this.borrower.generalInfo.structure,
+    		industry: this.borrower.generalInfo.industry,
+    		naics: this.borrower.generalInfo.naics,
+    		employees: this.borrower.generalInfo.employees
+      };
+    }
+
+    if (form.$valid) {
+      this.$http.put('/api/applications/' + this.user._id, {
+        username: this.user.username,
+        email: this.user.email,
+        name: {
+          first: this.user.name.first,
+          last: this.user.name.last
+        },
+        phone: this.user.phone,
+        social: this.user.social,
+        dob: this.user.dob,
+        address: address,
+        investor: investor
+      })
+      .then(() => {
+        this.$state.go('dashboard.index');
+      })
+      .catch(err => {
+        this.errors.other = err.message;
+      });
+    }
+  }
+
+  submitApplication(form) {
     this.submitted = true;
 
     if (form.$valid) {
