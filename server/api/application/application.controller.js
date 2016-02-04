@@ -11,6 +11,7 @@
 
 import _ from 'lodash';
 import Application from './application.model';
+import User from '../user/user.model';
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
@@ -76,9 +77,25 @@ export function show(req, res) {
 
 // Creates a new Application in the DB
 export function create(req, res) {
-  Application.createAsync(req.body)
-    .then(respondWithResult(res, 201))
-    .catch(handleError(res));
+  var userId = req.body.user._id;
+  var newApplication = new Application(req.body.application);
+
+  User.findByIdAsync(userId)
+    .then(user => {
+
+      if( user.role === 'borrower' ) {
+        user.borrower.applications.push(newApplication);
+        Application.createAsync(newApplication)
+          .then(respondWithResult(res, 201))
+          .catch(handleError(res));
+      }
+
+      return user.saveAsync()
+        .then(() => {
+          res.status(204).end();
+        })
+        .catch(handleError(res));
+    });
 }
 
 // Updates an existing Application in the DB
@@ -86,6 +103,7 @@ export function update(req, res) {
   if (req.body._id) {
     delete req.body._id;
   }
+
   Application.findByIdAsync(req.params.id)
     .then(handleEntityNotFound(res))
     .then(saveUpdates(req.body))

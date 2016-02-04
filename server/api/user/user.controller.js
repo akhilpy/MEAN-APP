@@ -1,6 +1,7 @@
 'use strict';
 
 import User from './user.model';
+import Application from '../application/application.model';
 import passport from 'passport';
 import config from '../../config/environment';
 import jwt from 'jsonwebtoken';

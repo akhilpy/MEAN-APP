@@ -1,13 +1,26 @@
 'use strict';
 
 class ApplicationController {
-  constructor(Auth, Form) {
+  constructor($http, $state, Auth, Form, Application) {
+    this.$http = $http;
+    this.$state = $state;
     this.errors = {};
     this.submitted = false;
 
     this.Auth = Auth;
     this.user = Auth.getCurrentUser();
     this.borrower = this.user.borrower;
+
+    this.pageData = Application.pageData;
+    this.applicationId = Application.getID();
+    if( this.applicationId ) {
+      this.hasApplication = true;
+      this.application = Application.getApplication(this.applicationId);
+      console.log(this.hasApplication);
+    } else {
+      this.hasApplication = false;
+      this.application = {};
+    }
 
     this.Form = Form;
 
@@ -22,47 +35,36 @@ class ApplicationController {
   }
 
   saveApplication(form) {
-    var generalInfo = {};
-    var listingDetails = {};
-    var financial = {};
-    var socialMedia = {};
-    var terms = {};
+    var savedApplication = {};
+    var currentPage = this.$state.current.name;
+
+    if( this.application.generalInfo ) {
+      savedApplication.generalInfo = this.pageData(this.application, 'general');
+    }
+
+    if( this.application.listingDetails ) {
+      savedApplication.listingDetails = this.pageData(this.application, 'details');
+    }
 
     this.submitted = true;
 
-    if( this.borrower.generalInfo ) {
-      generalInfo = {
-        businessName: this.borrower.generalInfo.businessName,
-    		doingBusinessName: this.borrower.generalInfo.doingBusinessName,
-    		contactName: this.borrower.generalInfo.contactName,
-    		email: this.borrower.generalInfo.email,
-    		phone: this.borrower.generalInfo.phone,
-    		website: this.borrower.generalInfo.website,
-    		address: this.borrower.generalInfo.address,
-    		founded: this.borrower.generalInfo.founded,
-    		structure: this.borrower.generalInfo.structure,
-    		industry: this.borrower.generalInfo.industry,
-    		naics: this.borrower.generalInfo.naics,
-    		employees: this.borrower.generalInfo.employees
-      };
-    }
-
-    if (form.$valid) {
-      this.$http.put('/api/applications/' + this.user._id, {
-        username: this.user.username,
-        email: this.user.email,
-        name: {
-          first: this.user.name.first,
-          last: this.user.name.last
-        },
-        phone: this.user.phone,
-        social: this.user.social,
-        dob: this.user.dob,
-        address: address,
-        investor: investor
+    // if no existing application, create one
+    if (form.$valid && !this.hasApplication) {
+      this.$http.post('/api/applications', {
+        user: this.user,
+        application: savedApplication
       })
       .then(() => {
-        this.$state.go('dashboard.index');
+        this.$state.go(currentPage);
+      })
+      .catch(err => {
+        this.errors.other = err.message;
+      });
+    // if there is an existing application, update it
+    } else {
+      this.$http.put('/api/applications/' + this.applicationId, savedApplication)
+      .then(() => {
+        this.$state.go(currentPage);
       })
       .catch(err => {
         this.errors.other = err.message;

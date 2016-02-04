@@ -2,12 +2,8 @@
 
 (function() {
 
-function ApplicationService($location, $cookies, User) {
-  var currentUser = {};
-
-  if ($cookies.get('token') && $location.path() !== '/logout') {
-    currentUser = User.get();
-  }
+function ApplicationService($location, $cookies, $resource, Auth) {
+  var currentUser = Auth.getCurrentUser();
 
   var Application = {
 
@@ -21,14 +17,109 @@ function ApplicationService($location, $cookies, User) {
       return 'in-progress';
     },
 
+
+    /**
+     * Get application status
+     *
+     * @return {String}
+     */
+    getApplication(applicationId) {
+      var Application =  $resource('/api/applications/:id', {id: '@_id'});
+      return Application.get({id: applicationId});
+    },
+
+
     /**
      * Get application ID
      *
      * @return {String}
      */
     getID() {
-      return '4';
+      return currentUser.borrower.applications[0];
     },
+
+
+    /**
+     * Save application page
+     *
+     * @return {String}
+     */
+    pageData(application, page) {
+
+      if( page === 'general' ) {
+
+        var address = {};
+        var structure;
+        var industry;
+
+        if( application.generalInfo.address ) {
+          var province;
+
+          if( application.generalInfo.address.province ) {
+            province = application.generalInfo.address.province.value;
+          }
+
+          address = {
+            street: application.generalInfo.address.street,
+            city: application.generalInfo.address.city,
+            province: province,
+            postal: application.generalInfo.address.postal
+          };
+        }
+
+        if( application.generalInfo.structure ) {
+          structure = application.generalInfo.structure.value;
+        }
+
+        if( application.generalInfo.industry ) {
+          industry = application.generalInfo.industry.value;
+        }
+
+        return {
+          businessName: application.generalInfo.businessName,
+      		doingBusinessName: application.generalInfo.doingBusinessName,
+      		contactName: application.generalInfo.contactName,
+      		email: application.generalInfo.email,
+      		phone: application.generalInfo.phone,
+      		website: application.generalInfo.website,
+      		address: address,
+      		founded: application.generalInfo.founded,
+      		structure: structure,
+      		industry: industry,
+      		naics: application.generalInfo.naics,
+      		employees: application.generalInfo.employees
+        };
+
+      } else if( page === 'details' ) {
+
+        var listingType;
+        var usage;
+        var term;
+        var loanPartners;
+
+        if( application.listingDetails.listingType ) {
+          listingType = application.listingDetails.listingType.value;
+        }
+
+        if( application.listingDetails.term ) {
+          term = application.listingDetails.term.value;
+        }
+
+        return {
+          title: application.listingDetails.title,
+          listingType: listingType,
+          usage: application.listingDetails.usage,
+          term: term,
+          amount: application.listingDetails.amount,
+          jobs: application.listingDetails.jobs,
+          loanPartners: application.listingDetails.loanPartners,
+          reason: application.listingDetails.reason
+        };
+
+      }
+
+    },
+
 
     /**
      * Get application section status

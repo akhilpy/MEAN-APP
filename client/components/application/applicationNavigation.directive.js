@@ -5,7 +5,7 @@ angular.module('investnextdoorCaApp')
     return {
       templateUrl: 'components/application/applicationNavigation.html',
       restrict: 'EA',
-      link: function (scope, element, attrs) {
+      link: function () {
       }
     };
   });

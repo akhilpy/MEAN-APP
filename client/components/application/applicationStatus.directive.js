@@ -5,7 +5,8 @@ angular.module('investnextdoorCaApp')
     return {
       templateUrl: 'components/application/applicationStatus.html',
       restrict: 'EA',
-      link: function (scope, element, attrs) {
+      link: function (scope) {
+
         scope.status = {
           general: Application.getPageStatus('general'),
           details: Application.getPageStatus('details'),
@@ -13,6 +14,7 @@ angular.module('investnextdoorCaApp')
           social: Application.getPageStatus('social'),
           terms: Application.getPageStatus('terms'),
         };
+
       }
     };
   });

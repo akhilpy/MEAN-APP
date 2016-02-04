@@ -1,8 +1,8 @@
-<formly-form model="vm.application" fields="vm.applicationFields.one" form="application">
+<formly-form model="vm.application.generalInfo" fields="vm.applicationFields.one" form="application">
   <div class="formly-submit">
     <ul class="application-form__pagination">
       <li>&nbsp;</li>
-      <li><button type="submit" name="update" ng-click="vm.saveApplication(application)">Save</button></li>
+      <li><button type="submit" name="update" ng-click="vm.saveApplication(application, 'general')">Save</button></li>
       <li>&nbsp;</li>
     </ul><!-- end of .application-form__pagination -->
   </div><!-- /.formly-submit -->

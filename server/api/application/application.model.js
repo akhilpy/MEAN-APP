@@ -56,7 +56,10 @@ var ApplicationSchema = new mongoose.Schema({
 	},
 	listingDetails: {
 		title: String,
-		listingType: String,
+		listingType: {
+			type: String,
+			default: 'Marketplace'
+		},
 		usage: String,
 		term: String,
 		amount: String,
