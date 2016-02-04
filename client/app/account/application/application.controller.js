@@ -11,14 +11,15 @@ class ApplicationController {
     this.user = Auth.getCurrentUser();
     this.borrower = this.user.borrower;
 
+    this.Application = Application;
     this.pageData = Application.pageData;
-    this.applicationId = Application.getID();
+    this.applicationId = this.Application.getID();
+    this.hasApplication = false;
+
     if( this.applicationId ) {
       this.hasApplication = true;
       this.application = Application.getApplication(this.applicationId);
-      console.log(this.hasApplication);
     } else {
-      this.hasApplication = false;
       this.application = {};
     }
 
@@ -55,6 +56,7 @@ class ApplicationController {
         application: savedApplication
       })
       .then(() => {
+        this.hasApplication = true;
         this.$state.go(currentPage);
       })
       .catch(err => {
@@ -62,6 +64,7 @@ class ApplicationController {
       });
     // if there is an existing application, update it
     } else {
+      this.applicationId = this.Application.getID();
       this.$http.put('/api/applications/' + this.applicationId, savedApplication)
       .then(() => {
         this.$state.go(currentPage);
