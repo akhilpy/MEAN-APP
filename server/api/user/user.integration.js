@@ -11,10 +11,6 @@ describe('User API:', function() {
   before(function() {
     return User.removeAsync().then(function() {
       user = new User({
-        name: {
-          first: "Fake",
-          last: "User"
-        },
         email: 'test@example.com',
         password: 'password'
       });

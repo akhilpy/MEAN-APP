@@ -26,11 +26,11 @@ class ApplicationController {
     this.Form = Form;
 
     this.applicationFields = {
-      one: this.Form.getApplicationPage(1),
-      two: this.Form.getApplicationPage(2),
-      three: this.Form.getApplicationPage(3),
-      four: this.Form.getApplicationPage(4),
-      five: this.Form.getApplicationPage(5)
+      general: this.Form.getApplicationPage('general'),
+      details: this.Form.getApplicationPage('details'),
+      financial: this.Form.getApplicationPage('financial'),
+      social: this.Form.getApplicationPage('social'),
+      terms: this.Form.getApplicationPage('terms')
     };
 
   }
@@ -47,6 +47,18 @@ class ApplicationController {
       savedApplication.listingDetails = this.pageData(this.application, 'details');
     }
 
+    if( this.application.financial ) {
+      savedApplication.financial = this.pageData(this.application, 'financial');
+    }
+
+    if( this.application.socialMedia ) {
+      savedApplication.socialMedia = this.pageData(this.application, 'social');
+    }
+
+    if( this.application.terms ) {
+      savedApplication.terms = this.pageData(this.application, 'terms');
+    }
+
     this.submitted = true;
 
     // if no existing application, create one
@@ -57,6 +69,7 @@ class ApplicationController {
       })
       .then(() => {
         this.hasApplication = true;
+        this.applicationId = this.Application.getID();
         this.$state.go(currentPage);
       })
       .catch(err => {
@@ -64,7 +77,6 @@ class ApplicationController {
       });
     // if there is an existing application, update it
     } else {
-      this.applicationId = this.Application.getID();
       this.$http.put('/api/applications/' + this.applicationId, savedApplication)
       .then(() => {
         this.$state.go(currentPage);

@@ -1,18 +1,55 @@
 'use strict';
 
 var app = require('../..');
+import Application from '../application/application.model';
+import User from '../user/user.model';
 import request from 'supertest';
 
 var newApplication;
 
 describe('Application API:', function() {
+  var user;
+
+  // Clear users before testing
+  before('creating a user for testing', function() {
+    return User.removeAsync().then(function() {
+      user = new User({
+        email: 'borrower@example.com',
+        password: 'password',
+        role: 'admin'
+      });
+      return user.saveAsync();
+    });
+  });
+
+  // Clear users after testing
+  after('removing test user', function() {
+    return User.removeAsync();
+  });
 
   describe('GET /api/applications', function() {
     var applications;
+    var token;
+
+    before(function(done) {
+      request(app)
+        .post('/auth/local')
+        .send({
+          email: 'borrower@example.com',
+          password: 'password'
+        })
+        .expect(200)
+        .expect('Content-Type', /json/)
+        .end((err, res) => {
+          token = res.body.token;
+          done();
+        });
+    });
 
     beforeEach(function(done) {
       request(app)
         .get('/api/applications')
+        .set('authorization', 'Bearer ' + token)
         .expect(200)
         .expect('Content-Type', /json/)
         .end((err, res) => {
@@ -20,6 +57,7 @@ describe('Application API:', function() {
             return done(err);
           }
           applications = res.body;
+          token = res.body.token;
           done();
         });
     });
@@ -31,21 +69,42 @@ describe('Application API:', function() {
   });
 
   describe('POST /api/applications', function() {
+    var token;
+    var applicationId;
+
     beforeEach(function(done) {
       request(app)
-        .post('/api/applications')
+        .post('/auth/local')
         .send({
-          generalInfo: {
-            businessName: 'New Application',
-            doingBusinessName: 'This is the brand new application!!!'
-          }
+          email: 'borrower@example.com',
+          password: 'password'
         })
-        .expect(201)
+        .expect(200)
         .expect('Content-Type', /json/)
         .end((err, res) => {
-          if (err) {
-            return done(err);
-          }
+          token = res.body.token;
+          done();
+        });
+    });
+
+    beforeEach(function(done) {
+      newApplication = new Application({
+        generalInfo: {
+          businessName: 'New Application',
+          doingBusinessName: 'This is the brand new application!!!'
+        }
+      });
+
+      request(app)
+        .post('/api/applications')
+        .set('authorization', 'Bearer ' + token)
+        .send({
+          user: user,
+          application: newApplication
+        })
+        .expect(200)
+        .expect('Content-Type', /json/)
+        .end((err, res) => {
           newApplication = res.body;
           done();
         });

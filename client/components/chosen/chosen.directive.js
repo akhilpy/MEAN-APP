@@ -2,24 +2,26 @@
 /*jshint camelcase: false */
 
 angular.module('investnextdoorCaApp')
-  .directive('chosen', function($timeout) {
+  .directive('chosen', function() {
     return {
       restrict: 'A',
       link: function (scope, element, attrs) {
 
-        scope.$watch(attrs.ngModel, function() {
-          $timeout(function() {
+        // update the select when data is loaded
+        scope.$watch(attrs.chosen, function() {
             element.trigger('chosen:updated');
-          }, 0, false);
-        }, true);
+        });
 
-        $timeout(function() {
-          element.chosen({
-            disable_search_threshold: attrs.disableSearchThreshold,
-            placeholder_text_single: attrs.dataPlaceholder,
-            placeholder_text_multiple: attrs.dataPlaceholder
-          });
-        }, 0, false);
+        // update the select when the model changes
+        scope.$watch(attrs.ngModel, function() {
+            element.trigger('chosen:updated');
+        });
+
+        element.chosen({
+          disable_search_threshold: attrs.disableSearchThreshold,
+          placeholder_text_single: attrs.dataPlaceholder,
+          placeholder_text_multiple: attrs.dataPlaceholder
+        });
       }
     };
   });

@@ -49,30 +49,14 @@ function ApplicationService($location, $cookies, $resource, Auth) {
       if( page === 'general' ) {
 
         var address = {};
-        var structure;
-        var industry;
 
         if( application.generalInfo.address ) {
-          var province;
-
-          if( application.generalInfo.address.province ) {
-            province = application.generalInfo.address.province.value;
-          }
-
           address = {
             street: application.generalInfo.address.street,
             city: application.generalInfo.address.city,
-            province: province,
+            province: application.generalInfo.address.province,
             postal: application.generalInfo.address.postal
           };
-        }
-
-        if( application.generalInfo.structure ) {
-          structure = application.generalInfo.structure.value;
-        }
-
-        if( application.generalInfo.industry ) {
-          industry = application.generalInfo.industry.value;
         }
 
         return {
@@ -84,36 +68,74 @@ function ApplicationService($location, $cookies, $resource, Auth) {
       		website: application.generalInfo.website,
       		address: address,
       		founded: application.generalInfo.founded,
-      		structure: structure,
-      		industry: industry,
+      		structure: application.generalInfo.structure,
+      		industry: application.generalInfo.industry,
       		naics: application.generalInfo.naics,
       		employees: application.generalInfo.employees
         };
 
       } else if( page === 'details' ) {
 
-        var listingType;
-        var usage;
-        var term;
-        var loanPartners;
-
-        if( application.listingDetails.listingType ) {
-          listingType = application.listingDetails.listingType.value;
-        }
-
-        if( application.listingDetails.term ) {
-          term = application.listingDetails.term.value;
-        }
-
         return {
           title: application.listingDetails.title,
-          listingType: listingType,
+          listingType: application.listingDetails.listingType,
           usage: application.listingDetails.usage,
-          term: term,
+          term: application.listingDetails.term,
           amount: application.listingDetails.amount,
           jobs: application.listingDetails.jobs,
           loanPartners: application.listingDetails.loanPartners,
           reason: application.listingDetails.reason
+        };
+
+      } else if( page === 'financial' ) {
+
+        return {
+          businessNumber: application.financial.businessNumber,
+          commercialSpace: application.financial.commercialSpace,
+          owners: application.financial.owners,
+          revenue: application.financial.revenue,
+          projection: application.financial.projection,
+          debt: application.financial.debt,
+          repayments: application.financial.repayments,
+          bankStatements: application.financial.bankStatements,
+          taxReturns: application.financial.taxReturns,
+          whyInvest: application.financial.whyInvest,
+          provideMore: application.financial.provideMore,
+          upToDate: application.financial.upToDate,
+          assets: application.financial.assets,
+          inventory: application.financial.inventory,
+          receivable: application.financial.receivable,
+          liabilities: application.financial.liabilities,
+          financialStatements: application.financial.financialStatements,
+          additionalDocuments: application.financial.additionalDocuments,
+          additionalInfo: application.financial.additionalInfo
+        };
+
+      } else if( page === 'social' ) {
+
+        return {
+          managers: application.socialMedia.managers,
+          video: application.socialMedia.video,
+          facebook: application.socialMedia.facebook,
+          twitter: application.socialMedia.twitter,
+          linkedin: application.socialMedia.linkedin,
+          youtube: application.socialMedia.youtube,
+          yelp: application.socialMedia.yelp,
+          reviews: application.socialMedia.reviews,
+          images: application.socialMedia.images
+        };
+
+      } else if( page === 'terms' ) {
+
+        return {
+          businessAgreements: application.terms.businessAgreements,
+          authority: application.terms.authority,
+          moreRequired: application.terms.moreRequired,
+          certified: application.terms.certified,
+          fullName: application.terms.fullName,
+          position: application.terms.position,
+          phone: application.terms.phone,
+          signature: application.terms.signature
         };
 
       }

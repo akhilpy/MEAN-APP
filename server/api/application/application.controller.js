@@ -83,7 +83,7 @@ export function create(req, res) {
   User.findByIdAsync(userId)
     .then(user => {
 
-      if( user.role === 'borrower' ) {
+      if( user.role === 'borrower' || user.role === 'admin' ) {
         user.borrower.applications.push(newApplication);
         Application.createAsync(newApplication)
           .then(respondWithResult(res, 201))

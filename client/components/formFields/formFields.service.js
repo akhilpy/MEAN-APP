@@ -394,7 +394,7 @@ function FormService(appConfig) {
      */
     getApplicationPage(page) {
 
-      if( page === 1 ) {
+      if( page === 'general' ) {
 
         return [
           {
@@ -496,10 +496,9 @@ function FormService(appConfig) {
                 key: 'address.province',
                 templateOptions: {
                   label: 'Province',
-                  labelProp: 'label',
+                  labelProp: 'name',
                   valueProp: 'value',
                   options: provinces,
-                  ngOptions: 'option.name for option in to.options track by option.value',
                   placeholder: 'Select'
                 }
               },
@@ -533,10 +532,9 @@ function FormService(appConfig) {
                 key: 'structure',
                 templateOptions: {
                   label: 'Business Structure',
-                  labelProp: 'label',
+                  labelProp: 'name',
                   valueProp: 'value',
                   options: structures,
-                  ngOptions: 'option.name for option in to.options track by option.value',
                   placeholder: 'Select'
                 }
               },
@@ -546,10 +544,9 @@ function FormService(appConfig) {
                 key: 'industry',
                 templateOptions: {
                   label: 'Industry',
-                  labelProp: 'label',
+                  labelProp: 'name',
                   valueProp: 'value',
                   options: industries,
-                  ngOptions: 'option.name for option in to.options track by option.value',
                   placeholder: 'Select'
                 }
               }
@@ -582,7 +579,7 @@ function FormService(appConfig) {
           },
         ];
 
-      } else if( page === 2 ) {
+      } else if( page === 'details' ) {
 
         return [
           {
@@ -629,7 +626,7 @@ function FormService(appConfig) {
                 key: 'usage',
                 templateOptions: {
                   label: 'What is the money for?',
-                  labelProp: 'label',
+                  labelProp: 'name',
                   valueProp: 'value',
                   options: [
                     {
@@ -665,7 +662,6 @@ function FormService(appConfig) {
                       value: 'Working Capital'
                     }
                   ],
-                  ngOptions: 'option.name for option in to.options track by option.value',
                   placeholder: 'Select'
                 }
               },
@@ -680,7 +676,7 @@ function FormService(appConfig) {
                 key: 'term',
                 templateOptions: {
                   label: 'How long do you want the loan for?',
-                  labelProp: 'label',
+                  labelProp: 'name',
                   valueProp: 'value',
                   options: [
                     {
@@ -712,7 +708,6 @@ function FormService(appConfig) {
                       value: '5 Years'
                     }
                   ],
-                  ngOptions: 'option.name for option in to.options track by option.value',
                   placeholder: 'Select'
                 }
               },
@@ -774,7 +769,7 @@ function FormService(appConfig) {
           }
         ];
 
-      } else if( page === 3 ) {
+      } else if( page === 'financial' ) {
 
         return [
           {
@@ -1114,7 +1109,7 @@ function FormService(appConfig) {
 
         ];
 
-      } else if( page === 4 ) {
+      } else if( page === 'social' ) {
 
         return [
           {
@@ -1284,7 +1279,7 @@ function FormService(appConfig) {
           }
         ];
 
-      } else if( page === 5 ) {
+      } else if( page === 'terms' ) {
 
         return [
           {

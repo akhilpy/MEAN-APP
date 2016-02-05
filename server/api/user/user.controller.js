@@ -87,8 +87,12 @@ export function update(req, res, next) {
     .then(user => {
 
       user.username = String(req.body.username);
-      user.name.first = String(req.body.name.first);
-      user.name.last = String(req.body.name.last);
+      if( req.body.name ) {
+        user.name = {
+          first: String(req.body.name.first),
+          last: String(req.body.name.last)
+        }
+      }
       user.email = String(req.body.email);
 
       if( user.role === 'investor' ) {

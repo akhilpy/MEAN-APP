@@ -100,10 +100,22 @@ var ApplicationSchema = new mongoose.Schema({
 		images: [String]
 	},
 	terms: {
-		businessAgreements: Boolean,
-		authority: Boolean,
-		moreRequired: Boolean,
-		certified: Boolean,
+		businessAgreements: {
+			type: Boolean,
+			default: false
+		},
+		authority: {
+			type: Boolean,
+			default: false
+		},
+		moreRequired: {
+			type: Boolean,
+			default: false
+		},
+		certified: {
+			type: Boolean,
+			default: false
+		},
 		fullName: String,
 		position: String,
 		phone: String,
