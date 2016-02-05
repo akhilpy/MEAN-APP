@@ -3,7 +3,7 @@
 (function() {
 
 function ApplicationService($location, $cookies, $resource, Auth) {
-  var currentUser = Auth.getCurrentUser();
+  this.currentUser = Auth.getCurrentUser();
 
   var Application = {
 
@@ -35,8 +35,8 @@ function ApplicationService($location, $cookies, $resource, Auth) {
      * @return {String}
      */
     getID() {
-      if( currentUser ) {
-        return currentUser.borrower.applications[0];
+      if( this.currentUser ) {
+        return this.currentUser.borrower.applications[0];
       } else {
         return false;
       }
