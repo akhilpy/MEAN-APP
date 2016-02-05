@@ -13,7 +13,7 @@ class ApplicationController {
 
     this.Application = Application;
     this.pageData = Application.pageData;
-    this.applicationId = this.Application.getID();
+    this.applicationId = Application.getID();
     this.hasApplication = false;
 
     if( this.applicationId ) {
@@ -79,6 +79,7 @@ class ApplicationController {
     } else {
       this.$http.put('/api/applications/' + this.applicationId, savedApplication)
       .then(() => {
+        this.applicationId = this.Application.getID();
         this.$state.go(currentPage);
       })
       .catch(err => {

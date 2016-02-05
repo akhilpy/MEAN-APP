@@ -24,8 +24,8 @@ function ApplicationService($location, $cookies, $resource, Auth) {
      * @return {String}
      */
     getApplication(applicationId) {
-      var Application =  $resource('/api/applications/:id', {id: '@_id'});
-      return Application.get({id: applicationId});
+      var currentApplication =  $resource('/api/applications/:id', {id: '@_id'});
+      return currentApplication.get({id: applicationId});
     },
 
 
@@ -35,7 +35,11 @@ function ApplicationService($location, $cookies, $resource, Auth) {
      * @return {String}
      */
     getID() {
-      return currentUser.borrower.applications[0];
+      if( currentUser ) {
+        return currentUser.borrower.applications[0];
+      } else {
+        return false;
+      }
     },
 
 
