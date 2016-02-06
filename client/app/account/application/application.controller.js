@@ -1,105 +1,109 @@
 'use strict';
 
 class ApplicationController {
-  constructor($http, $state, Auth, Form, Application) {
-    this.$http = $http;
-    this.$state = $state;
-    this.errors = {};
-    this.submitted = false;
+  constructor($http, $state, socket, Auth, Form, Application) {
+    var vm = this;
+    vm.$http = $http;
+    vm.$state = $state;
+    vm.errors = {};
+    vm.submitted = false;
+    vm.applicationID = false;
 
-    this.Auth = Auth;
-    this.user = Auth.getCurrentUser();
-    this.borrower = this.user.borrower;
+    vm.Auth = Auth;
+    vm.user = Auth.getCurrentUser();
 
-    this.Application = Application;
-    this.pageData = Application.pageData;
-    this.applicationId = Application.getID();
-    this.hasApplication = false;
+    vm.Application = Application;
+    vm.pageData = Application.pageData;
+    vm.getApplication = Application.getApplication;
+    vm.currentApplication = Application.getApplication(vm.applicationID);
 
-    if( this.applicationId ) {
-      this.hasApplication = true;
-      this.application = Application.getApplication(this.applicationId);
-    } else {
-      this.application = {};
-    }
+    $http.get('/api/users/me').then(response => {
+      vm.user = response.data;
+      vm.applicationID = vm.user.borrower.applications[0];
+      if( vm.applicationID ) {
+        $http.get('/api/applications/' + vm.applicationID).then(response => {
+          vm.currentApplication = Application.getApplication(vm.applicationID);
+        });
+      }
+      socket.syncUpdates('user', vm.user);
+    });
 
-    this.Form = Form;
+    vm.Form = Form;
 
-    this.applicationFields = {
-      general: this.Form.getApplicationPage('general'),
-      details: this.Form.getApplicationPage('details'),
-      financial: this.Form.getApplicationPage('financial'),
-      social: this.Form.getApplicationPage('social'),
-      terms: this.Form.getApplicationPage('terms')
+    vm.applicationFields = {
+      general: vm.Form.getApplicationPage('general'),
+      details: vm.Form.getApplicationPage('details'),
+      financial: vm.Form.getApplicationPage('financial'),
+      social: vm.Form.getApplicationPage('social'),
+      terms: vm.Form.getApplicationPage('terms')
     };
 
   }
 
   saveApplication(form) {
+    var vm = this;
+    var currentPage = vm.$state.current.name;
     var savedApplication = {};
-    var currentPage = this.$state.current.name;
 
-    if( this.application.generalInfo ) {
-      savedApplication.generalInfo = this.pageData(this.application, 'general');
+    if( vm.currentApplication.generalInfo ) {
+      savedApplication.generalInfo = vm.pageData(vm.currentApplication, 'general');
     }
 
-    if( this.application.listingDetails ) {
-      savedApplication.listingDetails = this.pageData(this.application, 'details');
+    if( vm.currentApplication.listingDetails ) {
+      savedApplication.listingDetails = vm.pageData(vm.currentApplication, 'details');
     }
 
-    if( this.application.financial ) {
-      savedApplication.financial = this.pageData(this.application, 'financial');
+    if( vm.currentApplication.financial ) {
+      savedApplication.financial = vm.pageData(vm.currentApplication, 'financial');
     }
 
-    if( this.application.socialMedia ) {
-      savedApplication.socialMedia = this.pageData(this.application, 'social');
+    if( vm.currentApplication.socialMedia ) {
+      savedApplication.socialMedia = vm.pageData(vm.currentApplication, 'social');
     }
 
-    if( this.application.terms ) {
-      savedApplication.terms = this.pageData(this.application, 'terms');
+    if( vm.currentApplication.terms ) {
+      savedApplication.terms = vm.pageData(vm.currentApplication, 'terms');
     }
 
-    this.submitted = true;
+    vm.submitted = true;
 
     // if no existing application, create one
-    if (form.$valid && !this.hasApplication) {
-      this.$http.post('/api/applications', {
-        user: this.user,
+    if (form.$valid && !vm.applicationID) {
+      vm.$http.post('/api/applications', {
+        user: vm.user,
         application: savedApplication
       })
-      .then(() => {
-        this.hasApplication = true;
-        this.applicationId = this.Application.getID();
-        this.$state.go(currentPage);
+      .then((res) => {
+        vm.applicationID = res.data._id;
       })
       .catch(err => {
-        this.errors.other = err.message;
+        vm.errors.other = err.message;
       });
     // if there is an existing application, update it
     } else {
-      this.$http.put('/api/applications/' + this.applicationId, savedApplication)
-      .then(() => {
-        this.applicationId = this.Application.getID();
-        this.$state.go(currentPage);
+      vm.$http.put('/api/applications/' + vm.applicationID, savedApplication)
+      .then((res) => {
+        vm.$state.go(currentPage);
       })
       .catch(err => {
-        this.errors.other = err.message;
+        vm.errors.other = err.message;
       });
     }
   }
 
   submitApplication(form) {
-    this.submitted = true;
+    var vm = this;
+    vm.submitted = true;
 
     if (form.$valid) {
-      this.Auth.changePassword(this.user.oldPassword, this.user.newPassword)
+      vm.Auth.changePassword(vm.user.oldPassword, vm.user.newPassword)
         .then(() => {
-          this.message = 'Password successfully changed.';
+          vm.message = 'Password successfully changed.';
         })
         .catch(() => {
           form.password.$setValidity('mongoose', false);
-          this.errors.other = 'Incorrect password';
-          this.message = '';
+          vm.errors.other = 'Incorrect password';
+          vm.message = '';
         });
     }
   }

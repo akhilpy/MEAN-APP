@@ -2,8 +2,7 @@
 
 (function() {
 
-function ApplicationService($location, $cookies, $resource, Auth) {
-  this.currentUser = Auth.getCurrentUser();
+function ApplicationService($location, $cookies, $resource, Auth, User) {
 
   var Application = {
 
@@ -24,8 +23,14 @@ function ApplicationService($location, $cookies, $resource, Auth) {
      * @return {String}
      */
     getApplication(applicationId) {
-      var currentApplication =  $resource('/api/applications/:id', {id: '@_id'});
-      return currentApplication.get({id: applicationId});
+
+      if( !applicationId ) {
+        return {};
+      } else {
+        var currentApplication = $resource('/api/applications/:id', {id: '@_id'});
+        return currentApplication.get({id: applicationId});
+      }
+
     },
 
 
@@ -35,11 +40,15 @@ function ApplicationService($location, $cookies, $resource, Auth) {
      * @return {String}
      */
     getID() {
-      if( this.currentUser ) {
-        return this.currentUser.borrower.applications[0];
-      } else {
-        return false;
-      }
+      var user = User.get(function(user) {
+        var applications = user.borrower.applications;
+
+        if( 0 >= applications.length ) {
+          return false;
+        } else {
+          return applications[0];
+        }
+      });
     },
 
 
