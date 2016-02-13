@@ -1,4 +1,4 @@
-.application-form__status {
+.listing-form__status {
   @include list-zero;
   font-size: 0;
   width: 100%;
@@ -77,7 +77,7 @@
     line-height: 1.9;
   }
 
-  &.application-form__status--borrower {
+  &.listing-form__status--borrower {
     li {
       width: 20%;
     }

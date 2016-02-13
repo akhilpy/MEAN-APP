@@ -5,13 +5,13 @@
 
 'use strict';
 import User from '../api/user/user.model';
-import Application from '../api/application/application.model';
+import Listing from '../api/listing/listing.model';
 import Faq from '../api/faq/faq.model';
 
-Application.find({}).remove()
+Listing.find({}).remove()
   .then(() => {
-    Application.create({
-      generalInfo: {
+    Listing.create({
+      general: {
     		businessName: 'Awesome Business, LLC',
     		doingBusinessName: 'Awesome Business',
     		contactName: 'John Smith',
@@ -30,7 +30,7 @@ Application.find({}).remove()
     		naics: '123',
     		employees: '100'
     	},
-      listingDetails: {
+      details: {
     		title: 'Opening Second Location for the Awesome Business',
     		listingType: 'Marketplace',
     		usage: 'Expansion Capital',
@@ -67,7 +67,7 @@ Application.find({}).remove()
     		additionalDocuments: [],
         additionalInfo: ''
     	},
-      socialMedia: {
+      social: {
         managers: [
           {
             name: 'Mary Ryan',
@@ -101,7 +101,7 @@ Application.find({}).remove()
         signature: 'John Paul Smith'
       }
     },{
-      generalInfo: {
+      general: {
     		businessName: 'Acme Corporation',
     		doingBusinessName: 'Acme',
     		contactName: 'Bill Jones',
@@ -120,7 +120,7 @@ Application.find({}).remove()
     		naics: '345',
     		employees: '1000'
     	},
-      listingDetails: {
+      details: {
     		title: 'Building a New Factory',
     		listingType: 'Private',
     		usage: 'Expansion Capital',
@@ -162,7 +162,7 @@ Application.find({}).remove()
     		additionalDocuments: [],
         additionalInfo: ''
     	},
-      socialMedia: {
+      social: {
         managers: [
           {
             name: 'Mary Ryan',
@@ -197,7 +197,7 @@ Application.find({}).remove()
       }
     })
     .then(() => {
-      console.log('finished populating applications');
+      console.log('finished populating listings');
     });
   });
 

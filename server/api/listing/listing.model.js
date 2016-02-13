@@ -36,7 +36,7 @@ var file = {
 	size: String
 }
 
-var ApplicationSchema = new mongoose.Schema({
+var ListingSchema = new mongoose.Schema({
   id: {
     type: String,
     default: shortid.generate,
@@ -46,7 +46,11 @@ var ApplicationSchema = new mongoose.Schema({
 		type: Date,
 		default: Date.now
 	},
-	generalInfo: {
+	status: {
+		type: String,
+		default: 'in-progress'
+	},
+	general: {
 		businessName: String,
 		doingBusinessName: String,
 		contactName: String,
@@ -60,7 +64,7 @@ var ApplicationSchema = new mongoose.Schema({
 		naics: String,
 		employees: String
 	},
-	listingDetails: {
+	details: {
 		title: String,
 		listingType: {
 			type: String,
@@ -94,7 +98,7 @@ var ApplicationSchema = new mongoose.Schema({
 		additionalDocuments: [file],
     additionalInfo: String
 	},
-	socialMedia: {
+	social: {
 		managers: [managers],
 		video: String,
 		facebook: String,
@@ -129,4 +133,4 @@ var ApplicationSchema = new mongoose.Schema({
 	}
 });
 
-export default mongoose.model('Application', ApplicationSchema);
+export default mongoose.model('Listing', ListingSchema);

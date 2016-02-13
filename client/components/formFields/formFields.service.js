@@ -388,11 +388,11 @@ function FormService(appConfig) {
 
 
     /**
-     * Get Application Fields
+     * Get Listing Fields
      *
      * @return Array
      */
-    getApplicationPage(page) {
+    getListingPage(page) {
 
       if( page === 'general' ) {
 

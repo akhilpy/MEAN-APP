@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('investnextdoorCaApp')
-  .directive('applicationNavigation', function () {
+  .directive('listingNavigation', function () {
     return {
-      templateUrl: 'components/application/applicationNavigation.html',
+      templateUrl: 'components/listing/listingNavigation.html',
       restrict: 'EA',
       link: function () {
       }

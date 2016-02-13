@@ -1,13 +1,13 @@
 'use strict';
 
 var app = require('../..');
-import Application from '../application/application.model';
+import Listing from '../listing/listing.model';
 import User from '../user/user.model';
 import request from 'supertest';
 
-var newApplication;
+var newListing;
 
-describe('Application API:', function() {
+describe('Listing API:', function() {
   var user;
 
   // Clear users before testing
@@ -27,8 +27,8 @@ describe('Application API:', function() {
     return User.removeAsync();
   });
 
-  describe('GET /api/applications', function() {
-    var applications;
+  describe('GET /api/listings', function() {
+    var listings;
     var token;
 
     before(function(done) {
@@ -48,7 +48,7 @@ describe('Application API:', function() {
 
     beforeEach(function(done) {
       request(app)
-        .get('/api/applications')
+        .get('/api/listings')
         .set('authorization', 'Bearer ' + token)
         .expect(200)
         .expect('Content-Type', /json/)
@@ -56,21 +56,21 @@ describe('Application API:', function() {
           if (err) {
             return done(err);
           }
-          applications = res.body;
+          listings = res.body;
           token = res.body.token;
           done();
         });
     });
 
     it('should respond with JSON array', function() {
-      applications.should.be.instanceOf(Array);
+      listings.should.be.instanceOf(Array);
     });
 
   });
 
-  describe('POST /api/applications', function() {
+  describe('POST /api/listings', function() {
     var token;
-    var applicationId;
+    var listingId;
 
     beforeEach(function(done) {
       request(app)
@@ -88,73 +88,73 @@ describe('Application API:', function() {
     });
 
     beforeEach(function(done) {
-      newApplication = new Application({
-        generalInfo: {
-          businessName: 'New Application',
-          doingBusinessName: 'This is the brand new application!!!'
+      newListing = new Listing({
+        general: {
+          businessName: 'New Listing',
+          doingBusinessName: 'This is the brand new listing!!!'
         }
       });
 
       request(app)
-        .post('/api/applications')
+        .post('/api/listings')
         .set('authorization', 'Bearer ' + token)
         .send({
           user: user,
-          application: newApplication
+          listing: newListing
         })
         .expect(200)
         .expect('Content-Type', /json/)
         .end((err, res) => {
-          newApplication = res.body;
+          newListing = res.body;
           done();
         });
     });
 
-    it('should respond with the newly created application', function() {
-      newApplication.generalInfo.businessName.should.equal('New Application');
-      newApplication.generalInfo.doingBusinessName.should.equal('This is the brand new application!!!');
+    it('should respond with the newly created listing', function() {
+      newListing.general.businessName.should.equal('New Listing');
+      newListing.general.doingBusinessName.should.equal('This is the brand new listing!!!');
     });
 
   });
 
-  describe('GET /api/applications/:id', function() {
-    var application;
+  describe('GET /api/listings/:id', function() {
+    var listing;
 
     beforeEach(function(done) {
       request(app)
-        .get('/api/applications/' + newApplication._id)
+        .get('/api/listings/' + newListing._id)
         .expect(200)
         .expect('Content-Type', /json/)
         .end((err, res) => {
           if (err) {
             return done(err);
           }
-          application = res.body;
+          listing = res.body;
           done();
         });
     });
 
     afterEach(function() {
-      application = {};
+      listing = {};
     });
 
-    it('should respond with the requested application', function() {
-      application.generalInfo.businessName.should.equal('New Application');
-      application.generalInfo.doingBusinessName.should.equal('This is the brand new application!!!');
+    it('should respond with the requested listing', function() {
+      listing.general.businessName.should.equal('New Listing');
+      listing.general.doingBusinessName.should.equal('This is the brand new listing!!!');
     });
 
   });
 
-  describe('PUT /api/applications/:id', function() {
-    var updatedApplication;
+  describe('PUT /api/listings/:id', function() {
+    var updatedListing;
 
     beforeEach(function(done) {
       request(app)
-        .put('/api/applications/' + newApplication._id)
+        .put('/api/listings/' + newListing._id)
         .send({
-          generalInfo: {
-            businessName: 'Updated Application',
-            doingBusinessName: 'This is the updated application!!!'
+          general: {
+            businessName: 'Updated Listing',
+            doingBusinessName: 'This is the updated listing!!!'
           }
         })
         .expect(200)
@@ -163,27 +163,27 @@ describe('Application API:', function() {
           if (err) {
             return done(err);
           }
-          updatedApplication = res.body;
+          updatedListing = res.body;
           done();
         });
     });
 
     afterEach(function() {
-      updatedApplication = {};
+      updatedListing = {};
     });
 
-    it('should respond with the updated application', function() {
-      updatedApplication.generalInfo.businessName.should.equal('Updated Application');
-      updatedApplication.generalInfo.doingBusinessName.should.equal('This is the updated application!!!');
+    it('should respond with the updated listing', function() {
+      updatedListing.general.businessName.should.equal('Updated Listing');
+      updatedListing.general.doingBusinessName.should.equal('This is the updated listing!!!');
     });
 
   });
 
-  describe('DELETE /api/applications/:id', function() {
+  describe('DELETE /api/listings/:id', function() {
 
     it('should respond with 204 on successful removal', function(done) {
       request(app)
-        .delete('/api/applications/' + newApplication._id)
+        .delete('/api/listings/' + newListing._id)
         .expect(204)
         .end((err, res) => {
           if (err) {
@@ -193,9 +193,9 @@ describe('Application API:', function() {
         });
     });
 
-    it('should respond with 404 when application does not exist', function(done) {
+    it('should respond with 404 when listing does not exist', function(done) {
       request(app)
-        .delete('/api/applications/' + newApplication._id)
+        .delete('/api/listings/' + newListing._id)
         .expect(404)
         .end((err, res) => {
           if (err) {

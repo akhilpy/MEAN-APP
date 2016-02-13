@@ -1,4 +1,4 @@
-.application-form__navigation {
+.listing-form__navigation {
   @include list-zero;
   font-size: 0;
   margin: rem(-40) rem(-40) rem(30) rem(-40);
@@ -9,7 +9,7 @@
     display: inline-block;
     text-align: center;
 
-    .application-form__borrower & {
+    .listing-form__borrower & {
       width: 20%;
     }
 

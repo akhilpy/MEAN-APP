@@ -13,7 +13,7 @@ export default function(app) {
   app.use('/api/blogs', require('./api/blog'));
   app.use('/api/faqs', require('./api/faq'));
   app.use('/api/blog', require('./api/blog'));
-  app.use('/api/applications', require('./api/application'));
+  app.use('/api/listings', require('./api/listing'));
   app.use('/api/things', require('./api/thing'));
   app.use('/api/users', require('./api/user'));
   app.get('/api/s3Policy', aws.getS3Policy);

@@ -80,11 +80,11 @@
     <!-- build:js(.tmp) app/app.js -->
       <script src="app/app.js"></script>
       <!-- injector:js -->
-      <script src="app/admin/admin.module.js"></script>
       <script src="components/auth/auth.module.js"></script>
+      <script src="app/admin/admin.module.js"></script>
       <script src="components/util/util.module.js"></script>
-      <script src="components/application/application.service.js"></script>
       <script src="app/account/dashboard/dashboard.controller.js"></script>
+      <script src="app/account/listing/listing.controller.js"></script>
       <script src="app/account/login/login.controller.js"></script>
       <script src="app/account/profile/profile.controller.js"></script>
       <script src="app/account/settings/settings.controller.js"></script>
@@ -107,9 +107,6 @@
       <script src="app/main/main.controller.js"></script>
       <script src="app/main/main.js"></script>
       <script src="app/about/about.js"></script>
-      <script src="components/application/applicationNavigation.directive.js"></script>
-      <script src="components/application/applicationStatus.directive.js"></script>
-      <script src="app/account/account.js"></script>
       <script src="components/auth/auth.service.js"></script>
       <script src="components/auth/interceptor.service.js"></script>
       <script src="components/auth/router.decorator.js"></script>
@@ -125,13 +122,16 @@
       <script src="components/formFields/formFields.service.js"></script>
       <script src="components/formFields/formlyFields.service.js"></script>
       <script src="components/investor/investor.service.js"></script>
+      <script src="components/listing/listing.service.js"></script>
+      <script src="components/listing/listingNavigation.directive.js"></script>
+      <script src="components/listing/listingStatus.directive.js"></script>
       <script src="components/mongoose-error/mongoose-error.directive.js"></script>
       <script src="components/navbar/navbar.controller.js"></script>
       <script src="components/navbar/navbar.directive.js"></script>
       <script src="components/oauth-buttons/oauth-buttons.controller.js"></script>
       <script src="components/oauth-buttons/oauth-buttons.directive.js"></script>
       <script src="components/socket/socket.service.js"></script>
-      <script src="app/account/application/application.controller.js"></script>
+      <script src="app/account/account.js"></script>
       <script src="components/util/util.service.js"></script>
       <!-- endinjector -->
     <!-- endbuild -->

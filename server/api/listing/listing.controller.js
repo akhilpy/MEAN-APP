@@ -1,16 +1,16 @@
 /**
  * Using Rails-like standard naming convention for endpoints.
- * GET     /api/applications              ->  index
- * POST    /api/applications              ->  create
- * GET     /api/applications/:id          ->  show
- * PUT     /api/applications/:id          ->  update
- * DELETE  /api/applications/:id          ->  destroy
+ * GET     /api/listings              ->  index
+ * POST    /api/listings              ->  create
+ * GET     /api/listings/:id          ->  show
+ * PUT     /api/listings/:id          ->  update
+ * DELETE  /api/listings/:id          ->  destroy
  */
 
 'use strict';
 
 import _ from 'lodash';
-import Application from './application.model';
+import Listing from './listing.model';
 import User from '../user/user.model';
 
 function respondWithResult(res, statusCode) {
@@ -60,32 +60,32 @@ function handleError(res, statusCode) {
   };
 }
 
-// Gets a list of Applications
+// Gets a list of Listings
 export function index(req, res) {
-  Application.findAsync()
+  Listing.findAsync()
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
 
-// Gets a single Application from the DB
+// Gets a single Listing from the DB
 export function show(req, res) {
-  Application.findByIdAsync(req.params.id)
+  Listing.findByIdAsync(req.params.id)
     .then(handleEntityNotFound(res))
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
 
-// Creates a new Application in the DB
+// Creates a new Listing in the DB
 export function create(req, res) {
   var userId = req.body.user._id;
-  var newApplication = new Application(req.body.application);
+  var newListing = new Listing(req.body.listing);
 
   User.findByIdAsync(userId)
     .then(user => {
 
       if( user.role === 'borrower' || user.role === 'admin' ) {
-        user.borrower.applications.push(newApplication);
-        Application.createAsync(newApplication)
+        user.borrower.listings.push(newListing);
+        Listing.createAsync(newListing)
           .then(respondWithResult(res, 201))
           .catch(handleError(res));
       }
@@ -98,22 +98,22 @@ export function create(req, res) {
     });
 }
 
-// Updates an existing Application in the DB
+// Updates an existing Listing in the DB
 export function update(req, res) {
   if (req.body._id) {
     delete req.body._id;
   }
 
-  Application.findByIdAsync(req.params.id)
+  Listing.findByIdAsync(req.params.id)
     .then(handleEntityNotFound(res))
     .then(saveUpdates(req.body))
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
 
-// Deletes a Application from the DB
+// Deletes a Listing from the DB
 export function destroy(req, res) {
-  Application.findByIdAsync(req.params.id)
+  Listing.findByIdAsync(req.params.id)
     .then(handleEntityNotFound(res))
     .then(removeEntity(res))
     .catch(handleError(res));

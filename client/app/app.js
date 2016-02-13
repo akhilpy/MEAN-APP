@@ -15,7 +15,7 @@ angular.module('investnextdoorCaApp', [
   'formlyBootstrap',
   'ngMask'
 ])
-  .config(function($urlRouterProvider, $locationProvider, formlyConfigProvider) {
+  .config(function($urlRouterProvider, $locationProvider, formlyConfigProvider, formlyFieldsProvider) {
     $urlRouterProvider.otherwise('/');
 
     $locationProvider.html5Mode(true);

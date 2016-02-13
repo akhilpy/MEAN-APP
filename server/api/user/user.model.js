@@ -9,7 +9,7 @@ var autoIncrement = require('mongoose-auto-increment');
 var shortid = require('shortid');
 
 import {Schema} from 'mongoose';
-import Application from '../application/application.model';
+import Listing from '../listing/listing.model';
 
 import config from '../../config/environment';
 var connection = mongoose.createConnection(config.mongo.uri);
@@ -60,9 +60,9 @@ var UserSchema = new Schema({
 		default: false
 	},
 	borrower: {
-		applications: [{
+		listings: [{
 			type: Schema.ObjectId,
-			ref: 'Application'
+			ref: 'Listing'
 		}]
 	},
 	investor: {

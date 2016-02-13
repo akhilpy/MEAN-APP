@@ -1,8 +1,8 @@
 /*===================================
-=            Application            =
+=            Listing            =
 ===================================*/
 
-.application-form__wrapper {
+.listing-form__wrapper {
   padding: rem(40) rem(40) 0 rem(40);
   border-radius: $border-radius;
   background: $color-grey-pale;
@@ -29,7 +29,7 @@
   }
 }
 
-.application-form__message {
+.listing-form__message {
   @include font-size;
   @include font-primary(600);
   background: $color-white;
@@ -59,11 +59,11 @@
   }
 }
 
-.application-form__pages {
+.listing-form__pages {
   @include list-zero;
 }
 
-.application-form__pagination {
+.listing-form__pagination {
   @include font-size(35);
   @include list-zero;
   background: $color-slate-dark;
@@ -88,7 +88,7 @@
   }
 }
 
-.application-form__submit {
+.listing-form__submit {
   text-align: center;
   margin-bottom: rem(30);
 
@@ -104,4 +104,4 @@
 }
 
 
-/*=====  End of Application  ======*/
+/*=====  End of Listing  ======*/

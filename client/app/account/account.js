@@ -73,42 +73,42 @@ angular.module('investnextdoorCaApp')
         controllerAs: 'profile',
         authenticate: true
       })
-      .state('application', {
-        url: '/account/application',
-        templateUrl: 'app/account/application/application.html',
-        controller: 'ApplicationController',
+      .state('listing', {
+        url: '/account/listing',
+        templateUrl: 'app/account/listing/listing.html',
+        controller: 'ListingController',
         controllerAs: 'vm',
         abstract: true,
         authenticate: true
       })
-      .state('application.new', {
+      .state('listing.new', {
         url: '/new',
-        templateUrl: 'app/account/application/application.new.html',
+        templateUrl: 'app/account/listing/listing.new.html',
         authenticate: true
       })
-      .state('application.general', {
+      .state('listing.general', {
         url: '/general-info',
-        templateUrl: 'app/account/application/application.general.html',
+        templateUrl: 'app/account/listing/listing.general.html',
         authenticate: true
       })
-      .state('application.details', {
+      .state('listing.details', {
         url: '/listing-details',
-        templateUrl: 'app/account/application/application.details.html',
+        templateUrl: 'app/account/listing/listing.details.html',
         authenticate: true
       })
-      .state('application.financial', {
+      .state('listing.financial', {
         url: '/financial',
-        templateUrl: 'app/account/application/application.financial.html',
+        templateUrl: 'app/account/listing/listing.financial.html',
         authenticate: true
       })
-      .state('application.social', {
+      .state('listing.social', {
         url: '/social-media',
-        templateUrl: 'app/account/application/application.social.html',
+        templateUrl: 'app/account/listing/listing.social.html',
         authenticate: true
       })
-      .state('application.terms', {
+      .state('listing.terms', {
         url: '/terms',
-        templateUrl: 'app/account/application/application.terms.html',
+        templateUrl: 'app/account/listing/listing.terms.html',
         authenticate: true
       });
   })
