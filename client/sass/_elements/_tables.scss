@@ -16,10 +16,28 @@ th {
     color: $color-black;
     text-transform: uppercase;
     line-height: 1;
+    position: relative;
 
     &:hover {
       color: $color-primary-med;
     }
+  }
+
+  .marketplace-listings & {
+    a {
+      background: $color-slate-dark;
+      color: $color-white;
+
+      &:hover {
+        color: $color-primary-med;
+      }
+    }
+  }
+
+  .fa {
+    position: absolute;
+    right: rem(10);
+    color: $color-primary;
   }
 }
 

@@ -81,11 +81,6 @@ angular.module('investnextdoorCaApp')
         abstract: true,
         authenticate: true
       })
-      .state('listing.new', {
-        url: '/new',
-        templateUrl: 'app/account/listing/listing.new.html',
-        authenticate: true
-      })
       .state('listing.general', {
         url: '/general-info',
         templateUrl: 'app/account/listing/listing.general.html',

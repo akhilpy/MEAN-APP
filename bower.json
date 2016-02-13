@@ -19,7 +19,8 @@
     "angular-formly": "^7.3.9",
     "angular-formly-templates-bootstrap": "^6.2.0",
     "dropzone": "^4.2.0",
-    "ngMask": "angular-mask#^3.0.16"
+    "ngMask": "angular-mask#^3.0.16",
+    "angular-slick": "^0.2.1"
   },
   "devDependencies": {
     "angular-mocks": "~1.4.0"

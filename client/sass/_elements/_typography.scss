@@ -155,6 +155,15 @@ h3 {
       @include font-size(30);
     }
   }
+
+  &.marketplace-feature__title {
+    @include font-primary(600);
+    margin-bottom: 0;
+    line-height: 1.05;
+    .referral & {
+      color: $color-white;
+    }
+  }
 }
 
 h4 {
@@ -359,6 +368,17 @@ a {
     @include breakpoint(mobile) {
       @include font-size(20);
       padding: rem(12) rem(20);
+    }
+  }
+
+  &.small {
+    @include font-primary(700);
+    @include font-size(13);
+    background: $color-primary;
+    padding: rem(8) rem(10);
+
+    &:hover {
+      background: $color-primary-dark;
     }
   }
 

@@ -15,6 +15,8 @@
       <!-- bower:css -->
       <link rel="stylesheet" href="bower_components/textAngular/dist/textAngular.css" />
       <link rel="stylesheet" href="bower_components/dropzone/dist/min/dropzone.min.css" />
+      <link rel="stylesheet" href="bower_components/slick-carousel/slick/slick.css" />
+      <link rel="stylesheet" href="bower_components/slick-carousel/slick/slick-theme.css" />
       <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,client}) app/app.css -->
@@ -74,16 +76,18 @@
       <script src="bower_components/angular-formly-templates-bootstrap/dist/angular-formly-templates-bootstrap.js"></script>
       <script src="bower_components/dropzone/dist/min/dropzone.min.js"></script>
       <script src="bower_components/ngMask/dist/ngMask.js"></script>
+      <script src="bower_components/slick-carousel/slick/slick.min.js"></script>
+      <script src="bower_components/angular-slick/dist/slick.js"></script>
       <!-- endbower -->
       <script src="socket.io-client/socket.io.js"></script>
     <!-- endbuild -->
     <!-- build:js(.tmp) app/app.js -->
       <script src="app/app.js"></script>
       <!-- injector:js -->
-      <script src="app/admin/admin.module.js"></script>
       <script src="components/auth/auth.module.js"></script>
+      <script src="app/admin/admin.module.js"></script>
       <script src="components/util/util.module.js"></script>
-      <script src="components/auth/auth.service.js"></script>
+      <script src="app/account/dashboard/dashboard.controller.js"></script>
       <script src="app/account/listing/listing.controller.js"></script>
       <script src="app/account/login/login.controller.js"></script>
       <script src="app/account/profile/profile.controller.js"></script>
@@ -106,8 +110,10 @@
       <script src="app/legal/legal.js"></script>
       <script src="app/main/main.controller.js"></script>
       <script src="app/main/main.js"></script>
-      <script src="app/account/account.js"></script>
+      <script src="app/marketplace/marketplace.controller.js"></script>
+      <script src="app/marketplace/marketplace.js"></script>
       <script src="app/about/about.js"></script>
+      <script src="components/auth/auth.service.js"></script>
       <script src="components/auth/interceptor.service.js"></script>
       <script src="components/auth/router.decorator.js"></script>
       <script src="components/auth/user.service.js"></script>
@@ -132,7 +138,7 @@
       <script src="components/oauth-buttons/oauth-buttons.controller.js"></script>
       <script src="components/oauth-buttons/oauth-buttons.directive.js"></script>
       <script src="components/socket/socket.service.js"></script>
-      <script src="app/account/dashboard/dashboard.controller.js"></script>
+      <script src="app/account/account.js"></script>
       <script src="components/util/util.service.js"></script>
       <!-- endinjector -->
     <!-- endbuild -->

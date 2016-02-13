@@ -10,8 +10,7 @@ exports.getS3Policy = function(req, res) {
   var year = today.getFullYear();
   var month = addLeadingChars(today.getMonth() + 1);
   var day = addLeadingChars(today.getDate());
-  var fileExtension = req.query.fileName.substr(req.query.fileName.lastIndexOf('.')+1);
-  var fileName = year + '/' + month + '/' + day + '/' + Date.now() + '.' + fileExtension;
+  var fileName = year + '/' + month + '/' + day + '/' + Date.now() + '-' + file.name;
 
   var s3 = new AWS.S3();
   var s3_params = {
