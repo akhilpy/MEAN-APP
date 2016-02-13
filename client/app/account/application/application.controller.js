@@ -1,38 +1,6 @@
 'use strict';
 
 class ApplicationController {
-<<<<<<< Updated upstream
-  constructor($http, $state, Auth, Form, Application) {
-    this.$http = $http;
-    this.$state = $state;
-    this.errors = {};
-    this.submitted = false;
-
-    this.Auth = Auth;
-    this.user = Auth.getCurrentUser();
-    this.borrower = this.user.borrower;
-
-    this.Application = Application;
-    this.pageData = Application.pageData;
-    this.applicationId = this.Application.getID();
-    this.hasApplication = false;
-
-    if( this.applicationId ) {
-      this.hasApplication = true;
-      this.application = Application.getApplication(this.applicationId);
-    } else {
-      this.application = {};
-    }
-
-    this.Form = Form;
-
-    this.applicationFields = {
-      general: this.Form.getApplicationPage('general'),
-      details: this.Form.getApplicationPage('details'),
-      financial: this.Form.getApplicationPage('financial'),
-      social: this.Form.getApplicationPage('social'),
-      terms: this.Form.getApplicationPage('terms')
-=======
   constructor($http, $state, $scope, socket, Auth, Form, Application) {
     var vm = this;
     vm.$http = $http;
@@ -69,7 +37,6 @@ class ApplicationController {
       financial: vm.Form.getApplicationPage('financial'),
       social: vm.Form.getApplicationPage('social'),
       terms: vm.Form.getApplicationPage('terms')
->>>>>>> Stashed changes
     };
   }
 
