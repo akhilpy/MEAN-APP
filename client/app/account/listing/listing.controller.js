@@ -1,11 +1,10 @@
 'use strict';
 
 class ListingController {
-  constructor($http, $state, $scope, socket, Auth, Form, Listing) {
+  constructor($http, $state, socket, Auth, Form, Listing) {
     var vm = this;
     vm.$http = $http;
     vm.$state = $state;
-    vm.$scope = $scope;
     vm.errors = {};
     vm.submitted = false;
     vm.listingID = false;
@@ -38,72 +37,73 @@ class ListingController {
       social: vm.Form.getListingPage('social'),
       terms: vm.Form.getListingPage('terms')
     };
+
   }
 
   saveListing(form) {
+    var vm = this;
+    var currentPage = vm.$state.current.name;
     var savedListing = {};
-    var currentPage = this.$state.current.name;
 
-    if( this.listing.general ) {
-      savedListing.general = this.pageData(this.listing, 'general');
+    if( vm.currentListing.general ) {
+      savedListing.general = vm.pageData(vm.currentListing, 'general');
     }
 
-    if( this.listing.details ) {
-      savedListing.details = this.pageData(this.listing, 'details');
+    if( vm.currentListing.details ) {
+      savedListing.details = vm.pageData(vm.currentListing, 'details');
     }
 
-    if( this.listing.financial ) {
-      savedListing.financial = this.pageData(this.listing, 'financial');
+    if( vm.currentListing.financial ) {
+      savedListing.financial = vm.pageData(vm.currentListing, 'financial');
     }
 
-    if( this.listing.social ) {
-      savedListing.social = this.pageData(this.listing, 'social');
+    if( vm.currentListing.social ) {
+      savedListing.social = vm.pageData(vm.currentListing, 'social');
     }
 
-    if( this.listing.terms ) {
-      savedListing.terms = this.pageData(this.listing, 'terms');
+    if( vm.currentListing.terms ) {
+      savedListing.terms = vm.pageData(vm.currentListing, 'terms');
     }
 
-    this.submitted = true;
+    vm.submitted = true;
 
     // if no existing listing, create one
-    if (form.$valid && !this.hasListing) {
-      this.$http.post('/api/listings', {
-        user: this.user,
+    if (form.$valid && !vm.listingID) {
+      vm.$http.post('/api/listings', {
+        user: vm.user,
         listing: savedListing
       })
-      .then(() => {
-        this.hasListing = true;
-        this.listingId = this.Listing.getID();
-        this.$state.go(currentPage);
+      .then((res) => {
+        vm.listingID = res.data._id;
       })
       .catch(err => {
-        this.errors.other = err.message;
+        vm.errors.other = err.message;
       });
     // if there is an existing listing, update it
     } else {
-      this.$http.put('/api/listings/' + this.listingId, savedListing)
-      .then(() => {
-        this.$state.go(currentPage);
+      vm.$http.put('/api/listings/' + vm.listingID, savedListing)
+      .then((res) => {
+        vm.$state.go(currentPage);
       })
       .catch(err => {
-        this.errors.other = err.message;
+        vm.errors.other = err.message;
       });
     }
   }
 
   submitListing(form) {
-    this.submitted = true;
+    var vm = this;
+    vm.submitted = true;
 
     if (form.$valid) {
-      this.Auth.changePassword(this.user.oldPassword, this.user.newPassword)
+      vm.Auth.changePassword(vm.user.oldPassword, vm.user.newPassword)
         .then(() => {
-          this.message = 'Password successfully changed.';
+          vm.message = 'Password successfully changed.';
         })
         .catch(() => {
           form.password.$setValidity('mongoose', false);
-          this.errors.other = 'Incorrect password';
-          this.message = '';
+          vm.errors.other = 'Incorrect password';
+          vm.message = '';
         });
     }
   }

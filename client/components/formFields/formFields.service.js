@@ -1315,7 +1315,7 @@ function FormService(appConfig) {
                 type: 'checkbox',
                 key: 'certified',
                 templateOptions: {
-                  label: 'On behalf of the issuer, I certify that the statements made in this application and offering document are true. ',
+                  label: 'On behalf of the issuer, I certify that the statements made in this listing application and offering document are true. ',
                   placeholder: '',
                   description: ''
                 }
