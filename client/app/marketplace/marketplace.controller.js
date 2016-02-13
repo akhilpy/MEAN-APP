@@ -3,7 +3,7 @@
 angular.module('investnextdoorCaApp')
   .controller('MarketplaceController', function ($http, $scope, socket) {
 
-    $scope.sortType = 'name';
+    $scope.sortType = 'general.businessName';
     $scope.sortReverse = false;
     $scope.searchListings = '';
 

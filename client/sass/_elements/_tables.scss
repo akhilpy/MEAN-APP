@@ -35,9 +35,18 @@ th {
   }
 
   .fa {
+    @include font-size(20);
     position: absolute;
     right: rem(10);
     color: $color-primary;
+
+    &.fa-angle-up {
+      top: rem(2);
+    }
+
+    &.fa-angle-down {
+      bottom: rem(2);
+    }
   }
 }
 
