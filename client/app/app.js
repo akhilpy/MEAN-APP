@@ -12,13 +12,15 @@ angular.module('investnextdoorCaApp', [
   'validation.match',
   'textAngular',
   'formly',
-  'formlyBootstrap'
+  'formlyBootstrap',
+  'ngMask'
 ])
   .config(function($urlRouterProvider, $locationProvider, formlyConfigProvider) {
     $urlRouterProvider.otherwise('/');
 
     $locationProvider.html5Mode(true);
 
+<<<<<<< Updated upstream
     var unique = 1;
     formlyConfigProvider.setType({
       name: 'chosen',
@@ -73,4 +75,11 @@ angular.module('investnextdoorCaApp', [
         $scope.copyFields = copyFields;
       }
     });
+=======
+    formlyConfigProvider.setType(formlyFieldsProvider.$get().field('chosen'));
+    formlyConfigProvider.setType(formlyFieldsProvider.$get().field('repeater'));
+    formlyConfigProvider.setType(formlyFieldsProvider.$get().field('dropzone'));
+    formlyConfigProvider.setType(formlyFieldsProvider.$get().field('maskedInput'));
+
+>>>>>>> Stashed changes
   });

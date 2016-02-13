@@ -878,4 +878,72 @@ a.social-button {
 }
 
 
+
+/*-----  Dropzone  ------*/
+
+.dropzone-uploader {
+  @include font-size;
+  background: none;
+  border: 2px dashed $color-grey-light;
+  color: $color-grey-med-light;
+  border-radius: 0;
+  width: 100%;
+  padding: rem(20);
+
+  &:hover {
+    border-color: $color-accent;
+    background: none;
+    color: $color-grey-med-light;
+  }
+
+  .dz-preview {
+    font-size: 0;
+    background: darken($color-grey-pale, 5%);
+    margin-top: rem(20);
+    padding: rem(20);
+    position: relative;
+  }
+
+  .dz-image {
+    @include font-size;
+    display: inline-block;
+    vertical-align: middle;
+    width: 15%;
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      border: 2px solid $color-grey-light;
+    }
+  }
+
+  .dz-details {
+    @include font-size;
+    display: inline-block;
+    vertical-align: middle;
+    width: 85%;
+    text-align: left;
+    padding: 0 rem(40);
+  }
+
+  .dz-progress {
+    @include font-size;
+    display: block;
+  }
+
+  .dz-success-mark,
+  .dz-error-mark {
+    position: absolute;
+    right: rem(20);
+    top: rem(50);
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+
+
 /*-----  End of Forms  ------*/

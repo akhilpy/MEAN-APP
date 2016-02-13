@@ -30,6 +30,12 @@ var reviews = {
 	link: String
 };
 
+var file = {
+	name: String,
+	link: String,
+	size: String
+}
+
 var ApplicationSchema = new mongoose.Schema({
   id: {
     type: String,
@@ -75,8 +81,8 @@ var ApplicationSchema = new mongoose.Schema({
 		projection: String,
 		debt: String,
 		repayments: String,
-		bankStatements: [String],
-		taxReturns: [String],
+		bankStatements: [file],
+		taxReturns: [file],
 		whyInvest: String,
 		provideMore: Boolean,
 		upToDate: Date,
@@ -85,7 +91,7 @@ var ApplicationSchema = new mongoose.Schema({
 		receivable: String,
 		liabilities: String,
 		financialStatements: String,
-		additionalDocuments: [String],
+		additionalDocuments: [file],
     additionalInfo: String
 	},
 	socialMedia: {
@@ -97,7 +103,7 @@ var ApplicationSchema = new mongoose.Schema({
 		youtube: String,
 		yelp: String,
 		reviews: [reviews],
-		images: [String]
+		images: [file]
 	},
 	terms: {
 		businessAgreements: {

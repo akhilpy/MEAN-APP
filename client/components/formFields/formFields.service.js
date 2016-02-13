@@ -905,43 +905,23 @@ function FormService(appConfig) {
             fieldGroup: [
               {
                 className: 'flex-1',
+                type: 'dropzone',
                 key: 'bankStatements',
-                type: 'repeatSection',
                 templateOptions: {
-                  label: 'Attach Bank Statements (Minimum 3 Months)',
-                  btnText: 'Add Statement',
-                  fields: [
-                    {
-                      className: 'flex-1',
-                      type: 'input',
-                      key: 'statement',
-                      templateOptions: {
-                        type: 'file',
-                        label: 'Bank Statement'
-                      },
-                    }
-                  ]
-                }
+                  key: 'bankStatements',
+                  type: 'input',
+                  label: 'Attach Bank Statements (Minimum 3 Months)'
+                },
               },
               {
                 className: 'flex-1',
+                type: 'dropzone',
                 key: 'taxReturns',
-                type: 'repeatSection',
                 templateOptions: {
-                  label: 'Attach Business Tax Returns (Last 2 Years)',
-                  btnText: 'Add Tax Return',
-                  fields: [
-                    {
-                      className: 'flex-1',
-                      type: 'input',
-                      key: 'return',
-                      templateOptions: {
-                        type: 'file',
-                        label: 'Tax Return'
-                      },
-                    }
-                  ]
-                }
+                  key: 'taxReturns',
+                  type: 'input',
+                  label: 'Attach Business Tax Returns (Last 2 Years)'
+                },
               }
             ]
           },
@@ -1078,9 +1058,9 @@ function FormService(appConfig) {
                     {
                       className: 'flex-1',
                       type: 'input',
-                      key: 'document',
+                      key: 'file',
                       templateOptions: {
-                        type: 'document',
+                        type: 'file',
                         label: 'Document'
                       },
                     }

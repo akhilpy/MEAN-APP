@@ -1,6 +1,7 @@
 'use strict';
 
 class ApplicationController {
+<<<<<<< Updated upstream
   constructor($http, $state, Auth, Form, Application) {
     this.$http = $http;
     this.$state = $state;
@@ -31,8 +32,45 @@ class ApplicationController {
       financial: this.Form.getApplicationPage('financial'),
       social: this.Form.getApplicationPage('social'),
       terms: this.Form.getApplicationPage('terms')
-    };
+=======
+  constructor($http, $state, $scope, socket, Auth, Form, Application) {
+    var vm = this;
+    vm.$http = $http;
+    vm.$state = $state;
+    vm.$scope = $scope;
+    vm.errors = {};
+    vm.submitted = false;
+    vm.applicationID = false;
 
+    vm.Auth = Auth;
+    vm.user = Auth.getCurrentUser();
+
+    vm.Application = Application;
+    vm.pageData = Application.pageData;
+    vm.getApplication = Application.getApplication;
+    vm.currentApplication = Application.getApplication(vm.applicationID);
+
+    $http.get('/api/users/me').then(response => {
+      vm.user = response.data;
+      vm.applicationID = vm.user.borrower.applications[0];
+      if( vm.applicationID ) {
+        $http.get('/api/applications/' + vm.applicationID).then(response => {
+          vm.currentApplication = Application.getApplication(vm.applicationID);
+        });
+      }
+      socket.syncUpdates('user', vm.user);
+    });
+
+    vm.Form = Form;
+
+    vm.applicationFields = {
+      general: vm.Form.getApplicationPage('general'),
+      details: vm.Form.getApplicationPage('details'),
+      financial: vm.Form.getApplicationPage('financial'),
+      social: vm.Form.getApplicationPage('social'),
+      terms: vm.Form.getApplicationPage('terms')
+>>>>>>> Stashed changes
+    };
   }
 
   saveApplication(form) {

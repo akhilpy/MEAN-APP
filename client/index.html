@@ -14,6 +14,7 @@
     <!-- build:css(client) app/vendor.css -->
       <!-- bower:css -->
       <link rel="stylesheet" href="bower_components/textAngular/dist/textAngular.css" />
+      <link rel="stylesheet" href="bower_components/dropzone/dist/min/dropzone.min.css" />
       <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,client}) app/app.css -->
@@ -71,6 +72,8 @@
       <script src="bower_components/angular-formly/dist/formly.js"></script>
       <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
       <script src="bower_components/angular-formly-templates-bootstrap/dist/angular-formly-templates-bootstrap.js"></script>
+      <script src="bower_components/dropzone/dist/min/dropzone.min.js"></script>
+      <script src="bower_components/ngMask/dist/ngMask.js"></script>
       <!-- endbower -->
       <script src="socket.io-client/socket.io.js"></script>
     <!-- endbuild -->
@@ -80,7 +83,7 @@
       <script src="app/admin/admin.module.js"></script>
       <script src="components/auth/auth.module.js"></script>
       <script src="components/util/util.module.js"></script>
-      <script src="app/main/main.controller.js"></script>
+      <script src="components/application/application.service.js"></script>
       <script src="app/account/dashboard/dashboard.controller.js"></script>
       <script src="app/account/login/login.controller.js"></script>
       <script src="app/account/profile/profile.controller.js"></script>
@@ -101,9 +104,9 @@
       <script src="app/invest/invest.js"></script>
       <script src="app/legal/legal.controller.js"></script>
       <script src="app/legal/legal.js"></script>
-      <script src="app/about/about.js"></script>
+      <script src="app/main/main.controller.js"></script>
       <script src="app/main/main.js"></script>
-      <script src="components/application/application.service.js"></script>
+      <script src="app/about/about.js"></script>
       <script src="components/application/applicationNavigation.directive.js"></script>
       <script src="components/application/applicationStatus.directive.js"></script>
       <script src="app/account/account.js"></script>
@@ -114,8 +117,13 @@
       <script src="components/breadcrumbs/breadcrumbs.directive.js"></script>
       <script src="components/chosen/chosen.directive.js"></script>
       <script src="components/contentEditable/contentEditable.directive.js"></script>
+      <script src="components/dropzone/dropzone.directive.js"></script>
+      <script src="components/dropzone/dropzone.service.js"></script>
       <script src="components/footer/footer.directive.js"></script>
+      <script src="components/formFields/FormlyDropzone.controller.js"></script>
+      <script src="components/formFields/FormlyRepeater.controller.js"></script>
       <script src="components/formFields/formFields.service.js"></script>
+      <script src="components/formFields/formlyFields.service.js"></script>
       <script src="components/investor/investor.service.js"></script>
       <script src="components/mongoose-error/mongoose-error.directive.js"></script>
       <script src="components/navbar/navbar.controller.js"></script>

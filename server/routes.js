@@ -6,6 +6,7 @@
 
 import errors from './components/errors';
 import path from 'path';
+import aws from './api/config/aws.js';
 
 export default function(app) {
   // Insert routes below
@@ -15,6 +16,7 @@ export default function(app) {
   app.use('/api/applications', require('./api/application'));
   app.use('/api/things', require('./api/thing'));
   app.use('/api/users', require('./api/user'));
+  app.get('/api/s3Policy', aws.getS3Policy);
 
   app.use('/auth', require('./auth'));
 
