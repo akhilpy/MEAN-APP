@@ -82,10 +82,10 @@ $text-inputs-list: 'input[type="color"]',
                    'input[type="week"]',
                    'textarea';
 
-$all-text-inputs:        assign-inputs($text-inputs-list);
-$all-text-inputs-active: assign-inputs($text-inputs-list, active);
-$all-text-inputs-focus:  assign-inputs($text-inputs-list, focus);
-$all-text-inputs-hover:  assign-inputs($text-inputs-list, hover);
+$all-text-inputs:        assign-elements($text-inputs-list);
+$all-text-inputs-active: assign-elements($text-inputs-list, active);
+$all-text-inputs-focus:  assign-elements($text-inputs-list, focus);
+$all-text-inputs-hover:  assign-elements($text-inputs-list, hover);
 
 $text-elements-list:    'h1',
                         'h2',
@@ -97,9 +97,10 @@ $text-elements-list:    'h1',
                         'ol',
                         'p',
                         'strong',
+                        'span',
                         'blockquote';
 
-$all-text-elements:     assign-inputs($text-elements-list);
+$all-text-elements:     assign-elements($text-elements-list);
 
 /*----------  Site  ----------*/
 

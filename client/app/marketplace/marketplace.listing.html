@@ -1,3 +1,71 @@
-<div class="entry-content">
-  <p>This is a Marketplace listing</p>
-</div><!-- /.entry-content -->
+<div class="listing-hero__wrapper">
+  <div class="listing-hero">
+    <div class="listing-hero__logo">
+      <img src="http://thesn.ug/1SNFvnS" alt="">
+    </div><!-- /.listing-hero__logo -->
+    <div class="listing-hero__content">
+      <h2 class="listing-hero__title">{{vm.currentListing.general.businessName}}</h2>
+      <h3 class="listing-hero__subtitle">{{vm.currentListing.details.title}}</h3>
+      <p class="listing-hero__description">
+        {{vm.currentListing.details.reason}}
+      </p><!-- /.listing-hero__description -->
+      <div class="listing-hero__actions">
+        <a href="#" ng-click="vm.makeOffer()" class="button">Make an Offer</a>
+        <ul class="listing-hero__actions--secondary">
+          <li><a href="#" ng-click="vm.bookmark()" class="button">Bookmark</a></li>
+          <li><a href="#" ng-click="vm.requestDetails()" class="button">Request Details</a></li>
+        </ul><!-- /.listing-hero__actions--secondary -->
+      </div><!-- /.listing-hero__actions -->
+    </div><!-- /.listing-hero__content -->
+    <div class="listing-hero__images">
+      <slick class="listing-hero__images--slider">
+        <div class="listing-hero__slide">
+          <img src="http://thesn.ug/20vFzrh" alt="{{vm.currentListing.general.businessName}}">
+        </div><!-- /.listing-hero__slide -->
+      </slick>
+    </div><!-- /.listing-hero__images -->
+  </div><!-- /.listing-hero -->
+</div><!-- /.listing-hero__wrapper -->
+
+<div class="listing-stats__wrapper">
+  <div class="listing-stats">
+    <table class="listing-stats__table">
+      <tr class="listing-stat">
+        <td>11%</td>
+        <td>{{vm.currentListing.details.amount | currency:$:0}}</td>
+        <td class="term">{{vm.currentListing.details.term}}</td>
+        <td class="progress">
+          <div class="progress-bar__wrapper">
+            <div class="progress-bar" progress-bar="75"></div>
+            <div class="progress-bar__status">
+              Status: <strong>Open</strong>
+            </div><!-- /.progress-bar__status -->
+          </div><!-- /.progress-bar__wrapper -->
+        </td>
+        <td class="time-remaining"><span class="warning">4 Days, 23 Hours</span></td>
+      </tr>
+      <tr class="listing-stat__label">
+        <td>Rate</td>
+        <td>Target</td>
+        <td>Term</td>
+        <td>Funded</td>
+        <td>Time Remaining</td>
+      </tr>
+    </table><!-- /.listing-stats__table -->
+  </div><!-- /.listing-stats -->
+</div><!-- /.listing-stats__wrapper -->
+
+<div class="listing-main__wrapper">
+  <div class="listing-main">
+    <div class="listing-content__wrapper">
+      <div class="listing-content">
+        this is the main listing area
+      </div><!-- /.listing-content -->
+    </div><!-- /.listing-content__wrapper -->
+    <div class="listing-sidebar__wrapper">
+      <div class="listing-sidebar">
+        this is the listing sidebar area
+      </div><!-- /.listing-sidebar -->
+    </div><!-- /.listing-sidebar__wrapper -->
+  </div><!-- /.listing-main -->
+</div><!-- /.listing-main__wrapper -->

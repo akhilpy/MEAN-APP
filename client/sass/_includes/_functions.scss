@@ -8,13 +8,13 @@
 }
 
 
-@function assign-inputs($inputs, $pseudo: null) {
+@function assign-elements($elements, $pseudo: null) {
   $list : ();
 
-  @each $input in $inputs {
-    $input: unquote($input);
-    $input: if($pseudo, $input + ":" + $pseudo, $input);
-    $list: append($list, $input, comma);
+  @each $element in $elements {
+    $element: unquote($element);
+    $element: if($pseudo, $element + ":" + $pseudo, $element);
+    $list: append($list, $element, comma);
   }
 
   @return $list;

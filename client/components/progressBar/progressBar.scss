@@ -1,0 +1,34 @@
+.progress-bar {
+  font-size: 0;
+}
+
+.progress-bar__outer,
+.progress-bar__inner {
+  display: block;
+  content: "";
+  border-radius: rem(40);
+}
+
+.progress-bar__outer {
+  display: inline-block;
+  vertical-align: middle;
+  background: $color-white;
+  width: 80%;
+  border: 3px solid $color-white;
+  height: rem(30);
+}
+
+.progress-bar__inner {
+  background: $color-success;
+  height: rem(24);
+}
+
+.progress-bar__progress {
+  @include font-primary(600);
+  @include font-size(20);
+  display: inline-block;
+  vertical-align: middle;
+  width: 20%;
+  color: $color-success;
+  padding-left: rem(20);
+}

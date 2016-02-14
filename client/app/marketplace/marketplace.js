@@ -16,6 +16,8 @@ angular.module('investnextdoorCaApp')
       })
       .state('marketplace.listing', {
         url: '/listing/:id',
-        templateUrl: 'app/marketplace/marketplace.listing.html'
+        templateUrl: 'app/marketplace/marketplace.listing.html',
+        controller: 'MarketplaceListingController',
+        controllerAs: 'vm'
       });
   });

@@ -6,6 +6,15 @@
 
 /*==========  Headings  ==========*/
 
+#{$all-text-elements} {
+  &.warning {
+    color: $color-warning;
+  }
+  &.success {
+    color: $color-success;
+  }
+}
+
 h1,
 h2,
 h3,
@@ -85,6 +94,10 @@ h2 {
     @include breakpoint(phone) {
       @include font-size(38);
     }
+  }
+
+  &.listing-hero__title {
+    margin-bottom: rem(5);
   }
 }
 
