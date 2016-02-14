@@ -3,14 +3,25 @@
 (function() {
 
 class AdminController {
-  constructor(User) {
-    // Use the User $resource to fetch all users
-    this.users = User.query();
+  constructor($http, $scope, socket, $stateParams, User) {
+    var vm = this;
+
+    vm.sortType = 'general.businessName';
+    vm.sortReverse = false;
+    vm.searchListings = '';
+
+    vm.allListings = [];
+
+    $http.get('/api/listings').success(function(allListings) {
+      vm.allListings = allListings;
+      socket.syncUpdates('listing', vm.allListings);
+    });
+
   }
 
   delete(user) {
     user.$remove();
-    this.users.splice(this.users.indexOf(user), 1);
+    vm.users.splice(vm.users.indexOf(user), 1);
   }
 }
 

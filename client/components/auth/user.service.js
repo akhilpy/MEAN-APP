@@ -9,13 +9,21 @@ function UserResource($resource) {
     changePassword: {
       method: 'PUT',
       params: {
-        controller: 'password'
+        userController: 'password'
       }
     },
     get: {
       method: 'GET',
       params: {
         id: 'me'
+      }
+    },
+    role: {
+      method: 'GET',
+      isArray: true,
+      url: '/api/users/role/:role',
+      params: {
+        role: '@_role'
       }
     }
   });

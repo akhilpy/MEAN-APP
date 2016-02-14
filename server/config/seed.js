@@ -11,6 +11,7 @@ import Faq from '../api/faq/faq.model';
 Listing.find({}).remove()
   .then(() => {
     Listing.create({
+      status: 'approved',
       general: {
     		businessName: 'Awesome Business, LLC',
     		doingBusinessName: 'Awesome Business',
@@ -101,6 +102,7 @@ Listing.find({}).remove()
         signature: 'John Paul Smith'
       }
     },{
+      status: 'approved',
       general: {
     		businessName: 'Acme Corporation',
     		doingBusinessName: 'Acme',

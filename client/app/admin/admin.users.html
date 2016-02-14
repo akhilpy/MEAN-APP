@@ -1,0 +1,20 @@
+<table>
+  <thead>
+    <tr>
+      <th><a href="#">Username</a></th>
+      <th><a href="#">Name</a></th>
+      <th><a href="#">Email</a></th>
+      <th><a href="#">Role</a></th>
+      <th><a href="#">Actions</a></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="user in vm.users">
+      <td>{{user.username}}</td>
+      <td>{{user.name.first}} {{user.name.last}}</td>
+      <td>{{user.email}}</td>
+      <td>{{user.role}}</td>
+      <td><a ng-click="admin.delete(user)" class="trash"><span class="fa fa-trash fa-2x"></span></a></td>
+    </tr>
+  </tbody>
+</table>

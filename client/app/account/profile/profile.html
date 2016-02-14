@@ -11,6 +11,12 @@
           <main id="main" class="site-main" role="main">
             <div class="content-wrapper">
 
+              <div class="admin-profile" ng-show="profile.isAdmin()">
+                <div class="application-form__wrapper application-form__investor">
+                  <p>{{profile.user.role}}</p>
+                </div>
+              </div><!-- /.investor-profile -->
+
               <div class="borrower-profile" ng-show="profile.isBorrower()">
                 <div class="application-form__wrapper application-form__borrower">
                   <formly-form model="profile.user" fields="profile.borrowerProfile" form="borrower">

@@ -67,6 +67,15 @@ export function index(req, res) {
     .catch(handleError(res));
 }
 
+// Gets a list of Listings by status
+export function status(req, res) {
+  var status = req.params.status;
+
+  Listing.findAsync({ status: status })
+    .then(respondWithResult(res))
+    .catch(handleError(res));
+}
+
 // Gets a single Listing from the DB
 export function show(req, res) {
   Listing.findByIdAsync(req.params.id)

@@ -189,7 +189,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="listing in allListings | orderBy:sortType:sortReverse">
+        <tr ng-repeat="listing in vm.allListings | orderBy:sortType:sortReverse">
           <td>{{listing.general.businessName}}</td>
           <td>{{listing.general.address.city}} {{listing.general.address.province}}</td>
           <td>{{listing.general.industry}}</td>

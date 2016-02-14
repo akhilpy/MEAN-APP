@@ -33,6 +33,20 @@ export function index(req, res) {
 }
 
 /**
+ * Get list of users by role
+ * restriction: 'admin'
+ */
+export function role(req, res) {
+  var role = req.params.role;
+
+  User.findAsync({ role: role }, '-salt -password')
+    .then(users => {
+      res.status(200).json(users);
+    })
+    .catch(handleError(res));
+}
+
+/**
  * Creates a new user
  */
 export function create(req, res, next) {

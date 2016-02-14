@@ -4,26 +4,23 @@
 
       <div id="content" class="site-content">
         <header class="entry-header">
-          <h1 class="entry-title">Admin</h1>
+          <h1 class="entry-title">Admin Dashboard</h1>
         </header>
 
         <div id="primary" class="content-area">
           <main id="main" class="site-main" role="main">
-            <div class="content-wrapper">
 
-              <p>The delete user and user index api routes are restricted to users with the 'admin' role.</p>
-              <ul class="list-group user-list">
-                <li class="list-group-item" ng-repeat="user in admin.users">
-            	    <div class="user-info">
-            	        <strong>{{user.name.first}} {{user.name.last}}</strong> | {{user.role}}<br>
-            	        <span class="text-muted">{{user.email}}</span>
-            	    </div>
-                    <a ng-click="admin.delete(user)" class="trash"><span class="fa fa-trash fa-2x"></span></a>
-                </li>
-              </ul>
+            <ul class="dashboard__navigation--list">
+              <li><a ui-sref-active="active" ui-sref="admin.applications">Applications</a></li>
+              <li><a ui-sref-active="active" ui-sref="admin.listings">Listings</a></li>
+              <li><a ui-sref-active="active" ui-sref="admin.users.role({role: 'investor'})">Investors</a></li>
+              <li><a ui-sref-active="active" ui-sref="admin.users.role({role: 'borrower'})">Borrowers</a></li>
+              <li><a ui-sref-active="active" ui-sref="admin.users.role({role: 'admin'})">Adminstrators</a></li>
+            </ul><!-- /.dashboard__navigation--list -->
 
-            </div><!-- /.content-wrapper -->
-          </main><!-- /.site-main -->
+            <ui-view class="admin-dashboard__main"></ui-view>
+
+          </main>
         </div><!-- /.content-area -->
       </div><!-- #content -->
 

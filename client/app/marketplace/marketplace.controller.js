@@ -2,14 +2,16 @@
 
 angular.module('investnextdoorCaApp')
   .controller('MarketplaceController', function ($http, $scope, socket) {
-    $scope.sortType = 'general.businessName';
-    $scope.sortReverse = false;
-    $scope.searchListings = '';
+    var vm = this;
 
-    $scope.allListings = [];
+    vm.sortType = 'general.businessName';
+    vm.sortReverse = false;
+    vm.searchListings = '';
 
-    $http.get('/api/listings').success(function(allListings) {
-      $scope.allListings = allListings;
-      socket.syncUpdates('listing', $scope.allListings);
+    vm.allListings = [];
+
+    $http.get('/api/listings/status/approved').success(function(allListings) {
+      vm.allListings = allListings;
+      socket.syncUpdates('listing', vm.allListings);
     });
   });
