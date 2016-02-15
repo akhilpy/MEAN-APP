@@ -21,6 +21,7 @@ angular.module('investnextdoorCaApp', [
     $locationProvider.html5Mode(true);
 
     formlyConfigProvider.setType(formlyFieldsProvider.$get().field('chosen'));
+    formlyConfigProvider.setType(formlyFieldsProvider.$get().field('date'));
     formlyConfigProvider.setType(formlyFieldsProvider.$get().field('repeater'));
     formlyConfigProvider.setType(formlyFieldsProvider.$get().field('dropzone'));
   });

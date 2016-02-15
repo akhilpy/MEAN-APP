@@ -518,7 +518,7 @@ function FormService(appConfig) {
             fieldGroup: [
               {
                 className: 'flex-1',
-                type: 'input',
+                type: 'date',
                 key: 'founded',
                 templateOptions: {
                   label: 'Company Founded',

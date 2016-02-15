@@ -15,6 +15,15 @@ angular.module('investnextdoorCaApp')
           };
           return field;
 
+        } else if( field === 'date' ) {
+
+          field = {
+            name: 'date',
+            extends: 'input',
+            template: '<input ng-model="model[options.key]" type="date" date-object ui-date ui-date-format>'
+          };
+          return field;
+
         } else if( field === 'repeater' ) {
 
           field = {
