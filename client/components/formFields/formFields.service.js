@@ -216,10 +216,9 @@ function FormService(appConfig) {
           fieldGroup: [
             {
               className: 'flex-1',
-              type: 'input',
+              type: 'date',
               key: 'dob',
               templateOptions: {
-                type: 'date',
                 label: 'Date of Birth',
                 placeholder: 'mm-dd-yyyy',
                 description: 'We need your birth date for validation purposes.'

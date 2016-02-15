@@ -37,6 +37,8 @@ module.exports = function(config) {
       'client/bower_components/angular-formly-templates-bootstrap/dist/angular-formly-templates-bootstrap.js',
       'client/bower_components/dropzone/dist/min/dropzone.min.js',
       'client/bower_components/ngMask/dist/ngMask.js',
+      'client/bower_components/slick-carousel/slick/slick.min.js',
+      'client/bower_components/angular-slick/dist/slick.js',
       'client/bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'node_modules/socket.io-client/socket.io.js',
