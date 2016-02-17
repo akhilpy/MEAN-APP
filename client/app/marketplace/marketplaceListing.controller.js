@@ -1,5 +1,7 @@
 'use strict';
 
+(function() {
+
 class MarketplaceListingController {
   constructor($http, $scope, socket, $stateParams, Listing) {
     var vm = this;
@@ -28,3 +30,5 @@ class MarketplaceListingController {
 
 angular.module('investnextdoorCaApp')
   .controller('MarketplaceListingController', MarketplaceListingController);
+
+})();

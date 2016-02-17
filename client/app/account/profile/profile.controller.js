@@ -1,5 +1,7 @@
 'use strict';
 
+(function() {
+
 class ProfileController {
   constructor($http, Auth, $state, appConfig, Form) {
     this.$http = $http;
@@ -109,3 +111,5 @@ class ProfileController {
 
 angular.module('investnextdoorCaApp')
   .controller('ProfileController', ProfileController);
+
+})();

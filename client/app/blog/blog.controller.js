@@ -1,6 +1,14 @@
 'use strict';
 
-angular.module('investnextdoorCaApp')
-  .controller('BlogCtrl', function ($scope) {
-    $scope.message = 'Hello';
-  });
+(function() {
+
+  class BlogController {
+    constructor($scope) {
+      $scope.message = 'Hello';
+    }
+  }
+
+  angular.module('investnextdoorCaApp')
+    .controller('BlogController', BlogController);
+
+})();

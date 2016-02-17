@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('investnextdoorCaApp')
-  .controller('FormlyRepeaterCtrl', function ($scope) {
+class FormlyRepeaterCtrl {
+  constructor($scope) {
     var unique = 1;
 
     function copyFields(fields) {
@@ -45,4 +45,8 @@ angular.module('investnextdoorCaApp')
     $scope.formOptions = {formState: $scope.formState};
     $scope.addNew = addNew;
     $scope.copyFields = copyFields;
-  });
+  }
+}
+
+angular.module('investnextdoorCaApp')
+  .controller('FormlyRepeaterCtrl', FormlyRepeaterCtrl);

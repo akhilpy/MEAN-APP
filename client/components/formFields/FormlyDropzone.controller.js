@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('investnextdoorCaApp')
-  .controller('FormlyDropzoneCtrl', function ($scope, Dropzone) {
+class FormlyDropzoneCtrl {
+  constructor($scope, Dropzone) {
     var vm = this;
     vm.Dropzone = Dropzone;
 
@@ -33,5 +33,8 @@ angular.module('investnextdoorCaApp')
         }
       }
     };
+  }
+}
 
-  });
+angular.module('investnextdoorCaApp')
+  .controller('FormlyDropzoneCtrl', FormlyDropzoneCtrl);

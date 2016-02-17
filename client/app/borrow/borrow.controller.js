@@ -1,6 +1,14 @@
 'use strict';
 
-angular.module('investnextdoorCaApp')
-  .controller('BorrowCtrl', function ($scope) {
-    $scope.message = 'Hello';
-  });
+(function() {
+
+  class BorrowController {
+    constructor($scope) {
+      $scope.message = 'Hello';
+    }
+  }
+
+  angular.module('investnextdoorCaApp')
+    .controller('BorrowController', BorrowController);
+
+})();

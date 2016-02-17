@@ -1,6 +1,14 @@
 'use strict';
 
-angular.module('investnextdoorCaApp')
-  .controller('ContactCtrl', function ($scope) {
-    $scope.message = 'Hello';
-  });
+(function() {
+
+  class ContactController {
+    constructor($scope) {
+      $scope.message = 'Hello';
+    }
+  }
+
+  angular.module('investnextdoorCaApp')
+    .controller('ContactController', ContactController);
+
+})();

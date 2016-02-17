@@ -6,7 +6,7 @@ angular.module('investnextdoorCaApp')
       .state('legal', {
         url: '/legal',
         templateUrl: 'app/legal/legal.html',
-        controller: 'LegalCtrl',
+        controller: 'LegalController',
         abstract: true
       })
       .state('legal.termsofservice', {

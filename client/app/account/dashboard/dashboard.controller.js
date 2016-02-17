@@ -1,5 +1,7 @@
 'use strict';
 
+(function() {
+
 class DashboardController {
   constructor(Auth, Investor) {
     this.errors = {};
@@ -33,3 +35,5 @@ class DashboardController {
 
 angular.module('investnextdoorCaApp')
   .controller('DashboardController', DashboardController);
+
+})();

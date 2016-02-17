@@ -1,6 +1,14 @@
 'use strict';
 
-angular.module('investnextdoorCaApp')
-  .controller('LegalCtrl', function ($scope) {
-    $scope.message = 'Hello';
-  });
+(function() {
+
+  class LegalController {
+    constructor($scope) {
+      $scope.message = 'Hello';
+    }
+  }
+
+  angular.module('investnextdoorCaApp')
+    .controller('LegalController', LegalController);
+
+})();

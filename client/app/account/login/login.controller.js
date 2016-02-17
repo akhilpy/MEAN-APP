@@ -1,5 +1,7 @@
 'use strict';
 
+(function() {
+
 class LoginController {
   constructor(Auth, $state, appConfig, Form) {
     this.user = {};
@@ -70,3 +72,5 @@ class LoginController {
 
 angular.module('investnextdoorCaApp')
   .controller('LoginController', LoginController);
+
+})();

@@ -1,16 +1,16 @@
 'use strict';
 
-describe('Controller: BorrowCtrl', function () {
+describe('Controller: BorrowController', function () {
 
   // load the controller's module
   beforeEach(module('investnextdoorCaApp'));
 
-  var BorrowCtrl, scope;
+  var BorrowController, scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    BorrowCtrl = $controller('BorrowCtrl', {
+    BorrowController = $controller('BorrowController', {
       $scope: scope
     });
   }));

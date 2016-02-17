@@ -1,5 +1,7 @@
 'use strict';
 
+(function() {
+
 class SettingsController {
   constructor(Auth) {
     this.errors = {};
@@ -27,3 +29,5 @@ class SettingsController {
 
 angular.module('investnextdoorCaApp')
   .controller('SettingsController', SettingsController);
+
+})();

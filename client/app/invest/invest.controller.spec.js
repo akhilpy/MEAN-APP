@@ -1,16 +1,16 @@
 'use strict';
 
-describe('Controller: InvestCtrl', function () {
+describe('Controller: InvestController', function () {
 
   // load the controller's module
   beforeEach(module('investnextdoorCaApp'));
 
-  var InvestCtrl, scope;
+  var InvestController, scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    InvestCtrl = $controller('InvestCtrl', {
+    InvestController = $controller('InvestController', {
       $scope: scope
     });
   }));

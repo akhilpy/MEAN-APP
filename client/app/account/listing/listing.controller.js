@@ -1,5 +1,7 @@
 'use strict';
 
+(function() {
+
 class ListingController {
   constructor($http, $state, socket, Auth, Form, Listing) {
     var vm = this;
@@ -111,3 +113,5 @@ class ListingController {
 
 angular.module('investnextdoorCaApp')
   .controller('ListingController', ListingController);
+
+})();

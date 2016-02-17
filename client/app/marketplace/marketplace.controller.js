@@ -1,7 +1,9 @@
 'use strict';
 
-angular.module('investnextdoorCaApp')
-  .controller('MarketplaceController', function ($http, $scope, socket) {
+(function() {
+
+class MarketplaceController {
+  constructor($http, $scope, socket) {
     var vm = this;
 
     vm.sortType = 'general.businessName';
@@ -14,4 +16,10 @@ angular.module('investnextdoorCaApp')
       vm.allListings = allListings;
       socket.syncUpdates('listing', vm.allListings);
     });
-  });
+  }
+}
+
+angular.module('investnextdoorCaApp')
+  .controller('MarketplaceController', MarketplaceController);
+
+})();

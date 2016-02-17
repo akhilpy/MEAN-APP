@@ -6,6 +6,6 @@ angular.module('investnextdoorCaApp')
       .state('invest', {
         url: '/invest',
         templateUrl: 'app/invest/invest.html',
-        controller: 'InvestCtrl'
+        controller: 'InvestController'
       });
   });
