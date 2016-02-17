@@ -1048,24 +1048,14 @@ function FormService(appConfig) {
               },
               {
                 className: 'flex-1',
+                type: 'dropzone',
                 key: 'additionalDocuments',
-                type: 'repeatSection',
                 templateOptions: {
+                  key: 'additionalDocuments',
+                  type: 'input',
                   label: 'Additional Financial Documents',
-                  btnText: 'Add Document',
-                  fields: [
-                    {
-                      className: 'flex-1',
-                      type: 'input',
-                      key: 'file',
-                      templateOptions: {
-                        type: 'file',
-                        label: 'Document'
-                      },
-                    }
-                  ],
                   description: 'Attach documents up to 2MB (file names will be displayed) such as business plan, forecasts and financial statements.'
-                }
+                },
               }
             ],
             hideExpression: '!model.provideMore || model.provideMore=="No"'
@@ -1236,25 +1226,14 @@ function FormService(appConfig) {
             }
           },
           {
-            className: 'display-flex',
+            className: 'flex-1',
+            type: 'dropzone',
             key: 'images',
-            type: 'repeatSection',
             templateOptions: {
-              label: 'Business and Product Images',
-              btnText: 'Add Image',
-              fields: [
-                {
-                  key: 'image',
-                  templateOptions: {
-                    type: 'file',
-                    label: 'Image',
-                    description: ''
-                  },
-                  className: 'flex-1',
-                  type: 'input',
-                }
-              ]
-            }
+              key: 'images',
+              type: 'input',
+              label: 'Business and Product Images'
+            },
           }
         ];
 

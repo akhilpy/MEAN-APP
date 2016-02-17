@@ -3,13 +3,16 @@
 (function() {
 
 class ListingController {
-  constructor($http, $state, socket, Auth, Form, Listing) {
+  constructor($http, $rootScope, $state, socket, Auth, Form, Listing) {
     var vm = this;
     vm.$http = $http;
     vm.$state = $state;
     vm.errors = {};
     vm.submitted = false;
     vm.listingID = false;
+    vm.saveListing = this.saveListing;
+    vm.currentPage = $state.current.name;
+    vm.currentState = vm.currentPage.substr(vm.currentPage.lastIndexOf('.') + 1);
 
     vm.Auth = Auth;
     vm.user = Auth.getCurrentUser();
@@ -18,6 +21,11 @@ class ListingController {
     vm.pageData = Listing.pageData;
     vm.getListing = Listing.getListing;
     vm.currentListing = Listing.getListing(vm.listingID);
+
+    $rootScope.$on('$stateChangeSuccess', function(scope) {
+      vm.currentPage = $state.current.name;
+      vm.currentState = vm.currentPage.substr(vm.currentPage.lastIndexOf('.') + 1);
+    });
 
     $http.get('/api/users/me').then(response => {
       vm.user = response.data;
@@ -42,10 +50,12 @@ class ListingController {
 
   }
 
-  saveListing(form) {
+  saveListing(form, currentPage) {
     var vm = this;
-    var currentPage = vm.$state.current.name;
     var savedListing = {};
+
+    console.log(vm);
+    console.log(form);
 
     if( vm.currentListing.general ) {
       savedListing.general = vm.pageData(vm.currentListing, 'general');

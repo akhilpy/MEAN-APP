@@ -1,9 +1,3 @@
 <formly-form model="vm.currentListing.general" fields="vm.listingFields.general" form="listing">
-  <div class="formly-submit">
-    <ul class="listing-form__pagination">
-      <li>&nbsp;</li>
-      <li><button type="submit" name="update" ng-click="vm.saveListing(listing, 'general')">Save</button></li>
-      <li>&nbsp;</li>
-    </ul><!-- end of .listing-form__pagination -->
-  </div><!-- /.formly-submit -->
+  <listing-pagination></listing-pagination>
 </formly-form>
