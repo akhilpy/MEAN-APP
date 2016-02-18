@@ -1,0 +1,34 @@
+.listing-form__pagination {
+  @include font-size(35);
+  @include list-zero;
+  background: $color-slate-dark;
+  margin: rem(30) rem(-40) 0 rem(-40);
+  border-radius: 0 0 $border-radius $border-radius;
+  padding: rem(10) rem(52);
+  display: flex;
+  width: calc( 100% + 80px );
+
+  li {
+    flex: 1;
+    align-items: center;
+    text-align: center;
+    line-height: 1;
+
+    &:first-child {
+      text-align: left;
+    }
+
+    &:last-child {
+      text-align: right;
+    }
+  }
+
+  a {
+    @include font-primary(400);
+    text-transform: uppercase;
+    line-height: 1.3;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

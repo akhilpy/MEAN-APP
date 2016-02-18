@@ -1,5 +1,7 @@
 'use strict';
 
+(function() {
+
 class FormlyRepeaterCtrl {
   constructor($scope) {
     var unique = 1;
@@ -24,7 +26,6 @@ class FormlyRepeaterCtrl {
     function addRandomIds(fields) {
       unique++;
       angular.forEach(fields, function(field, index) {
-        console.log(field.fieldGroup);
         if (field.fieldGroup) {
           addRandomIds(field.fieldGroup);
           return; // fieldGroups don't need an ID
@@ -50,3 +51,5 @@ class FormlyRepeaterCtrl {
 
 angular.module('investnextdoorCaApp')
   .controller('FormlyRepeaterCtrl', FormlyRepeaterCtrl);
+
+})();

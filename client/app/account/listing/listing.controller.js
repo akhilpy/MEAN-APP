@@ -54,9 +54,6 @@ class ListingController {
     var vm = this;
     var savedListing = {};
 
-    console.log(vm);
-    console.log(form);
-
     if( vm.currentListing.general ) {
       savedListing.general = vm.pageData(vm.currentListing, 'general');
     }
@@ -95,7 +92,7 @@ class ListingController {
     } else {
       vm.$http.put('/api/listings/' + vm.listingID, savedListing)
       .then((res) => {
-        vm.$state.go(currentPage);
+        vm.$state.go('listing.' + currentPage);
       })
       .catch(err => {
         vm.errors.other = err.message;

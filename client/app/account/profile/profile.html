@@ -12,45 +12,45 @@
             <div class="content-wrapper">
 
               <div class="admin-profile" ng-show="profile.isAdmin()">
-                <div class="application-form__wrapper application-form__investor">
+                <div class="listing-form__wrapper listing-form__investor">
                   <p>{{profile.user.role}}</p>
                 </div>
               </div><!-- /.investor-profile -->
 
               <div class="borrower-profile" ng-show="profile.isBorrower()">
-                <div class="application-form__wrapper application-form__borrower">
+                <div class="listing-form__wrapper listing-form__borrower">
                   <formly-form model="profile.user" fields="profile.borrowerProfile" form="borrower">
                     <div class="formly-submit">
-                      <ul class="application-form__pagination">
+                      <ul class="listing-form__pagination">
                         <li>&nbsp;</li>
                         <li><button type="submit" name="update" ng-click="profile.updateBorrower(borrower)">Save</button></li>
                         <li>&nbsp;</li>
-                      </ul><!-- end of .application-form__pagination -->
+                      </ul><!-- end of .listing-form__pagination -->
                     </div><!-- /.formly-submit -->
                   </formly-form>
                 </div>
 
-                <div class="application-form__footer">
+                <div class="listing-form__footer">
                   <p>While InvestNextDoor wants to support as many businesses as possible we hold the right to reject listings at our discretion.</p>
-                </div><!-- /.application-form__footer -->
+                </div><!-- /.listing-form__footer -->
               </div><!-- /.borrower-profile -->
 
               <div class="investor-profile" ng-show="profile.isInvestor()">
-                <div class="application-form__wrapper application-form__investor">
+                <div class="listing-form__wrapper listing-form__investor">
                   <formly-form model="profile.user" fields="profile.investorProfile" form="investor">
                     <div class="formly-submit">
-                      <ul class="application-form__pagination">
+                      <ul class="listing-form__pagination">
                         <li>&nbsp;</li>
                         <li><button type="submit" name="update" ng-click="profile.updateInvestor(investor)">Save</button></li>
                         <li>&nbsp;</li>
-                      </ul><!-- end of .application-form__pagination -->
+                      </ul><!-- end of .listing-form__pagination -->
                     </div><!-- /.formly-submit -->
                   </formly-form>
                 </div>
 
-                <div class="application-form__footer">
+                <div class="listing-form__footer">
                   <p>While InvestNextDoor wants to support as many businesses as possible we hold the right to reject listings at our discretion.</p>
-                </div><!-- /.application-form__footer -->
+                </div><!-- /.listing-form__footer -->
               </div><!-- /.investor-profile -->
 
             </div><!-- /.content-wrapper -->

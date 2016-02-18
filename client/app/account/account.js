@@ -82,12 +82,12 @@ angular.module('investnextdoorCaApp')
         authenticate: true
       })
       .state('listing.general', {
-        url: '/general-info',
+        url: '/general',
         templateUrl: 'app/account/listing/listing.general.html',
         authenticate: true
       })
       .state('listing.details', {
-        url: '/listing-details',
+        url: '/details',
         templateUrl: 'app/account/listing/listing.details.html',
         authenticate: true
       })
@@ -97,7 +97,7 @@ angular.module('investnextdoorCaApp')
         authenticate: true
       })
       .state('listing.social', {
-        url: '/social-media',
+        url: '/social',
         templateUrl: 'app/account/listing/listing.social.html',
         authenticate: true
       })

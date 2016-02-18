@@ -13,21 +13,48 @@ var address = {
 };
 
 var owners = {
-	name: String,
-	percentage: String,
-	guarantee: String
+	name: {
+		type: String,
+		default: ''
+	},
+	percentage: {
+		type: String,
+		default: ''
+	},
+	guarantee: {
+		type: String,
+		default: ''
+	}
 };
 
 var managers = {
-	name: String,
-	title: String,
-	linkedin: String
+	name: {
+		type: String,
+		default: ''
+	},
+	title: {
+		type: String,
+		default: ''
+	},
+	linkedin: {
+		type: String,
+		default: ''
+	}
 };
 
 var reviews = {
-	name: String,
-	review: String,
-	link: String
+	name: {
+		type: String,
+		default: ''
+	},
+	review: {
+		type: String,
+		default: ''
+	},
+	link: {
+		type: String,
+		default: ''
+	}
 };
 
 var file = {
@@ -88,7 +115,10 @@ var ListingSchema = new mongoose.Schema({
 		bankStatements: [file],
 		taxReturns: [file],
 		whyInvest: String,
-		provideMore: Boolean,
+		provideMore: {
+			type: Boolean,
+			default: false
+		},
 		upToDate: Date,
 		assets: String,
 		inventory: String,

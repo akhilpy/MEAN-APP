@@ -5,8 +5,7 @@ angular.module('investnextdoorCaApp')
     return {
       templateUrl: 'components/listingPagination/listingPagination.html',
       restrict: 'EA',
-      link: function (scope, element, attrs) {
-
-      }
+      controller: 'ListingPaginationController',
+      controllerAs: 'nav'
     };
   });

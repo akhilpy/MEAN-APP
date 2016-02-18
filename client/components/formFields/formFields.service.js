@@ -945,17 +945,17 @@ function FormService(appConfig) {
                 className: 'flex-1',
                 type: 'radio',
                 key: 'provideMore',
-                defaultValue: 'No',
+                defaultValue: false,
                 templateOptions: {
                   label: 'Additional Financial Information',
                   options: [
                     {
                       name: 'No',
-                      value: 'No'
+                      value: false
                     },
                     {
                       name: 'Yes',
-                      value: 'Yes'
+                      value: true
                     }
                   ],
                   placeholder: '',
@@ -969,10 +969,9 @@ function FormService(appConfig) {
             fieldGroup: [
               {
                 className: 'flex-1',
-                type: 'input',
+                type: 'date',
                 key: 'upToDate',
                 templateOptions: {
-                  type: 'date',
                   label: 'As of Date',
                   placeholder: '',
                   description: 'Date of financial information'
@@ -1019,7 +1018,7 @@ function FormService(appConfig) {
                 }
               },
             ],
-            hideExpression: '!model.provideMore || model.provideMore=="No"'
+            hideExpression: '!model.provideMore || model.provideMore==false'
           },
           {
             className: 'display-flex',
@@ -1030,7 +1029,7 @@ function FormService(appConfig) {
                 key: 'financialStatements',
                 templateOptions: {
                   label: 'Financial Statements',
-                  labelProp: 'label',
+                  labelProp: 'name',
                   valueProp: 'value',
                   options: [
                     {
@@ -1042,7 +1041,6 @@ function FormService(appConfig) {
                       value: 'Reviewed'
                     }
                   ],
-                  ngOptions: 'option.name for option in to.options track by option.value',
                   placeholder: 'Select'
                 }
               },
@@ -1058,7 +1056,7 @@ function FormService(appConfig) {
                 },
               }
             ],
-            hideExpression: '!model.provideMore || model.provideMore=="No"'
+            hideExpression: '!model.provideMore || model.provideMore==false'
           },
           {
             className: 'display-flex',
@@ -1073,7 +1071,7 @@ function FormService(appConfig) {
                 }
               }
             ],
-            hideExpression: '!model.provideMore || model.provideMore=="No"'
+            hideExpression: '!model.provideMore || model.provideMore==false'
           }
 
         ];
