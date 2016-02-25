@@ -3,7 +3,7 @@
 (function() {
 
 class ListingController {
-  constructor($rootScope, $state, $scope, Form, Auth, ListingService, currentUser, currentListing) {
+  constructor($state, $scope, Form, ListingService, currentUser, currentListing) {
     var vm = this;
     vm.$state = $state;
     vm.ListingService = ListingService;
