@@ -68,7 +68,7 @@
           </th>
           <th>
             <a href="#">
-              View
+              Actions
             </a>
           </th>
         </tr>
@@ -82,7 +82,11 @@
           <td></td>
           <td></td>
           <td></td>
-          <td><a href="/marketplace/listing/{{listing._id}}" class="button small">Details</a></td>
+          <td>
+            <a ng-show="listing.status!='approved'" ui-sref="marketplace.listing({id: listing._id})" class="button small">Preview</a>
+            <a ng-show="listing.status=='review'" ng-click="vm.approve(listing._id)" class="button small">Approve</a>
+            <a ng-show="listing.status=='approved'" ui-sref="marketplace.listing({id: listing._id})" class="button small">View</a>
+          </td>
         </tr>
       </tbody>
     </table>

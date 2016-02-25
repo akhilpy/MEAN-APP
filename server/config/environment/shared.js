@@ -27,14 +27,8 @@ exports = module.exports = {
       name: 'Provincial Corporation',
       value: 'Provincial Corporation'
     },{
-      name: 'General Partnership',
-      value: 'General Partnership'
-    },{
       name: 'Limited Partnership',
       value: 'Limited Partnership'
-    },{
-      name: 'Sole Proprietorship',
-      value: 'Sole Proprietorship'
     }
   ],
   INDUSTRIES: [

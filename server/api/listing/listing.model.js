@@ -101,12 +101,18 @@ var ListingSchema = new mongoose.Schema({
 		term: String,
 		amount: String,
 		jobs: String,
-		loanPartners: String,
+		loanPartners: {
+			type: String,
+			default: 'Yes'
+		},
 		reason: String
 	},
 	financial: {
 		businessNumber: String,
-		commercialSpace: String,
+		commercialSpace: {
+			type: String,
+			default: 'No'
+		},
 		owners: [owners],
 		revenue: String,
 		projection: String,

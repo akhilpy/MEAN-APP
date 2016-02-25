@@ -6,6 +6,16 @@ angular.module('investnextdoorCaApp.admin')
       .state('admin', {
         url: '/admin',
         templateUrl: 'app/admin/admin.html',
+        resolve: {
+          listings: function() { return []; },
+          users: function() { return []; },
+          status: function($stateParams) {
+            return $stateParams.status;
+          },
+          role: function($stateParams) {
+            return $stateParams.role;
+          }
+        },
         controller: 'AdminController',
         controllerAs: 'vm',
         abstract: true,
@@ -17,32 +27,31 @@ angular.module('investnextdoorCaApp.admin')
         authenticate: 'admin'
       })
       .state('admin.listings', {
-        url: '/listings',
-        templateUrl: 'app/admin/admin.listings.html',
-        authenticate: 'admin',
-        controller: 'AdminListingsController',
+        url: '/listings/:status',
+        resolve: {
+          listings: ['$stateParams', 'ListingService',
+            function($stateParams, ListingService) {
+              return ListingService.getAll($stateParams.status);
+            }
+          ]
+        },
+        controller: 'AdminController',
         controllerAs: 'vm',
-      })
-      .state('admin.listings.status', {
-        url: '/:status',
         templateUrl: 'app/admin/admin.listings.html',
         authenticate: 'admin'
       })
       .state('admin.users', {
-        url: '/users',
+        url: '/users/:role',
         templateUrl: 'app/admin/admin.users.html',
         authenticate: 'admin',
-        controller: 'AdminUsersController',
+        controller: 'AdminController',
         controllerAs: 'vm',
         resolve: {
-          role: function($stateParams) {
-             return $stateParams.role;
-          }
+          users: ['$stateParams', 'ListingService',
+            function($stateParams, ListingService) {
+              return ListingService.getUsers($stateParams.role);
+            }
+          ]
         }
       })
-      .state('admin.users.role', {
-        url: '/:role',
-        templateUrl: 'app/admin/admin.users.html',
-        authenticate: 'admin'
-      });
   });

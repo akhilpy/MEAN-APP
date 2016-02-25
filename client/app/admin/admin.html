@@ -11,11 +11,12 @@
           <main id="main" class="site-main" role="main">
 
             <ul class="dashboard__navigation--list">
-              <li><a ui-sref-active="active" ui-sref="admin.applications">Applications</a></li>
-              <li><a ui-sref-active="active" ui-sref="admin.listings">Listings</a></li>
-              <li><a ui-sref-active="active" ui-sref="admin.users.role({role: 'investor'})">Investors</a></li>
-              <li><a ui-sref-active="active" ui-sref="admin.users.role({role: 'borrower'})">Borrowers</a></li>
-              <li><a ui-sref-active="active" ui-sref="admin.users.role({role: 'admin'})">Adminstrators</a></li>
+              <li><a ui-sref-active="active" ui-sref="admin.listings({status: 'in-progress'})">Applications</a></li>
+              <li><a ui-sref-active="active" ui-sref="admin.listings({status: 'review'})">For Review</a></li>
+              <li><a ui-sref-active="active" ui-sref="admin.listings({status: 'approved'})">Listings</a></li>
+              <li><a ui-sref-active="active" ui-sref="admin.users({role: 'investor'})">Investors</a></li>
+              <li><a ui-sref-active="active" ui-sref="admin.users({role: 'borrower'})">Borrowers</a></li>
+              <li><a ui-sref-active="active" ui-sref="admin.users({role: 'admin'})">Adminstrators</a></li>
             </ul><!-- /.dashboard__navigation--list -->
 
             <ui-view class="admin-dashboard__main"></ui-view>

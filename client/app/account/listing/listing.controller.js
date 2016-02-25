@@ -6,6 +6,7 @@ class ListingController {
   constructor($state, $scope, Form, ListingService, currentUser, currentListing) {
     var vm = this;
     vm.$state = $state;
+    vm.$scope = $scope;
     vm.ListingService = ListingService;
     vm.Form = Form;
     vm.errors = {};
@@ -14,10 +15,26 @@ class ListingController {
     vm.user = currentUser;
     vm.listingID = currentUser.borrower.listings[0];
     vm.currentListing = currentListing.data;
+
+    if(Object.keys(currentListing).length !== 0) {
+      vm.status = vm.currentListing.status;
+    } else {
+      vm.status = 'in-progress';
+    }
+
     vm.currentPage = $state.current.name;
     vm.currentState = vm.currentPage.substr(vm.currentPage.lastIndexOf('.') + 1);
 
     vm.pageData = vm.ListingService.pageData;
+
+    vm.options = {
+      formState: {
+        disabled: true
+      }
+    };
+    if(vm.status == 'in-progress') {
+      vm.options.formState.disabled = false;
+    }
 
     vm.listingFields = {
       general: vm.Form.getListingPage('general'),
@@ -27,8 +44,8 @@ class ListingController {
       terms: vm.Form.getListingPage('terms')
     };
 
-    $scope.$on('saveForm', function() {
-      var form = $scope.listing;
+    vm.$scope.$on('saveForm', function() {
+      var form = vm.$scope.listing;
       vm.saveListing(form);
     });
 

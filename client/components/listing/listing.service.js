@@ -34,6 +34,17 @@ function ListingService($location, $cookies, $q, $resource, $http, Auth, User) {
 
 
     /**
+     * Get users
+     *
+     * @return {String}
+     */
+    getUsers(role) {
+      return $http.get('/api/users/role/' + role);
+    },
+
+
+
+    /**
      * Get listing status
      *
      * @return {String}
@@ -118,6 +129,22 @@ function ListingService($location, $cookies, $q, $resource, $http, Auth, User) {
       return Listing.getOne(listingID)
         .then(listing => {
           listing.status = 'review';
+          return $http.put('/api/listings/' + listingID, listing);
+        });
+    },
+
+
+
+    /**
+     * Approve listing
+     *
+     * @return {String}
+     */
+    approveOne(listingID) {
+      return Listing.getOne(listingID)
+        .then(listing => {
+          console.log(listing);
+          listing.status = 'approved';
           return $http.put('/api/listings/' + listingID, listing);
         });
     },

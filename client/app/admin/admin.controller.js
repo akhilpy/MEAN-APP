@@ -3,25 +3,25 @@
 (function() {
 
 class AdminController {
-  constructor($http, $scope, socket, $stateParams, User) {
+  constructor(listings, users, ListingService) {
     var vm = this;
-
+    vm.ListingService = ListingService;
     vm.sortType = 'general.businessName';
     vm.sortReverse = false;
     vm.searchListings = '';
-
-    vm.allListings = [];
-
-    $http.get('/api/listings').success(function(allListings) {
-      vm.allListings = allListings;
-      socket.syncUpdates('listing', vm.allListings);
-    });
-
+    vm.allListings = listings.data;
+    vm.users = users.data;
   }
 
   delete(user) {
+    var vm = this;
     user.$remove();
     vm.users.splice(vm.users.indexOf(user), 1);
+  }
+
+  approve(listingID) {
+    var vm = this;
+    vm.ListingService.approveOne(listingID);
   }
 }
 

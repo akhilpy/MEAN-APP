@@ -408,6 +408,9 @@ function FormService(appConfig) {
                   label: 'Registered Business Name',
                   placeholder: '',
                   description: 'Enter registered business name.'
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
                 }
               },
               {
@@ -418,6 +421,9 @@ function FormService(appConfig) {
                   label: 'Doing Business As',
                   placeholder: '',
                   description: 'Provide only if differs from registered name.'
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
                 }
               },
               {
@@ -480,6 +486,9 @@ function FormService(appConfig) {
                 templateOptions: {
                   label: 'Street Address',
                   placeholder: ''
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
                 }
               },
               {
@@ -489,6 +498,9 @@ function FormService(appConfig) {
                 templateOptions: {
                   label: 'City',
                   placeholder: ''
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
                 }
               },
               {
@@ -501,6 +513,9 @@ function FormService(appConfig) {
                   valueProp: 'value',
                   options: provinces,
                   placeholder: 'Select'
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
                 }
               },
               {
@@ -510,6 +525,9 @@ function FormService(appConfig) {
                 templateOptions: {
                   label: 'Postal Code',
                   placeholder: ''
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
                 }
               }
             ]
@@ -525,6 +543,9 @@ function FormService(appConfig) {
                   label: 'Company Founded',
                   placeholder: '',
                   description: ''
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
                 }
               },
               {
@@ -537,6 +558,9 @@ function FormService(appConfig) {
                   valueProp: 'value',
                   options: structures,
                   placeholder: 'Select'
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
                 }
               },
               {
@@ -549,6 +573,9 @@ function FormService(appConfig) {
                   valueProp: 'value',
                   options: industries,
                   placeholder: 'Select'
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
                 }
               }
             ]
@@ -564,6 +591,9 @@ function FormService(appConfig) {
                   label: 'NAICS Code',
                   placeholder: '',
                   description: 'http://www.naics.com/naics-search-results/'
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
                 }
               },
               {
@@ -574,6 +604,9 @@ function FormService(appConfig) {
                   label: 'Number of Employees',
                   placeholder: '',
                   description: ''
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
                 }
               }
             ]
@@ -619,6 +652,9 @@ function FormService(appConfig) {
                   ],
                   placeholder: '',
                   description: 'Do you want your listing to be available to the InvestNextDoor community or would you prefer a private listing that will be accessible by your invitation only.'
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
                 }
               },
               {
@@ -664,6 +700,9 @@ function FormService(appConfig) {
                     }
                   ],
                   placeholder: 'Select'
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
                 }
               },
             ]
@@ -710,6 +749,9 @@ function FormService(appConfig) {
                     }
                   ],
                   placeholder: 'Select'
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
                 }
               },
               {
@@ -720,6 +762,9 @@ function FormService(appConfig) {
                   label: 'How much do you want to borrow?',
                   placeholder: '$',
                   description: 'How much are you looking to borrower through InvestNextDoor? ($10,000-$250,000)'
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
                 }
               },
               {
@@ -730,6 +775,9 @@ function FormService(appConfig) {
                   label: 'Number of Jobs',
                   placeholder: '#',
                   description: 'Enter number of full time jobs created/retained by this funding.'
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
                 }
               },
               {
@@ -737,7 +785,7 @@ function FormService(appConfig) {
                 type: 'radio',
                 key: 'loanPartners',
                 templateOptions: {
-                  label: 'Are you interested in loan for all or a portion of the loan amount from one of our partners?',
+                  label: 'May we offer our lending partners your funding request, to broaden your chances of obtaining funding?',
                   options: [
                     {
                       name: 'No',
@@ -750,6 +798,9 @@ function FormService(appConfig) {
                   ],
                   placeholder: '',
                   description: 'Our partners can provide access to additional capital sources. If you are looking for more than $50,000 this can provide you with more options.'
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
                 }
               },
             ]
@@ -784,6 +835,9 @@ function FormService(appConfig) {
                   label: 'Business Number (BN)',
                   placeholder: '',
                   description: ''
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
                 }
               },
               {
@@ -791,19 +845,22 @@ function FormService(appConfig) {
                 type: 'radio',
                 key: 'commercialSpace',
                 templateOptions: {
-                  label: 'Do you own or rent your commercial space?',
+                  label: 'Do you own your commercial space?',
                   options: [
                     {
-                      name: 'Own',
-                      value: 'Own'
+                      name: 'Yes',
+                      value: 'Yes'
                     },
                     {
-                      name: 'Rent',
-                      value: 'Rent'
+                      name: 'No',
+                      value: 'No'
                     }
                   ],
                   placeholder: '',
                   description: ''
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
                 }
               }
             ]
@@ -854,6 +911,9 @@ function FormService(appConfig) {
                   type: 'radio'
                 }
               ]
+            },
+            expressionProperties: {
+              'templateOptions.disabled': 'formState.disabled'
             }
           },
           {
@@ -867,6 +927,9 @@ function FormService(appConfig) {
                   label: '12 Month Revenue',
                   placeholder: '$',
                   description: 'Please make sure that you enter the revenue from the last 12 months.'
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
                 }
               },
               {
@@ -877,6 +940,9 @@ function FormService(appConfig) {
                   label: '12 Month Projection',
                   placeholder: '$',
                   description: ''
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
                 }
               },
               {
@@ -887,6 +953,9 @@ function FormService(appConfig) {
                   label: 'Total Outstanding Debt',
                   placeholder: '$',
                   description: ''
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
                 }
               },
               {
@@ -897,6 +966,9 @@ function FormService(appConfig) {
                   label: 'Debt Payments (Monthly)',
                   placeholder: '$',
                   description: ''
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
                 }
               },
             ]
@@ -1251,6 +1323,9 @@ function FormService(appConfig) {
                   label: 'I agree to the InvestNextDoor business agreement and terms of service',
                   placeholder: '',
                   description: ''
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
                 }
               }
             ]
@@ -1266,6 +1341,9 @@ function FormService(appConfig) {
                   label: 'I agree that I have the authority to place this listing and issue the related security. InvestNextDoor is not, and will not act in any intermediary capacity between my business and investors, and that I am wholly responsible for ensuring all legal and regulatory compliance is completed for my security offering.',
                   placeholder: '',
                   description: ''
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
                 }
               }
             ]
@@ -1296,6 +1374,9 @@ function FormService(appConfig) {
                   label: 'On behalf of the issuer, I certify that the statements made in this listing application and offering document are true. ',
                   placeholder: '',
                   description: ''
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
                 }
               }
             ]
@@ -1311,6 +1392,9 @@ function FormService(appConfig) {
                   label: 'Full Legal Name',
                   placeholder: '',
                   description: '(first name, middle name and last name)'
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
                 }
               },
               {
@@ -1321,6 +1405,9 @@ function FormService(appConfig) {
                   label: 'Position',
                   placeholder: '',
                   description: 'Director, officer, executive or control person of the business.'
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
                 }
               },
               {
@@ -1331,6 +1418,9 @@ function FormService(appConfig) {
                   label: 'Phone Number',
                   placeholder: '###-###-####',
                   description: 'Required so that questions may be asked by purchasers and security regulatory authority or regulators.'
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
                 }
               }
             ]
@@ -1346,6 +1436,9 @@ function FormService(appConfig) {
                   label: 'Electronic Signature',
                   placeholder: '',
                   description: 'I acknowledge that I am signing this offering document electronically and agree that this is the legal equivalent of my handwritten signature. I will not at any time in the future claim that my electronic signature is not legally binding.'
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
                 }
               }
             ]
