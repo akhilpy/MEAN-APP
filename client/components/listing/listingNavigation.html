@@ -1,3 +1,7 @@
 <ul class="listing-form__navigation">
-  <li ng-repeat="page in nav.pages"><a ui-sref-active="active" ng-click="nav.saveForm()" ui-sref="{{page.state}}">{{page.title}}</a></li>
+  <li><a ui-sref-active="active" ng-click="tabs.saveForm()" ui-sref="listing.general">General Info</a></li>
+  <li><a ui-sref-active="active" ng-click="tabs.saveForm()" ui-sref="listing.details">Listing Details</a></li>
+  <li><a ui-sref-active="active" ng-click="tabs.saveForm()" ui-sref="listing.financial">Financial</a></li>
+  <li><a ui-sref-active="active" ng-click="tabs.saveForm()" ui-sref="listing.social">Social &amp; Media</a></li>
+  <li><a ui-sref-active="active" ng-click="tabs.saveForm()" ui-sref="listing.terms">Terms</a></li>
 </ul>

@@ -72,17 +72,11 @@ class ListingController {
   submitListing(form) {
     var vm = this;
     vm.submitted = true;
+    vm.saveListing(form);
 
     if (form.$valid) {
-      vm.Auth.changePassword(vm.user.oldPassword, vm.user.newPassword)
-        .then(() => {
-          vm.message = 'Password successfully changed.';
-        })
-        .catch(() => {
-          form.password.$setValidity('mongoose', false);
-          vm.errors.other = 'Incorrect password';
-          vm.message = '';
-        });
+      vm.ListingService.submitOne(vm.listingID);
+      vm.$state.go('dashboard.index');
     }
   }
 }

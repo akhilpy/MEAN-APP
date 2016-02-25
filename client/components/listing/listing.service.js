@@ -110,6 +110,21 @@ function ListingService($location, $cookies, $q, $resource, $http, Auth, User) {
 
 
     /**
+     * Submit listing
+     *
+     * @return {String}
+     */
+    submitOne(listingID) {
+      return Listing.getOne(listingID)
+        .then(listing => {
+          listing.status = 'review';
+          return $http.put('/api/listings/' + listingID, listing);
+        });
+    },
+
+
+
+    /**
      * Get listing ID
      *
      * @return {String}
