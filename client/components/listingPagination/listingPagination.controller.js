@@ -28,8 +28,9 @@ class ListingPaginationController {
     }
   };
 
-  constructor($state, $scope) {
+  constructor($state, $scope, ListingService) {
     var nav = this;
+    nav.ListingService = ListingService;
     nav.state = $state;
     nav.scope = $scope;
     nav.goBack = this.goBack;
@@ -37,15 +38,17 @@ class ListingPaginationController {
     nav.current = nav.state.current.name;
   }
 
-  goBack() {
+  goBack(listing, currentState) {
     var nav = this;
     var back = nav.pages[nav.current].prev;
+    nav.scope.$emit('saveForm', [listing, currentState]);
     nav.state.go( back );
   }
 
-  goForward() {
+  goForward(listing, currentState) {
     var nav = this;
     var forward = nav.pages[nav.current].next;
+    nav.scope.$emit('saveForm', [listing, currentState]);
     nav.state.go(forward);
   }
 }

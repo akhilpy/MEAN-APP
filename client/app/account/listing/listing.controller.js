@@ -3,7 +3,7 @@
 (function() {
 
 class ListingController {
-  constructor($rootScope, $state, Form, Auth, ListingService, currentUser, currentListing) {
+  constructor($rootScope, $state, $scope, Form, Auth, ListingService, currentUser, currentListing) {
     var vm = this;
     vm.$state = $state;
     vm.ListingService = ListingService;
@@ -13,7 +13,6 @@ class ListingController {
 
     vm.user = currentUser;
     vm.listingID = currentUser.borrower.listings[0];
-
     vm.currentListing = currentListing.data;
     vm.currentPage = $state.current.name;
     vm.currentState = vm.currentPage.substr(vm.currentPage.lastIndexOf('.') + 1);
@@ -27,6 +26,12 @@ class ListingController {
       social: vm.Form.getListingPage('social'),
       terms: vm.Form.getListingPage('terms')
     };
+
+    $scope.$on('saveForm', function(event, mass) {
+      var form = mass[0];
+      var currentPage = mass[1];
+      vm.saveListing(form, currentPage);
+    });
 
   }
 
