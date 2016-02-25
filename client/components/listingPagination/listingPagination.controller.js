@@ -28,9 +28,10 @@ class ListingPaginationController {
     }
   };
 
-  constructor($state) {
+  constructor($state, $scope) {
     var nav = this;
     nav.state = $state;
+    nav.scope = $scope;
     nav.goBack = this.goBack;
     nav.goForward = this.goForward;
     nav.current = nav.state.current.name;

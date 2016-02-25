@@ -206,7 +206,8 @@ function FormService(appConfig) {
               key: 'phone',
               templateOptions: {
                 label: 'Phone',
-                placeholder: '###-###-####'
+                placeholder: '(###) ###-####',
+                mask: '(999) 999-9999'
               }
             },
           ]
@@ -447,11 +448,12 @@ function FormService(appConfig) {
               },
               {
                 className: 'flex-1',
-                type: 'input',
+                type: 'maskedInput',
                 key: 'phone',
                 templateOptions: {
                   label: 'Phone Number',
-                  placeholder: '###-###-####',
+                  placeholder: '(###) ###-####',
+                  mask: '(999) 999-9999',
                   description: ''
                 }
               },

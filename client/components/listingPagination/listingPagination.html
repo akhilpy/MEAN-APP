@@ -1,11 +1,11 @@
 <div class="formly-submit">
   <ul class="listing-form__pagination">
     <li>
-      <a class="application-form__pagination--back" ng-show="nav.pages[nav.current].prev" ng-click="nav.goBack()"><i class="fa fa-angle-left"></i> Back</a>
+      <a class="listing-form__pagination--back" ng-show="nav.pages[nav.current].prev" ng-click="nav.goBack()"><i class="fa fa-angle-left"></i> Back</a>
     </li>
-    <li><button type="submit" name="update" ng-click="vm.saveListing(listing, vm.currentState)">Save</button></li>
+    <li><button class="listing-form__save" type="submit" name="update" ng-click="vm.saveListing(listing, vm.currentState)">Save Progress</button></li>
     <li>
-      <a class="application-form__pagination--next" ng-show="nav.pages[nav.current].next" ng-click="nav.goForward()">Next <i class="fa fa-angle-right"></i></a>
+      <a class="listing-form__pagination--next" ng-show="nav.pages[nav.current].next" ng-click="nav.goForward()">Next <i class="fa fa-angle-right"></i></a>
     </li>
   </ul><!-- end of .listing-form__pagination -->
 </div><!-- /.formly-submit -->

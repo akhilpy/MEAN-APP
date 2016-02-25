@@ -91,19 +91,13 @@ export function create(req, res) {
 
   User.findByIdAsync(userId)
     .then(user => {
-
-      if( user.role === 'borrower' || user.role === 'admin' ) {
-        user.borrower.listings.push(newListing);
-        Listing.createAsync(newListing)
-          .then(respondWithResult(res, 201))
-          .catch(handleError(res));
-      }
-
-      return user.saveAsync()
-        .then(() => {
-          res.status(204).end();
-        })
+      user.borrower.listings.push(newListing);
+      return Listing.createAsync(newListing).then(listing => {
+        user.saveAsync().then(() => {
+          return listing;
+        }).then(respondWithResult(res))
         .catch(handleError(res));
+      });
     });
 }
 

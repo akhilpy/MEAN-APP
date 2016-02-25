@@ -76,35 +76,107 @@ angular.module('investnextdoorCaApp')
       .state('listing', {
         url: '/account/listing',
         templateUrl: 'app/account/listing/listing.html',
-        controller: 'ListingController',
-        controllerAs: 'vm',
+        resolve: {
+          currentUser: function() { return {}; },
+          currentListing: function() { return {}; }
+        },
         abstract: true,
         authenticate: true
       })
       .state('listing.general', {
         url: '/general',
         templateUrl: 'app/account/listing/listing.general.html',
-        authenticate: true
+        authenticate: true,
+        controller: 'ListingController',
+        controllerAs: 'vm',
+        resolve: {
+          currentUser: ['ListingService',
+            function(ListingService) {
+              return ListingService.getCurrentUser();
+            }
+          ],
+          currentListing: ['ListingService',
+            function(ListingService) {
+              return ListingService.getOne();
+            }
+          ]
+        },
       })
       .state('listing.details', {
         url: '/details',
         templateUrl: 'app/account/listing/listing.details.html',
-        authenticate: true
+        authenticate: true,
+        controller: 'ListingController',
+        controllerAs: 'vm',
+        resolve: {
+          currentUser: ['ListingService',
+            function(ListingService) {
+              return ListingService.getCurrentUser();
+            }
+          ],
+          currentListing: ['ListingService',
+            function(ListingService) {
+              return ListingService.getOne();
+            }
+          ]
+        },
       })
       .state('listing.financial', {
         url: '/financial',
         templateUrl: 'app/account/listing/listing.financial.html',
-        authenticate: true
+        authenticate: true,
+        controller: 'ListingController',
+        controllerAs: 'vm',
+        resolve: {
+          currentUser: ['ListingService',
+            function(ListingService) {
+              return ListingService.getCurrentUser();
+            }
+          ],
+          currentListing: ['ListingService',
+            function(ListingService) {
+              return ListingService.getOne();
+            }
+          ]
+        },
       })
       .state('listing.social', {
         url: '/social',
         templateUrl: 'app/account/listing/listing.social.html',
-        authenticate: true
+        authenticate: true,
+        controller: 'ListingController',
+        controllerAs: 'vm',
+        resolve: {
+          currentUser: ['ListingService',
+            function(ListingService) {
+              return ListingService.getCurrentUser();
+            }
+          ],
+          currentListing: ['ListingService',
+            function(ListingService) {
+              return ListingService.getOne();
+            }
+          ]
+        },
       })
       .state('listing.terms', {
         url: '/terms',
         templateUrl: 'app/account/listing/listing.terms.html',
-        authenticate: true
+        authenticate: true,
+        controller: 'ListingController',
+        controllerAs: 'vm',
+        resolve: {
+          currentUser: ['ListingService',
+            function(ListingService) {
+              return ListingService.getCurrentUser();
+            }
+          ],
+          currentListing: ['ListingService',
+            function(ListingService) {
+              return ListingService.getOne();
+            }
+          ]
+        },
       });
   })
   .run(function($rootScope) {

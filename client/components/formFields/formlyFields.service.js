@@ -47,7 +47,7 @@ angular.module('investnextdoorCaApp')
 
           field = {
             name: 'maskedInput',
-            extends: 'dropzone',
+            extends: 'input',
             defaultOptions: {
               ngModelAttrs: { // this is part of the magic... It's a little complex, but super powerful
                 mask: { // the key "ngMask" must match templateOptions.ngMask

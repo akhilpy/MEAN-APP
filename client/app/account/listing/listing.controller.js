@@ -3,42 +3,22 @@
 (function() {
 
 class ListingController {
-  constructor($http, $rootScope, $state, socket, Auth, Form, Listing) {
+  constructor($rootScope, $state, Form, Auth, ListingService, currentUser, currentListing) {
     var vm = this;
-    vm.$http = $http;
     vm.$state = $state;
+    vm.ListingService = ListingService;
+    vm.Form = Form;
     vm.errors = {};
     vm.submitted = false;
-    vm.listingID = false;
-    vm.saveListing = this.saveListing;
+
+    vm.user = currentUser;
+    vm.listingID = currentUser.borrower.listings[0];
+
+    vm.currentListing = currentListing.data;
     vm.currentPage = $state.current.name;
     vm.currentState = vm.currentPage.substr(vm.currentPage.lastIndexOf('.') + 1);
 
-    vm.Auth = Auth;
-    vm.user = Auth.getCurrentUser();
-
-    vm.Listing = Listing;
-    vm.pageData = Listing.pageData;
-    vm.getListing = Listing.getListing;
-    vm.currentListing = Listing.getListing(vm.listingID);
-
-    $rootScope.$on('$stateChangeSuccess', function(scope) {
-      vm.currentPage = $state.current.name;
-      vm.currentState = vm.currentPage.substr(vm.currentPage.lastIndexOf('.') + 1);
-    });
-
-    $http.get('/api/users/me').then(response => {
-      vm.user = response.data;
-      vm.listingID = vm.user.borrower.listings[0];
-      if( vm.listingID ) {
-        $http.get('/api/listings/' + vm.listingID).then(response => {
-          vm.currentListing = Listing.getListing(vm.listingID);
-        });
-      }
-      socket.syncUpdates('user', vm.user);
-    });
-
-    vm.Form = Form;
+    vm.pageData = vm.ListingService.pageData;
 
     vm.listingFields = {
       general: vm.Form.getListingPage('general'),
@@ -76,27 +56,12 @@ class ListingController {
 
     vm.submitted = true;
 
-    // if no existing listing, create one
     if (form.$valid && !vm.listingID) {
-      vm.$http.post('/api/listings', {
-        user: vm.user,
-        listing: savedListing
-      })
-      .then((res) => {
-        vm.listingID = res.data._id;
-      })
-      .catch(err => {
-        vm.errors.other = err.message;
-      });
-    // if there is an existing listing, update it
+      // if no existing listing, create one
+      vm.ListingService.createOne(savedListing);
     } else {
-      vm.$http.put('/api/listings/' + vm.listingID, savedListing)
-      .then((res) => {
-        vm.$state.go('listing.' + currentPage);
-      })
-      .catch(err => {
-        vm.errors.other = err.message;
-      });
+      // if there is an existing listing, update it
+      vm.ListingService.saveOne(savedListing, vm.listingID);
     }
   }
 

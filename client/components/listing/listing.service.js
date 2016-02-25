@@ -2,9 +2,35 @@
 
 (function() {
 
-function ListingService($location, $cookies, $resource, Auth, User) {
+function ListingService($location, $cookies, $q, $resource, $http, Auth, User) {
 
   var Listing = {
+
+
+    /**
+     * Get current user
+     *
+     * @return {String}
+     */
+    getCurrentUser() {
+      return Auth.getCurrentUser(null)
+      .then(user => {
+        if(!user.borrower.listings[0]) {
+          var currentUser = User.get();
+          var value = (currentUser.hasOwnProperty('$promise')) ?
+            currentUser.$promise : currentUser;
+          return $q.when(value)
+            .then(user => {
+              return user;
+            }, () => {
+              return {};
+            });
+        } else {
+          return user;
+        }
+      });
+    },
+
 
 
     /**
@@ -18,20 +44,69 @@ function ListingService($location, $cookies, $resource, Auth, User) {
 
 
     /**
-     * Get listing status
+     * Get all listings
      *
      * @return {String}
      */
-    getListing(listingId) {
-
-      if( !listingId ) {
-        return {};
-      } else {
-        var currentListing = $resource('/api/listings/:id', {id: '@_id'});
-        return currentListing.get({id: listingId});
-      }
-
+    getAll(status) {
+      return $http.get('/api/listings/status/' + status);
     },
+
+
+
+    /**
+     * Get listing
+     *
+     * @return {String}
+     */
+    getOne(listingID) {
+
+      if(listingID) {
+        return $http.get('/api/listings/' + listingID);
+      } else {
+        return Listing.getCurrentUser()
+          .then(user => {
+            var listingID = user.borrower.listings[0];
+            if(listingID) {
+              return $http.get('/api/listings/' + listingID);
+            } else {
+              return {};
+            }
+          });
+      }
+    },
+
+
+
+    /**
+     * Create listing
+     *
+     * @return {String}
+     */
+    createOne(listing) {
+      return Auth.getCurrentUser(null)
+        .then(user => {
+          return $http.post('/api/listings', {
+            user: user,
+            listing: listing
+          })
+        })
+        .catch(err => {
+          console.log(err.message);
+        });
+    },
+
+
+
+    /**
+     * Save listing
+     *
+     * @return {String}
+     */
+    saveOne(listing, listingID) {
+      return $http.put('/api/listings/' + listingID, listing);
+    },
+
 
 
     /**
@@ -181,6 +256,6 @@ function ListingService($location, $cookies, $resource, Auth, User) {
 }
 
 angular.module('investnextdoorCaApp')
-  .factory('Listing', ListingService);
+  .factory('ListingService', ListingService);
 
 })();

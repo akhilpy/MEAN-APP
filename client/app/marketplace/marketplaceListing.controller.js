@@ -3,15 +3,9 @@
 (function() {
 
 class MarketplaceListingController {
-  constructor($http, $scope, socket, $stateParams, Listing) {
+  constructor(listing) {
     var vm = this;
-    vm.listingID = $stateParams.id;
-    vm.currentListing = {};
-
-    $http.get('/api/listings/' + vm.listingID).success(function(listing) {
-      vm.currentListing = listing;
-      socket.syncUpdates('listing', vm.currentListing);
-    });
+    vm.currentListing = listing.data
   }
 
   makeOffer() {
