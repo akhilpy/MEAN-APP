@@ -1,0 +1,98 @@
+<div class="listing-content__section financial-details">
+  <header class="listing-content__section--header">
+    <h3 class="listing-content__section--title">
+      Details
+    </h3><!-- /.listing-content__section--title -->
+  </header><!-- /.listing-content__section--header -->
+
+  <ul class="listing-content__detail-wrapper">
+    <li>
+      <table class="table--basic listing-content__table">
+        <tbody>
+          <tr>
+            <th><strong>Total Outstanding Debt:</strong></th>
+            <td>&nbsp;{{vm.currentListing.financial.debt | currency}}</td>
+          </tr>
+          <tr>
+            <th><strong>12 Month Review:</strong></th>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <th><strong>Assets:</strong></th>
+            <td>&nbsp;{{vm.currentListing.financial.assets}}</td>
+          </tr>
+          <tr>
+            <th><strong>Current Inventory:</strong></th>
+            <td>&nbsp;{{vm.currentListing.financial.inventory}}</td>
+          </tr>
+          <tr>
+            <th><strong>Accounts Receivable:</strong></th>
+            <td>&nbsp;{{vm.currentListing.financial.receivable}}</td>
+          </tr>
+          <tr>
+            <th><strong>Owner Contribution:</strong></th>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <th><strong>Owners:</strong></th>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <th><strong>Personal Guarantee:</strong></th>
+            <td>&nbsp;{{vm.currentListing.financial.commercialSpace}}</td>
+          </tr>
+          <tr>
+            <th><strong>Financial Statements:</strong></th>
+            <td>&nbsp;{{vm.currentListing.financial.financialStatements}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    <li>
+      <ul class="listing-content__callout">
+        <li>
+          <strong>No Lawsuits</strong>
+          <i class="fa fa-check-circle"></i>
+        </li>
+        <li>
+          <strong>No Bad Actors</strong>
+          <i class="fa fa-check-circle"></i>
+        </li>
+        <li>
+          <strong>No Criminal Activity</strong>
+          <i class="fa fa-check-circle"></i>
+        </li>
+        <li>
+          <strong>No Bankruptcy</strong>
+          <i class="fa fa-check-circle"></i>
+        </li>
+        <li>
+          <strong>No Liens</strong>
+          <i class="fa fa-check-circle"></i>
+        </li>
+        <li>
+          <strong>No Pending Litigation</strong>
+          <i class="fa fa-check-circle"></i>
+        </li>
+        <li class="listing-content__callout--cta">
+          <a href="#" ng-click="vm.makeOffer()" class="button small">Make an Offer</a>
+        </li><!-- /.listing-content__callout--cta -->
+      </ul><!-- /.listing-content__callout -->
+    </li>
+  </ul><!-- /.listing-content__detail-wrapper -->
+</div><!-- /.listing-content__section -->
+
+<div class="listing-content__section financial-files">
+  <header class="listing-content__section--header">
+    <h3 class="listing-content__section--title">
+      Additional Files
+    </h3><!-- /.listing-content__section--title -->
+  </header><!-- /.listing-content__section--header -->
+
+  <ul class="list--zero financial__files">
+    <li><a href="#"><i class="fa fa-file-text-o"></i> Assets</a></li>
+    <li><a href="#"><i class="fa fa-file-text-o"></i> Inventory</a></li>
+    <li><a href="#"><i class="fa fa-file-text-o"></i> Business Plan</a></li>
+    <li><a href="#"><i class="fa fa-file-text-o"></i> Statements</a></li>
+  </ul><!-- /.list--zero -->
+</div><!-- /.listing-content__section -->

@@ -119,7 +119,8 @@
   display: inline-block;
   text-align: center;
 
-  &:hover {
+  &:hover,
+  &:focus {
     background: $color-secondary;
     color: $color-white;
   }

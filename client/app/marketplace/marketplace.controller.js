@@ -10,6 +10,12 @@ class MarketplaceController {
     vm.sortType = 'general.businessName';
     vm.sortReverse = false;
     vm.searchListings = '';
+
+    vm.offers = {
+      sortType: 'general.businessName',
+      sortReverse: false,
+      searchOffers: ''
+    }
   }
 }
 

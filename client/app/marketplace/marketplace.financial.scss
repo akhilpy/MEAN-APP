@@ -1,0 +1,11 @@
+.financial__files {
+  li {
+    display: inline-block;
+    margin-right: rem(40);
+    padding: rem(10);
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}

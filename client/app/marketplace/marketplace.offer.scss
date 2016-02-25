@@ -1,0 +1,51 @@
+.offer-terms {
+  .listing-content__about-details {
+    border: none;
+  }
+}
+
+.offer-terms__snippet {
+  border-bottom: 1px solid $color-grey-light;
+  margin-bottom: rem(20);
+  padding-top: rem(15);
+}
+
+.offer-terms__snippet--info {
+  @include font-size(40);
+  color: $color-success;
+  line-height: 1.9;
+  margin-bottom: rem(20);
+  font-weight: 400;
+
+  span {
+    font-weight: 700;
+    display: inline-block;
+    width: rem(80);
+    height: rem(80);
+    background: $color-success;
+    color: $color-white;
+    border-radius: 100%;
+    text-align: center;
+  }
+}
+
+.offer-terms__term-sheet {
+  display: block;
+  background: $color-primary-med;
+
+  &:hover {
+    background: $color-primary-dark;
+  }
+}
+
+.offer-offers {
+  margin: rem(40) 0;
+}
+
+.listing-content__section {
+  margin-bottom: rem(20);
+
+  &:last-of-type {
+    margin-bottom: rem(40);
+  }
+}

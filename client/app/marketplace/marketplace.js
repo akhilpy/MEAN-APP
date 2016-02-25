@@ -38,5 +38,21 @@ angular.module('investnextdoorCaApp')
         },
         controller: 'MarketplaceListingController',
         controllerAs: 'vm'
+      })
+      .state('marketplace.listing.profile', {
+        url: '/profile',
+        templateUrl: 'app/marketplace/marketplace.listing.profile.html'
+      })
+      .state('marketplace.listing.offer', {
+        url: '/offer',
+        templateUrl: 'app/marketplace/marketplace.listing.offer.html'
+      })
+      .state('marketplace.listing.financial', {
+        url: '/financial',
+        templateUrl: 'app/marketplace/marketplace.listing.financial.html'
+      })
+      .state('marketplace.listing.discussion', {
+        url: '/discussion',
+        templateUrl: 'app/marketplace/marketplace.listing.discussion.html'
       });
   });

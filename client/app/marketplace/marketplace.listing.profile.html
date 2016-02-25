@@ -1,0 +1,184 @@
+<div class="profile__wrapper">
+  <div class="profile">
+    <div class="profile__logo">
+      <img src="http://thesn.ug/1SNFvnS" alt="">
+    </div><!-- /.profile__logo -->
+    <div class="profile__details">
+      <h2 class="profile__details--title">{{vm.currentListing.general.businessName}}</h2>
+      <ul class="profile__details--list">
+        <li class="profile__details--address">
+          {{vm.currentListing.general.address.street}}<br>
+          {{vm.currentListing.general.address.city}}, {{vm.currentListing.general.address.province}}, {{vm.currentListing.general.address.postal}}
+        </li><!-- /.profile__details--address -->
+        <li class="profile__details--phone">
+          {{vm.currentListing.general.phone}}
+        </li><!-- /.profile__details--phone -->
+        <li class="profile__details--website">
+          <a href="{{vm.currentListing.general.website}}" target="_blank">{{vm.currentListing.general.website}}</a>
+        </li><!-- /.profile__details--website -->
+      </ul><!-- /.profile__details--list -->
+    </div><!-- /.profile__details -->
+    <div class="profile__sharing">
+      social sharing directive
+    </div><!-- /.profile__sharing -->
+  </div><!-- /.profile -->
+</div><!-- /.profile__wrapper -->
+
+<div class="listing-content__section about-company">
+  <header class="listing-content__section--header">
+    <h3 class="listing-content__section--title">
+      About The Company
+    </h3><!-- /.listing-content__section--title -->
+  </header><!-- /.listing-content__section--header -->
+  <p>{{vm.currentListing.details.reason}}</p>
+
+  <ul class="listing-content__detail-wrapper">
+    <li>
+      <table class="table--basic listing-content__table">
+        <tbody>
+          <tr>
+            <th><strong>Registered:</strong></th>
+            <td>{{vm.currentListing.general.businessName}}</td>
+          </tr>
+          <tr>
+            <th><strong>Structure:</strong></th>
+            <td>{{vm.currentListing.general.structure}}</td>
+          </tr>
+          <tr>
+            <th><strong>Industry:</strong></th>
+            <td>{{vm.currentListing.general.industry}}</td>
+          </tr>
+          <tr>
+            <th><strong>Founded:</strong></th>
+            <td>{{vm.currentListing.general.founded}}</td>
+          </tr>
+          <tr>
+            <th><strong>Employees:</strong></th>
+            <td>{{vm.currentListing.general.employees}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    <li>
+      <ul class="profile-about__meters">
+        <li>
+          <h4 class="profile-about__label">Years in Business</h4>
+          <div class="meter__wrapper">
+            <div class="meter years">
+              <div class="meter__inner" style="width: 43%">
+                <span class="meter__marker filled">0</span>
+                <span class="meter__marker filled">2</span>
+                <span class="meter__marker filled">4</span>
+                <span class="meter__marker">6</span>
+                <span class="meter__marker">8</span>
+                <span class="meter__marker">10</span>
+              </div>
+            </div>
+            <h3 class="meter__label">4.3 years</h3>
+          </div><!-- /.meter__wrapper -->
+        </li>
+        <li>
+          <h4 class="profile-about__label">Cash Coverage</h4>
+          <div class="meter__wrapper">
+            <div class="meter years">
+              <div class="meter__inner" style="width: 30%">
+                <span class="meter__marker filled">0.0</span>
+                <span class="meter__marker filled">0.5</span>
+                <span class="meter__marker">1.0</span>
+                <span class="meter__marker">1.5</span>
+                <span class="meter__marker">2.0</span>
+                <span class="meter__marker">2.5</span>
+              </div>
+            </div>
+            <h3 class="meter__label">1.2</h3>
+          </div><!-- /.meter__wrapper -->
+        </li>
+        <li>
+          <h4 class="profile-about__label">Annual Revenue <span>(millions)</span></h4>
+          <div class="meter__wrapper">
+            <div class="meter years">
+              <div class="meter__inner" style="width: 20%">
+                <span class="meter__marker filled">0</span>
+                <span class="meter__marker filled">$10</span>
+                <span class="meter__marker">$20</span>
+                <span class="meter__marker">$30</span>
+                <span class="meter__marker">$40</span>
+                <span class="meter__marker">$50</span>
+              </div>
+            </div>
+            <h3 class="meter__label">$10,000,000</h3>
+          </div><!-- /.meter__wrapper -->
+        </li>
+        <li>
+          <h4 class="profile-about__label">Monthly Debt %</h4>
+          <div class="meter__wrapper">
+            <div class="meter years">
+              <div class="meter__inner" style="width: 25%">
+                <span class="meter__marker filled">0</span>
+                <span class="meter__marker filled">20%</span>
+                <span class="meter__marker">40%</span>
+                <span class="meter__marker">60%</span>
+                <span class="meter__marker">80%</span>
+                <span class="meter__marker">100%</span>
+              </div>
+            </div>
+            <h3 class="meter__label">25%</h3>
+          </div><!-- /.meter__wrapper -->
+        </li>
+      </ul><!-- /.profile-about__meters -->
+    </li>
+  </ul><!-- /.listing-content__detail-wrapper -->
+
+</div><!-- /.listing-content__section -->
+
+<div class="listing-content__section">
+  <header class="listing-content__section--header">
+    <h3 class="listing-content__section--title">
+      Management
+    </h3><!-- /.listing-content__section--title -->
+  </header><!-- /.listing-content__section--header -->
+  <table class="table--basic listing-content__table">
+    <tbody>
+      <tr ng-repeat="manager in vm.currentListing.social.managers">
+        <td><strong>{{manager.name}}</strong></td>
+        <td>{{manager.title}}</td>
+        <td><a href="{{manager.linkedin}}" target="_blank"><i class="fa fa-linkedin-square"></i></a></td>
+      </tr>
+    </tbody>
+  </table>
+</div><!-- /.listing-content__section -->
+
+<div class="listing-content__section profile-endorsements">
+  <header class="listing-content__section--header">
+    <h3 class="listing-content__section--title">
+      Endorsements
+    </h3><!-- /.listing-content__section--title -->
+  </header><!-- /.listing-content__section--header -->
+  <ul class="endorsements">
+    <li class="endorsement">
+      <blockquote>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo enim dolorem eveniet earum voluptas, cupiditate ducimus est temporibus excepturi facere id placeat perspiciatis reiciendis at obcaecati alias sequi. Iusto amet sequi nemo repellat, possimus voluptates aperiam porro autem. Tempore, aliquam?</p>
+      </blockquote>
+      <cite><strong>Joe Smith</strong> | Title/Location</cite>
+    </li><!-- /.endorsement -->
+    <li class="endorsement">
+      <blockquote>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo enim dolorem eveniet earum voluptas, cupiditate ducimus est temporibus excepturi facere id placeat perspiciatis reiciendis at obcaecati alias sequi. Iusto amet sequi nemo repellat, possimus voluptates aperiam porro autem. Tempore, aliquam?</p>
+      </blockquote>
+      <cite><strong>Joe Smith</strong> | Title/Location</cite>
+    </li><!-- /.endorsement -->
+  </ul><!-- /.endorsements -->
+</div><!-- /.listing-content__section -->
+
+<div class="listing-content__section">
+  <header class="listing-content__section--header">
+    <h3 class="listing-content__section--title">
+      Community
+    </h3><!-- /.listing-content__section--title -->
+  </header><!-- /.listing-content__section--header -->
+  <ul class="list--zero profile-endorsements">
+    <li><a href="#"><i class="fa fa-check-circle-o"></i> Faith</a></li>
+    <li><a href="#"><i class="fa fa-check-circle-o"></i> Women Owned</a></li>
+    <li><a href="#"><i class="fa fa-check-circle-o"></i> Locally Produced</a></li>
+  </ul><!-- /.list--zero -->
+</div><!-- /.listing-content__section -->

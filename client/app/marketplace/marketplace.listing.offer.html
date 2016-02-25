@@ -1,0 +1,164 @@
+<div class="listing-content__section offer-terms">
+  <header class="listing-content__section--header">
+    <h3 class="listing-content__section--title">
+      Terms
+    </h3><!-- /.listing-content__section--title -->
+  </header><!-- /.listing-content__section--header -->
+
+  <ul class="listing-content__detail-wrapper">
+    <li>
+      <table class="table--basic listing-content__table">
+        <tbody>
+          <tr>
+            <th><strong>Amount:</strong></th>
+            <td>{{vm.currentListing.details.amount}}</td>
+          </tr>
+          <tr>
+            <th><strong>Term:</strong></th>
+            <td>{{vm.currentListing.details.term}}</td>
+          </tr>
+          <tr>
+            <th><strong>Proposed Rate:</strong></th>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <th><strong>Min. Investment:</strong></th>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <th><strong>Loan Purpose:</strong></th>
+            <td>{{vm.currentListing.details.usage}}</td>
+          </tr>
+          <tr>
+            <th><strong>Guarantee:</strong></th>
+            <td>&nbsp;</td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    <li>
+      <div class="offer-terms__snippet">
+        <h4 class="offer-terms__snippet--title">This Loan Will Supply</h4>
+        <div class="offer-terms__snippet--info">
+          <span>22</span> Local Jobs
+        </div><!-- /.offer-terms__snippet--info -->
+      </div><!-- /.offer-terms__snippet -->
+      <a href="#" class="offer-terms__term-sheet button">View Term Sheet</a>
+    </li>
+  </ul><!-- /.listing-content__detail-wrapper -->
+
+  <h4 class="listing-content__section--subtitle">
+    This loan will be used for:
+  </h4><!-- /.listing-content__section--subtitle -->
+  <p>{{vm.currentListing.details.reason}}</p>
+
+  <h4 class="listing-content__section--subtitle">
+    Why invest in this business
+  </h4><!-- /.listing-content__section--subtitle -->
+  <p>{{vm.currentListing.financial.whyInvest}}</p>
+
+</div><!-- /.listing-content__section -->
+
+
+<div class="listing-content__section offer-offers">
+  <header class="listing-content__section--header">
+    <h3 class="listing-content__section--title">
+      Offers
+    </h3><!-- /.listing-content__section--title -->
+  </header><!-- /.listing-content__section--header -->
+  <ul class="listing-content__table-keys">
+    <li><span class="table-key table-key--live"></span> Live offers</li>
+    <li><span class="table-key table-key--risk"></span> At risk of being outbid</li>
+    <li><span class="table-key table-key--outbid"></span> Outbid</li>
+  </ul><!-- /.listing-content__table-keys -->
+
+  <table>
+    <thead>
+      <tr>
+        <th>
+          <a href="#">
+            Investor
+            <span class="sort-icon">
+              <i class="fa fa-angle-down"></i>
+              <i class="fa fa-angle-up"></i>
+            </span>
+          </a>
+        </th>
+        <th>
+          <a href="#">
+            Amount
+            <span class="sort-icon">
+              <i class="fa fa-angle-down"></i>
+              <i class="fa fa-angle-up"></i>
+            </span>
+          </a>
+        </th>
+        <th>
+          <a href="#">
+            Rate
+            <span class="sort-icon">
+              <i class="fa fa-angle-down"></i>
+              <i class="fa fa-angle-up"></i>
+            </span>
+          </a>
+        </th>
+        <th>
+          <a href="#">
+            Date
+            <span class="sort-icon">
+              <i class="fa fa-angle-down"></i>
+              <i class="fa fa-angle-up"></i>
+            </span>
+          </a>
+        </th>
+        <th>
+          <a href="#">
+            Status
+            <span class="sort-icon">
+              <i class="fa fa-angle-down"></i>
+              <i class="fa fa-angle-up"></i>
+            </span>
+          </a>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Investor 1</td>
+        <td>$500.00</td>
+        <td>9%</td>
+        <td>18 Aug | 07.53</td>
+        <td><span class="table-key table-key--live"></span></td>
+      </tr>
+      <tr>
+        <td>Investor 2</td>
+        <td>$1000.00</td>
+        <td>8%</td>
+        <td>07 Oct | 23:28</td>
+        <td><span class="table-key table-key--risk"></span></td>
+      </tr>
+      <tr class="row-disabled">
+        <td>Service</td>
+        <td>$5000.00</td>
+        <td>22%</td>
+        <td>30 Sept | 23:48</td>
+        <td><span class="table-key table-key--outbid"></span></td>
+      </tr>
+      <tr class="row-disabled">
+        <td>Investor 2</td>
+        <td>$500.00</td>
+        <td>11%</td>
+        <td>18 Aug | 08:10</td>
+        <td><span class="table-key table-key--outbid"></span></td>
+      </tr>
+      <tr class="row-disabled">
+        <td>Investor 1</td>
+        <td>$1500.00</td>
+        <td>10%</td>
+        <td>18 Aug | 08:01</td>
+        <td><span class="table-key table-key--outbid"></span></td>
+      </tr>
+    </tbody>
+  </table>
+
+</div><!-- /.listing-content__section -->

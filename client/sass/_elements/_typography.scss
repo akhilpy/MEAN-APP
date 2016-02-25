@@ -177,12 +177,49 @@ h3 {
       color: $color-white;
     }
   }
+
+  &.listing-content__section--title {
+    @include font-primary(700);
+    @include font-size(16);
+    color: $color-white;
+    text-transform: uppercase;
+    line-height: 1;
+    margin: 0;
+  }
+
+  &.meter__label {
+    @include font-primary(600);
+    color: $color-success;
+  }
 }
 
 h4 {
   @include font-primary(600);
   @include font-size(22);
   color: $color-slate-light;
+
+  &.listing-content__section--subtitle {
+    @include font-size(16);
+    @include font-primary(600);
+    text-transform: uppercase;
+    border-bottom: 1px solid $color-grey-light;
+    line-height: 1.4;
+    margin: rem(40) 0 rem(10);
+    color: $color-slate-dark;
+  }
+
+  .offer-terms__snippet &,
+  &.profile-about__label {
+    @include font-size(12);
+    @include font-primary(700);
+    color: $color-slate-dark;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: rem(20);
+  }
+  &.profile-about__label {
+    margin-bottom: rem(5);
+  }
 }
 
 h5 {
@@ -256,6 +293,15 @@ blockquote {
       text-transform: uppercase;
     }
   }
+
+  .endorsement & {
+    @include font-size;
+    font-weight: 400;
+
+    p {
+      color: $color-black;
+    }
+  }
 }
 
 /*==========  Legal Text  ==========*/
@@ -293,6 +339,10 @@ ul {
     @include font-size;
     margin: rem(20) 0;
     padding-left: rem(60);
+  }
+
+  &.list--zero {
+    @include list-zero;
   }
 
   li {

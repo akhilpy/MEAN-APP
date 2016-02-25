@@ -1,3 +1,25 @@
+.table-key {
+  display: inline-block;
+  vertical-align: text-bottom;
+  width: rem(20);
+  height: rem(20);
+  border-radius: 100%;
+  margin-right: rem(2);
+  line-height: 1;
+
+  &.table-key--live {
+    background: $color-success;
+  }
+
+  &.table-key--risk {
+    background: $color-accent;
+  }
+
+  &.table-key--outbid {
+    background: $color-grey-light;
+  }
+}
+
 table {
   @include font-size(16);
   width: 100%;
@@ -34,6 +56,15 @@ th {
     }
   }
 
+  .table--basic & {
+    strong {
+      @include font-primary(700);
+      padding: rem(10);
+      text-transform: uppercase;
+      color: $color-slate-dark;
+    }
+  }
+
   .fa {
     @include font-size(20);
     position: absolute;
@@ -56,8 +87,19 @@ td {
   border-bottom: 1px solid $color-grey-light;
   color: $color-slate-med;
 
+  .table--basic & {
+    @include font-primary(400);
+    border-bottom: none;
+    padding: rem(10);
+  }
+
   strong {
     text-transform: uppercase;
+
+    .table--basic & {
+      @include font-primary(600);
+      text-transform: none;
+    }
   }
 
   &.dashboard__table--credits {
@@ -65,5 +107,19 @@ td {
   }
   &.dashboard__table--debits {
     color: $color-warning;
+  }
+}
+
+tr {
+  .table--basic & {
+    &:nth-child(odd) {
+      background: $color-grey-pale;
+    }
+  }
+
+  &.row-disabled {
+    * {
+      color: $color-grey-light;
+    }
   }
 }

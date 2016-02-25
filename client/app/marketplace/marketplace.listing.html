@@ -59,12 +59,18 @@
   <div class="listing-main">
     <div class="listing-content__wrapper">
       <div class="listing-content">
-        this is the main listing area
+        <ul class="dashboard__navigation--list">
+          <li><a ui-sref-active="active" ui-sref="marketplace.listing.profile({id: vm.currentListing._id})">Profile</a></li>
+          <li><a ui-sref-active="active" ui-sref="marketplace.listing.offer({id: vm.currentListing._id})">Offer</a></li>
+          <li><a ui-sref-active="active" ui-sref="marketplace.listing.financial({id: vm.currentListing._id})">Financial Details</a></li>
+          <li><a ui-sref-active="active" ui-sref="marketplace.listing.discussion({id: vm.currentListing._id})">Discussion</a></li>
+        </ul><!-- /.dashboard__navigation--list -->
+        <ui-view class="listing-content__main"></ui-view>
       </div><!-- /.listing-content -->
     </div><!-- /.listing-content__wrapper -->
     <div class="listing-sidebar__wrapper">
       <div class="listing-sidebar">
-        this is the listing sidebar area
+        &nbsp;
       </div><!-- /.listing-sidebar -->
     </div><!-- /.listing-sidebar__wrapper -->
   </div><!-- /.listing-main -->
