@@ -84,10 +84,10 @@
     <!-- build:js(.tmp) app/app.js -->
       <script src="app/app.js"></script>
       <!-- injector:js -->
-      <script src="components/auth/auth.module.js"></script>
       <script src="app/admin/admin.module.js"></script>
+      <script src="components/auth/auth.module.js"></script>
       <script src="components/util/util.module.js"></script>
-      <script src="app/account/dashboard/dashboard.controller.js"></script>
+      <script src="components/auth/auth.service.js"></script>
       <script src="app/account/listing/listing.controller.js"></script>
       <script src="app/account/login/login.controller.js"></script>
       <script src="app/account/profile/profile.controller.js"></script>
@@ -115,8 +115,8 @@
       <script src="app/marketplace/marketplace.controller.js"></script>
       <script src="app/marketplace/marketplace.js"></script>
       <script src="app/marketplace/marketplaceListing.controller.js"></script>
+      <script src="app/account/account.js"></script>
       <script src="app/about/about.js"></script>
-      <script src="components/auth/auth.service.js"></script>
       <script src="components/auth/interceptor.service.js"></script>
       <script src="components/auth/router.decorator.js"></script>
       <script src="components/auth/user.service.js"></script>
@@ -133,6 +133,7 @@
       <script src="components/formFields/formlyFields.service.js"></script>
       <script src="components/investor/investor.service.js"></script>
       <script src="components/listing/listing.service.js"></script>
+      <script src="components/listing/listingNavigation.controller.js"></script>
       <script src="components/listing/listingNavigation.directive.js"></script>
       <script src="components/listingPagination/listingPagination.controller.js"></script>
       <script src="components/listingPagination/listingPagination.directive.js"></script>
@@ -145,7 +146,7 @@
       <script src="components/oauth-buttons/oauth-buttons.directive.js"></script>
       <script src="components/progressBar/progressBar.directive.js"></script>
       <script src="components/socket/socket.service.js"></script>
-      <script src="app/account/account.js"></script>
+      <script src="app/account/dashboard/dashboard.controller.js"></script>
       <script src="components/util/util.service.js"></script>
       <!-- endinjector -->
     <!-- endbuild -->

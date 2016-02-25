@@ -27,15 +27,14 @@ class ListingController {
       terms: vm.Form.getListingPage('terms')
     };
 
-    $scope.$on('saveForm', function(event, mass) {
-      var form = mass[0];
-      var currentPage = mass[1];
-      vm.saveListing(form, currentPage);
+    $scope.$on('saveForm', function() {
+      var form = $scope.listing;
+      vm.saveListing(form);
     });
 
   }
 
-  saveListing(form, currentPage) {
+  saveListing(form) {
     var vm = this;
     var savedListing = {};
 
