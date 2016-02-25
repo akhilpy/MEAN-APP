@@ -29,24 +29,24 @@ class ListingPaginationController {
   };
 
   constructor($state, $scope) {
-    var nav = this;
-    nav.state = $state;
-    nav.scope = $scope;
-    nav.current = nav.state.current.name;
+    var page = this;
+    page.state = $state;
+    page.scope = $scope;
+    page.current = page.state.current.name;
   }
 
   goBack() {
-    var nav = this;
-    var back = nav.pages[nav.current].prev;
-    nav.scope.$emit('saveForm');
-    nav.state.go( back );
+    var page = this;
+    var back = page.pages[page.current].prev;
+    page.scope.$emit('saveForm');
+    page.state.go( back );
   }
 
   goForward() {
-    var nav = this;
-    var forward = nav.pages[nav.current].next;
-    nav.scope.$emit('saveForm');
-    nav.state.go(forward);
+    var page = this;
+    var forward = page.pages[page.current].next;
+    page.scope.$emit('saveForm');
+    page.state.go(forward);
   }
 }
 

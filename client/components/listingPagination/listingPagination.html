@@ -5,7 +5,7 @@
     </li>
     <li>
       <button class="listing-form__save" type="submit" name="update" ng-click="vm.saveListing(listing)">Save Progress</button>
-      <button class="listing-form__save" type="submit" name="update" ng-click="vm.submitListing(listing)">Submit for Review</button>
+      <button class="listing-form__save" type="submit" name="update" ng-click="vm.submitListing(listing)" ng-show="vm.status=='in-progress'">Submit for Review</button>
     </li>
     <li>
       <a class="listing-form__pagination--next" ng-show="page.pages[page.current].next" ng-click="page.goForward()">Next <i class="fa fa-angle-right"></i></a>
