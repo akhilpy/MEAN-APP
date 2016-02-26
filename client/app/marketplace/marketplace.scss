@@ -223,6 +223,7 @@
 
 .listing-hero__images {
   width: 45%;
+  padding-left: rem(80);
   @include breakpoint(mobile) {
     width: 100%;
   }
@@ -230,7 +231,35 @@
 
 .listing-hero__images--slider {
   margin-bottom: 0;
-  padding-left: rem(80);
+
+  button {
+    top: calc(50% - 40px);
+    margin-top: 0;
+    width: auto;
+    height: auto;
+    z-index: 2;
+
+    &:before {
+      @include font-size(80);
+      font-weight: 300;
+      color: $color-grey-med;
+      font-family: $font-icons;
+    }
+  }
+
+  .slick-prev {
+    left: rem(-40);
+    &:before {
+      content: '\f104';
+    }
+  }
+
+  .slick-next {
+    right: rem(-40);
+    &:before {
+      content: '\f105';
+    }
+  }
 
   @include breakpoint(mobile) {
     padding-left: 0;

@@ -89,7 +89,20 @@ Listing.find({}).remove()
             link: '#'
           }
         ],
-        images: []
+        images: [
+          {
+            name: 'Great Picture 1',
+            link: 'http://thesn.ug/20vFzrh'
+          },
+          {
+            name: 'Great Picture 2',
+            link: 'http://thesn.ug/20vFzrh'
+          },
+          {
+            name: 'Great Picture 3',
+            link: 'http://thesn.ug/20vFzrh'
+          }
+        ]
       },
       terms: {
         businessAgreements: true,

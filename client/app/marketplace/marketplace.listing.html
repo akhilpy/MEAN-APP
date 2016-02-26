@@ -18,9 +18,9 @@
       </div><!-- /.listing-hero__actions -->
     </div><!-- /.listing-hero__content -->
     <div class="listing-hero__images">
-      <slick class="listing-hero__images--slider">
-        <div class="listing-hero__slide">
-          <img src="http://thesn.ug/20vFzrh" alt="{{vm.currentListing.general.businessName}}">
+      <slick autoplay=true autoplaySpeed="5000" infinite=true speed=750 slides-to-show=1 slides-to-scroll=1 class="listing-hero__images--slider">
+        <div class="listing-hero__slide" ng-repeat="image in vm.currentListing.social.images">
+          <img src="{{image.link}}" alt="{{image.name}}">
         </div><!-- /.listing-hero__slide -->
       </slick>
     </div><!-- /.listing-hero__images -->
