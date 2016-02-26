@@ -106,7 +106,7 @@
 /*==========  Buttons  ==========*/
 
 @mixin button {
-  @include font-primary(600);
+  @include font-primary(700);
   @include font-size(24);
   @include transition;
   background: $color-accent;
@@ -114,7 +114,7 @@
   border: none;
   border-radius: $border-radius;
   line-height: 1;
-  padding: rem(12) rem(20);
+  padding: rem(8) rem(20);
   outline: none;
   display: inline-block;
   text-align: center;

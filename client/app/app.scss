@@ -25,6 +25,7 @@ $fa-font-path: "../bower_components/font-awesome/fonts";
 @import "../sass/_elements/forms";
 @import "../sass/_elements/heroes";
 @import "../sass/_elements/tables";
+@import "../sass/_elements/widgets";
 
 /*==========  Parts  ==========*/
 @import "../sass/_parts/global";
@@ -65,4 +66,6 @@ $fa-font-path: "../bower_components/font-awesome/fonts";
 @import '../components/listingStatus/listingStatus.scss';
 @import '../components/oauth-buttons/oauth-buttons.scss';
 @import '../components/progressBar/progressBar.scss';
+@import '../components/widgetCurrentOffers/widgetCurrentOffers.scss';
+@import '../components/widgetOffer/widgetOffer.scss';
 // endinjector
