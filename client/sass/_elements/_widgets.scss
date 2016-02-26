@@ -3,6 +3,12 @@
   padding: rem(20);
   background: $color-white;
   border-radius: $border-radius;
+
+  p {
+    @include font-size;
+    font-style: normal;
+    color: $color-grey-dark;
+  }
 }
 
 .widget__header {
@@ -19,4 +25,27 @@
   text-transform: uppercase;
   line-height: 1;
   margin: 0;
+}
+
+.widget__subtitle {
+  margin-bottom: rem(20);
+
+  h4 {
+    @include font-size(48);
+    color: $color-success;
+    border-bottom: 1px solid $color-grey-light;
+    padding-bottom: rem(5);
+    margin-bottom: rem(5);
+  }
+
+  span {
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+}
+
+.widget__form {
+  .form__row--submit {
+    text-align: center;
+  }
 }
