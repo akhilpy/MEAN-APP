@@ -3,8 +3,11 @@
 (function() {
 
   class AboutController {
-    constructor($scope) {
-      $scope.message = 'Hello';
+    constructor($scope, TeamService) {
+      var vm = this;
+
+      vm.teamMembers = TeamService.getTeam();
+      vm.teamAdvisors = TeamService.getAdvisors();
     }
   }
 

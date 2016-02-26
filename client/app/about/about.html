@@ -7,14 +7,119 @@
           <h1 class="entry-title">About</h1>
         </header>
 
+        <breadcrumbs></breadcrumbs>
+
         <div id="primary" class="content-area">
           <main id="main" class="site-main" role="main">
-            <div class="content-wrapper">
 
-              This is the About page.
+            <div class="block--wrapper about-intro">
+              <div class="block">
+                <h3 class="block--title">We've hit the reset button on borrowing and lending</h3>
+                <h3>InvestNextDoor’s community-engaged marketplace connects visionary investors with creditworthy business owners to build and support mutually beneficial lending relationships. This approach allows entrepreneurs to choose their own lending terms and removes the hassle that traditional bank funding can involve. It also closes the gap that exists in funding loan amounts less than $250,000.<br><a href="#team" class="button">Meet the Team</a></h3>
+              </div><!-- end of .block  -->
+            </div><!-- end of .block--wrapper -->
 
-            </div><!-- /.content-wrapper -->
-          </main><!-- /.site-main -->
+            <div class="block--wrapper logos">
+              <div class="block">
+                <div class="logos__wrapper">
+                  <ul class="logos__list">
+                    <li class="logo__wrapper">
+                      <img src="assets/images/uploads/about/yahoo.png" alt="">
+                    </li><!-- /.logo__wrapper -->
+                    <li class="logo__wrapper">
+                      <img src="assets/images/uploads/about/altfi.png" alt="">
+                    </li><!-- /.logo__wrapper -->
+                    <li class="logo__wrapper">
+                      <img src="assets/images/uploads/about/cnnmoney.png" alt="">
+                    </li><!-- /.logo__wrapper -->
+                    <li class="logo__wrapper">
+                      <img src="assets/images/uploads/about/crowdfund.png" alt="">
+                    </li><!-- /.logo__wrapper -->
+                  </ul><!-- /.logos__list -->
+                </div><!-- /.benefits -->
+              </div><!-- end of .block -->
+            </div><!-- end of .block--wrapper -->
+
+            <div class="block--wrapper team-intro">
+              <div class="block">
+                <h3 class="block--title">Meet the InvestNextDoor Team</h3>
+                <p>We have 20+ years of technology, finance and business management experience. The team has directly and indirectly helped more than 100 small businesses reach their goals. Our advisory team is made up of the global leaders in social finance, financial predictive analysis and investment advisory services.</p>
+
+                <ul class="team-navigation">
+                  <li><a href="#team" class="team-button"><span>Meet The</span>Team</a></li>
+                  <li><a href="#advisors" class="team-button"><span>Meet The</span>Advisors</a></li>
+                </ul><!-- /.team-navigation -->
+
+                <div class="team-section team-section__team" id="team">
+                  <div class="team-header">
+                    <h2>The Team</h2>
+                  </div><!-- /.team-header -->
+
+                  <ul class="team-list team_list__two">
+                    <li class="team-member__wrapper" ng-repeat="person in vm.teamMembers">
+                      <div class="team-member">
+                        <div class="team-member__image">
+                          <img src="{{person.image}}" alt="{{person.name}}">
+                        </div><!-- /.team-member__image -->
+                        <h4 class="team-member__name">{{person.name}}</h4>
+                        <h5 class="team-member__title">{{person.title}}</h5>
+                        <a ng-click="hideBio = !hideBio" class="team-member__link">{{hideBio ? 'Less' : 'More'}} <i class="fa fa-{{hideBio ? 'times' : 'plus'}}"></i></a>
+                        <div ng-show="hideBio" class="team-member__bio" ng-bind-html="person.bio">
+                        </div><!-- /.team-member__bio -->
+                      </div><!-- /.team-member -->
+                    </li><!-- /.team-member__wrapper -->
+                  </ul><!-- /.team-list team_list__two -->
+                </div><!-- /.team-section -->
+
+                <div class="team-section team-section__advisors" id="advisors">
+                  <div class="team-header">
+                    <h2>The Advisors</h2>
+                  </div><!-- /.team-header -->
+
+                  <ul class="team-list team_list__three">
+                    <li class="team-member__wrapper" ng-repeat="person in vm.teamAdvisors">
+                      <div class="team-member">
+                        <div class="team-member__image">
+                          <img src="{{person.image}}" alt="{{person.name}}">
+                        </div><!-- /.team-member__image -->
+                        <h4 class="team-member__name">{{person.name}}</h4>
+                        <h5 class="team-member__title">{{person.title}}</h5>
+                        <a ng-click="hideBio = !hideBio" class="team-member__link">{{hideBio ? 'Less' : 'More'}} <i class="fa fa-{{hideBio ? 'times' : 'plus'}}"></i></a>
+                        <div ng-show="hideBio" class="team-member__bio" ng-bind-html="person.bio">
+                      </div><!-- /.team-member -->
+                    </li><!-- /.team-member__wrapper -->
+                  </ul><!-- /.team-list team_list__two -->
+                </div><!-- /.team-section -->
+
+              </div><!-- end of .block -->
+            </div><!-- end of .block--wrapper -->
+
+            <div class="block--wrapper welcome__green-block--wrapper">
+              <div class="block welcome__green-block">
+
+                <div class="block--text welcome__green-block--text">
+                  <h3 class="block--title">Join Us</h3>
+                  <p>We strive to make a difference by connecting the businesses that drive local economies with the investors that can take those businesses to the next level. Crowdlending is just the beginning of a groundbreaking journey. Our team of top financial professionals is constantly designing new channels within the financial landscape. Together we’ll work with you to create financial and social impact in your community.</p>
+                  <a ui-sref="login" class="button ghost">Join today!</a>
+                </div><!-- end of .block__green-block--text -->
+
+                <div class="block--video welcome__green-block--video">
+                  <div class="video-wrapper">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/oN2dt_nHIto?rel=0" frameborder="0" allowfullscreen=""></iframe>
+                  </div><!-- end of .video-wrapper -->
+                </div><!-- end of .block__green-block--video -->
+
+              </div><!-- end of .block block__green-block -->
+            </div><!-- end of .block--wrapper block__green-block--wrapper -->
+
+            <div class="block--wrapper block__grey-block--wrapper">
+              <div class="block block__grey-block">
+                <h3 class="block--title">Crowdfunding creates returns for local investors and access to affordable capital for local businesses.</h3>
+                <a ui-sref="login" class="button">Get Started Today</a>
+              </div><!-- end of .block block__grey-block -->
+            </div><!-- end of .block--wrapper block__grey-block--wrapper -->
+
+          </main>
         </div><!-- /.content-area -->
       </div><!-- #content -->
 

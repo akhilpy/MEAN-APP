@@ -16,7 +16,7 @@
     "chosen": "^1.4.2",
     "textAngular": "~1.5.0",
     "api-check": "^7.5.5",
-    "angular-formly": "^7.3.9",
+    "angular-formly": "=7.3.9",
     "angular-formly-templates-bootstrap": "^6.2.0",
     "dropzone": "^4.2.0",
     "ngMask": "angular-mask#^3.0.16",
