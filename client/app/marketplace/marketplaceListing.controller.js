@@ -6,6 +6,7 @@ class MarketplaceListingController {
   constructor(listing) {
     var vm = this;
     vm.currentListing = listing.data
+    vm.currentListing.link = window.location.href;
   }
 
   makeOffer() {

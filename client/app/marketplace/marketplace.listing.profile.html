@@ -11,7 +11,7 @@
           {{vm.currentListing.general.address.city}}, {{vm.currentListing.general.address.province}}, {{vm.currentListing.general.address.postal}}
         </li><!-- /.profile__details--address -->
         <li class="profile__details--phone">
-          {{vm.currentListing.general.phone}}
+          <a href="#">{{vm.currentListing.general.phone}}</a>
         </li><!-- /.profile__details--phone -->
         <li class="profile__details--website">
           <a href="{{vm.currentListing.general.website}}" target="_blank">{{vm.currentListing.general.website}}</a>
@@ -19,7 +19,37 @@
       </ul><!-- /.profile__details--list -->
     </div><!-- /.profile__details -->
     <div class="profile__sharing">
-      social sharing directive
+      <ul class="social-sharing">
+        <li>
+          <a href="#"
+            socialshare
+            socialshare-provider="facebook"
+            socialshare-text="{{vm.currentListing.general.businessName}}"
+            socialshare-description="{{vm.currentListing.details.title}}"
+            socialshare-url="{{vm.currentListing.link}}">
+            <i class="fa fa-facebook"></i>
+          </a>
+        </li>
+        <li>
+          <a href="#"
+            socialshare
+            socialshare-provider="twitter"
+            socialshare-text="{{vm.currentListing.general.businessName}} - {{vm.currentListing.details.title}}"
+            socialshare-hashtags="investnextdoor"
+            socialshare-url="{{vm.currentListing.link}}">
+            <i class="fa fa-twitter"></i>
+          </a>
+        </li>
+        <li>
+          <a href="#"
+            socialshare
+            socialshare-provider="google+"
+            socialshare-url="{{vm.currentListing.link}}">
+            <i class="fa fa-google-plus"></i>
+          </a>
+        </li>
+      </ul><!-- /.social-sharing -->
+
     </div><!-- /.profile__sharing -->
   </div><!-- /.profile -->
 </div><!-- /.profile__wrapper -->

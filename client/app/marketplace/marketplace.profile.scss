@@ -1,5 +1,5 @@
 .profile__wrapper {
-  margin-bottom: rem(20);
+  margin-bottom: rem(40);
 
   .profile {
     display: flex;
@@ -18,11 +18,81 @@
 }
 
 .profile__details {
+  @include font-size(20);
   flex: 4;
+
+  li {
+    padding-left: rem(30);
+    margin-bottom: rem(15);
+    line-height: 1.1;
+  }
+
+  a {
+    color: $color-primary-med;
+  }
+}
+
+.profile__details--address {
+  position: relative;
+  font-weight: 600;
+  color: $color-grey-med;
+
+  &:before {
+    @include font-size(24);
+    position: absolute;
+    left: 0;
+    font-family: $font-icons;
+    color: $color-primary-med;
+    content: "\f041";
+  }
 }
 
 .profile__sharing {
   flex: 1;
+  text-align: right;
+}
+
+.social-sharing {
+  @include list-zero;
+  background: $color-grey-pale;
+  padding: rem(20);
+  display: inline-block;
+
+  li {
+    @include font-size;
+    display: block;
+    width: rem(40);
+    height: rem(40);
+    margin: 0 0 rem(10) 0;
+    text-align: center;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .fa {
+    @include font-size(20);
+    padding: rem(5);
+    display: block;
+    width: rem(40);
+    height: rem(40);
+    line-height: 1.5;
+    text-align: center;
+
+    &.fa-facebook {
+      color: $color-white;
+      background: #3b5998;
+    }
+    &.fa-twitter {
+      color: $color-white;
+      background: #00aced;
+    }
+    &.fa-google-plus {
+      color: $color-white;
+      background: #dd4b39;
+    }
+  }
 }
 
 .profile__details--list {

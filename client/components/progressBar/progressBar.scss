@@ -11,23 +11,23 @@
 
 .progress-bar__outer {
   display: inline-block;
-  vertical-align: middle;
+  vertical-align: text-bottom;
   background: $color-white;
   width: 80%;
   border: 3px solid $color-white;
-  height: rem(30);
+  height: rem(26);
 }
 
 .progress-bar__inner {
   background: $color-success;
-  height: rem(24);
+  height: rem(20);
 }
 
 .progress-bar__progress {
   @include font-primary(600);
   @include font-size(20);
   display: inline-block;
-  vertical-align: middle;
+  vertical-align: text-bottom;
   width: 20%;
   color: $color-success;
   padding-left: rem(20);

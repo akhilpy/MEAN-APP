@@ -1,5 +1,6 @@
 .discussion-question__form {
   display: flex;
+  margin-top: rem(20);
 }
 
 .discussion-question__form--details,
@@ -13,6 +14,17 @@
 
 .discussion-question__form--question {
   padding-left: rem(20);
+
+  button {
+    display: block;
+    margin-top: rem(20);
+    width: 100%;
+    background: $color-primary-med;
+
+    &:hover {
+      background: $color-primary-dark;
+    }
+  }
 }
 
 .discussion-search {

@@ -40,6 +40,7 @@ module.exports = function(config) {
       'client/bower_components/slick-carousel/slick/slick.min.js',
       'client/bower_components/angular-slick/dist/slick.js',
       'client/bower_components/angular-ui-router-default/angular-ui-router-default.js',
+      'client/bower_components/angular-socialshare/dist/angular-socialshare.min.js',
       'client/bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'node_modules/socket.io-client/socket.io.js',
