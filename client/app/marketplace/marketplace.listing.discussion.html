@@ -1,9 +1,9 @@
-<div class="listing-content__section">
-  <header class="listing-content__section--header">
-    <h3 class="listing-content__section--title">
+<div class="general-content__section">
+  <header class="general-content__section--header">
+    <h3 class="general-content__section--title">
       Ask A Question
-    </h3><!-- /.listing-content__section--title -->
-  </header><!-- /.listing-content__section--header -->
+    </h3><!-- /.general-content__section--title -->
+  </header><!-- /.general-content__section--header -->
   <div class="discussion-question">
     <form class="discussion-question__form">
       <div class="discussion-question__form--details">
@@ -31,14 +31,14 @@
       </div><!-- /.discussion-question__form--question -->
     </form><!-- /.discussion-question__form -->
   </div><!-- /.discussion-question -->
-</div><!-- /.listing-content__section -->
+</div><!-- /.general-content__section -->
 
-<div class="listing-content__section">
-  <header class="listing-content__section--header">
-    <h3 class="listing-content__section--title">
+<div class="general-content__section">
+  <header class="general-content__section--header">
+    <h3 class="general-content__section--title">
       Discussion
-    </h3><!-- /.listing-content__section--title -->
-  </header><!-- /.listing-content__section--header -->
+    </h3><!-- /.general-content__section--title -->
+  </header><!-- /.general-content__section--header -->
 
   <div class="discussion-search">
     <form class="discussion-search__form">
@@ -52,54 +52,27 @@
 
   <div class="discussion">
     <ul class="discussion__list">
-      <li class="discussion__comment--wrapper">
+      <li class="discussion__comment--wrapper" ng-repeat="comment in vm.currentListing.comments">
         <div class="discussion__comment">
           <a class="discussion__comment--toggle" href="#" ng-click="hideComments = !hideComments"><i class="fa fa-{{hideComments ? 'times' : 'plus'}}"></i></a>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore, doloremque.</p>
+          <p>{{comment.text}}</p>
           <div class="discussion__comment--meta">
-            <p><strong>Username</strong> 00:00 Dec 31, 2015 <a class="discussion__comment--reply" href="#">Reply</a> <a class="discussion__comment--view" href="#" ng-click="hideComments = !hideComments">{{hideComments ? 'Hide Comments' : 'View Comments'}}</a> <span class="tag">Tag</span> <span class="tag">Tag</span> <span class="tag">Tag</span></p>
+            <p><strong>{{comment.user.username}}</strong> {{comment.date | date}} <a class="discussion__comment--reply" href="#">Reply</a> <a class="discussion__comment--view" href="#" ng-click="hideComments = !hideComments">{{hideComments ? 'Hide Comments' : 'View Comments'}}</a> <span class="tag" ng-repeat="tag in comment.tags">{{tag}}</span></p>
           </div><!-- /.discussion__comment--meta -->
         </div><!-- /.discussion__comment -->
 
         <ul ng-show="hideComments" class="discussion__replies">
-          <li class="discussion__reply">
+          <li class="discussion__reply" ng-repeat="reply in comment.replies">
             <div class="discussion__comment">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate odit minus ratione quam autem ex. Iste sint maiores rerum, laudantium.</p>
+              <p>{{reply.text}}</p>
               <div class="discussion__comment--meta">
-                <p><strong>Username</strong> 00:00 Dec 31, 2015 <a class="discussion__comment--reply" href="#">Reply</a></p>
-              </div><!-- /.discussion__comment--meta -->
-            </div><!-- /.discussion__comment -->
-          </li><!-- /.discussion__reply -->
-          <li class="discussion__reply">
-            <div class="discussion__comment">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate odit minus ratione quam autem ex. Iste sint maiores rerum, laudantium.</p>
-              <div class="discussion__comment--meta">
-                <p><strong>Username</strong> 00:00 Dec 31, 2015 <a class="discussion__comment--reply" href="#">Reply</a></p>
+                <p><strong>{{reply.user.username}}</strong> {{reply.date | date}} <a class="discussion__comment--reply" href="#">Reply</a></p>
               </div><!-- /.discussion__comment--meta -->
             </div><!-- /.discussion__comment -->
           </li><!-- /.discussion__reply -->
         </ul><!-- /.discussion__replies -->
       </li><!-- /.discussion__comment--wrapper -->
 
-      <li class="discussion__comment--wrapper">
-        <div class="discussion__comment">
-          <a class="discussion__comment--toggle" href="#" ng-click="hideComments = !hideComments"><i class="fa fa-{{hideComments ? 'times' : 'plus'}}"></i></a>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore, doloremque.</p>
-          <div class="discussion__comment--meta">
-            <p><strong>Username</strong> 00:00 Dec 31, 2015 <a class="discussion__comment--reply" href="#">Reply</a> <a class="discussion__comment--view" href="#" ng-click="hideComments = !hideComments">{{hideComments ? 'Hide Comments' : 'View Comments'}}</a> <span class="tag">Tag</span> <span class="tag">Tag</span> <span class="tag">Tag</span></p>
-          </div><!-- /.discussion__comment--meta -->
-        </div><!-- /.discussion__comment -->
-      </li><!-- /.discussion__comment--wrapper -->
-
-      <li class="discussion__comment--wrapper">
-        <div class="discussion__comment">
-          <a class="discussion__comment--toggle" href="#" ng-click="hideComments = !hideComments"><i class="fa fa-{{hideComments ? 'times' : 'plus'}}"></i></a>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore, doloremque.</p>
-          <div class="discussion__comment--meta">
-            <p><strong>Username</strong> 00:00 Dec 31, 2015 <a class="discussion__comment--reply" href="#">Reply</a> <a class="discussion__comment--view" href="#" ng-click="hideComments = !hideComments">{{hideComments ? 'Hide Comments' : 'View Comments'}}</a> <span class="tag">Tag</span> <span class="tag">Tag</span> <span class="tag">Tag</span></p>
-          </div><!-- /.discussion__comment--meta -->
-        </div><!-- /.discussion__comment -->
-      </li><!-- /.discussion__comment--wrapper -->
     </ul><!-- /.discussion__list -->
   </div><!-- /.discussion -->
-</div><!-- /.listing-content__section -->
+</div><!-- /.general-content__section -->

@@ -17,7 +17,9 @@
 }
 
 .site-content {
-  display: block;
+  display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
   font-size: 0;
   padding-top: rem(115);
 
@@ -44,11 +46,9 @@
 
 .content-area {
   @include font-size;
-  display: block;
+  width: 100%;
 
   &.with-sidebar {
-    display: table-cell;
-    vertical-align: top;
     width: 75%;
     padding: 0 rem(30) rem(80) 0;
 
@@ -63,8 +63,6 @@
 
 .widget-area {
   @include font-size;
-  display: table-cell;
-  vertical-align: top;
   width: 25%;
   background: $color-grey-pale;
   position: relative;
@@ -92,28 +90,6 @@
 .content-wrapper {
 
 }
-
-
-/*----------  Breadcrumbs  ----------*/
-
-.breadcrumbs {
-  @include font-size;
-  @include font-primary(400);
-  margin: rem(30) 0;
-  color: $color-grey-med-light;
-  text-transform: uppercase;
-
-  span {
-
-  }
-
-  a {
-    @include font-primary(400);
-    text-transform: uppercase;
-    color: $color-grey-med-light;
-  }
-}
-
 
 /*----------  Video Wrapper  ----------*/
 

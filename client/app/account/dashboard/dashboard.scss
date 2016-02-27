@@ -180,11 +180,11 @@
   font-size: 0;
   margin: rem(40) rem(-5) rem(40) 0;
   line-height: 1;
+  display: flex;
 
   > li {
     @include font-size(18);
-    display: inline-block;
-    width: 14.285%;
+    flex: 1;
     text-align: center;
     padding-right: rem(5);
   }

@@ -7,21 +7,39 @@
           <h1 class="entry-title">FAQ</h1>
         </header>
 
-        <breadcrumbs></breadcrumbs>
+        <div id="primary" class="content-area with-sidebar">
+          <div breadcrumbs class="breadcrumbs__wrapper"></div>
 
-        <div id="primary" class="content-area">
           <main id="main" class="site-main" role="main">
 
-            <div class="block--wrapper welcome__header-block--wrapper">
-              <div class="block welcome__header-block">
-                <h3 class="block--title">Frequently Asked Questions</h3>
-              </div><!-- end of .block block__header-block -->
+            <div class="general-content__section">
+              <header class="general-content__section--header">
+                <h3 class="general-content__section--title">
+                  Quick Search
+                </h3><!-- /.general-content__section--title -->
+              </header><!-- /.general-content__section--header -->
+
+              <div class="discussion-search">
+                <form class="discussion-search__form">
+                  <label for="">Search Topic or Keyword</label>
+                  <div class="discussion-search__form--fields">
+                    <input class="discussion-search__form--search" type="text">
+                    <button class="discussion-search__form--submit">Search</button>
+                  </div><!-- /.discussion-search__form--fields -->
+                </form><!-- /.discussion-search__form -->
+              </div><!-- /.discussion-search -->
+
+              <ul class="dashboard__navigation--list">
+                <li><a href="#">General</a></li>
+                <li><a href="#">Business</a></li>
+                <li><a href="#">Investor</a></li>
+              </ul><!-- /.dashboard__navigation--list -->
 
               <ul class="faq__list">
                 <li class="faq__wrapper" ng-repeat="faq in faqs.allFaqs">
                   <a href="#" tooltip="{{faq.info}}">{{faq.name}}</a>
-                  <h4 class="faq__question">{{faq.question}}</h4>
-                  <div class="faq__answer" ng-bind-html="faq.answer"></div>
+                  <h4 class="faq__question"><a href="#" ng-click="hideAnswer = !hideAnswer" ng-class="{active: hideAnswer}">{{faq.question}}</a></h4>
+                  <div class="faq__answer" ng-bind-html="faq.answer" ng-show="hideAnswer"></div>
                   <div ng-show="faqs.isAdmin()">
                     <button type="button" class="button" ng-click="faqs.deleteFaq(faq)">Delete</button>
                   </div>
@@ -44,29 +62,16 @@
                   </ul><!-- /.form__rows -->
                 </form><!-- /.faq__form -->
               </div><!-- /.faq__form--wrapper -->
-            </div><!-- end of .block--wrapper block__header-block--wrapper -->
-
-            <div class="block--wrapper welcome__green-block--wrapper">
-              <div class="block welcome__green-block">
-
-                <div class="block--text welcome__green-block--text">
-                  <h3 class="block--title">Join Us</h3>
-                  <p>We strive to make a difference by connecting the businesses that drive local economies with the investors that can take those businesses to the next level. Crowdlending is just the beginning of a groundbreaking journey. Our team of top financial
-                    professionals is constantly designing new channels within the financial landscape.&nbsp; Together we’ll work with you to create financial and social impact in your community.</p>
-                  <a ui-sref="login" class="button ghost">Sign up to get started today!</a>
-                </div><!-- end of .block__green-block--text -->
-
-                <div class="block--video welcome__green-block--video">
-                  <div class="video-wrapper">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/oN2dt_nHIto?rel=0" frameborder="0" allowfullscreen=""></iframe>
-                  </div><!-- end of .video-wrapper -->
-                </div><!-- end of .block__green-block--video -->
-
-              </div><!-- end of .block block__green-block -->
-            </div><!-- end of .block--wrapper block__green-block--wrapper -->
+            </div><!-- /.general-content__section -->
 
           </main>
         </div><!-- /.content-area -->
+
+        <div id="secondary" class="widget-area">
+          <widget-press></widget-press>
+          <widget-calculator></widget-calculator>
+          <widget-benefits></widget-benefits>
+        </div><!-- /#secondary.widget-area -->
       </div><!-- #content -->
 
     <footer></footer>

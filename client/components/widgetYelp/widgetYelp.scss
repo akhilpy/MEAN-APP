@@ -1,0 +1,55 @@
+.widget__yelp--review {
+  margin-bottom: rem(10);
+  padding-bottom: rem(10);
+  border-bottom: 1px solid $color-grey-light;
+
+  p {
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  &:last-of-type {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+}
+
+.widget__yelp--details {
+  display: flex;
+  margin-bottom: rem(5);
+  align-items: center;
+}
+
+.widget__yelp--avatar {
+  display: block;
+  width: rem(50);
+  height: rem(50);
+  border-radius: $border-radius;
+  margin-right: rem(10);
+}
+
+.widget__yelp--meta {
+  @include list-zero;
+  flex-grow: 1;
+  position: relative;
+}
+
+.widget__yelp--user {
+  margin-bottom: rem(5);
+}
+
+.widget__yelp--date {
+  @include font-size(11);
+  font-weight: 400;
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: $color-grey-med;
+}
+
+.widget__yelp--more {
+  text-align: center;
+  margin-top: rem(20);
+}

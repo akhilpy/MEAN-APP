@@ -1,5 +1,5 @@
 .offer-terms {
-  .listing-content__about-details {
+  .general-content__about-details {
     border: none;
   }
 }
@@ -40,12 +40,4 @@
 
 .offer-offers {
   margin: rem(40) 0;
-}
-
-.listing-content__section {
-  margin-bottom: rem(20);
-
-  &:last-of-type {
-    margin-bottom: rem(40);
-  }
 }

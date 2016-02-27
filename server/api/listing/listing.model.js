@@ -3,6 +3,10 @@
 import mongoose from 'mongoose';
 mongoose.Promise = require('bluebird');
 
+import {Schema} from 'mongoose';
+import User from '../user/user.model';
+
+var autopopulate = require('mongoose-autopopulate');
 var shortid = require('shortid');
 
 var address = {
@@ -57,13 +61,47 @@ var reviews = {
 	}
 };
 
+var reply = {
+	text: {
+		type: String,
+		default: ''
+	},
+	user: {
+		type: Schema.ObjectId,
+		ref: 'User',
+		autopopulate: true
+	},
+	date: {
+		type: Date,
+		default: Date.now
+	}
+}
+
+var comment = {
+	text: {
+		type: String,
+		default: ''
+	},
+	user: {
+		type: Schema.ObjectId,
+		ref: 'User',
+		autopopulate: true
+	},
+	date: {
+		type: Date,
+		default: Date.now
+	},
+	tags: [String],
+	replies: [reply]
+}
+
 var file = {
 	name: String,
 	link: String,
 	size: String
 }
 
-var ListingSchema = new mongoose.Schema({
+var ListingSchema = new Schema({
   id: {
     type: String,
     default: shortid.generate,
@@ -166,7 +204,9 @@ var ListingSchema = new mongoose.Schema({
 		position: String,
 		phone: String,
 		signature: String
-	}
+	},
+	comments: [comment]
 });
 
+ListingSchema.plugin(autopopulate);
 export default mongoose.model('Listing', ListingSchema);

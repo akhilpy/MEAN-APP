@@ -278,4 +278,5 @@ UserSchema.methods = {
 };
 
 UserSchema.plugin(autoIncrement.plugin, { model: 'User', startAt: 100 });
+export default mongoose.model('User', UserSchema);
 export default connection.model('User', UserSchema);

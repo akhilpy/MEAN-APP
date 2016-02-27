@@ -1,0 +1,21 @@
+.breadcrumbs__wrapper {
+  width: 100%;
+}
+
+.breadcrumbs {
+  @include font-size;
+  @include font-primary(400);
+  margin: rem(30) 0;
+  color: $color-grey-med-light;
+  text-transform: uppercase;
+
+  span {
+
+  }
+
+  a {
+    @include font-primary(400);
+    text-transform: uppercase;
+    color: $color-grey-med-light;
+  }
+}

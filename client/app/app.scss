@@ -32,8 +32,8 @@ $fa-font-path: "../bower_components/font-awesome/fonts";
 @import "../sass/_parts/header";
 @import "../sass/_parts/navigation";
 @import "../sass/_parts/main";
+@import "../sass/_parts/content";
 @import "../sass/_parts/page";
-@import "../sass/_parts/home";
 @import "../sass/_parts/welcome";
 @import "../sass/_parts/how-it-works";
 
@@ -65,6 +65,10 @@ $fa-font-path: "../bower_components/font-awesome/fonts";
 @import '../components/listingStatus/listingStatus.scss';
 @import '../components/oauth-buttons/oauth-buttons.scss';
 @import '../components/progressBar/progressBar.scss';
+@import '../components/widgetBenefits/widgetBenefits.scss';
+@import '../components/widgetCalculator/widgetCalculator.scss';
 @import '../components/widgetCurrentOffers/widgetCurrentOffers.scss';
 @import '../components/widgetOffer/widgetOffer.scss';
+@import '../components/widgetPress/widgetPress.scss';
+@import '../components/widgetYelp/widgetYelp.scss';
 // endinjector

@@ -4,16 +4,17 @@
 }
 
 .faq__wrapper {
-  margin-bottom: rem(40);
+  margin-bottom: rem(20);
 
   .button {
     @include font-size(14);
   }
 
   p {
-    @include font-size(18);
+    @include font-size;
     color: $color-grey-med;
-    font-weight: 600;
+    font-weight: 400;
+    padding-left: rem(20);
   }
 }
 

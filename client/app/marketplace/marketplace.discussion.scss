@@ -29,7 +29,7 @@
 
 .discussion-search {
   border-bottom: 1px solid $color-grey-light;
-  padding: rem(10) 0 rem(40);
+  padding: rem(10) rem(10) rem(40);
   margin-bottom: rem(20);
 
   label {
@@ -89,9 +89,12 @@
 
 .discussion__comment--meta {
   margin-top: rem(5);
+  font-weight: 400;
+  color: $color-grey-med;
 
   p {
     @include font-size(12);
+    color: $color-grey-med;
   }
 
   a {
@@ -103,7 +106,7 @@
     text-transform: uppercase;
 
     &:after {
-      content: ",";
+      content: ", ";
     }
 
     &:first-of-type {

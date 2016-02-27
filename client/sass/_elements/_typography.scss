@@ -178,7 +178,7 @@ h3 {
     }
   }
 
-  &.listing-content__section--title {
+  &.general-content__section--title {
     @include font-primary(700);
     @include font-size(16);
     color: $color-white;
@@ -198,7 +198,7 @@ h4 {
   @include font-size(22);
   color: $color-slate-light;
 
-  &.listing-content__section--subtitle {
+  &.general-content__section--subtitle {
     @include font-size(16);
     @include font-primary(600);
     text-transform: uppercase;
@@ -217,8 +217,23 @@ h4 {
     line-height: 1;
     margin-bottom: rem(20);
   }
+
   &.profile-about__label {
     margin-bottom: rem(5);
+  }
+
+  &.faq__question {
+    @include font-size;
+
+    a {
+      color: $color-primary-med;
+
+      &.active,
+      &:hover {
+        color: $color-primary-dark;
+        text-decoration: underline;
+      }
+    }
   }
 }
 
