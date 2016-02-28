@@ -17,6 +17,7 @@ angular.module('investnextdoorCaApp', [
   'slick',
   '720kb.socialshare',
   'angularMoment',
+  'ngAnimate',
   'vAccordion'
 ])
   .config(function($urlRouterProvider, $locationProvider, formlyConfigProvider, formlyFieldsProvider) {
