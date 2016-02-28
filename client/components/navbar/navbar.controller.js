@@ -10,12 +10,12 @@ class NavbarController {
     },
     {
       'title': 'Borrow',
-      'state': 'borrow',
+      'state': 'borrow.index',
       'class': ''
     },
     {
       'title': 'Invest',
-      'state': 'invest',
+      'state': 'invest.index',
       'class': ''
     },
     {

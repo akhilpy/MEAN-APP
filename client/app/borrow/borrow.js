@@ -6,6 +6,16 @@ angular.module('investnextdoorCaApp')
       .state('borrow', {
         url: '/borrow',
         templateUrl: 'app/borrow/borrow.html',
-        controller: 'BorrowController'
+        controller: 'BorrowController',
+        controllerAs: 'vm',
+        abstract: true
+      })
+      .state('borrow.index', {
+        url: '',
+        templateUrl: 'app/borrow/borrow.index.html'
+      })
+      .state('borrow.welcome', {
+        url: '/welcome',
+        templateUrl: 'app/borrow/borrow.welcome.html'
       });
   });

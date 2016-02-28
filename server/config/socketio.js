@@ -21,8 +21,6 @@ function onConnect(socket) {
   require('../api/faq/faq.socket').register(socket);
   require('../api/blog/blog.socket').register(socket);
   require('../api/listing/listing.socket').register(socket);
-  require('../api/thing/thing.socket').register(socket);
-
 }
 
 export default function(socketio) {

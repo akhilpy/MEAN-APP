@@ -1,0 +1,53 @@
+<div class="page-template-default">
+  <div id="page" class="site">
+    <navbar></navbar>
+
+      <div id="content" class="site-content">
+        <header class="entry-header">
+          <h1 class="entry-title">Welcome</h1>
+        </header>
+
+        <div id="primary" class="content-area">
+          <div breadcrumbs class="breadcrumbs__wrapper"></div>
+
+          <main id="main" class="site-main" role="main">
+            <div class="content-wrapper">
+
+              <h2>Let's Get Started</h2>
+
+              <p>You're signed up as an investor and ready to go.</p>
+              <p>Here are the next steps to get your account activated, as well as some information to help you get started.</p>
+
+              <v-accordion id="accordionA" class="vAccordion--default" control="accordionA" onexpand="expandCallback(index, id)" oncollapse="collapseCallback(index, id)">
+
+                <v-pane id="{{ ::pane.id }}" ng-repeat="pane in panesA" expanded="pane.isExpanded">
+                  <v-pane-header id="{{ ::pane.id }}-header" aria-controls="{{ ::pane.id }}-content">
+                    <h5>{{ ::pane.header }}</h5>
+                  </v-pane-header>
+
+                  <v-pane-content id="{{ ::pane.id }}-content" aria-labelledby="{{ ::pane.id }}-header">
+                    <p>{{ ::pane.content }}</p>
+
+                    <v-accordion id="nestedAccordionA" ng-if="pane.subpanes">
+                      <v-pane id="{{ ::subpane.id }}" ng-repeat="subpane in pane.subpanes" ng-disabled="subpane.isDisabled">
+                        <v-pane-header id="{{ ::subpane.id }}-header" aria-controls="{{ ::subpane.id }}-header">
+                          <h5>{{ ::subpane.header }}</h5>
+                        </v-pane-header>
+                        <v-pane-content id="{{ ::subpane.id }}-content" aria-labelledby="{{ ::subpane.id }}-content">
+                          <p>{{ ::subpane.content }}</p>
+                        </v-pane-content>
+                      </v-pane>
+                    </v-accordion>
+                  </v-pane-content>
+                </v-pane>
+
+              </v-accordion>
+
+            </div><!-- /.content-wrapper -->
+          </main><!-- /.site-main -->
+        </div><!-- /.content-area -->
+      </div><!-- #content -->
+
+    <footer></footer>
+  </div><!-- /#page.site -->
+</div>

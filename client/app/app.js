@@ -16,7 +16,8 @@ angular.module('investnextdoorCaApp', [
   'formlyBootstrap',
   'slick',
   '720kb.socialshare',
-  'angularMoment'
+  'angularMoment',
+  'vAccordion'
 ])
   .config(function($urlRouterProvider, $locationProvider, formlyConfigProvider, formlyFieldsProvider) {
     $urlRouterProvider.otherwise('/');
