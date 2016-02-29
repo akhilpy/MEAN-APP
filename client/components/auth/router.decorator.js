@@ -28,7 +28,7 @@ angular.module('investnextdoorCaApp.auth')
           }
 
           event.preventDefault();
-          $state.go('main');
+          $state.go('login');
         });
       }
     });

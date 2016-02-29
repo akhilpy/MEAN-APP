@@ -311,6 +311,10 @@
 
 /*----------  Blog Posts  ----------*/
 
+.block__blog-posts--intro {
+  margin-bottom: rem(60);
+}
+
 .block__blog-posts {
   @include site-container;
   text-align: center;
@@ -346,7 +350,7 @@
 .block__blog-posts--list {
   @include list-zero;
   font-size: 0;
-  margin: rem(60) 0 0 rem(-30);
+  margin: 0 0 0 rem(-30);
 }
 
 .block__blog-post--wrapper {

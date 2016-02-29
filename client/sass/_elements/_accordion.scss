@@ -1,0 +1,55 @@
+.vAccordion--default.vAccordion--default {
+
+  v-pane.is-expanded {
+
+    > v-pane-header {
+      border: none;
+      color: $color-white;
+      background: $color-primary-med;
+      border-radius: $border-radius $border-radius 0 0;
+
+      h5 {
+        color: $color-white;
+      }
+    }
+  }
+
+  v-pane {
+    margin-bottom: rem(10);
+  }
+
+  v-pane-header {
+    border: none;
+    color: $color-primary-med;
+    background: $color-slate-dark;
+    border-radius: $border-radius;
+    padding: rem(10);
+    margin-bottom: 0;
+
+    h5 {
+      color: $color-primary-med;
+      margin: 0;
+      line-height: 1;
+    }
+
+    span {
+      font-weight: 400;
+      text-transform: none;
+    }
+
+    &:after,
+    &:before {
+      display: none;
+    }
+  }
+
+  v-pane-content {
+    background: $color-grey-pale;
+    border-radius: 0 0 $border-radius $border-radius;
+
+    > div {
+      padding: rem(10);
+    }
+  }
+
+}

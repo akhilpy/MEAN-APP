@@ -1,3 +1,15 @@
+.welcome__intro {
+  text-align: center;
+  margin-bottom: rem(60);
+
+  p {
+    @include font-size(20);
+    margin-bottom: 0;
+    font-weight: 600;
+    color: $color-grey-med;
+  }
+}
+
 .accordion__wrapper {
   display: flex;
 
@@ -8,7 +20,7 @@
 }
 
 .accordion__quick-links {
-  flex: 1;
+  width: rem(200);
   background: $color-grey-pale;
   padding: rem(10);
   border-radius: $border-radius;
@@ -37,61 +49,11 @@
     color: $color-primary-med;
     border: 2px solid $color-primary-med;
     text-transform: uppercase;
+    padding: rem(10);
 
     &:hover {
       border: 2px solid $color-primary-dark;
       color: $color-white;
     }
   }
-}
-
-.vAccordion--default.vAccordion--default {
-
-  v-pane.is-expanded {
-
-    > v-pane-header {
-      border: none;
-      color: $color-white;
-      background: $color-primary-med;
-      border-radius: $border-radius $border-radius 0 0;
-
-      h5 {
-        color: $color-white;
-      }
-    }
-  }
-
-  v-pane {
-    margin-bottom: rem(10);
-  }
-
-  v-pane-header {
-    border: none;
-    color: $color-primary-med;
-    background: $color-slate-dark;
-    border-radius: $border-radius;
-    padding: rem(10);
-    margin-bottom: 0;
-
-    h5 {
-      color: $color-primary-med;
-      margin: 0;
-      line-height: 1;
-    }
-
-    &:after,
-    &:before {
-      display: none;
-    }
-  }
-
-  v-pane-content {
-    background: $color-grey-pale;
-    border-radius: 0 0 $border-radius $border-radius;
-
-    > div {
-      padding: rem(10);
-    }
-  }
-
 }

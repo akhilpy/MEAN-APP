@@ -12,7 +12,7 @@
 
             <h3 class="large-hero__subtitle" ng-attr-contenteditable="{{ editMode }}" ng-model="hero.subtitle">Canadian businesses and investors working together.<br>Everybody wins.</h3>
 
-            <a ui-sref="borrow" class="large-hero__button button large">How it Works</a>
+            <a ui-sref="borrow.index" class="large-hero__button button large">How it Works</a>
 
           </div><!-- end of .large-hero__content -->
 
@@ -32,7 +32,7 @@
                 <h3 class="block--title">Lending to small business just makes sense.</h3>
                 <p>Each of us knows someone who owns a business. Our dry-cleaner, our accountant, even the franchisee of that sub shop we love. We already support them when we shop locally. Investing in them directly creates more jobs, stronger local economies, and makes you a great return.</p>
                 <p><strong>We make it easy for you to create a professional investment directly in small businesses you’re comfortable with.</strong></p>
-                <a ui-sref="invest" class="button">Get Started</a>
+                <a ui-sref="invest.index" class="button">Get Started</a>
               </div><!-- end of .block__image-block--text -->
             </div><!-- end of .block block__image-block -->
           </div><!-- end of .block--wrapper block__image-block--wrapper -->
@@ -57,7 +57,7 @@
                 </ul><!-- end of .block__green-block--list -->
 
               </div><!-- end of .block__green-block--text -->
-              <a ui-sref="invest" class="button ghost">Try It!</a>
+              <a ui-sref="invest.index" class="button ghost">Try It!</a>
             </div><!-- end of .block block__green-block -->
           </div><!-- end of .block--wrapper block__green-block--wrapper -->
 
@@ -98,10 +98,12 @@
           <div class="block--wrapper block__blog-posts--wrapper">
             <div class="block block__blog-posts">
               <div class="block__blog-posts--cta">
-                <p>Find out more about our qualification criteria for borrowers <a ui-sref="borrow" class="button ghost">Learn More</a></p>
+                <p>Find out more about our qualification criteria for borrowers <a ui-sref="borrow.index" class="button ghost">Learn More</a></p>
               </div><!-- end of .block__blog-posts--cta -->
-              <h3 class="block--title">Canada runs on small business.</h3>
-              <p>Business growth equals community strength. We’re committed to both.</p>
+              <div class="block__blog-posts--intro">
+                <h3 class="block--title">Canada runs on small business.</h3>
+                <p>Business growth equals community strength. We’re committed to both.</p>                
+              </div><!-- /.block__blog-posts--intro -->
 
               <ul class="block__blog-posts--list">
                 <li class="block__blog-post--wrapper">
@@ -114,7 +116,7 @@
                       <h2 class="block__blog-post--title">Sample Blog Post</h2>
                     </div><!-- end of .block__blog-post--image -->
                     <p>Donec sed odio dui. Maecenas sed diam eget risus varius…</p>
-                    <a ui-sref="borrow">Read More</a>
+                    <a ui-sref="borrow.index">Read More</a>
                   </div><!-- end of .block__blog-post -->
                 </li><!-- end of .block__blog-post -->
               </ul><!-- end of .block__blog-posts--list -->
@@ -124,7 +126,7 @@
           <div class="block--wrapper block__grey-block--wrapper">
             <div class="block block__grey-block">
               <h3 class="block--title">Call to Action</h3>
-              <a ui-sref="borrow" class="button">Button</a>
+              <a ui-sref="borrow.index" class="button">Button</a>
             </div><!-- end of .block block__grey-block -->
           </div><!-- end of .block--wrapper block__grey-block--wrapper -->
 
