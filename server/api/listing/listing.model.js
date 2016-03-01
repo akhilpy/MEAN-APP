@@ -78,6 +78,10 @@ var reply = {
 }
 
 var comment = {
+	title: {
+		type: String,
+		default: ''
+	},
 	text: {
 		type: String,
 		default: ''
@@ -93,6 +97,18 @@ var comment = {
 	},
 	tags: [String],
 	replies: [reply]
+}
+
+var requester = {
+	user: {
+		type: Schema.ObjectId,
+		ref: 'User',
+		autopopulate: true
+	},
+	date: {
+		type: Date,
+		default: Date.now
+	}
 }
 
 var file = {
@@ -205,7 +221,8 @@ var ListingSchema = new Schema({
 		phone: String,
 		signature: String
 	},
-	comments: [comment]
+	comments: [comment],
+	infoRequest: [requester]
 });
 
 ListingSchema.plugin(autopopulate);

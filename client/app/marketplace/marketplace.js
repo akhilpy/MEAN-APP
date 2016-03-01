@@ -11,7 +11,8 @@ angular.module('investnextdoorCaApp')
         },
         controller: 'MarketplaceController',
         controllerAs: 'vm',
-        abstract: true
+        abstract: true,
+        authenticate: true
       })
       .state('marketplace.index', {
         url: '',
@@ -24,7 +25,8 @@ angular.module('investnextdoorCaApp')
           ]
         },
         controller: 'MarketplaceController',
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        authenticate: true
       })
       .state('marketplace.listing', {
         url: '/listing/:id',
@@ -37,22 +39,27 @@ angular.module('investnextdoorCaApp')
           ]
         },
         controller: 'MarketplaceListingController',
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        authenticate: true
       })
       .state('marketplace.listing.profile', {
         url: '/profile',
-        templateUrl: 'app/marketplace/marketplace.listing.profile.html'
+        templateUrl: 'app/marketplace/marketplace.listing.profile.html',
+        authenticate: true
       })
       .state('marketplace.listing.offer', {
         url: '/offer',
-        templateUrl: 'app/marketplace/marketplace.listing.offer.html'
+        templateUrl: 'app/marketplace/marketplace.listing.offer.html',
+        authenticate: true
       })
       .state('marketplace.listing.financial', {
         url: '/financial',
-        templateUrl: 'app/marketplace/marketplace.listing.financial.html'
+        templateUrl: 'app/marketplace/marketplace.listing.financial.html',
+        authenticate: true
       })
       .state('marketplace.listing.discussion', {
         url: '/discussion',
-        templateUrl: 'app/marketplace/marketplace.listing.discussion.html'
+        templateUrl: 'app/marketplace/marketplace.listing.discussion.html',
+        authenticate: true
       });
   });

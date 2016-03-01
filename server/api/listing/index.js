@@ -10,6 +10,10 @@ router.get('/status/:status', controller.status);
 router.get('/:id', controller.show);
 router.post('/', controller.create);
 router.put('/:id', controller.update);
+router.put('/comment/:id', controller.comment);
+router.put('/reply/:id', controller.reply);
+router.put('/request-more/:id', controller.requestMore);
+router.put('/bookmark/:id', controller.bookmark);
 router.patch('/:id', controller.update);
 router.delete('/:id', controller.destroy);
 

@@ -9,7 +9,6 @@ import Listing from '../api/listing/listing.model';
 import Faq from '../api/faq/faq.model';
 
 var newUser = new User({
-  _id: '102',
   provider: 'local',
   role: 'investor',
   name: {
@@ -23,7 +22,6 @@ var newUser = new User({
 User.find({}).remove()
   .then(() => {
     User.create({
-      _id: '103',
       provider: 'local',
       role: 'borrower',
       name: {
@@ -35,7 +33,6 @@ User.find({}).remove()
     },
     newUser,
     {
-      _id: '101',
       provider: 'local',
       role: 'admin',
       name: {

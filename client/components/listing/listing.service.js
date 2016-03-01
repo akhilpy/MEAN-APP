@@ -169,6 +169,91 @@ function ListingService($location, $cookies, $q, $resource, $http, Auth, User) {
     },
 
 
+
+    /**
+     * Add a new comment
+     *
+     * @return {String}
+     */
+    addComment(comment, listing) {
+      return Auth.getCurrentUser(null)
+        .then(user => {
+          return $http.put('/api/listings/comment/' + listing._id, {
+            user: user,
+            comment: comment,
+            listing: listing
+          });
+        })
+        .catch(err => {
+          console.log(err.message);
+        });
+    },
+
+
+
+
+    /**
+     * Add a new comment reply
+     *
+     * @return {String}
+     */
+    addReply(listing, comment, reply) {
+      return Auth.getCurrentUser(null)
+        .then(user => {
+          return $http.put('/api/listings/reply/' + listing._id, {
+            user: user,
+            comment: comment,
+            reply: reply
+          });
+        })
+        .catch(err => {
+          console.log(err.message);
+        });
+    },
+
+
+
+
+    /**
+     * Request more details on a listing
+     *
+     * @return {String}
+     */
+    requestMore(listing) {
+      return Auth.getCurrentUser(null)
+        .then(user => {
+          return $http.put('/api/listings/request-more/' + listing._id, {
+            user: user
+          });
+        })
+        .catch(err => {
+          console.log(err.message);
+        });
+    },
+
+
+
+
+    /**
+     * Add a listing to your bookmarks
+     *
+     * @return {String}
+     */
+    addBookmark(listing) {
+      return Auth.getCurrentUser(null)
+        .then(user => {
+          return $http.put('/api/listings/bookmark/' + listing._id, {
+            user: user
+          });
+        })
+        .catch(err => {
+          console.log(err.message);
+        });
+    },
+
+
+
+
     /**
      * Save listing page
      *

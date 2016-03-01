@@ -10,15 +10,15 @@
         <ul class="form__rows">
           <li class="form__row">
             <label for="">Question Title (Maximum Length: 80)</label>
-            <input type="text">
+            <input type="text" ng-model="vm.newComment.title">
           </li><!-- /.form__row -->
           <li class="form__row">
             <label for="">Topic Tags</label>
-            <input type="text">
+            <input type="text" ng-model="vm.newComment.tags">
           </li><!-- /.form__row -->
           <li class="form__row">
             <label for="">
-              <input type="checkbox">
+              <input type="checkbox" ng-model="vm.newComment.notifications">
               Notify me of follow-up replies via email
             </label>
           </li><!-- /.form__row -->
@@ -26,8 +26,8 @@
       </div><!-- /.discussion-question__form--details -->
       <div class="discussion-question__form--question">
         <label for="">Question</label>
-        <textarea></textarea>
-        <button>Submit Question</button>
+        <textarea ng-model="vm.newComment.text"></textarea>
+        <button ng-click="vm.addComment()">Submit Question</button>
       </div><!-- /.discussion-question__form--question -->
     </form><!-- /.discussion-question__form -->
   </div><!-- /.discussion-question -->
@@ -44,7 +44,7 @@
     <form class="discussion-search__form">
       <label for="">Search Topic or Keyword</label>
       <div class="discussion-search__form--fields">
-        <input class="discussion-search__form--search" type="text">
+        <input class="discussion-search__form--search" type="text" ng-model="searchTerm">
         <button class="discussion-search__form--submit">Search</button>
       </div><!-- /.discussion-search__form--fields -->
     </form><!-- /.discussion-search__form -->
@@ -52,21 +52,32 @@
 
   <div class="discussion">
     <ul class="discussion__list">
-      <li class="discussion__comment--wrapper" ng-repeat="comment in vm.currentListing.comments">
+      <li class="discussion__comment--wrapper" ng-repeat="comment in vm.currentListing.comments | filter: searchTerm track by comment._id">
         <div class="discussion__comment">
-          <a class="discussion__comment--toggle" href="#" ng-click="hideComments = !hideComments"><i class="fa fa-{{hideComments ? 'times' : 'plus'}}"></i></a>
+          <a class="discussion__comment--toggle" href="#" ng-click="comment.hideComments = !comment.hideComments"><i class="fa fa-{{comment.hideComments ? 'times' : 'plus'}}"></i></a>
+          <p><span>{{comment.title}}</span></p>
           <p>{{comment.text}}</p>
           <div class="discussion__comment--meta">
-            <p><strong>{{comment.user.username}}</strong> {{comment.date | date}} <a class="discussion__comment--reply" href="#">Reply</a> <a class="discussion__comment--view" href="#" ng-click="hideComments = !hideComments">{{hideComments ? 'Hide Comments' : 'View Comments'}}</a> <span class="tag" ng-repeat="tag in comment.tags">{{tag}}</span></p>
+            <p>
+              <strong>{{comment.user.username}}</strong> {{comment.date | date}}
+              <a class="discussion__comment--reply" href="#" ng-click="comment.hideReply = !comment.hideReply">{{comment.hideReply ? 'Hide Reply' : 'Reply'}}</a>
+              <a class="discussion__comment--view" href="#" ng-click="comment.hideComments = !comment.hideComments">{{comment.hideComments ? 'Hide Comments' : 'View Comments'}}</a>
+              <span class="tag" ng-repeat="tag in comment.tags track by $index">{{tag}}</span>
+            </p>
           </div><!-- /.discussion__comment--meta -->
         </div><!-- /.discussion__comment -->
 
-        <ul ng-show="hideComments" class="discussion__replies">
+        <div ng-show="comment.hideReply" class="discussion__reply">
+          <input class="discussion__reply--text" type="text" ng-model="comment.newReply.text">
+          <button class="discussion__reply--button" ng-click="vm.addReply(comment)">Reply</button>
+        </div><!-- /.discussion__reply -->
+
+        <ul ng-show="comment.hideComments" class="discussion__replies">
           <li class="discussion__reply" ng-repeat="reply in comment.replies">
             <div class="discussion__comment">
               <p>{{reply.text}}</p>
               <div class="discussion__comment--meta">
-                <p><strong>{{reply.user.username}}</strong> {{reply.date | date}} <a class="discussion__comment--reply" href="#">Reply</a></p>
+                <p><strong>{{reply.user.username}}</strong> {{reply.date | date}}</p>
               </div><!-- /.discussion__comment--meta -->
             </div><!-- /.discussion__comment -->
           </li><!-- /.discussion__reply -->

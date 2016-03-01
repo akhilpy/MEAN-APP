@@ -12,8 +12,12 @@
       <div class="listing-hero__actions">
         <a href="#" ng-click="vm.makeOffer()" class="button">Make an Offer</a>
         <ul class="listing-hero__actions--secondary">
-          <li><a href="#" ng-click="vm.bookmark()" class="button">Bookmark</a></li>
-          <li><a href="#" ng-click="vm.requestDetails()" class="button">Request Details</a></li>
+          <li>
+            <a href="#" ng-click="vm.bookmark()" ng-disabled="vm.bookmarked" class="button">{{vm.bookmarked ? 'Bookmarked' : 'Bookmark'}}</a>
+          </li>
+          <li>
+            <a href="#" ng-click="vm.requestDetails()" ng-disabled="vm.requested" class="button">{{vm.requested ? 'Request Pending' : 'Request Details'}}</a>
+          </li>
         </ul><!-- /.listing-hero__actions--secondary -->
       </div><!-- /.listing-hero__actions -->
     </div><!-- /.listing-hero__content -->

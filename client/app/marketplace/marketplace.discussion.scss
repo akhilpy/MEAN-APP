@@ -68,7 +68,7 @@
   background: $color-grey-pale;
   position: relative;
 
-  > p {
+  span {
     @include font-primary(600);
     color: $color-slate-dark;
   }
@@ -120,6 +120,20 @@
   }
 }
 
+.discussion__reply {
+  display: flex;
+  padding: rem(10);
+}
+
+.discussion__reply--text {
+  flex: 5;
+  margin-right: rem(10);
+}
+
+.discussion__reply--button {
+  flex: 1;
+}
+
 .discussion__replies {
   @include list-zero;
 }
@@ -131,6 +145,7 @@
     margin-left: rem(40);
     background: none;
     border-bottom: 1px solid $color-grey-pale;
+    width: 100%;
   }
 
   &:last-child {

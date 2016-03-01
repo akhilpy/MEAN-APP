@@ -10,6 +10,7 @@
 'use strict';
 
 import _ from 'lodash';
+import mongoose from 'mongoose';
 import Listing from './listing.model';
 import User from '../user/user.model';
 
@@ -86,10 +87,10 @@ export function show(req, res) {
 
 // Creates a new Listing in the DB
 export function create(req, res) {
-  var userId = req.body.user._id;
+  var userID = req.body.user._id;
   var newListing = new Listing(req.body.listing);
 
-  User.findByIdAsync(userId)
+  User.findByIdAsync(userID)
     .then(user => {
       user.borrower.listings.push(newListing);
       return Listing.createAsync(newListing).then(listing => {
@@ -113,6 +114,117 @@ export function update(req, res) {
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
+
+// Updates an existing Listing in the DB with comments
+export function comment(req, res) {
+  if (req.body._id) {
+    delete req.body._id;
+  }
+
+  var userID = req.body.user._id;
+  var newComment = req.body.comment;
+  var listing = req.body.listing;
+
+  User.findByIdAsync(userID)
+    .then(user => {
+      newComment.user = user._id;
+      Listing.findByIdAndUpdate(req.params.id,
+        {$push: {comments: newComment}},
+        {safe: true, upsert: true},
+        function(err, listing) {
+          if(err) {
+            console.log(err);
+          }
+          respondWithResult(listing);
+        });
+    });
+}
+
+
+
+
+// Updates an existing Listing in the DB with comments
+export function reply(req, res) {
+  if (req.body._id) {
+    delete req.body._id;
+  }
+
+  var userID = req.body.user._id;
+  var comment = req.body.comment;
+  var reply = req.body.reply;
+
+  User.findByIdAsync(userID)
+    .then(user => {
+      reply.user = user._id;
+
+      Listing.update(
+        {comments: {"$elemMatch": {_id: comment._id}}},
+        {$push: { "comments.$.replies":  reply }},
+        {upsert: false, safe: true},
+        function(err, listing) {
+          if(err) {
+            console.log(err);
+          }
+        }
+      );
+    });
+}
+
+
+
+// Updates an existing Listing with users that want more information
+export function requestMore(req, res) {
+  if (req.body._id) {
+    delete req.body._id;
+  }
+
+  var userID = req.body.user._id;
+  var requester = {};
+
+  User.findByIdAsync(userID)
+    .then(user => {
+      requester.user = user._id;
+      Listing.findByIdAndUpdate(req.params.id,
+        {$push: {infoRequest: requester}},
+        {safe: true, upsert: true},
+        function(err, listing) {
+          if(err) {
+            console.log(err);
+          }
+          respondWithResult(listing);
+        });
+    });
+}
+
+
+
+
+// Updates an existing Listing in the DB with comments
+export function bookmark(req, res) {
+  if (req.body._id) {
+    delete req.body._id;
+  }
+
+  var userID = req.body.user._id;
+  var bookmark = {};
+
+  Listing.findByIdAsync(req.params.id)
+    .then(listing => {
+      bookmark.listing = listing._id;
+      User.findByIdAndUpdate(userID,
+        {$push: {bookmarks: bookmark}},
+        {safe: true, upsert: true},
+        function(err, user) {
+          if(err) {
+            console.log(err);
+          }
+          respondWithResult(user);
+        });
+    });
+}
+
+
+
 
 // Deletes a Listing from the DB
 export function destroy(req, res) {

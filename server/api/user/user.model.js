@@ -12,8 +12,8 @@ import {Schema} from 'mongoose';
 import Listing from '../listing/listing.model';
 
 import config from '../../config/environment';
-var connection = mongoose.createConnection(config.mongo.uri);
-autoIncrement.initialize(connection);
+
+var autopopulate = require('mongoose-autopopulate');
 
 const authTypes = ['github', 'twitter', 'facebook', 'google'];
 
@@ -23,6 +23,17 @@ var address = {
 	province: String,
 	postal: String
 };
+
+var bookmark = {
+	listing: {
+		type: Schema.ObjectId,
+		ref: 'Listing'
+	},
+	date: {
+		type: Date,
+		default: Date.now
+	}
+}
 
 var UserSchema = new Schema({
   name: {
@@ -75,7 +86,8 @@ var UserSchema = new Schema({
   salt: String,
   facebook: {},
   google: {},
-  github: {}
+  github: {},
+	bookmarks: [bookmark]
 });
 
 /**
@@ -277,6 +289,5 @@ UserSchema.methods = {
   }
 };
 
-UserSchema.plugin(autoIncrement.plugin, { model: 'User', startAt: 100 });
+UserSchema.plugin(autopopulate);
 export default mongoose.model('User', UserSchema);
-export default connection.model('User', UserSchema);
