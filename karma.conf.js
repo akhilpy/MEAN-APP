@@ -21,7 +21,7 @@ module.exports = function(config) {
       'client/bower_components/angular-socket-io/socket.js',
       'client/bower_components/angular-ui-router/release/angular-ui-router.js',
       'client/bower_components/angular-validation-match/dist/angular-validation-match.min.js',
-      'client/bower_components/chosen/chosen.jquery.min.js',
+      'client/bower_components/chosen/chosen.jquery.js',
       'client/bower_components/rangy/rangy-core.js',
       'client/bower_components/rangy/rangy-classapplier.js',
       'client/bower_components/rangy/rangy-highlighter.js',
@@ -45,6 +45,7 @@ module.exports = function(config) {
       'client/bower_components/angular-moment/angular-moment.js',
       'client/bower_components/angular-animate/angular-animate.js',
       'client/bower_components/v-accordion/dist/v-accordion.js',
+      'client/bower_components/angular-breadcrumb/release/angular-breadcrumb.js',
       'client/bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'node_modules/socket.io-client/socket.io.js',
