@@ -4,6 +4,10 @@
   }
 }
 
+.dashboard__main {
+  width: 100%;
+}
+
 .dashboard--details__wrapper {
   background-color: $color-slate-dark;
   background-image: linear-gradient(to right, $color-slate-med, $color-slate-dark);

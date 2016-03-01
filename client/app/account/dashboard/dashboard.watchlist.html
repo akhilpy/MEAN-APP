@@ -1,1 +1,18 @@
-<p>This is the account watchlist</p>
+<p class="dashboard__main--intro">Your bank account must be verified and transactions can take up to three business days to complete. Check your email for more information on verifying your bank account.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th><a href="#">Date</a></th>
+      <th><a href="#">Listing</a></th>
+      <th><a href="#">Actions</a></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="bookmark in vm.watchlist">
+      <td>{{bookmark.date | date}}</td>
+      <td><strong>{{bookmark.listing.general.doingBusinessName}}:</strong> {{bookmark.listing.details.title}}</td>
+      <td><a href="/marketplace/listing/{{bookmark.listing._id}}">View</a></td>
+    </tr>
+  </tbody>
+</table>

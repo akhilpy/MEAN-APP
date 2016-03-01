@@ -5,6 +5,9 @@ import Listing from '../listing/listing.model';
 import passport from 'passport';
 import config from '../../config/environment';
 import jwt from 'jsonwebtoken';
+import mongoose from 'mongoose';
+
+var deepPopulate = require('mongoose-deep-populate')(mongoose);
 
 function validationError(res, statusCode) {
   statusCode = statusCode || 422;
@@ -143,6 +146,26 @@ export function me(req, res, next) {
 
   User.findOneAsync({ _id: userId }, '-salt -password')
     .then(user => { // don't ever give out the password or salt
+      if (!user) {
+        return res.status(401).end();
+      }
+      res.json(user);
+    })
+    .catch(err => next(err));
+}
+
+
+
+/**
+ * Get my bookmarks
+ */
+export function bookmarks(req, res, next) {
+  var userId = req.user._id;
+
+  User.findOne({ _id: userId })
+    .deepPopulate('bookmarks.listing')
+    .execAsync()
+    .then(user => {
       if (!user) {
         return res.status(401).end();
       }

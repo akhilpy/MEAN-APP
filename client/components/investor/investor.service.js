@@ -2,7 +2,7 @@
 
 (function() {
 
-function InvestorService($location, $cookies, User) {
+function InvestorService($location, $cookies, $http, User, Auth) {
   var currentUser = {};
 
   if ($cookies.get('token') && $location.path() !== '/logout') {
@@ -85,7 +85,7 @@ function InvestorService($location, $cookies, User) {
     },
 
     /**
-     * Get late payments
+     * Get statements
      *
      * @return {String}
      */
@@ -133,6 +133,21 @@ function InvestorService($location, $cookies, User) {
         }
       ];
       return statements;
+    },
+
+    /**
+     * Get bookmarks
+     *
+     * @return {String}
+     */
+    getBookmarks() {
+      return Auth.getCurrentUser(null)
+        .then(user => {
+          return $http.get('/api/users/' + user._id + '/bookmarks');
+        })
+        .catch(err => {
+          console.log(err.message);
+        });
     }
 
   };

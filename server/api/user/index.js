@@ -12,6 +12,7 @@ router.get('/me', auth.isAuthenticated(), controller.me);
 router.get('/role/:role', auth.hasRole('admin'), controller.role);
 router.put('/:id', auth.isAuthenticated(), controller.update);
 router.get('/:id', auth.isAuthenticated(), controller.show);
+router.get('/:id/bookmarks', auth.isAuthenticated(), controller.bookmarks);
 router.put('/:id/password', auth.isAuthenticated(), controller.changePassword);
 router.post('/', controller.create);
 

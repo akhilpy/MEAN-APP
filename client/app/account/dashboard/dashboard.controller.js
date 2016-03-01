@@ -3,7 +3,7 @@
 (function() {
 
 class DashboardController {
-  constructor(Auth, Investor) {
+  constructor(Auth, Investor, bookmarks) {
     this.errors = {};
     this.submitted = false;
 
@@ -14,6 +14,12 @@ class DashboardController {
     this.isBorrower = Auth.isBorrower;
     this.isInvestor = Auth.isInvestor;
     this.statements = Investor.getStatements();
+
+    if(bookmarks.data) {
+      this.watchlist = bookmarks.data.bookmarks;
+    } else {
+      this.watchlist = [];
+    }
   }
 
   changePassword(form) {

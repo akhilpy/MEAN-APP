@@ -1,9 +1,0 @@
-<ul>
-  <li>Name: {{ vm.getCurrentUser().name.first }} {{ vm.getCurrentUser().name.last }}</li>
-  <li>Role: {{ vm.getCurrentUser().role }}</li>
-  <li>Email: {{ vm.getCurrentUser().email }}</li>
-</ul>
-
-<a ui-sref="profile">Edit Profile</a>
-
-<a ng-show="vm.isBorrower()" ui-sref="listing.general">Listing Application</a>

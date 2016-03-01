@@ -14,6 +14,7 @@ import Listing from '../listing/listing.model';
 import config from '../../config/environment';
 
 var autopopulate = require('mongoose-autopopulate');
+var deepPopulate = require('mongoose-deep-populate')(mongoose);
 
 const authTypes = ['github', 'twitter', 'facebook', 'google'];
 
@@ -289,5 +290,6 @@ UserSchema.methods = {
   }
 };
 
+UserSchema.plugin(deepPopulate);
 UserSchema.plugin(autopopulate);
 export default mongoose.model('User', UserSchema);
