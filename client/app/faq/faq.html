@@ -23,7 +23,7 @@
                 <form class="discussion-search__form">
                   <label for="">Search Topic or Keyword</label>
                   <div class="discussion-search__form--fields">
-                    <input class="discussion-search__form--search" type="text">
+                    <input class="discussion-search__form--search" type="text" ng-model="searchTerm">
                     <button class="discussion-search__form--submit">Search</button>
                   </div><!-- /.discussion-search__form--fields -->
                 </form><!-- /.discussion-search__form -->
@@ -36,7 +36,7 @@
               </ul><!-- /.dashboard__navigation--list -->
 
               <ul class="faq__list">
-                <li class="faq__wrapper" ng-repeat="faq in faqs.allFaqs">
+                <li class="faq__wrapper" ng-repeat="faq in faqs.allFaqs | filter: searchTerm">
                   <a href="#" tooltip="{{faq.info}}">{{faq.name}}</a>
                   <h4 class="faq__question"><a href="#" ng-click="hideAnswer = !hideAnswer" ng-class="{active: hideAnswer}">{{faq.question}}</a></h4>
                   <div class="faq__answer" ng-bind-html="faq.answer" ng-show="hideAnswer"></div>

@@ -7,7 +7,7 @@ class MarketplaceListingController {
     var vm = this;
     vm.ListingService = ListingService;
     vm.Auth = Auth;
-    vm.currentListing = listing.data
+    vm.currentListing = listing.data;
     vm.currentListing.link = window.location.href;
     vm.currentUser = Auth.getCurrentUser();
     vm.requested = false;
@@ -15,7 +15,7 @@ class MarketplaceListingController {
 
     // check if user has already requested more info
     if(vm.currentListing.infoRequest.length > 0) {
-      angular.forEach(vm.currentListing.infoRequest, function(request, key) {
+      angular.forEach(vm.currentListing.infoRequest, function(request) {
         if(request.user._id === vm.currentUser._id) {
           vm.requested = true;
         }
@@ -24,7 +24,7 @@ class MarketplaceListingController {
 
     // check if user has already bookmarked the listing
     if(vm.currentUser.bookmarks.length > 0) {
-      angular.forEach(vm.currentUser.bookmarks, function(bookmark, key) {
+      angular.forEach(vm.currentUser.bookmarks, function(bookmark) {
         if(bookmark.listing === vm.currentListing._id) {
           vm.bookmarked = true;
         }
@@ -61,7 +61,7 @@ class MarketplaceListingController {
 
       if(vm.newComment.tags) {
         var tags = vm.newComment.tags.split(',');
-        tags.forEach(function(value, index) {
+        tags.forEach(function(value) {
           value.trim();
         });
         vm.newComment.tags = tags;
