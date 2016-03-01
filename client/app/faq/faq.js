@@ -7,6 +7,10 @@ angular.module('investnextdoorCaApp')
         url: '/faq',
         templateUrl: 'app/faq/faq.html',
         controller: 'FaqController',
-        controllerAs: 'faqs'
+        controllerAs: 'faqs',
+        ncyBreadcrumb: {
+          label: 'FAQs',
+          parent: 'main'
+        }
       });
   });

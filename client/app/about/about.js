@@ -7,6 +7,10 @@ angular.module('investnextdoorCaApp')
         url: '/about',
         templateUrl: 'app/about/about.html',
         controller: 'AboutController',
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        ncyBreadcrumb: {
+          label: 'About',
+          parent: 'main'
+        }
       });
   });

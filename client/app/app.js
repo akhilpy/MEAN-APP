@@ -18,9 +18,10 @@ angular.module('investnextdoorCaApp', [
   '720kb.socialshare',
   'angularMoment',
   'ngAnimate',
-  'vAccordion'
+  'vAccordion',
+  'ncy-angular-breadcrumb'
 ])
-  .config(function($urlRouterProvider, $locationProvider, formlyConfigProvider, formlyFieldsProvider) {
+  .config(function($urlRouterProvider, $locationProvider, formlyConfigProvider, formlyFieldsProvider, $breadcrumbProvider) {
     $urlRouterProvider.otherwise('/');
 
     $locationProvider.html5Mode(true);
@@ -30,4 +31,8 @@ angular.module('investnextdoorCaApp', [
     formlyConfigProvider.setType(formlyFieldsProvider.$get().field('repeater'));
     formlyConfigProvider.setType(formlyFieldsProvider.$get().field('dropzone'));
     formlyConfigProvider.setType(formlyFieldsProvider.$get().field('maskedInput'));
+
+    $breadcrumbProvider.setOptions({
+      templateUrl: '/components/breadcrumbs/breadcrumbs.template.html'
+    });
   });
