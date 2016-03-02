@@ -17,7 +17,7 @@
           <td>{{user.email}}</td>
           <td>{{user.role}}</td>
           <td>
-            <a href="#" ng-click="vm.edit(user)" class="button small edit"><i class="fa fa-pencil"></i></a>
+            <a href="#" ui-sref="admin.edituser.profile({id: user._id})" class="button small edit"><i class="fa fa-pencil"></i></a>
             <a href="#" ng-click="vm.delete(user)" class="button small warning"><i class="fa fa-times"></i></a>
           </td>
         </tr>

@@ -18,6 +18,12 @@ function UserResource($resource) {
         id: 'me'
       }
     },
+    getOne: {
+      method: 'GET',
+      params: {
+        id: '@_id'
+      }
+    },
     role: {
       method: 'GET',
       isArray: true,

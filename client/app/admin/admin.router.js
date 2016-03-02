@@ -132,4 +132,24 @@ angular.module('investnextdoorCaApp.admin')
           ]
         }
       })
+      .state('admin.edituser', {
+        url: '/user',
+        templateUrl: 'app/admin/admin.edituser.html',
+        authenticate: 'admin',
+        abstract: true
+      })
+      .state('admin.edituser.profile', {
+        url: '/:id/profile',
+        templateUrl: 'app/admin/admin.edituser.profile.html',
+        authenticate: 'admin',
+        controller: 'AdminUserController',
+        controllerAs: 'vm',
+        resolve: {
+          currentUser: ['$stateParams', 'ListingService',
+            function($stateParams, ListingService) {
+              return ListingService.getUser($stateParams.id);
+            }
+          ]
+        }
+      })
   });

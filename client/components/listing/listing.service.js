@@ -38,6 +38,17 @@ function ListingService($location, $cookies, $q, $resource, $http, Auth, User) {
      *
      * @return {String}
      */
+    getUser(userID) {
+      return User.getOne({id: userID});
+    },
+
+
+
+    /**
+     * Get users
+     *
+     * @return {String}
+     */
     getUsers(role) {
       return $http.get('/api/users/role/' + role);
     },
