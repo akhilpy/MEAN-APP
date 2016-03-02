@@ -30,13 +30,13 @@
               </div><!-- /.discussion-search -->
 
               <ul class="dashboard__navigation--list">
-                <li><a ng-click="faqs.activeFilter='General'">General</a></li>
-                <li><a ng-click="faqs.activeFilter='Business'">Business</a></li>
-                <li><a ng-click="faqs.activeFilter='Investor'">Investor</a></li>
+                <li><a ng-click="searchTerm='General'">General</a></li>
+                <li><a ng-click="searchTerm='Business'">Business</a></li>
+                <li><a ng-click="searchTerm='Investor'">Investor</a></li>
               </ul><!-- /.dashboard__navigation--list -->
 
               <ul class="faq__list">
-                <li class="faq__wrapper" ng-hide="faqs.activeFilter!=faq.category" ng-repeat="faq in faqs.allFaqs | orderBy: 'category' | filter: searchTerm">
+                <li class="faq__wrapper" ng-repeat="faq in faqs.allFaqs | orderBy: 'category' | filter: searchTerm">
                   <a href="#" tooltip="{{faq.info}}">{{faq.name}}</a>
                   <h4 class="faq__question"><a href="#" ng-click="hideAnswer = !hideAnswer" ng-class="{active: hideAnswer}">{{faq.question}}</a></h4>
                   <div class="faq__answer" ng-bind-html="faq.answer" ng-show="hideAnswer"></div>
