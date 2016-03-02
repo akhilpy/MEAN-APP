@@ -27,6 +27,7 @@ $fa-font-path: "../bower_components/font-awesome/fonts";
 @import "../sass/_elements/tables";
 @import "../sass/_elements/widgets";
 @import "../sass/_elements/accordion";
+@import "../sass/_elements/dialogs";
 
 /*==========  Parts  ==========*/
 @import "../sass/_parts/global";
@@ -69,6 +70,7 @@ $fa-font-path: "../bower_components/font-awesome/fonts";
 @import '../components/widgetBenefits/widgetBenefits.scss';
 @import '../components/widgetCalculator/widgetCalculator.scss';
 @import '../components/widgetCurrentOffers/widgetCurrentOffers.scss';
+@import '../components/widgetFinder/widgetFinder.scss';
 @import '../components/widgetOffer/widgetOffer.scss';
 @import '../components/widgetPress/widgetPress.scss';
 @import '../components/widgetYelp/widgetYelp.scss';

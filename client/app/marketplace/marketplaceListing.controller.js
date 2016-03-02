@@ -3,10 +3,12 @@
 (function() {
 
 class MarketplaceListingController {
-  constructor(listing, ListingService, Auth) {
+  constructor(listing, ListingService, Auth, $scope, ngDialog) {
     var vm = this;
     vm.ListingService = ListingService;
     vm.Auth = Auth;
+    vm.$scope = $scope;
+    vm.ngDialog = ngDialog;
     vm.currentListing = listing.data;
     vm.currentListing.link = window.location.href;
     vm.currentUser = Auth.getCurrentUser();
@@ -30,57 +32,58 @@ class MarketplaceListingController {
         }
       });
     }
+
+    vm.$scope.dialogModel = {
+      title: 'Make an Offer',
+      message: 'Details on your offer will be shown here.'
+    }
   }
 
   makeOffer() {
-    console.log('make offer');
+    this.ngDialog.open({
+      template: 'dialog.default',
+      className: 'ngdialog-theme-default',
+      scope: this.$scope
+    });
   }
 
   bookmark() {
-    var vm = this;
-
-    if(!vm.bookmarked) {
-      vm.ListingService.addBookmark(vm.currentListing);
-      vm.bookmarked = true;
+    if(!this.bookmarked) {
+      this.ListingService.addBookmark(this.currentListing);
+      this.bookmarked = true;
     }
   }
 
   requestDetails() {
-    var vm = this;
-
-    if(!vm.requested) {
-      vm.ListingService.requestMore(vm.currentListing);
-      vm.requested = true;
+    if(!this.requested) {
+      this.ListingService.requestMore(this.currentListing);
+      this.requested = true;
     }
   }
 
   addComment() {
-    var vm = this;
+    if(this.newComment) {
 
-    if(vm.newComment) {
-
-      if(vm.newComment.tags) {
-        var tags = vm.newComment.tags.split(',');
+      if(this.newComment.tags) {
+        var tags = this.newComment.tags.split(',');
         tags.forEach(function(value) {
           value.trim();
         });
-        vm.newComment.tags = tags;
+        this.newComment.tags = tags;
       }
 
-      vm.ListingService.addComment(vm.newComment, vm.currentListing);
-      vm.newComment.date = new Date();
-      vm.newComment.user = vm.currentUser;
-      vm.currentListing.comments.push(vm.newComment);
-      vm.newComment = '';
+      this.ListingService.addComment(this.newComment, this.currentListing);
+      this.newComment.date = new Date();
+      this.newComment.user = this.currentUser;
+      this.currentListing.comments.push(this.newComment);
+      this.newComment = '';
     }
   }
 
   addReply(comment) {
-    var vm = this;
-
-    vm.ListingService.addReply(vm.currentListing, comment, comment.newReply);
+    this.ListingService.addReply(this.currentListing, comment, comment.newReply);
     comment.newReply.date = new Date();
-    comment.newReply.user = vm.currentUser;
+    comment.newReply.user = this.currentUser;
     comment.replies.push(comment.newReply);
     comment.hideComments = true;
     comment.newReply = '';

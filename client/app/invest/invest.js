@@ -12,10 +12,18 @@ angular.module('investnextdoorCaApp')
       })
       .state('invest.index', {
         url: '',
-        templateUrl: 'app/invest/invest.index.html'
+        templateUrl: 'app/invest/invest.index.html',
+        ncyBreadcrumb: {
+          label: 'Invest',
+          parent: 'main'
+        }
       })
       .state('invest.welcome', {
         url: '/welcome',
-        templateUrl: 'app/invest/invest.welcome.html'
+        templateUrl: 'app/invest/invest.welcome.html',
+        ncyBreadcrumb: {
+          label: 'Welcome',
+          parent: 'invest.index'
+        }
       });
   });

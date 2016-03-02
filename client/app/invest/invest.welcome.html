@@ -29,7 +29,9 @@
                       </v-pane-header>
 
                       <v-pane-content id="{{ ::pane.id }}-content" aria-labelledby="{{ ::pane.id }}-header">
-                        <p>{{ ::pane.content }}</p>
+                        <ul ng-show="pane.list">
+                          <li ng-repeat="item in pane.list"><strong>{{ ::item.title }}:</strong> {{ ::item.content }}</li>
+                        </ul>
                       </v-pane-content>
                     </v-pane>
 

@@ -79,13 +79,15 @@
           <td>{{listing.general.address.city}} {{listing.general.address.province}}</td>
           <td>{{listing.general.industry}}</td>
           <td></td>
-          <td></td>
+          <td>{{listing.details.term}}</td>
           <td></td>
           <td></td>
           <td>
-            <a ng-show="listing.status!='approved'" ui-sref="marketplace.listing.profile({id: listing._id})" class="button small">Preview</a>
-            <a ng-show="listing.status=='review'" ng-click="vm.approve(listing._id)" class="button small">Approve</a>
-            <a ng-show="listing.status=='approved'" ui-sref="marketplace.listing.profile({id: listing._id})" class="button small">View</a>
+            <a ng-show="listing.status!='approved'" ui-sref="marketplace.listing.profile({id: listing._id})" class="button small"><i class="fa fa-eye"></i></a>
+            <a ng-show="listing.status=='review'" ng-click="vm.approve(listing._id)" class="button small"><i class="fa fa-check"></i></a>
+            <a ng-show="listing.status=='approved'" ui-sref="marketplace.listing.profile({id: listing._id})" class="button small"><i class="fa fa-eye"></i></a>
+            <a ui-sref="admin.editlisting.general({id: listing._id})" class="button small edit"><i class="fa fa-pencil"></i></a>
+            <a href="#" ng-click="admin.deleteListing(listing)" class="button small warning"><i class="fa fa-times"></i></a>
           </td>
         </tr>
       </tbody>

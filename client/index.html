@@ -19,6 +19,8 @@
       <link rel="stylesheet" href="bower_components/slick-carousel/slick/slick.css" />
       <link rel="stylesheet" href="bower_components/slick-carousel/slick/slick-theme.css" />
       <link rel="stylesheet" href="bower_components/v-accordion/dist/v-accordion.css" />
+      <link rel="stylesheet" href="bower_components/ng-dialog/css/ngDialog.css" />
+      <link rel="stylesheet" href="bower_components/ng-dialog/css/ngDialog-theme-default.css" />
       <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,client}) app/app.css -->
@@ -87,6 +89,7 @@
       <script src="bower_components/angular-animate/angular-animate.js"></script>
       <script src="bower_components/v-accordion/dist/v-accordion.js"></script>
       <script src="bower_components/angular-breadcrumb/release/angular-breadcrumb.js"></script>
+      <script src="bower_components/ng-dialog/js/ngDialog.js"></script>
       <!-- endbower -->
       <script src="socket.io-client/socket.io.js"></script>
     <!-- endbuild -->
@@ -95,15 +98,17 @@
       <!-- injector:js -->
       <script src="app/admin/admin.module.js"></script>
       <script src="components/auth/auth.module.js"></script>
+      <script src="components/templates/templates.module.js"></script>
       <script src="components/util/util.module.js"></script>
-      <script src="components/chosen/chosen.directive.js"></script>
-      <script src="app/account/listing/listing.controller.js"></script>
+      <script src="components/dateObject/dateObject.directive.js"></script>
       <script src="app/account/login/login.controller.js"></script>
       <script src="app/account/profile/profile.controller.js"></script>
       <script src="app/account/settings/settings.controller.js"></script>
       <script src="app/admin/admin.controller.js"></script>
       <script src="app/about/about.controller.js"></script>
       <script src="app/admin/admin.router.js"></script>
+      <script src="app/admin/adminListing.controller.js"></script>
+      <script src="app/admin/adminProfile.controller.js"></script>
       <script src="app/app.constant.js"></script>
       <script src="app/blog/blog.controller.js"></script>
       <script src="app/blog/blog.js"></script>
@@ -128,9 +133,9 @@
       <script src="components/auth/router.decorator.js"></script>
       <script src="components/auth/user.service.js"></script>
       <script src="components/breadcrumbs/breadcrumbs.directive.js"></script>
-      <script src="app/about/about.js"></script>
+      <script src="components/chosen/chosen.directive.js"></script>
       <script src="components/contentEditable/contentEditable.directive.js"></script>
-      <script src="components/dateObject/dateObject.directive.js"></script>
+      <script src="app/about/about.js"></script>
       <script src="components/dropzone/dropzone.directive.js"></script>
       <script src="components/dropzone/dropzone.service.js"></script>
       <script src="components/footer/footer.directive.js"></script>
@@ -142,6 +147,7 @@
       <script src="components/listing/listing.service.js"></script>
       <script src="components/listing/listingNavigation.controller.js"></script>
       <script src="components/listing/listingNavigation.directive.js"></script>
+      <script src="components/listing/listingNavigationAdmin.directive.js"></script>
       <script src="components/listingPagination/listingPagination.controller.js"></script>
       <script src="components/listingPagination/listingPagination.directive.js"></script>
       <script src="components/listingStatus/listingStatus.controller.js"></script>
@@ -155,10 +161,15 @@
       <script src="components/socket/socket.service.js"></script>
       <script src="components/team/team.service.js"></script>
       <script src="app/account/dashboard/dashboard.controller.js"></script>
+      <script src="app/account/listing/listing.controller.js"></script>
       <script src="components/util/util.service.js"></script>
       <script src="components/widgetBenefits/widgetBenefits.directive.js"></script>
       <script src="components/widgetCalculator/widgetCalculator.directive.js"></script>
+      <script src="components/widgetCurrentOffers/widgetCurrentOffers.controller.js"></script>
       <script src="components/widgetCurrentOffers/widgetCurrentOffers.directive.js"></script>
+      <script src="components/widgetFinder/widgetFinder.controller.js"></script>
+      <script src="components/widgetFinder/widgetFinder.directive.js"></script>
+      <script src="components/widgetOffer/widgetOffer.controller.js"></script>
       <script src="components/widgetOffer/widgetOffer.directive.js"></script>
       <script src="components/widgetPress/widgetPress.directive.js"></script>
       <script src="components/widgetYelp/widgetYelp.controller.js"></script>

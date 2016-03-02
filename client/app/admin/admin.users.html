@@ -1,20 +1,27 @@
-<table>
-  <thead>
-    <tr>
-      <th><a href="#">Username</a></th>
-      <th><a href="#">Name</a></th>
-      <th><a href="#">Email</a></th>
-      <th><a href="#">Role</a></th>
-      <th><a href="#">Actions</a></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr ng-repeat="user in vm.users">
-      <td>{{user.username}}</td>
-      <td>{{user.name.first}} {{user.name.last}}</td>
-      <td>{{user.email}}</td>
-      <td>{{user.role}}</td>
-      <td><a ng-click="admin.delete(user)" class="trash"><span class="fa fa-trash fa-2x"></span></a></td>
-    </tr>
-  </tbody>
-</table>
+<div class="marketplace-listings__wrapper">
+  <div class="marketplace-listings">
+    <table>
+      <thead>
+        <tr>
+          <th><a href="#">Username</a></th>
+          <th><a href="#">Name</a></th>
+          <th><a href="#">Email</a></th>
+          <th><a href="#">Role</a></th>
+          <th><a href="#">Actions</a></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="user in vm.users">
+          <td>{{user.username}}</td>
+          <td>{{user.name.first}} {{user.name.last}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.role}}</td>
+          <td>
+            <a href="#" ng-click="vm.edit(user)" class="button small edit"><i class="fa fa-pencil"></i></a>
+            <a href="#" ng-click="vm.delete(user)" class="button small warning"><i class="fa fa-times"></i></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div><!-- /.marketplace-listings -->
+</div><!-- /.marketplace-listings__wrapper -->

@@ -1,0 +1,35 @@
+
+.ngdialog.ngdialog-theme-default {
+
+  .ngdialog-content.ngdialog-content {
+    padding: rem(10);
+  }
+
+  .ngdialog-close {
+    &:before {
+      @include transition;
+      color: $color-white;
+    }
+
+    &:hover {
+      &:before {
+        color: $color-primary-med;
+      }
+    }
+  }
+
+  .general-content__section {
+    margin-bottom: 0;
+
+    p {
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .general-content__section--header {
+    border-radius: $border-radius $border-radius 0 0;
+    margin: rem(-10) rem(-10) rem(10) rem(-10);
+  }
+}

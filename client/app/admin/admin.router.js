@@ -9,6 +9,8 @@ angular.module('investnextdoorCaApp.admin')
         resolve: {
           listings: function() { return []; },
           users: function() { return []; },
+          currentListing: function() { return []; },
+          currentUser: function() { return []; },
           status: function($stateParams) {
             return $stateParams.status;
           },
@@ -39,6 +41,82 @@ angular.module('investnextdoorCaApp.admin')
         controllerAs: 'vm',
         templateUrl: 'app/admin/admin.listings.html',
         authenticate: 'admin'
+      })
+      .state('admin.editlisting', {
+        url: '/listing',
+        templateUrl: 'app/admin/admin.editlisting.html',
+        authenticate: 'admin',
+        abstract: true
+      })
+      .state('admin.editlisting.general', {
+        url: '/:id/general',
+        templateUrl: 'app/account/listing/listing.general.html',
+        authenticate: 'admin',
+        controller: 'AdminListingController',
+        controllerAs: 'vm',
+        resolve: {
+          currentListing: ['$stateParams', 'ListingService',
+            function($stateParams, ListingService) {
+              return ListingService.getOne($stateParams.id);
+            }
+          ]
+        }
+      })
+      .state('admin.editlisting.details', {
+        url: '/:id/details',
+        templateUrl: 'app/account/listing/listing.details.html',
+        authenticate: 'admin',
+        controller: 'AdminListingController',
+        controllerAs: 'vm',
+        resolve: {
+          currentListing: ['$stateParams', 'ListingService',
+            function($stateParams, ListingService) {
+              return ListingService.getOne($stateParams.id);
+            }
+          ]
+        }
+      })
+      .state('admin.editlisting.financial', {
+        url: '/:id/financial',
+        templateUrl: 'app/account/listing/listing.financial.html',
+        authenticate: 'admin',
+        controller: 'AdminListingController',
+        controllerAs: 'vm',
+        resolve: {
+          currentListing: ['$stateParams', 'ListingService',
+            function($stateParams, ListingService) {
+              return ListingService.getOne($stateParams.id);
+            }
+          ]
+        }
+      })
+      .state('admin.editlisting.social', {
+        url: '/:id/social',
+        templateUrl: 'app/account/listing/listing.social.html',
+        authenticate: 'admin',
+        controller: 'AdminListingController',
+        controllerAs: 'vm',
+        resolve: {
+          currentListing: ['$stateParams', 'ListingService',
+            function($stateParams, ListingService) {
+              return ListingService.getOne($stateParams.id);
+            }
+          ]
+        }
+      })
+      .state('admin.editlisting.terms', {
+        url: '/:id/terms',
+        templateUrl: 'app/account/listing/listing.terms.html',
+        authenticate: 'admin',
+        controller: 'AdminListingController',
+        controllerAs: 'vm',
+        resolve: {
+          currentListing: ['$stateParams', 'ListingService',
+            function($stateParams, ListingService) {
+              return ListingService.getOne($stateParams.id);
+            }
+          ]
+        }
       })
       .state('admin.users', {
         url: '/users/:role',

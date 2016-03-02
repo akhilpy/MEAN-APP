@@ -11,8 +11,6 @@ class FaqController {
     this.Auth = Auth;
     this.isAdmin = Auth.isAdmin;
 
-    this.activeFilter = 'General';
-
     this.categories = [
       {
         label: 'General',

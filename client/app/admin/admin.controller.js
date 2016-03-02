@@ -19,6 +19,11 @@ class AdminController {
     vm.users.splice(vm.users.indexOf(user), 1);
   }
 
+  edit(user) {
+    var vm = this;
+    alert('Editing: ' + user.name.first + ' ' + user.name.last);
+  }
+
   approve(listingID) {
     var vm = this;
     vm.ListingService.approveOne(listingID);

@@ -50,6 +50,18 @@
     > div {
       padding: rem(10);
     }
+
+    ul {
+      @include list-zero;
+
+      li {
+        margin-bottom: rem(10);
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
   }
 
 }

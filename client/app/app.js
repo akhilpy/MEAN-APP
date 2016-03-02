@@ -19,7 +19,9 @@ angular.module('investnextdoorCaApp', [
   'angularMoment',
   'ngAnimate',
   'vAccordion',
-  'ncy-angular-breadcrumb'
+  'ncy-angular-breadcrumb',
+  'ngDialog',
+  'investnextdoorCaApp.templates'
 ])
   .config(function($urlRouterProvider, $locationProvider, formlyConfigProvider, formlyFieldsProvider, $breadcrumbProvider) {
     $urlRouterProvider.otherwise('/');
@@ -33,6 +35,6 @@ angular.module('investnextdoorCaApp', [
     formlyConfigProvider.setType(formlyFieldsProvider.$get().field('maskedInput'));
 
     $breadcrumbProvider.setOptions({
-      templateUrl: '/components/breadcrumbs/breadcrumbs.template.html'
+      template: '<div id="breadcrumbs" class="breadcrumbs__wrapper" xmlns:v="http://rdf.data-vocabulary.org/#"><ul class="breadcrumbs" typeof="v:Breadcrumb"><li ng-repeat="step in steps | limitTo:(steps.length-1)"><a href="{{step.ncyBreadcrumbLink}}" ng-bind-html="step.ncyBreadcrumbLabel"></a> » </li><li ng-repeat="step in steps | limitTo:-1" class="active"><span ng-bind-html="step.ncyBreadcrumbLabel"></span></li></ul></div>'
     });
   });

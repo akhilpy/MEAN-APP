@@ -484,6 +484,20 @@ a {
       color: $color-secondary;
     }
   }
+
+  &.warning {
+    background: $color-warning;
+    &:hover {
+      background: darken($color-warning, 10%);
+    }
+  }
+
+  &.edit {
+    background: $color-secondary;
+    &:hover {
+      background: darken($color-secondary, 10%);
+    }
+  }
 }
 
 

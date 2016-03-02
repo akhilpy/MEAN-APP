@@ -5,7 +5,7 @@ angular.module('investnextdoorCaApp')
     return {
       templateUrl: 'components/widgetOffer/widgetOffer.html',
       restrict: 'EA',
-      link: function (scope, element, attrs) {
-      }
+      controller: 'WidgetOfferController',
+      controllerAs: 'widget'
     };
   });
