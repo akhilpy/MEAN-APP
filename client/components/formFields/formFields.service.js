@@ -721,31 +721,31 @@ function FormService(appConfig) {
                   options: [
                     {
                       name: '6 Months',
-                      value: '6 Months'
+                      value: 6
                     },
                     {
                       name: '9 Months',
-                      value: '9 Months'
+                      value: 9
                     },
                     {
-                      name: '1 Year',
-                      value: '1 Year'
+                      name: '12 Months',
+                      value: 12
                     },
                     {
-                      name: '2 Years',
-                      value: '2 Years'
+                      name: '24 Months',
+                      value: 24
                     },
                     {
-                      name: '3 Years',
-                      value: '3 Years'
+                      name: '36 Months',
+                      value: 36
                     },
                     {
-                      name: '4 Years',
-                      value: '4 Years'
+                      name: '48 Months',
+                      value: 48
                     },
                     {
-                      name: '5 Years',
-                      value: '5 Years'
+                      name: '60 Months',
+                      value: 60
                     }
                   ],
                   placeholder: 'Select'

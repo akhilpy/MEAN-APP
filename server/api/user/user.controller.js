@@ -98,19 +98,17 @@ export function destroy(req, res) {
  * Change a users profile
  */
 export function update(req, res, next) {
-  var userId = req.user._id;
+  var userID = req.body.user._id;
   var savedUser = req.body.user;
 
-  console.log(req.body);
-
-  User.findByIdAsync(userId)
+  User.findByIdAsync(userID)
     .then(user => {
 
       user.username = String(savedUser.username);
       user.name = savedUser.name;
       user.email = String(savedUser.email);
 
-      if( user.role === 'investor' ) {
+      if( savedUser.role === 'investor' ) {
         if(savedUser.phone) {
           user.phone = String(savedUser.phone);
         }

@@ -152,7 +152,7 @@ var ListingSchema = new Schema({
 			default: 'Marketplace'
 		},
 		usage: String,
-		term: String,
+		term: Number,
 		amount: String,
 		jobs: String,
 		loanPartners: {

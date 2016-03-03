@@ -1,1 +1,33 @@
-<p>{{vm.user.name.first}} {{vm.user.name.last}}'s profile editing goes here</p>
+<div class="admin-profile" ng-show="vm.user.role==='admin'">
+  <div class="listing-form__wrapper listing-form__investor">
+    <p>{{vm.user.role}}</p>
+  </div>
+</div><!-- /.investor-profile -->
+
+<div class="borrower-profile" ng-show="vm.user.role==='borrower'">
+  <div class="listing-form__wrapper listing-form__borrower">
+    <formly-form model="vm.user" fields="vm.borrowerProfile" form="borrower">
+      <div class="formly-submit">
+        <ul class="listing-form__pagination">
+          <li>&nbsp;</li>
+          <li><button type="submit" name="update" ng-click="vm.updateBorrower(borrower)">Save</button></li>
+          <li>&nbsp;</li>
+        </ul><!-- end of .listing-form__pagination -->
+      </div><!-- /.formly-submit -->
+    </formly-form>
+  </div>
+</div><!-- /.borrower-profile -->
+
+<div class="investor-profile" ng-show="vm.user.role==='investor'">
+  <div class="listing-form__wrapper listing-form__investor">
+    <formly-form model="vm.user" fields="vm.investorProfile" form="investor">
+      <div class="formly-submit">
+        <ul class="listing-form__pagination">
+          <li>&nbsp;</li>
+          <li><button type="submit" name="update" ng-click="vm.updateInvestor(investor)">Save</button></li>
+          <li>&nbsp;</li>
+        </ul><!-- end of .listing-form__pagination -->
+      </div><!-- /.formly-submit -->
+    </formly-form>
+  </div>
+</div><!-- /.investor-profile -->
