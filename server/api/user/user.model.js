@@ -5,13 +5,9 @@ import crypto from 'crypto';
 import mongoose from 'mongoose';
 mongoose.Promise = require('bluebird');
 
-var autoIncrement = require('mongoose-auto-increment');
 var shortid = require('shortid');
 
 import {Schema} from 'mongoose';
-import Listing from '../listing/listing.model';
-
-import config from '../../config/environment';
 
 var autopopulate = require('mongoose-autopopulate');
 var deepPopulate = require('mongoose-deep-populate')(mongoose);
@@ -34,7 +30,7 @@ var bookmark = {
 		type: Date,
 		default: Date.now
 	}
-}
+};
 
 var UserSchema = new Schema({
   name: {
@@ -158,6 +154,26 @@ UserSchema
         throw err;
       });
   }, 'The specified email address is already in use.');
+
+	// Validate username is not taken
+	UserSchema
+	  .path('username')
+	  .validate(function(value, respond) {
+	    var self = this;
+	    return this.constructor.findOneAsync({ username: value })
+	      .then(function(user) {
+	        if (user) {
+	          if (self.id === user.id) {
+	            return respond(true);
+	          }
+	          return respond(false);
+	        }
+	        return respond(true);
+	      })
+	      .catch(function(err) {
+	        throw err;
+	      });
+	  }, 'The specified username address is already in use.');
 
 var validatePresenceOf = function(value) {
   return value && value.length;
