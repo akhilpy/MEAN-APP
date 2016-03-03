@@ -102,7 +102,14 @@ angular.module('investnextdoorCaApp')
         templateUrl: 'app/account/profile/profile.html',
         controller: 'ProfileController',
         controllerAs: 'profile',
-        authenticate: true
+        authenticate: true,
+        resolve: {
+          currentUser: ['ListingService',
+            function(ListingService) {
+              return ListingService.getCurrentUser();
+            }
+          ]
+        },
       })
       .state('listing', {
         url: '/account/listing',

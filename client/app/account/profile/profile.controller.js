@@ -3,7 +3,7 @@
 (function() {
 
 class ProfileController {
-  constructor($http, Auth, $state, appConfig, Form) {
+  constructor($http, Auth, $state, appConfig, Form, currentUser) {
     this.$http = $http;
     this.$state = $state;
     this.errors = {};
@@ -16,7 +16,7 @@ class ProfileController {
     this.isAdmin = Auth.isAdmin;
     this.isBorrower = Auth.isBorrower;
     this.isInvestor = Auth.isInvestor;
-    this.user = Auth.getCurrentUser();
+    this.user = currentUser;
 
     this.Form = Form;
 
@@ -25,84 +25,55 @@ class ProfileController {
   }
 
   changePassword(form) {
-    this.submitted = true;
+    var vm = this;
+    vm.submitted = true;
 
     if (form.$valid) {
-      this.Auth.changePassword(this.user.oldPassword, this.user.newPassword)
+      vm.Auth.changePassword(vm.user.oldPassword, vm.user.newPassword)
         .then(() => {
-          this.message = 'Password successfully changed.';
+          vm.message = 'Password successfully changed.';
         })
         .catch(() => {
           form.password.$setValidity('mongoose', false);
-          this.errors.other = 'Incorrect password';
-          this.message = '';
+          vm.errors.other = 'Incorrect password';
+          vm.message = '';
         });
     }
   }
 
   updateInvestor(form) {
+    var vm = this;
     var address = {};
     var investor = {};
 
-    this.submitted = true;
-
-    if( this.user.address ) {
-      address = {
-        street: this.user.address.street,
-        city: this.user.address.city,
-        province: this.user.address.province,
-        postal: this.user.address.postal
-      };
-    }
-
-    if( this.user.investor ) {
-      investor = {
-        increase: this.user.investor.increase,
-        notifications: this.user.investor.notifications,
-        notes: this.user.investor.notes
-      };
-    }
+    vm.submitted = true;
 
     if (form.$valid) {
-      this.$http.put('/api/users/' + this.user._id, {
-        username: this.user.username,
-        email: this.user.email,
-        name: {
-          first: this.user.name.first,
-          last: this.user.name.last
-        },
-        phone: this.user.phone,
-        social: this.user.social,
-        dob: this.user.dob,
-        address: address,
-        investor: investor
+      vm.$http.put('/api/users/' + vm.user._id, {
+        user: vm.user
       })
       .then(() => {
-        this.$state.go('dashboard.index');
+        vm.$state.go('dashboard.index');
       })
       .catch(err => {
-        this.errors.other = err.message;
+        vm.errors.other = err.message;
       });
     }
   }
 
   updateBorrower(form) {
-    this.submitted = true;
+    var vm = this;
+    vm.submitted = true;
 
     if (form.$valid) {
-      this.$http.put('/api/users/' + this.user._id, {
-        username: this.user.username,
-        email: this.user.email,
-        name: {
-          first: this.user.name.first,
-          last: this.user.name.last
-        }
+      vm.$http.put('/api/users/' + vm.user._id, {
+        user: vm.user
       })
       .then(() => {
-        this.$state.go('dashboard.index');
+        vm.$state.go('dashboard.index');
       })
       .catch(err => {
-        this.errors.other = err.message;
+        vm.errors.other = err.message;
       });
     }
   }

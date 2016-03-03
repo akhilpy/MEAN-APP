@@ -221,7 +221,7 @@ function FormService(appConfig) {
               key: 'dob',
               templateOptions: {
                 label: 'Date of Birth',
-                placeholder: 'mm-dd-yyyy',
+                placeholder: '',
                 description: 'We need your birth date for validation purposes.'
               }
             },

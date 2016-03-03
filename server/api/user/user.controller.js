@@ -99,34 +99,37 @@ export function destroy(req, res) {
  */
 export function update(req, res, next) {
   var userId = req.user._id;
+  var savedUser = req.body.user;
+
+  console.log(req.body);
 
   User.findByIdAsync(userId)
     .then(user => {
 
-      user.username = String(req.body.username);
-      if( req.body.name ) {
-        user.name = {
-          first: String(req.body.name.first),
-          last: String(req.body.name.last)
-        }
-      }
-      user.email = String(req.body.email);
+      user.username = String(savedUser.username);
+      user.name = savedUser.name;
+      user.email = String(savedUser.email);
 
       if( user.role === 'investor' ) {
-        user.phone = String(req.body.phone);
-        user.dob = String(req.body.dob);
-        user.social = String(req.body.social);
-        user.address = {
-          street: String(req.body.address.street),
-          city: String(req.body.address.city),
-          province: String(req.body.address.province),
-          postal: String(req.body.address.postal)
-        };
-        user.investor = {
-          increase: String(req.body.investor.increase),
-          notifications: String(req.body.investor.notifications),
-          notes: String(req.body.investor.notes)
-        };
+        if(savedUser.phone) {
+          user.phone = String(savedUser.phone);
+        }
+
+        if(savedUser.dob) {
+          user.dob = String(savedUser.dob);
+        }
+
+        if(savedUser.social) {
+          user.social = String(savedUser.social);
+        }
+
+        if(savedUser.address) {
+          user.address = savedUser.address;
+        }
+
+        if(savedUser.investor) {
+          user.investor = savedUser.investor;
+        }
       }
 
       return user.saveAsync()
