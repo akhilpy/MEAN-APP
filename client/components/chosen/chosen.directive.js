@@ -20,7 +20,8 @@ angular.module('investnextdoorCaApp')
         element.chosen({
           disable_search_threshold: attrs.disableSearchThreshold,
           placeholder_text_single: attrs.dataPlaceholder,
-          placeholder_text_multiple: attrs.dataPlaceholder
+          placeholder_text_multiple: attrs.dataPlaceholder,
+          allow_single_deselect: true
         });
       }
     };

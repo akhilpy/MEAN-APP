@@ -85,7 +85,7 @@
         </select>
       </li><!-- /.marketplace-filter__wrapper -->
       <li class="marketplace-filter__wrapper">
-        <select chosen="vm.filters.rates" data-placeholder="Interest Rate" disable_search_threshold="15" ng-options="filter.value as filter.label for filter in vm.filters.rates track by filter.value" ng-model="vm.selected.rate"></select>
+        <select chosen="vm.filters.rates" data-placeholder="Interest Rate" disable_search_threshold="15" ng-options="filter.value as filter.label for filter in vm.filters.rates track by filter.value" ng-model="filterRate.details.rate"></select>
       </li><!-- /.marketplace-filter__wrapper -->
       <li class="marketplace-filter__wrapper">
         <select chosen>
@@ -93,7 +93,7 @@
         </select>
       </li><!-- /.marketplace-filter__wrapper -->
       <li class="marketplace-filter__wrapper">
-        <select chosen="vm.filters.terms" data-placeholder="Term" disable_search_threshold="15" ng-options="filter.value as filter.label for filter in vm.filters.terms track by filter.value" ng-model="vm.selected.term"></select>
+        <select chosen="vm.filters.terms" data-placeholder="Term" disable_search_threshold="15" allow_single_deselect="true" ng-options="filter.value as filter.label for filter in vm.filters.terms track by filter.value" ng-model="filterTerm.details.term"></select>
       </li><!-- /.marketplace-filter__wrapper -->
       <li class="marketplace-filter__wrapper">
         <select chosen>
@@ -185,7 +185,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="listing in vm.allListings | orderBy:sortType:sortReverse">
+        <tr ng-repeat="listing in vm.allListings | orderBy:sortType:sortReverse | filter: filterTerm: true">
           <td>{{listing.general.businessName}}</td>
           <td>{{listing.general.address.city}} {{listing.general.address.province}}</td>
           <td>{{listing.general.industry}}</td>
