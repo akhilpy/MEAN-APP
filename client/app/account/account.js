@@ -33,14 +33,16 @@ angular.module('investnextdoorCaApp')
         url: '',
         authenticate: true,
         onEnter: function($state, Auth) {
-          var user = Auth.getCurrentUser();
-          if (user.role == 'borrower') {
-            $state.go('dashboard.borrower');
-          } else if (user.role == 'investor') {
-            $state.go('dashboard.investor.actions');
-          } else if (user.role == 'admin') {
-            $state.go('admin.index');
-          }
+          return Auth.getCurrentUser(null)
+            .then(user => {
+              if (user.role === 'borrower') {
+                $state.go('dashboard.borrower');
+              } else if (user.role === 'investor') {
+                $state.go('dashboard.investor.actions');
+              } else if (user.role === 'admin') {
+                $state.go('admin.index');
+              }
+            });
         }
       })
       .state('dashboard.borrower', {
