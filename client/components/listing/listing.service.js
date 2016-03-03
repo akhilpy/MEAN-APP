@@ -111,7 +111,7 @@ function ListingService($location, $cookies, $q, $resource, $http, Auth, User) {
           return $http.post('/api/listings', {
             user: user,
             listing: listing
-          })
+          });
         })
         .catch(err => {
           console.log(err.message);
@@ -158,25 +158,6 @@ function ListingService($location, $cookies, $q, $resource, $http, Auth, User) {
           listing.status = 'approved';
           return $http.put('/api/listings/' + listingID, listing);
         });
-    },
-
-
-
-    /**
-     * Get listing ID
-     *
-     * @return {String}
-     */
-    getID() {
-      var user = User.get(function(user) {
-        var listings = user.borrower.listings;
-
-        if( 0 >= listings.length ) {
-          return false;
-        } else {
-          return listings[0];
-        }
-      });
     },
 
 
@@ -260,6 +241,59 @@ function ListingService($location, $cookies, $q, $resource, $http, Auth, User) {
         .catch(err => {
           console.log(err.message);
         });
+    },
+
+
+
+
+    /**
+     * Get listing rates
+     *
+     * @return {String}
+     */
+    getRates() {
+      return [
+        {label: '6%', value: 6},
+        {label: '7%', value: 7},
+        {label: '8%', value: 8},
+        {label: '9%', value: 9},
+        {label: '10%', value: 10},
+        {label: '11%', value: 11},
+        {label: '12%', value: 12},
+        {label: '13%', value: 13},
+        {label: '14%', value: 14},
+        {label: '15%', value: 15},
+        {label: '16%', value: 16},
+        {label: '17%', value: 17},
+        {label: '18%', value: 18},
+        {label: '19%', value: 19},
+        {label: '20%', value: 20},
+        {label: '21%', value: 21},
+        {label: '22%', value: 22},
+        {label: '23%', value: 23},
+        {label: '24%', value: 24},
+        {label: '25%', value: 25}
+      ];
+    },
+
+
+
+
+    /**
+     * Get listing terms
+     *
+     * @return {String}
+     */
+    getTerms() {
+      return [
+        {label: '6 Months', value: 6},
+        {label: '12 Months', value: 12},
+        {label: '18 Months', value: 18},
+        {label: '24 Months', value: 24},
+        {label: '36 Months', value: 36},
+        {label: '48 Months', value: 48},
+        {label: '60 Months', value: 60}
+      ];
     },
 
 

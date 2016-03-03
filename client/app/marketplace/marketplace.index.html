@@ -85,9 +85,7 @@
         </select>
       </li><!-- /.marketplace-filter__wrapper -->
       <li class="marketplace-filter__wrapper">
-        <select chosen>
-          <option value="">Interest Rate</option>
-        </select>
+        <select chosen="vm.filters.rates" data-placeholder="Interest Rate" disable_search_threshold="15" ng-options="filter.value as filter.label for filter in vm.filters.rates track by filter.value" ng-model="vm.selected.rate"></select>
       </li><!-- /.marketplace-filter__wrapper -->
       <li class="marketplace-filter__wrapper">
         <select chosen>
@@ -95,9 +93,7 @@
         </select>
       </li><!-- /.marketplace-filter__wrapper -->
       <li class="marketplace-filter__wrapper">
-        <select chosen>
-          <option value="">Term</option>
-        </select>
+        <select chosen="vm.filters.terms" data-placeholder="Term" disable_search_threshold="15" ng-options="filter.value as filter.label for filter in vm.filters.terms track by filter.value" ng-model="vm.selected.term"></select>
       </li><!-- /.marketplace-filter__wrapper -->
       <li class="marketplace-filter__wrapper">
         <select chosen>
@@ -195,7 +191,7 @@
           <td>{{listing.general.industry}}</td>
           <td></td>
           <td></td>
-          <td></td>
+          <td>{{listing.details.term}} Months</td>
           <td></td>
           <td><a ui-sref="marketplace.listing.profile({id: listing._id})" class="button small">Details</a></td>
         </tr>
