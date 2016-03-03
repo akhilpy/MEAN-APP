@@ -80,30 +80,22 @@
     <h4>Filter Results</h4>
     <ul class="marketplace-filters__list">
       <li class="marketplace-filter__wrapper">
-        <select chosen>
-          <option value="">Distance</option>
-        </select>
+        <select chosen="vm.filters.distances" data-placeholder="Distance" disable_search_threshold="15" ng-options="filter.value as filter.label for filter in vm.filters.distances track by filter.value" ng-model="vm.filter.distance"></select>
       </li><!-- /.marketplace-filter__wrapper -->
       <li class="marketplace-filter__wrapper">
-        <select chosen="vm.filters.rates" data-placeholder="Interest Rate" disable_search_threshold="15" ng-options="filter.value as filter.label for filter in vm.filters.rates track by filter.value" ng-model="filterRate.details.rate"></select>
+        <select chosen="vm.filters.rates" data-placeholder="Interest Rate" disable_search_threshold="15" ng-options="filter.value as filter.label for filter in vm.filters.rates track by filter.value" ng-model="vm.filter.rate"></select>
       </li><!-- /.marketplace-filter__wrapper -->
       <li class="marketplace-filter__wrapper">
-        <select chosen>
-          <option value="">Minimum Amount</option>
-        </select>
+        <select chosen="vm.filters.minimums" data-placeholder="Minimum" disable_search_threshold="15" ng-options="filter.value as filter.label for filter in vm.filters.minimums track by filter.value" ng-model="vm.filter.minimum"></select>
       </li><!-- /.marketplace-filter__wrapper -->
       <li class="marketplace-filter__wrapper">
-        <select chosen="vm.filters.terms" data-placeholder="Term" disable_search_threshold="15" allow_single_deselect="true" ng-options="filter.value as filter.label for filter in vm.filters.terms track by filter.value" ng-model="filterTerm.details.term"></select>
+        <select chosen="vm.filters.terms" data-placeholder="Term" disable_search_threshold="15" ng-options="filter.value as filter.label for filter in vm.filters.terms track by filter.value" ng-model="vm.filter.term" ng-init="vm.filter.term=0"></select>
       </li><!-- /.marketplace-filter__wrapper -->
       <li class="marketplace-filter__wrapper">
-        <select chosen>
-          <option value="">Purpose</option>
-        </select>
+        <select chosen="vm.filters.purposes" data-placeholder="Purpose" disable_search_threshold="15" ng-options="filter.value as filter.label for filter in vm.filters.purposes track by filter.value" ng-model="filterPurpose.details.usage" ></select>
       </li><!-- /.marketplace-filter__wrapper -->
       <li class="marketplace-filter__wrapper">
-        <select chosen>
-          <option value="">Time Remaining</option>
-        </select>
+        <select chosen="vm.filters.times" data-placeholder="Time Remaining" disable_search_threshold="15" ng-options="filter.value as filter.label for filter in vm.filters.times track by filter.value" ng-model="vm.filter.time"></select>
       </li><!-- /.marketplace-filter__wrapper -->
     </ul><!-- /.marketplace-filters__list -->
   </div><!-- /.marketplace-filters -->
@@ -111,6 +103,10 @@
 
 <div class="marketplace-listings__wrapper">
   <div class="marketplace-listings">
+    <ul class="general-content__table-keys">
+      <li><span class="table-key table-key--live"></span> Live offers</li>
+      <li><span class="table-key table-key--risk"></span> At risk of being outbid</li>
+    </ul><!-- /.general-content__table-keys -->
     <table>
       <thead>
         <tr>
@@ -185,13 +181,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="listing in vm.allListings | orderBy:sortType:sortReverse | filter: filterTerm: true">
+        <tr ng-repeat="listing in vm.allListings | orderBy:sortType:sortReverse | filter: filterTerm(vm.filter.term) | filter: filterPurpose">
           <td>{{listing.general.businessName}}</td>
           <td>{{listing.general.address.city}} {{listing.general.address.province}}</td>
           <td>{{listing.general.industry}}</td>
           <td></td>
+          <td>{{listing.details.term}} Mo</td>
           <td></td>
-          <td>{{listing.details.term}} Months</td>
           <td></td>
           <td><a ui-sref="marketplace.listing.profile({id: listing._id})" class="button small">Details</a></td>
         </tr>

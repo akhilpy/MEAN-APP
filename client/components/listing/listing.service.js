@@ -247,12 +247,51 @@ function ListingService($location, $cookies, $q, $resource, $http, Auth, User) {
 
 
     /**
-     * Get listing rates
+     * Get listing distance options
+     *
+     * @return {String}
+     */
+    getDistance() {
+      return [
+        {label: 'Distance (All)'},
+        {label: 'Within 5 Miles', value: 5},
+        {label: 'Within 10 Miles', value: 10},
+        {label: 'Within 20 Miles', value: 20},
+        {label: 'Within 50 Miles', value: 50},
+        {label: 'Within 100 Miles', value: 100}
+      ];
+    },
+
+
+
+
+    /**
+     * Get listing minimum options
+     *
+     * @return {String}
+     */
+    getMinimum() {
+      return [
+        {label: 'Minimum Amount (All)'},
+        {label: '$500', value: 500},
+        {label: '$1,000', value: 1000},
+        {label: '$5,000', value: 5000},
+        {label: '$10,000', value: 10000},
+        {label: '$50,000', value: 50000}
+      ];
+    },
+
+
+
+
+    /**
+     * Get listing rates options
      *
      * @return {String}
      */
     getRates() {
       return [
+        {label: 'Interest Rate (All)', value: 0},
         {label: '6%', value: 6},
         {label: '7%', value: 7},
         {label: '8%', value: 8},
@@ -280,22 +319,65 @@ function ListingService($location, $cookies, $q, $resource, $http, Auth, User) {
 
 
     /**
-     * Get listing terms
+     * Get listing terms options
      *
      * @return {String}
      */
     getTerms() {
       return [
-        {label: '6 Months', value: 6},
-        {label: '12 Months', value: 12},
-        {label: '18 Months', value: 18},
-        {label: '24 Months', value: 24},
-        {label: '36 Months', value: 36},
-        {label: '48 Months', value: 48},
+        {label: 'Term (All)', value: 0},
+        {label: '6 Months+', value: 6},
+        {label: '12 Months+', value: 12},
+        {label: '18 Months+', value: 18},
+        {label: '24 Months+', value: 24},
+        {label: '36 Months+', value: 36},
+        {label: '48 Months+', value: 48},
         {label: '60 Months', value: 60}
       ];
     },
 
+
+
+
+    /**
+     * Get listing purpose options
+     *
+     * @return {String}
+     */
+    getPurposes() {
+      return [
+        {label: 'Purpose (All)'},
+        {label: 'Business Acquisition', value: 'Business Acquisition'},
+        {label: 'Business Ownership Restructure', value: 'Business Ownership Restructure'},
+        {label: 'Expansion Capital', value: 'Expansion Capital'},
+        {label: 'Business Acquisition', value: 'Business Acquisition'},
+        {label: 'Equipment', value: 'Equipment'},
+        {label: 'Inventory', value: 'Inventory'},
+        {label: 'Refinancing/Debt Consolodation', value: 'Refinancing/Debt Consolodation'},
+        {label: 'Working Capital', value: 'Working Capital'}
+      ];
+    },
+
+
+
+
+    /**
+     * Get listing time options
+     *
+     * @return {String}
+     */
+    getTimes() {
+      return [
+        {label: 'Time Remaining (All)'},
+        {label: '1 Day', value: 1},
+        {label: '5 Days', value: 5},
+        {label: '10 Days', value: 10},
+        {label: '15 Days', value: 15},
+        {label: '20 Days', value: 20},
+        {label: '25 Days', value: 25},
+        {label: '30 Days', value: 30}
+      ];
+    },
 
 
 

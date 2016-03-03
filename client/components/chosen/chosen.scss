@@ -1,0 +1,84 @@
+.chosen-container-active {
+  &.chosen-with-drop {
+    .chosen-single {
+      @include font-size;
+      box-shadow: none;
+      background: $color-white;
+      border-radius: $border-radius $border-radius 0 0;
+      border: 1px solid $color-grey-light;
+      padding: rem(10);
+      height: auto;
+      line-height: normal;
+      color: $color-grey-med;
+
+      div {
+        background: none;
+      }
+    }
+  }
+}
+
+.chosen-container-single {
+  min-width: 100%;
+  max-width: 100%;
+  .chosen-search {
+    input[type="text"] {
+      background-image: none!important; // overwrite default sprite
+      @media only screen and (-webkit-min-device-pixel-ratio:1.5),only screen and (min-resolution:144dpi),only screen and (min-resolution:1.5dppx) {
+        background-image: none!important; // overwrite default sprite
+      }
+    }
+  }
+  .chosen-single {
+    @include font-primary(300);
+    @include font-size;
+    box-shadow: none;
+    background: $color-white;
+    border-radius: $border-radius;
+    border: 1px solid $color-grey-light;
+    padding: rem(10);
+    height: auto;
+    line-height: normal;
+    color: $color-grey-med;
+    font-style: italic;
+    div {
+      width: rem(40);
+      background: none;
+      b {
+        position: relative;
+        background-image: none!important; // overwrite default sprite
+        @media only screen and (-webkit-min-device-pixel-ratio:1.5),only screen and (min-resolution:144dpi),only screen and (min-resolution:1.5dppx) {
+          background-image: none!important; // overwrite default sprite
+        }
+        &:after {
+          @include font-size(20);
+          position: absolute;
+          font-family: $font-icons;
+          content: "\f107";
+          top: rem(10);
+          left: 0;
+          right: 0;
+          color: $color-primary;
+          text-align: center;
+          font-style: normal;
+        }
+      }
+    }
+  }
+  .chosen-drop {
+    @include font-size;
+    box-shadow: none;
+    border-color: $color-grey-light;
+    border-radius: 0;
+  }
+  .chosen-results {
+    padding: 0;
+    margin: 0;
+    .active-result {
+      padding: rem(5) rem(10);
+      &.highlighted {
+        background: $color-accent;
+      }
+    }
+  }
+}
