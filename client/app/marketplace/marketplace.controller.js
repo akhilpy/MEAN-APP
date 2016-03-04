@@ -8,9 +8,9 @@ class MarketplaceController {
     vm.$scope = $scope;
     vm.allListings = listings.data;
 
-    vm.sortType = 'general.businessName';
-    vm.sortReverse = false;
-    vm.searchListings = '';
+    vm.$scope.sortType = 'general.businessName';
+    vm.$scope.sortReverse = false;
+    vm.$scope.searchListings = '';
 
     vm.filters = {
       distances: ListingService.getDistance(),

@@ -3,6 +3,7 @@
   font-size: 0;
   margin: rem(-40) rem(-40) rem(30) rem(-40);
   border-radius: $border-radius $border-radius 0 0;
+  display: flex;
 
   li {
     @include font-size;
@@ -10,7 +11,7 @@
     text-align: center;
 
     .listing-form__borrower & {
-      width: 20%;
+      flex: 1;
     }
 
     &:first-child {

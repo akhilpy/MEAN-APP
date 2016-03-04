@@ -32,6 +32,63 @@ var bookmark = {
 	}
 };
 
+var offer = {
+	date: {
+		type: Date,
+		default: Date.now
+	},
+	amount: {
+		type: Number,
+		default: 0
+	},
+	rate: {
+		type: Number,
+		default: 0
+	},
+	listing: {
+		type: Schema.ObjectId,
+		ref: 'Listing'
+	}
+}
+
+var investment = {
+	date: {
+		type: Date,
+		default: Date.now
+	},
+	amount: {
+		type: Number,
+		default: 0
+	},
+	rate: {
+		type: Number,
+		default: 0
+	},
+	listing: {
+		type: Schema.ObjectId,
+		ref: 'Listing'
+	}
+}
+
+var repayment = {
+	date: {
+		type: Date,
+		default: Date.now
+	},
+	amount: {
+		type: Number,
+		default: 0
+	},
+	rate: {
+		type: Number,
+		default: 0
+	},
+	listing: {
+		type: Schema.ObjectId,
+		ref: 'Listing'
+	}
+}
+
 var UserSchema = new Schema({
   name: {
 		first: String,
@@ -59,15 +116,15 @@ var UserSchema = new Schema({
     type: String,
     default: 'borrower'
   },
-  level : {
-		type: String,
-		default: 'basic'
-	},
-	active: {
-		type: String,
-		default: false
-	},
 	borrower: {
+		status: {
+			type: String,
+			default: 'Inactive'
+		},
+		level: {
+			type: String,
+			default: 'Standard'
+		},
 		listings: [{
 			type: Schema.ObjectId,
 			ref: 'Listing'
@@ -75,7 +132,27 @@ var UserSchema = new Schema({
 	},
 	investor: {
 		increase: Boolean,
+		status: {
+			type: String,
+			default: 'Inactive'
+		},
+		level: {
+			type: String,
+			default: 'Standard'
+		},
+		limit: {
+			type: Number,
+			default: 0
+		},
+		maximum: {
+			type: Number,
+			default: 0
+		},
+		offers: [offer],
+		investments: [investment],
+		repayments: [repayment],
 		notifications: Boolean,
+		requests: String,
 		notes: String
 	},
   password: String,

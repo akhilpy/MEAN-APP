@@ -498,6 +498,13 @@ a {
       background: darken($color-secondary, 10%);
     }
   }
+
+  &.accent {
+    background: $color-accent;
+    &:hover {
+      background: darken($color-accent, 10%);
+    }
+  }
 }
 
 

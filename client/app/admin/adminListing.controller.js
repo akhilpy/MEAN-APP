@@ -35,7 +35,8 @@ class AdminListingController {
       details: vm.Form.getListingPage('details'),
       financial: vm.Form.getListingPage('financial'),
       social: vm.Form.getListingPage('social'),
-      terms: vm.Form.getListingPage('terms')
+      terms: vm.Form.getListingPage('terms'),
+      admin: vm.Form.getListingPage('admin')
     };
 
     vm.$scope.$on('saveForm', function() {
@@ -68,20 +69,15 @@ class AdminListingController {
       savedListing.terms = vm.pageData(vm.currentListing, 'terms');
     }
 
+    if( vm.currentListing.admin ) {
+      console.log(vm.pageData(vm.currentListing, 'admin'));
+      savedListing.admin = vm.pageData(vm.currentListing, 'admin');
+    }
+
     vm.submitted = true;
     vm.ListingService.saveOne(savedListing, vm.listingID);
   }
 
-  submitListing(form) {
-    var vm = this;
-    vm.submitted = true;
-    vm.saveListing(form);
-
-    if (form.$valid) {
-      vm.ListingService.submitOne(vm.listingID);
-      vm.$state.go('dashboard.index');
-    }
-  }
 }
 
 angular.module('investnextdoorCaApp.admin')

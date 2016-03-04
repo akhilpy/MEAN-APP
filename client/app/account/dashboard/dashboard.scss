@@ -180,6 +180,15 @@
   margin-bottom: rem(20);
 }
 
+.dashboard__navigation--primary {
+  @include list-zero;
+  margin-top: rem(20);
+
+  li {
+    display: inline-block;
+  }
+}
+
 .dashboard__navigation--list {
   @include list-zero;
   font-size: 0;

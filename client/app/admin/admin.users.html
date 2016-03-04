@@ -1,27 +1,9 @@
-<div class="marketplace-listings__wrapper">
-  <div class="marketplace-listings">
-    <table>
-      <thead>
-        <tr>
-          <th><a href="#">Username</a></th>
-          <th><a href="#">Name</a></th>
-          <th><a href="#">Email</a></th>
-          <th><a href="#">Role</a></th>
-          <th><a href="#">Actions</a></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr ng-repeat="user in vm.users">
-          <td>{{user.username}}</td>
-          <td>{{user.name.first}} {{user.name.last}}</td>
-          <td>{{user.email}}</td>
-          <td>{{user.role}}</td>
-          <td>
-            <a href="#" ui-sref="admin.edituser.profile({id: user._id})" class="button small edit"><i class="fa fa-pencil"></i></a>
-            <a href="#" ng-click="vm.delete(user)" class="button small warning"><i class="fa fa-times"></i></a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div><!-- /.marketplace-listings -->
-</div><!-- /.marketplace-listings__wrapper -->
+<ul class="dashboard__navigation--list">
+  <li><a ui-sref-active="active" ui-sref="admin.users.index">All Users</a></li>
+  <li><a ui-sref-active="active" ui-sref="admin.users.role({role: 'affiliate'})">Affiliates</a></li>
+  <li><a ui-sref-active="active" ui-sref="admin.users.role({role: 'investor'})">Investors</a></li>
+  <li><a ui-sref-active="active" ui-sref="admin.users.role({role: 'borrower'})">Borrowers</a></li>
+  <li><a ui-sref-active="active" ui-sref="admin.users.role({role: 'admin'})">Adminstrators</a></li>
+</ul><!-- /.dashboard__navigation--list -->
+
+<ui-view class="admin-dashboard__main"></ui-view>

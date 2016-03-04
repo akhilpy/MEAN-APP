@@ -313,7 +313,7 @@ function FormService(appConfig) {
             {
               className: 'flex-1',
               type: 'textarea',
-              key: 'investor.notes',
+              key: 'investor.requests',
               templateOptions: {
                 label: 'Request',
                 description: 'Let us know if there is a type of investment that you are specifically looking for.'
@@ -324,6 +324,124 @@ function FormService(appConfig) {
       ];
 
     },
+
+
+
+    /**
+     * Get Investor Admin Fields
+     *
+     * @return Array
+     */
+    getInvestorAdmin() {
+      return [
+        {
+          className: 'display-flex',
+          fieldGroup: [
+            {
+              className: 'flex-1',
+              type: 'chosen',
+              key: 'investor.status',
+              templateOptions: {
+                label: 'Status',
+                labelProp: 'name',
+                valueProp: 'value',
+                options: [
+                  {
+                    name: 'Inactive',
+                    value: 'Inactive'
+                  },
+                  {
+                    name: 'Active',
+                    value: 'Active'
+                  }
+                ],
+                placeholder: 'Select'
+              },
+              expressionProperties: {
+                'templateOptions.disabled': 'formState.disabled'
+              }
+            },
+            {
+              className: 'flex-1',
+              type: 'chosen',
+              key: 'investor.level',
+              templateOptions: {
+                label: 'Level',
+                labelProp: 'name',
+                valueProp: 'value',
+                options: [
+                  {
+                    name: 'Standard',
+                    value: 'Standard'
+                  },
+                  {
+                    name: 'Accredited - Unverified',
+                    value: 'Accredited - Unverified'
+                  },
+                  {
+                    name: 'Accredited - Verified',
+                    value: 'Accredited - Verified'
+                  },
+                  {
+                    name: 'Institution',
+                    value: 'Institution'
+                  },
+                  {
+                    name: 'Out of Province',
+                    value: 'Out of Province'
+                  }
+                ],
+                placeholder: 'Select'
+              },
+              expressionProperties: {
+                'templateOptions.disabled': 'formState.disabled'
+              }
+            },
+          ]
+        },
+        {
+          className: 'display-flex',
+          fieldGroup: [
+            {
+              className: 'flex-1',
+              type: 'input',
+              key: 'investor.limit',
+              templateOptions: {
+                type: 'number',
+                label: 'Limit',
+                placeholder: '$'
+              }
+            },
+            {
+              className: 'flex-1',
+              type: 'input',
+              key: 'investor.maximum',
+              templateOptions: {
+                type: 'number',
+                label: 'Maximum Bid',
+                placeholder: '$'
+              }
+            }
+          ]
+        },
+        {
+          className: 'display-flex',
+          fieldGroup: [
+            {
+              className: 'flex-1',
+              type: 'textarea',
+              key: 'investor.notes',
+              templateOptions: {
+                label: 'Notes',
+                description: ''
+              }
+            }
+          ]
+        }
+      ];
+
+    },
+
 
 
     /**
@@ -1436,6 +1554,44 @@ function FormService(appConfig) {
                   label: 'Electronic Signature',
                   placeholder: '',
                   description: 'I acknowledge that I am signing this offering document electronically and agree that this is the legal equivalent of my handwritten signature. I will not at any time in the future claim that my electronic signature is not legally binding.'
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
+                }
+              }
+            ]
+          }
+        ];
+
+      } else if(page === 'admin') {
+
+        return [
+          {
+            className: 'display-flex',
+            fieldGroup: [
+              {
+                className: 'flex-1',
+                type: 'input',
+                key: 'basics.investment.max',
+                templateOptions: {
+                  type: 'number',
+                  label: 'Maximum Investment',
+                  placeholder: '$',
+                  description: ''
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
+                }
+              },
+              {
+                className: 'flex-1',
+                type: 'input',
+                key: 'basics.investment.min',
+                templateOptions: {
+                  type: 'number',
+                  label: 'Minimum Investment',
+                  placeholder: '$',
+                  description: ''
                 },
                 expressionProperties: {
                   'templateOptions.disabled': 'formState.disabled'

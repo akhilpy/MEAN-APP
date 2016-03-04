@@ -115,6 +115,80 @@ var file = {
 	name: String,
 	link: String,
 	size: String
+};
+
+var basics = {
+	investment: {
+		max: Number,
+		min: {
+			type: Number,
+			default: 500
+		}
+	},
+	eligibility: Number,
+	benchmarkRate: Number,
+	latePenalty: Number,
+	finappsID: Number,
+	creditID: Number,
+	reviewedBy: String,
+	notes: String
+};
+
+var underwriting = {
+	creditReport: {
+		type: String,
+		default: ''
+	},
+	underwritingReport: String,
+	taxReturns: String,
+	bankStatements: String,
+	firstLien: String,
+	bankruptcies: String,
+	taxLiens: String,
+	legalProceedings: String,
+	ownerCreditReport: String,
+};
+
+var scores = {
+	ci: Number,
+	pi: Number,
+	cds: Number,
+	bfrs: Number,
+	paynet: Number,
+	proxy: Number,
+	tbill: Number,
+	bond: Number,
+	rating: {
+		type: String,
+		default: ''
+	},
+	indFactor: Number,
+	fico: {
+		average: Number,
+		highest: Number,
+		lowest: Number
+	}
+}
+
+var financials = {
+	creditExposure: {
+		type: String,
+		default: ''
+	},
+	loanRatio: Number,
+	debtRatio: Number
+}
+
+var bankStatements = {
+	balance: {
+		type: Number,
+		default: 0
+	},
+	deposits: Number,
+	expenses: Number,
+	leftover: Number,
+	cashFlow: Number,
+	income: Number
 }
 
 var ListingSchema = new Schema({
@@ -222,7 +296,14 @@ var ListingSchema = new Schema({
 		signature: String
 	},
 	comments: [comment],
-	infoRequest: [requester]
+	infoRequest: [requester],
+	admin: {
+		basics: basics,
+		underwriting: underwriting,
+		scores: scores,
+		financials: financials,
+		bankStatements: bankStatements
+	}
 });
 
 ListingSchema.plugin(autopopulate);

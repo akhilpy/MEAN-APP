@@ -4,7 +4,7 @@
 
 class FaqController {
 
-  constructor($http, $scope, socket, Auth) {
+  constructor($http, $scope, socket, Auth, ListingService) {
     this.$http = $http;
     this.allFaqs = [];
 
@@ -12,18 +12,9 @@ class FaqController {
     this.isAdmin = Auth.isAdmin;
 
     this.categories = [
-      {
-        label: 'General',
-        value: 'General'
-      },
-      {
-        label: 'Business',
-        value: 'Business'
-      },
-      {
-        label: 'Investor',
-        value: 'Investor'
-      }
+      {label: 'General', value: 'General'},
+      {label: 'Business', value: 'Business'},
+      {label: 'Investor', value: 'Investor'}
     ];
 
     $http.get('/api/faqs').then(response => {

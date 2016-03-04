@@ -50,7 +50,11 @@ function ListingService($location, $cookies, $q, $resource, $http, Auth, User) {
      * @return {String}
      */
     getUsers(role) {
-      return $http.get('/api/users/role/' + role);
+      if(role) {
+        return $http.get('/api/users/role/' + role);
+      } else {
+        return $http.get('/api/users');
+      }
     },
 
 
@@ -71,7 +75,11 @@ function ListingService($location, $cookies, $q, $resource, $http, Auth, User) {
      * @return {String}
      */
     getAll(status) {
-      return $http.get('/api/listings/status/' + status);
+      if(status) {
+        return $http.get('/api/listings/status/' + status);
+      } else {
+        return $http.get('/api/listings');
+      }
     },
 
 
@@ -241,6 +249,20 @@ function ListingService($location, $cookies, $q, $resource, $http, Auth, User) {
         .catch(err => {
           console.log(err.message);
         });
+    },
+
+
+
+
+    /**
+     * Calculate an investment based on the provided paramters
+     *
+     * @return {String}
+     */
+    calcInvestment(amount, term, rate) {
+
+      var effectiveRate = Math.pow(( 1 + ( rate/12 ) ), term);
+
     },
 
 

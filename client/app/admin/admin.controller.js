@@ -3,14 +3,28 @@
 (function() {
 
 class AdminController {
-  constructor(listings, users, ListingService) {
+  constructor(listings, users, ListingService, $state, $stateParams, $scope) {
     var vm = this;
+    vm.$state = $state;
+    vm.$scope = $scope;
+    vm.$stateParams = $stateParams;
     vm.ListingService = ListingService;
-    vm.sortType = 'general.businessName';
-    vm.sortReverse = false;
-    vm.searchListings = '';
+
     vm.allListings = listings.data;
     vm.users = users.data;
+
+    vm.$scope.sortType = 'name.last';
+    vm.$scope.sortReverse = false;
+    vm.$scope.searchListings = '';
+
+    if(vm.$stateParams.status) {
+      vm.$scope.breadcrumb = vm.$stateParams.status;
+    } else if(vm.$stateParams.role) {
+      vm.$scope.breadcrumb = vm.$stateParams.role;
+    }
+
+    vm.adminEditing = true;
+
   }
 
   delete(user) {
