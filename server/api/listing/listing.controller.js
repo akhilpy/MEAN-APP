@@ -142,6 +142,27 @@ export function comment(req, res) {
 
 
 
+// Deletes a comment from a listing
+export function commentDelete(req, res) {
+  if (req.body._id) {
+    delete req.body._id;
+  }
+
+  var comment = req.body.comment;
+
+  Listing.findByIdAndUpdate(req.params.id,
+    {$pull: {comments: {_id: comment._id}}},
+    {},
+    function(err, listing) {
+      if(err) {
+        console.log(err);
+      }
+      respondWithResult(listing);
+    });
+}
+
+
+
 
 // Updates an existing Listing in the DB with comments
 export function reply(req, res) {
@@ -167,6 +188,29 @@ export function reply(req, res) {
           }
         }
       );
+    });
+}
+
+
+
+// Deletes a reply from a comment
+export function replyDelete(req, res) {
+  if (req.body._id) {
+    delete req.body._id;
+  }
+
+  var comment = req.body.comment;
+  var reply = req.body.reply;
+
+  Listing.update(
+    {_id: req.params.id, 'comments._id': comment._id },
+    {$pull: {'comments.$.replies': {_id: reply._id} }},
+    {},
+    function(err, listing) {
+      if(err) {
+        console.log(err);
+      }
+      respondWithResult(listing);
     });
 }
 

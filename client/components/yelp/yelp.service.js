@@ -13,15 +13,6 @@
        */
       getBusiness(ID) {
         return $http.get('/api/yelp/' + ID);
-      },
-
-      /**
-       * Get business reviews from Yelp
-       *
-       * @return {String}
-       */
-      getReviews(ID) {
-        return $http.get('/api/yelp/' + ID);
       }
 
     };

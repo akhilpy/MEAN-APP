@@ -191,6 +191,19 @@ function ListingService($location, $cookies, $q, $resource, $http, Auth, User) {
 
 
 
+    /**
+     * Delete a comment
+     *
+     * @return {String}
+     */
+    deleteComment(comment, listing) {
+      return $http.post('/api/listings/comment/' + listing._id, {
+        comment: comment
+      });
+    },
+
+
+
 
     /**
      * Add a new comment reply
@@ -211,6 +224,19 @@ function ListingService($location, $cookies, $q, $resource, $http, Auth, User) {
         });
     },
 
+
+
+    /**
+     * Delete a comment reply
+     *
+     * @return {String}
+     */
+    deleteReply(comment, reply, listing) {
+      return $http.post('/api/listings/reply/' + listing._id, {
+        comment: comment,
+        reply: reply
+      });
+    },
 
 
 

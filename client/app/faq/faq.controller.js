@@ -4,26 +4,46 @@
 
 class FaqController {
 
-  constructor($http, $scope, socket, Auth, ListingService) {
-    this.$http = $http;
-    this.allFaqs = [];
+  constructor($http, $scope, $filter, socket, Auth, ListingService) {
+    var vm = this;
+    vm.$http = $http;
+    vm.$filter = $filter;
+    vm.allFaqs = [];
+    vm.faqs = [];
 
-    this.Auth = Auth;
-    this.isAdmin = Auth.isAdmin;
+    vm.Auth = Auth;
+    vm.isAdmin = Auth.isAdmin;
+    vm.searchTerm = '';
+    vm.category = '';
 
-    this.categories = [
+    vm.categories = [
       {label: 'General', value: 'General'},
       {label: 'Business', value: 'Business'},
       {label: 'Investor', value: 'Investor'}
     ];
 
     $http.get('/api/faqs').then(response => {
-      this.allFaqs = response.data;
-      socket.syncUpdates('faq', this.allFaqs);
+      vm.faqs = vm.$filter('orderBy')(response.data, 'order');
+      vm.allFaqs = vm.faqs;
+      socket.syncUpdates('faq', vm.allFaqs);
     });
+
+    $scope.sortableOptions = {
+      stop: function(e, ui) {
+        vm.updateOrder(vm.allFaqs);
+      }
+    }
 
     $scope.$on('$destroy', function() {
       socket.unsyncUpdates('faq');
+    });
+
+    $scope.$watch('vm.searchTerm', function(val) {
+      vm.allFaqs = vm.$filter('filter')(vm.faqs, val);
+    });
+
+    $scope.$watch('vm.category', function(val) {
+      vm.allFaqs = vm.$filter('filter')(vm.faqs, {category: val});
     });
   }
 
@@ -38,12 +58,20 @@ class FaqController {
     }
   }
 
-  deleteFaq(faq) {
-    this.$http.delete('/api/faqs/' + faq._id);
+  updateFaq(faq) {
+    this.$http.put('/api/faqs/' + faq._id, faq);
   }
 
-  filterFAQs(value) {
-    console.log(value);
+  updateOrder(faqs) {
+    var vm = this;
+    angular.forEach(faqs, function(faq, key) {
+      faq.order = key;
+      vm.updateFaq(faq);
+    });
+  }
+
+  deleteFaq(faq) {
+    this.$http.delete('/api/faqs/' + faq._id);
   }
 }
 

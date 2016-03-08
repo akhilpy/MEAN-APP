@@ -80,6 +80,11 @@ class MarketplaceListingController {
     }
   }
 
+  deleteComment(comment) {
+    this.currentListing.comments.splice(this.currentListing.comments.indexOf(comment), 1);
+    this.ListingService.deleteComment(comment, this.currentListing);
+  }
+
   addReply(comment) {
     this.ListingService.addReply(this.currentListing, comment, comment.newReply);
     comment.newReply.date = new Date();
@@ -87,6 +92,12 @@ class MarketplaceListingController {
     comment.replies.push(comment.newReply);
     comment.hideComments = true;
     comment.newReply = '';
+  }
+
+  deleteReply(comment, reply) {
+    var index = this.currentListing.comments.indexOf(comment);
+    this.currentListing.comments[index].replies.splice(this.currentListing.comments[index].replies.indexOf(reply), 1);
+    this.ListingService.deleteReply(comment, reply, this.currentListing);
   }
 
 }

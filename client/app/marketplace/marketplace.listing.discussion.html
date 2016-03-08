@@ -60,6 +60,7 @@
           <div class="discussion__comment--meta">
             <p>
               <strong>{{comment.user.username}}</strong> {{comment.date | date}}
+              <a class="discussion__comment--delete" href="#" ng-show="vm.currentUser.role==='admin'" ng-click="vm.deleteComment(comment)">Delete</a>
               <a class="discussion__comment--reply" href="#" ng-click="comment.hideReply = !comment.hideReply">{{comment.hideReply ? 'Hide Reply' : 'Reply'}}</a>
               <a class="discussion__comment--view" href="#" ng-click="comment.hideComments = !comment.hideComments">{{comment.hideComments ? 'Hide Comments' : 'View Comments'}}</a>
               <span class="tag" ng-repeat="tag in comment.tags track by $index">{{tag}}</span>
@@ -78,6 +79,7 @@
               <p>{{reply.text}}</p>
               <div class="discussion__comment--meta">
                 <p><strong>{{reply.user.username}}</strong> {{reply.date | date}}</p>
+                <a class="discussion__comment--delete" href="#" ng-show="vm.currentUser.role==='admin'" ng-click="vm.deleteReply(comment, reply)">Delete</a>
               </div><!-- /.discussion__comment--meta -->
             </div><!-- /.discussion__comment -->
           </li><!-- /.discussion__reply -->

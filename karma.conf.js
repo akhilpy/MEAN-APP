@@ -47,6 +47,8 @@ module.exports = function(config) {
       'client/bower_components/v-accordion/dist/v-accordion.js',
       'client/bower_components/angular-breadcrumb/release/angular-breadcrumb.js',
       'client/bower_components/ng-dialog/js/ngDialog.js',
+      'client/bower_components/jquery-ui/jquery-ui.js',
+      'client/bower_components/angular-ui-sortable/sortable.js',
       'client/bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'node_modules/socket.io-client/socket.io.js',

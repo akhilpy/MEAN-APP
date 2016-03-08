@@ -21,7 +21,8 @@ angular.module('investnextdoorCaApp', [
   'vAccordion',
   'ncy-angular-breadcrumb',
   'ngDialog',
-  'investnextdoorCaApp.templates'
+  'investnextdoorCaApp.templates',
+  'ui.sortable'
 ])
   .config(function($urlRouterProvider, $locationProvider, formlyConfigProvider, formlyFieldsProvider, $breadcrumbProvider) {
     $urlRouterProvider.otherwise('/');

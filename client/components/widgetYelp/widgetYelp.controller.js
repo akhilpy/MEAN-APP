@@ -11,7 +11,7 @@ class widgetYelpController {
     var yelpArray = yelp.url.split('/');
     var yelpID = yelpArray[yelpArray.length-1];
 
-    YelpService.getReviews(yelpID).then(function(reviews) {
+    YelpService.getBusiness(yelpID).then(function(reviews) {
       if( reviews.data.reviews.length > 0 ) {
         yelp.reviews = reviews.data.reviews;
       }

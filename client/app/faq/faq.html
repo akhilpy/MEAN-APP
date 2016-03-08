@@ -23,26 +23,46 @@
                 <form class="discussion-search__form">
                   <label for="">Search Topic or Keyword</label>
                   <div class="discussion-search__form--fields">
-                    <input class="discussion-search__form--search" type="text" ng-model="searchTerm">
+                    <input class="discussion-search__form--search" type="text" ng-model="vm.searchTerm">
                     <button class="discussion-search__form--submit">Search</button>
                   </div><!-- /.discussion-search__form--fields -->
                 </form><!-- /.discussion-search__form -->
               </div><!-- /.discussion-search -->
 
               <ul class="dashboard__navigation--list">
-                <li><a ng-click="searchTerm='General'">General</a></li>
-                <li><a ng-click="searchTerm='Business'">Business</a></li>
-                <li><a ng-click="searchTerm='Investor'">Investor</a></li>
+                <li><a ng-click="vm.category=''">All</a></li>
+                <li><a ng-click="vm.category='General'">General</a></li>
+                <li><a ng-click="vm.category='Business'">Business</a></li>
+                <li><a ng-click="vm.category='Investor'">Investor</a></li>
               </ul><!-- /.dashboard__navigation--list -->
 
-              <ul class="faq__list">
-                <li class="faq__wrapper" ng-repeat="faq in faqs.allFaqs | orderBy: 'category' | filter: searchTerm">
-                  <a href="#" tooltip="{{faq.info}}">{{faq.name}}</a>
-                  <h4 class="faq__question"><a href="#" ng-click="hideAnswer = !hideAnswer" ng-class="{active: hideAnswer}">{{faq.question}}</a></h4>
-                  <div class="faq__answer" ng-bind-html="faq.answer" ng-show="hideAnswer"></div>
-                  <div ng-show="faqs.isAdmin()">
-                    <button type="button" class="button" ng-click="faqs.deleteFaq(faq)">Delete</button>
+              <ul ui-sortable="sortableOptions" class="faq__list" ng-model="faqs.allFaqs">
+                <li class="faq__wrapper" ng-repeat="faq in faqs.allFaqs">
+                  <div ng-hide="faq.editMode">
+                    <h4 class="faq__question"><a href="#" ng-click="faq.hideAnswer = !faq.hideAnswer" ng-class="{active: faq.hideAnswer}" ng-hide="faq.editMode">{{faq.question}}</a></h4>
+                    <div class="faq__answer" ng-bind-html="faq.answer" ng-show="faq.hideAnswer||faq.editMode"></div>
+                    <div ng-show="faqs.isAdmin()">
+                      <button type="button" class="button warning" ng-click="faqs.deleteFaq(faq)"><i class="fa fa-times"></i></button>
+                      <button type="button" class="button editing" ng-click="faq.editMode=true" ng-hide="faq.editMode"><i class="fa fa-pencil"></i></button>
+                    </div>
                   </div>
+
+                  <form class="faq__form" ng-show="faq.editMode">
+                    <ul class="form__rows">
+                      <li class="form__row form__row--full">
+                        <input type="text" placeholder="Question" ng-model="faq.question">
+                      </li><!-- /.form__row form__row--full -->
+                      <li class="form__row form__row--full">
+                        <select chosen="faqs.categories" data-placeholder="Category" disable_search_threshold="15" ng-model="faq.category" ng-options="category.label as category.value for category in faqs.categories"></select>
+                      </li><!-- /.form__row form__row--full -->
+                      <li class="form__row form__row--full">
+                        <text-angular ng-model="faq.answer"></text-angular>
+                      </li><!-- /.form__row form__row--full -->
+                      <li class="form__row form__row--full form__row--submit">
+                        <button type="submit" class="button" ng-click="faqs.updateFaq(faq)">Save</button>
+                      </li><!-- /.form__row form__row--full form__row--submit -->
+                    </ul><!-- /.form__rows -->
+                  </form><!-- /.faq__form -->
                 </li><!-- /.faq__wrapper -->
               </ul>
 
