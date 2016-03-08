@@ -5,15 +5,26 @@
 class widgetYelpController {
   constructor($scope, YelpService) {
     var yelp = this;
+    yelp.overview = {};
     yelp.reviews = [];
     yelp.url = $scope.vm.currentListing.social.yelp;
 
     var yelpArray = yelp.url.split('/');
     var yelpID = yelpArray[yelpArray.length-1];
 
-    YelpService.getBusiness(yelpID).then(function(reviews) {
-      if( reviews.data.reviews.length > 0 ) {
-        yelp.reviews = reviews.data.reviews;
+    YelpService.getBusiness(yelpID).then(function(reponse) {
+      console.log(reponse.data);
+
+      yelp.overview = {
+        image: reponse.data.image_url,
+        name: reponse.data.name,
+        rating: reponse.data.rating,
+        rating_image: reponse.data.rating_img_url,
+        location: reponse.data.location
+      }
+
+      if( reponse.data.reviews.length > 0 ) {
+        yelp.reviews = reponse.data.reviews;
       }
     });
   }

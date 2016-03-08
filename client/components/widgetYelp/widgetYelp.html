@@ -1,8 +1,20 @@
-<div class="widget__wrapper widget__yelp" ng-show="yelp.reviews">
+<div class="widget__wrapper widget__yelp">
   <div class="widget">
     <header class="widget__header">
-      <h3 class="widget__title">Yelp Reviews</h3>
+      <h3 class="widget__title">Yelp</h3>
     </header><!-- /.widget__header -->
+
+    <div class="widget__yelp--overview">
+      <div class="widget__yelp--details">
+        <img class="widget__yelp--avatar" src="{{yelp.overview.image}}" alt="{{yelp.overview.name}}">
+        <ul class="widget__yelp--meta">
+          <li class="widget__yelp--user">
+            <strong>{{yelp.overview.name}}</strong>
+          </li>
+          <li><img src="{{yelp.overview.rating_image}}" alt="{{yelp.overview.rating}}"></li>
+        </ul><!-- /.widget__yelp--meta -->
+      </div><!-- /.widget__yelp--details -->
+    </div><!-- /.widget__yelp--overview -->
 
     <ul class="list--zero">
       <li class="widget__yelp--review" ng-repeat="review in yelp.reviews">
@@ -19,7 +31,7 @@
     </ul>
 
     <div class="widget__yelp--more">
-      <a href="{{yelp.url}}" class="button small" target="_blank">View More</a>
+      <a href="{{yelp.url}}" class="button small" target="_blank">View on Yelp</a>
     </div><!-- /.widget__yelp--more -->
 
   </div><!-- /.widget -->
