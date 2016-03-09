@@ -130,6 +130,12 @@ export function update(req, res, next) {
         }
       }
 
+      if( savedUser.role === 'borrower' ) {
+        if(savedUser.borrower) {
+          user.borrower = savedUser.borrower;
+        }
+      }
+
       return user.saveAsync()
         .then(() => {
           res.status(204).end();

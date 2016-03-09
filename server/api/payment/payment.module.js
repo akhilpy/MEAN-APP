@@ -62,6 +62,9 @@ function trnact_url(method){
 		case 'ABA':
 			return config.payments.url+config.payments.prefix.auth+'/addBankAccount';
 			break;
+		case 'VBA':
+			return config.payments.url+config.payments.prefix.auth+'/verifyBankAccount';
+			break;
 		case 'GPT':
 			return config.payments.url+config.payments.prefix.auth+'/getPublicToken';
 			break;
@@ -130,62 +133,62 @@ Payments.prototype.addNewUser = function(input, callback) {
 	var usrnme, usrpwd, usreml;
 	var insnum, brnnum, accnum;
 
-	if("username" in input){
+	if(!input.username){
+		return callback(true, {'code':412,'error':'username','error_description':'username required'});
+	}else{
 		usrnme = validator.trim(input.username);
 		if(!validator.isAlphanumeric(usrnme)){
-			return callback(true, {'code':400,'error':'invalid_request','error_description':'username valid only letters and numbers'});
+			return callback(true, {'code':412,'error':'username','error_description':'username valid only letters and numbers'});
 		}else if(!validator.isLength(usrnme, 5, 30)){
-			return callback(true, {'code':400,'error':'invalid_request','error_description':'username should contain minimum of 5 or maximum of 20 characters'});
+			return callback(true, {'code':412,'error':'username','error_description':'username should contain minimum of 5 or maximum of 20 characters'});
 		}
-	}else{
-		return callback(true, {'code':400,'error':'invalid_request','error_description':'missing username parameter'});
 	}
 
-	if("password" in input){
+	if(!input.password){
+		return callback(true, {'code':412,'error':'password','error_description':'password required'});
+	}else{
 		usrpwd = validator.trim(input.password);
 		if(!validator.isLength(usrpwd, 8, 256)){
-			return callback(true, {'code':400,'error':'invalid_request','error_description':'invalid password found'});
+			return callback(true, {'code':412,'error':'password','error_description':'invalid password'});
 		}
-	}else{
-		return callback(true, {'code':400,'error':'invalid_request','error_description':'missing password parameter'});
 	}
 
-	if("email" in input){
+	if(!input.email){
+		return callback(true, {'code':412,'error':'email','error_description':'email required'});
+	}else{
 		usreml = validator.trim(input.email);
 		if(!validator.isEmail(usreml)){
-			return callback(true, {'code':400,'error':'invalid_request','error_description':'invalid email found'});
+			return callback(true, {'code':412,'error':'email','error_description':'invalid email'});
 		}else{
 			user_details = {username:usrnme, password:usrpwd, email:usreml};
 		}
-	}else{
-		return callback(true, {'code':400,'error':'invalid_request','error_description':'missing email parameter'});
 	}
 
-	if("institution_number" in input){
+	if(!input.institution_number){
+		return callback(true, {'code':412,'error':'institution_number','error_description':'institution_number required'});
+	}else{
 		insnum = validator.trim(input.institution_number);
 		if(!validator.isNumeric(insnum) || !validator.isLength(insnum, 3, 3)){
-			return callback(true, {'code':400,'error':'invalid_request','error_description':'invalid institution_number'});
+			return callback(true, {'code':412,'error':'institution_number','error_description':'invalid institution_number'});
 		}
-	}else{
-		return callback(true, {'code':400,'error':'invalid_request','error_description':'missing institution_number parameter'});
 	}
 
-	if("branch_number" in input){
+	if(!input.branch_number){
+		return callback(true, {'code':412,'error':'branch_number','error_description':'branch_number required'});
+	}else{
 		brnnum = validator.trim(input.branch_number);
 		if(!validator.isNumeric(brnnum) || !validator.isLength(brnnum, 4, 5)){
-			return callback(true, {'code':400,'error':'invalid_request','error_description':'invalid branch_number'});
+			return callback(true, {'code':412,'error':'branch_number','error_description':'invalid branch_number'});
 		}
-	}else{
-		return callback(true, {'code':400,'error':'invalid_request','error_description':'missing branch_number parameter'});
 	}
 
-	if("account_number" in input){
+	if(!input.account_number){
+		return callback(true, {'code':412,'error':'account_number','error_description':'account_number required'});
+	}else{
 		accnum = validator.trim(input.account_number);
 		if(!validator.isNumeric(accnum) || !validator.isLength(accnum, 1, 12)){
-			return callback(true, {'code':400,'error':'invalid_request','error_description':'invalid account_number found'});
+			return callback(true, {'code':412,'error':'account_number','error_description':'invalid account_number '});
 		}
-	}else{
-		return callback(true, {'code':400,'error':'invalid_request','error_description':'missing account_number found'});
 	}
 
 	auth_token_req(config.payments.user, config.payments.password, function(err, res){
@@ -209,13 +212,13 @@ Payments.prototype.addNewUser = function(input, callback) {
 						url = trnact_url('ABA');
 						transact_post(function(response){
 							if(response.code === 200){
-								response.public_token = keydata;
-								response.description = 'Bank account added successfully';
+								//response.public_token = keydata;
+								response.description = 'bank account added successfully';
 							}
 							return callback(false, response);
 						});
 					}else{
-						return callback(true,{'code':400,'error':'invalid_response','error_description':'invalid public_token'});
+						return callback(true,{'code':500,'error':'server_error','error_description':'authentication token error'});
 					}
 				}else{
 					return callback(true, data);
@@ -242,41 +245,41 @@ Payments.prototype.updateBankAccount = function(input,callback){
 	if (!input)
 		return callback(true, {code:400, error:'invalid_request',error_description:'invaild or missing parameters'});
 
-	if("email" in input){
+	if(input.email){
 		usreml = validator.trim(input.email);
 		if(!validator.isEmail(usreml))
-			return callback(true, {'code':400,'error':'invalid_request','error_description':'invalid email found'});
+			return callback(true, {'code':412,'error':'email','error_description':'invalid email'});
 		else
 			user_details = {email:usreml};
 	}else{
-		return callback(true, {'code':400,'error':'invalid_request','error_description':'missing email parameter'});
+		return callback(true, {'code':412,'error':'email','error_description':'email required'});
 	}
 
-	if("institution_number" in input){
+	if(input.institution_number){
 		insnum = validator.trim(input.institution_number);
 		if(!validator.isNumeric(insnum) || !validator.isLength(insnum, 3, 3)){
-			return callback(true, {'code':400,'error':'invalid_request','error_description':'invalid institution_number'});
+			return callback(true, {'code':412,'error':'institution_number','error_description':'invalid institution_number'});
 		}
 	}else{
-		return callback(true, {'code':400,'error':'invalid_request','error_description':'missing institution_number parameter'});
+		return callback(true, {'code':412,'error':'institution_number','error_description':'institution_number required'});
 	}
 
-	if("branch_number" in input){
+	if(input.branch_number){
 		brnnum = validator.trim(input.branch_number);
 		if(!validator.isNumeric(brnnum) || !validator.isLength(brnnum, 4, 5)){
-			return callback(true, {'code':400,'error':'invalid_request','error_description':'invalid branch_number'});
+			return callback(true, {'code':412,'error':'branch_number','error_description':'invalid branch_number'});
 		}
 	}else{
-		return callback(true, {'code':400,'error':'invalid_request','error_description':'missing branch_number parameter'});
+		return callback(true, {'code':412,'error':'branch_number','error_description':'branch_number required'});
 	}
 
-	if("account_number" in input){
+	if(input.account_number){
 		accnum = validator.trim(input.account_number);
 		if(!validator.isNumeric(accnum) || !validator.isLength(accnum, 1, 12)){
-			return callback(true, {'code':400,'error':'invalid_request','error_description':'invalid account_number found'});
+			return callback(true, {'code':412,'error':'account_number','error_description':'invalid account_number'});
 		}
 	}else{
-		return callback(true, {'code':400,'error':'invalid_request','error_description':'missing account_number found'});
+		return callback(true, {'code':412,'error':'account_number','error_description':'account_number required'});
 	}
 
 	auth_token_req(config.payments.user, config.payments.password, function(err, res){
@@ -300,11 +303,11 @@ Payments.prototype.updateBankAccount = function(input,callback){
 						url = trnact_url('ABA');
 						transact_post(function(response){
 							if(response.code === 200)
-								response.description = 'Bank account updated successfully';
+								response.description = 'bank account updated successfully';
 							return callback(false, response);
 						});
 					}else{
-						return callback(true,{'code':400,'error':'invalid_response','error_description':'invalid public_token'});
+						return callback(true,{'code':500,'error':'server_error','error_description':'authentication token error'});
 					}
 				}else{
 					return callback(true, data);
@@ -320,22 +323,38 @@ Payments.prototype.performTransact = function(input, callback){
 	var usrnme = '';
 	var usrpwd = '';
 	var usreml = '';
-	if(("username" in input)&&("password" in input)&&("email" in input)){
+	if(input.username && input.password && input.email){
 		usrnme = validator.trim(input.username);
 		usrpwd = validator.trim(input.password);
 		usreml = validator.trim(input.email);
 		if(!validator.isAlphanumeric(usrnme))
-			return callback(true, {'code':400,'error':'invalid_request','error_description':'username valid only letters and numbers'});
+			return callback(true, {'code':412,'error':'username','error_description':'username valid only letters and numbers'});
 		else if(!validator.isLength(usrnme, 5, 30))
-			return callback(true, {'code':400,'error':'invalid_request','error_description':'username should contain minimum of 5 or maximum of 20 characters'});
+			return callback(true, {'code':412,'error':'username','error_description':'username should contain minimum of 5 or maximum of 20 characters'});
 		else if(!validator.isLength(usrpwd, 8, 256))
-			return callback(true, {'code':400,'error':'invalid_request','error_description':'invalid password found'});
+			return callback(true, {'code':412,'error':'password','error_description':'invalid password'});
 		else if(!validator.isEmail(usreml))
-			return callback(true, {'code':400,'error':'invalid_request','error_description':'invalid email found'});
+			return callback(true, {'code':412,'error':'email','error_description':'invalid email'});
 		else if(!input.method)
-			return callback(false, {code:400, error:'invalid_request',error_description:'invaild or missing method parameters'});
+			return callback(false, {code:412, error:'method',error_description:'method required'});
 	}else{
-		return callback(true, {'code':400,'error':'invalid_request','error_description':'missing username or password or email parameter'});
+		return callback(true, {'code':400,'error':'invalid_request','error_description':'username or password or email required'});
+	}
+
+	if(!(input.business_name || input.first_name && input.last_name)){
+		return callback(true, {'code':412,'error':'business_name','error_description':'business_name or first_name and last_name required'});
+	}else{
+		if(input.business_name){
+			usrbnm = validator.trim(input.business_name);
+			user_details.business_name = usrbnm;
+		}else if(input.first_name && input.last_name){
+			usrfnm = validator.trim(input.first_name);
+			usrlnm = validator.trim(input.last_name);
+			user_details.first_name = usrfnm;
+			user_details.last_name = usrlnm;
+		}else{
+			return callback(true, {'code':412,'error':'invalid_request','error_description':'business_name or first_name or last_name required'});
+		}
 	}
 
 	var method_code = '';
@@ -372,7 +391,7 @@ Payments.prototype.performTransact = function(input, callback){
 	delete hdrs.Authorization;
 
 	if(!method_code){
-		return callback(false, {code:400, error:'invalid_request', error_description:'invalid method parameter value'});
+		return callback(false, {code:412, error:'method', error_description:'invalid method'});
 	}
 
 	usrpwd = md5(usrpwd);
@@ -380,7 +399,6 @@ Payments.prototype.performTransact = function(input, callback){
 	auth_token_req(usrnme, usrpwd, function(err, res){
 		delete input.username;
 		delete input.password;
-		delete input.email;
 		if(!err){
 			hdrs.Authorization = 'Bearer '+res.access_token;
 			url = trnact_url(method_code);
@@ -395,13 +413,13 @@ Payments.prototype.performTransact = function(input, callback){
 }
 
 Payments.prototype.getLogdetails = function(input, callback){
-	if (!input.method || Object.keys(input).length > 1 || typeof input.method !== 'string')
-		return callback(false, {code:400, error:'invalid_request',error_description:'invaild or missing log parameter'});
+	if (!input.method)
+		return callback(false, {code:412, error:'method',error_description:'method required'});
 
 	var method_code = input.method;
 
 	if(!(method_code === 'SLG' || method_code === 'ELG' || method_code === 'WLG')){
-		return callback(false, {code:400, error:'invalid_request', error_description:'invalid log parameter value'});
+		return callback(false, {code:412, error:'method', error_description:'invalid method'});
 	}
 
 	option_auth = {user:config.payments.client.id, password:config.payments.client.password};
@@ -425,43 +443,54 @@ Payments.prototype.filterLogdetails = function(input, callback){
 	if(!Object.keys(input).length)
 		return callback(true, {code:400, error:'invalid_request', error_description:'missing filter parameters'});
 
-	if('start' in input && 'end' in input){
-		if(input.start == input.end){
-			input.date = input.start;
-			delete input.start;
-			delete input.end;
+	if('start_date' in input && 'end_date' in input){
+		delete input.date;
+		var start_date = new Date(input.start_date);
+		var end_date = new Date(input.end_date);
+		if(start_date != 'Invalid Date' && end_date != 'Invalid Date'){
+			if(start_date >= end_date){
+				return callback(true, {code:412, error:'start_date', error_description:'start_date should less than end_date'});
+			}else{
+				filters.start = input.start_date;
+				filters.end = input.end_date;
+			}
+		}else{
+			return callback(true, {code:412, error:'start_date', error_description:'invaild start_date or end_date'});
 		}
 	}
 
-	if('start' in input && input.start && typeof input.start !== undefined)
-		filters.start = input.start;
-	if('end' in input && input.end && typeof input.end !== undefined)
-		filters.end = input.end;
-	if('date' in input && input.date && typeof input.date !== undefined)
-		filters.date = input.date;
-	if('status' in input && input.status && typeof input.status !== undefined)
+	if(input.date){
+		delete input.start_date;
+		delete input.end_date;
+		if(new Date(input.date) != 'Invalid Date')
+			filters.date = input.date;
+		else
+			return callback(true, {code:412, error:'date', error_description:'invaild date'});
+	}
+
+	if(input.status)
 		filters.status = input.status;
-	if('method' in input && input.method && typeof input.method !== undefined)
+	if(input.method)
 		filters.type = input.method;
-	if('token' in input && input.token && typeof input.token !== undefined)
+	if(input.token)
 		filters.token = input.token;
-	if('state' in input && input.state && typeof input.state !== undefined)
+	if(input.state)
 		filters.state = input.state;
-	if('email' in input && input.email && typeof input.email !== undefined)
+	if(input.email)
 		filters.email = input.email;
-	if('user_id' in input && input.user_id && typeof input.user_id !== undefined)
+	if(input.user_id)
 		filters.user_id = input.user_id;
-	if('offer_id' in input && input.offer_id && typeof input.offer_id !== undefined)
+	if(input.offer_id)
 		filters.offer_id = input.offer_id;
-	if('loan_id' in input && input.loan_id && typeof input.loan_id !== undefined)
+	if(input.loan_id)
 		filters.loan_id = input.loan_id;
-	if('repayment_id' in input && input.repayment_id && typeof input.repayment_id !== undefined)
+	if(input.repayment_id)
 		filters.repayment_id = input.repayment_id;
-	if('repayment_fees_id' in input && input.repayment_fees_id && typeof input.repayment_fees_id !== undefined)
+	if(input.repayment_fees_id)
 		filters.repayment_fees_id = input.repayment_fees_id;
 
 	if(!Object.keys(filters).length)
-		return callback(true, {code:400, error:'invalid_request', error_description:'invaild filter parameters'});
+		return callback(true, {code:400, error:'invalid_request', error_description:'missing or invaild filter parameters'});
 
 	option_auth = {user:config.payments.client.id, password:config.payments.client.password};
 	delete hdrs.Authorization;
@@ -478,6 +507,66 @@ Payments.prototype.filterLogdetails = function(input, callback){
 			return callback(true, res);
 		}
 	});
+}
+
+Payments.prototype.verifyBankAccount = function(input, callback){
+	var client_id = config.payments.client.id;
+	var client_password = config.payments.client.password;
+	var user = config.payments.user;
+	var pass = config.payments.password;
+	option_auth = {user:config.payments.client.id, password:config.payments.client.password};
+	delete hdrs.Authorization;
+
+	var user_details = {};
+	var usreml,usrbun;
+
+	if (!Object.keys(input).length)
+		return callback(true, {code:400, error:'invalid_request',error_description:'invaild or missing parameters'});
+
+	if(input.email){
+		usreml = validator.trim(input.email);
+		if(!validator.isEmail(usreml))
+			return callback(true, {'code':412,'error':'email','error_description':'invalid email'});
+		else
+			user_details.email = usreml;
+	}else{
+		return callback(true, {'code':412,'error':'email','error_description':'email required'});
+	}
+
+	if(!input.user_id)
+		return callback(true, {'code':412,'error':'user_id','error_description':'user_id required'});
+
+	if(!(input.business_name || input.first_name && input.last_name)){
+		return callback(true, {'code':412,'error':'business_name','error_description':'business_name or first_name and last_name required'});
+	}else{
+		if(input.business_name){
+			usrbnm = validator.trim(input.business_name);
+			user_details.business_name = usrbnm;
+		}else if(input.first_name && input.last_name){
+			usrfnm = validator.trim(input.first_name);
+			usrlnm = validator.trim(input.last_name);
+			user_details.first_name = usrfnm;
+			user_details.last_name = usrlnm;
+		}else{
+			return callback(true, {'code':412,'error':'invalid_request','error_description':'business_name or first_name or last_name required'});
+		}
+
+		option_auth = {user:config.payments.client.id, password:config.payments.client.password};
+		delete hdrs.Authorization;
+		auth_token_req(config.payments.user, config.payments.password, function(err, res){
+			if(!err){
+				hdrs.Authorization = 'Bearer '+res.access_token;
+				url = trnact_url('VBA');
+				body = user_details;
+				body.method = 'ADM';
+				transact_post(function(data){
+					return callback(false, data);
+				});
+			}else{
+				return callback(true, res);
+			}
+		});
+	}
 }
 
 module.exports = Payments;

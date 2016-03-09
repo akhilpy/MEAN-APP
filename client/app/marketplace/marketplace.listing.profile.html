@@ -185,17 +185,11 @@
     </h3><!-- /.general-content__section--title -->
   </header><!-- /.general-content__section--header -->
   <ul class="endorsements">
-    <li class="endorsement">
+    <li class="endorsement" ng-repeat="review in vm.currentListing.social.reviews">
       <blockquote>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo enim dolorem eveniet earum voluptas, cupiditate ducimus est temporibus excepturi facere id placeat perspiciatis reiciendis at obcaecati alias sequi. Iusto amet sequi nemo repellat, possimus voluptates aperiam porro autem. Tempore, aliquam?</p>
+        <p>{{review.review}}</p>
       </blockquote>
-      <cite><strong>Joe Smith</strong> | Title/Location</cite>
-    </li><!-- /.endorsement -->
-    <li class="endorsement">
-      <blockquote>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo enim dolorem eveniet earum voluptas, cupiditate ducimus est temporibus excepturi facere id placeat perspiciatis reiciendis at obcaecati alias sequi. Iusto amet sequi nemo repellat, possimus voluptates aperiam porro autem. Tempore, aliquam?</p>
-      </blockquote>
-      <cite><strong>Joe Smith</strong> | Title/Location</cite>
+      <cite><strong>{{review.name}}</strong> | {{review.title}}</cite>
     </li><!-- /.endorsement -->
   </ul><!-- /.endorsements -->
 </div><!-- /.general-content__section -->

@@ -528,6 +528,16 @@ function ListingService($location, $cookies, $q, $resource, $http, Auth, User) {
           signature: listing.terms.signature
         };
 
+      } else if( page === 'admin' ) {
+
+        return {
+          basics: listing.admin.basics,
+          underwriting: listing.admin.underwriting,
+          scores: listing.admin.scores,
+          financials: listing.admin.financials,
+          bankStatements: listing.admin.bankStatements
+        };
+
       }
 
     },

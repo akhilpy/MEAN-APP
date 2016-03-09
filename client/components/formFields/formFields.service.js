@@ -63,10 +63,9 @@ function FormService(appConfig) {
               key: 'role',
               templateOptions: {
                 label: 'Type of User',
-                labelProp: 'label',
+                labelProp: 'name',
                 valueProp: 'value',
                 options: roles,
-                ngOptions: 'option.name for option in to.options track by option.value',
                 placeholder: 'Select'
               }
             }
@@ -264,10 +263,9 @@ function FormService(appConfig) {
               key: 'address.province',
               templateOptions: {
                 label: 'Province',
-                labelProp: 'label',
+                labelProp: 'name',
                 valueProp: 'value',
                 options: provinces,
-                ngOptions: 'option.name for option in to.options track by option.value',
                 placeholder: 'Select'
               }
             },
@@ -503,6 +501,68 @@ function FormService(appConfig) {
         }
       ];
     },
+
+
+    /**
+     * Get Borrower Admin Fields
+     *
+     * @return Array
+     */
+    getBorrowerAdmin() {
+      return [
+        {
+          className: 'display-flex',
+          fieldGroup: [
+            {
+              className: 'flex-1',
+              type: 'chosen',
+              key: 'borrower.status',
+              templateOptions: {
+                label: 'Status',
+                labelProp: 'name',
+                valueProp: 'value',
+                options: [
+                  {
+                    name: 'Inactive',
+                    value: 'Inactive'
+                  },
+                  {
+                    name: 'Active',
+                    value: 'Active'
+                  }
+                ],
+                placeholder: 'Select'
+              },
+              expressionProperties: {
+                'templateOptions.disabled': 'formState.disabled'
+              }
+            },
+            {
+              className: 'flex-1',
+              type: 'chosen',
+              key: 'borrower.level',
+              templateOptions: {
+                label: 'Level',
+                labelProp: 'name',
+                valueProp: 'value',
+                options: [
+                  {
+                    name: 'Standard',
+                    value: 'Standard'
+                  }
+                ],
+                placeholder: 'Select'
+              },
+              expressionProperties: {
+                'templateOptions.disabled': 'formState.disabled'
+              }
+            },
+          ]
+        }
+    ];
+
+    },
+
 
 
     /**
@@ -1395,10 +1455,10 @@ function FormService(appConfig) {
                   type: 'input',
                 },
                 {
-                  key: 'link',
+                  key: 'title',
                   templateOptions: {
-                    label: 'Link',
-                    placeholder: 'http://',
+                    label: 'Title/Location',
+                    placeholder: 'Manager',
                     description: 'Press, News, Websites'
                   },
                   className: 'flex-1',
@@ -1567,6 +1627,10 @@ function FormService(appConfig) {
 
         return [
           {
+            noFormControl: true,
+            template: '<h3 class="form-subtitle">General</h3>'
+          },
+          {
             className: 'display-flex',
             fieldGroup: [
               {
@@ -1596,12 +1660,651 @@ function FormService(appConfig) {
                 expressionProperties: {
                   'templateOptions.disabled': 'formState.disabled'
                 }
+              },
+              {
+                className: 'flex-1',
+                type: 'input',
+                key: 'basics.eligibility',
+                templateOptions: {
+                  type: 'number',
+                  label: 'Institutional Eligibility',
+                  placeholder: '',
+                  description: ''
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
+                }
+              },
+              {
+                className: 'flex-1',
+                type: 'input',
+                key: 'basics.benchmarkRate',
+                templateOptions: {
+                  type: 'number',
+                  label: 'Benchmark Rate',
+                  placeholder: '%',
+                  description: ''
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
+                }
+              }
+            ]
+          },
+          {
+            className: 'display-flex',
+            fieldGroup: [
+              {
+                className: 'flex-1',
+                type: 'input',
+                key: 'basics.latePenalty',
+                templateOptions: {
+                  type: 'number',
+                  label: 'Late Payment Penalty',
+                  placeholder: '$',
+                  description: ''
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
+                }
+              },
+              {
+                className: 'flex-1',
+                type: 'input',
+                key: 'basics.finappsID',
+                templateOptions: {
+                  type: 'number',
+                  label: 'FinApps ID',
+                  placeholder: '',
+                  description: ''
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
+                }
+              },
+              {
+                className: 'flex-1',
+                type: 'input',
+                key: 'basics.creditID',
+                templateOptions: {
+                  type: 'number',
+                  label: 'Credit ID',
+                  placeholder: '',
+                  description: ''
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
+                }
+              },
+              {
+                className: 'flex-1',
+                type: 'input',
+                key: 'basics.reviewedBy',
+                templateOptions: {
+                  type: 'text',
+                  label: 'Reviewed by',
+                  placeholder: '',
+                  description: ''
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
+                }
+              }
+            ]
+          },
+          {
+            className: 'display-flex',
+            fieldGroup: [
+              {
+                className: 'flex-1',
+                type: 'textarea',
+                key: 'basics.notes',
+                templateOptions: {
+                  label: 'Notes',
+                  description: ''
+                }
+              }
+            ]
+          },
+          {
+            noFormControl: true,
+            template: '<hr class="form-break"><h3 class="form-subtitle">Underwriting</h3>'
+          },
+          {
+            className: 'display-flex',
+            fieldGroup: [
+              {
+                className: 'flex-1',
+                type: 'dropzone',
+                key: 'underwriting.creditReport',
+                templateOptions: {
+                  key: 'files',
+                  type: 'input',
+                  label: 'Credit report(s)'
+                },
+              },
+              {
+                className: 'flex-1',
+                type: 'dropzone',
+                key: 'underwriting.underwritingReport',
+                templateOptions: {
+                  key: 'files',
+                  type: 'input',
+                  label: 'Underwriting report'
+                },
+              }
+            ]
+          },
+          {
+            className: 'display-flex',
+            fieldGroup: [
+              {
+                className: 'flex-1',
+                type: 'radio',
+                key: 'underwriting.taxReturns',
+                templateOptions: {
+                  label: 'Tax returns provided',
+                  options: [
+                    {
+                      name: 'No',
+                      value: 'No'
+                    },
+                    {
+                      name: 'Yes',
+                      value: 'Yes'
+                    },
+                    {
+                      name: 'N/A',
+                      value: 'N/A'
+                    }
+                  ],
+                  description: ''
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
+                }
+              },
+              {
+                className: 'flex-1',
+                type: 'radio',
+                key: 'underwriting.bankStatements',
+                templateOptions: {
+                  label: 'Bank statements',
+                  options: [
+                    {
+                      name: 'No',
+                      value: 'No'
+                    },
+                    {
+                      name: 'Yes',
+                      value: 'Yes'
+                    }
+                  ],
+                  description: ''
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
+                }
+              },
+              {
+                className: 'flex-1',
+                type: 'radio',
+                key: 'underwriting.firstLien',
+                templateOptions: {
+                  label: 'First lien position on the Note',
+                  options: [
+                    {
+                      name: 'No',
+                      value: 'No'
+                    },
+                    {
+                      name: 'Yes',
+                      value: 'Yes'
+                    }
+                  ],
+                  description: ''
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
+                }
+              }
+            ]
+          },
+          {
+            className: 'display-flex',
+            fieldGroup: [
+              {
+                className: 'flex-1',
+                type: 'radio',
+                key: 'underwriting.bankruptcies',
+                templateOptions: {
+                  label: 'Bankruptcies in last 6 years',
+                  options: [
+                    {
+                      name: 'No',
+                      value: 'No'
+                    },
+                    {
+                      name: 'Yes',
+                      value: 'Yes'
+                    }
+                  ],
+                  description: ''
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
+                }
+              },
+              {
+                className: 'flex-1',
+                type: 'radio',
+                key: 'underwriting.taxLiens',
+                templateOptions: {
+                  label: 'Tax Liens',
+                  options: [
+                    {
+                      name: 'No',
+                      value: 'No'
+                    },
+                    {
+                      name: 'Yes',
+                      value: 'Yes'
+                    }
+                  ],
+                  description: ''
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
+                }
+              },
+              {
+                className: 'flex-1',
+                type: 'radio',
+                key: 'underwriting.legalProceedings',
+                templateOptions: {
+                  label: 'Legal judgments or current proceedings',
+                  options: [
+                    {
+                      name: 'No',
+                      value: 'No'
+                    },
+                    {
+                      name: 'Yes',
+                      value: 'Yes'
+                    }
+                  ],
+                  description: ''
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
+                }
+              }
+            ]
+          },
+          {
+            noFormControl: true,
+            template: '<hr class="form-break"><h3 class="form-subtitle">Scores</h3>'
+          },
+          {
+            className: 'display-flex',
+            fieldGroup: [
+              {
+                className: 'flex-1',
+                type: 'input',
+                key: 'scores.ci',
+                templateOptions: {
+                  type: 'number',
+                  label: 'CI Score',
+                  placeholder: '',
+                  description: ''
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
+                }
+              },
+              {
+                className: 'flex-1',
+                type: 'input',
+                key: 'scores.pi',
+                templateOptions: {
+                  type: 'number',
+                  label: 'PI Score',
+                  placeholder: '',
+                  description: ''
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
+                }
+              },
+              {
+                className: 'flex-1',
+                type: 'input',
+                key: 'scores.cds',
+                templateOptions: {
+                  type: 'number',
+                  label: 'Probability of Default (CDS Score)',
+                  placeholder: '',
+                  description: ''
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
+                }
+              },
+              {
+                className: 'flex-1',
+                type: 'input',
+                key: 'scores.bfrs',
+                templateOptions: {
+                  type: 'number',
+                  label: 'Probability of Business Failure (BFRS Score)',
+                  placeholder: '',
+                  description: ''
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
+                }
+              }
+            ]
+          },
+          {
+            className: 'display-flex',
+            fieldGroup: [
+              {
+                className: 'flex-1',
+                type: 'input',
+                key: 'scores.paynet',
+                templateOptions: {
+                  type: 'number',
+                  label: 'Paynet Score',
+                  placeholder: '',
+                  description: ''
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
+                }
+              },
+              {
+                className: 'flex-1',
+                type: 'input',
+                key: 'scores.tbill',
+                templateOptions: {
+                  type: 'number',
+                  label: 'T-Bill Rate',
+                  placeholder: '',
+                  description: ''
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
+                }
+              },
+              {
+                className: 'flex-1',
+                type: 'radio',
+                key: 'scores.proxy',
+                templateOptions: {
+                  label: 'Proxy Score',
+                  options: [
+                    {
+                      name: 'No',
+                      value: 'No'
+                    },
+                    {
+                      name: 'Yes',
+                      value: 'Yes'
+                    }
+                  ],
+                  description: ''
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
+                }
+              }
+            ]
+          },
+          {
+            className: 'display-flex',
+            fieldGroup: [
+              {
+                className: 'flex-1',
+                type: 'input',
+                key: 'scores.bond',
+                templateOptions: {
+                  type: 'number',
+                  label: 'Bond Yield',
+                  placeholder: '',
+                  description: ''
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
+                }
+              },
+              {
+                className: 'flex-1',
+                type: 'input',
+                key: 'scores.rating',
+                templateOptions: {
+                  type: 'text',
+                  label: 'Credit Rating',
+                  placeholder: '',
+                  description: ''
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
+                }
+              },
+              {
+                className: 'flex-1',
+                type: 'input',
+                key: 'scores.indFactor',
+                templateOptions: {
+                  type: 'number',
+                  label: 'IND Factor',
+                  placeholder: '',
+                  description: ''
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
+                }
+              }
+            ]
+          },
+          {
+            className: 'display-flex',
+            fieldGroup: [
+              {
+                className: 'flex-1',
+                type: 'input',
+                key: 'scores.fico.average',
+                templateOptions: {
+                  type: 'number',
+                  label: 'Average Owner FICO',
+                  placeholder: '',
+                  description: ''
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
+                }
+              },
+              {
+                className: 'flex-1',
+                type: 'input',
+                key: 'scores.fico.highest',
+                templateOptions: {
+                  type: 'text',
+                  label: 'Highest Owner FICO',
+                  placeholder: '',
+                  description: ''
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
+                }
+              },
+              {
+                className: 'flex-1',
+                type: 'input',
+                key: 'scores.fico.lowest',
+                templateOptions: {
+                  type: 'number',
+                  label: 'Lowest Owner FICO',
+                  placeholder: '',
+                  description: ''
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
+                }
+              }
+            ]
+          },
+          {
+            noFormControl: true,
+            template: '<hr class="form-break"><h3 class="form-subtitle">Financials</h3>'
+          },
+          {
+            className: 'display-flex',
+            fieldGroup: [
+              {
+                className: 'flex-1',
+                type: 'input',
+                key: 'financials.creditExposure',
+                templateOptions: {
+                  type: 'number',
+                  label: 'Total Current Credit Exposure',
+                  placeholder: '$',
+                  description: ''
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
+                }
+              },
+              {
+                className: 'flex-1',
+                type: 'input',
+                key: 'financials.loanRatio',
+                templateOptions: {
+                  type: 'number',
+                  label: 'Loan to New Revenue Ratio',
+                  placeholder: '',
+                  description: ''
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
+                }
+              },
+              {
+                className: 'flex-1',
+                type: 'input',
+                key: 'financials.debtRatio',
+                templateOptions: {
+                  type: 'number',
+                  label: 'Debt/Revenue Ratio',
+                  placeholder: '',
+                  description: ''
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
+                }
+              }
+            ]
+          },
+          {
+            noFormControl: true,
+            template: '<hr class="form-break"><h3 class="form-subtitle">Bank Statements</h3>'
+          },
+          {
+            className: 'display-flex',
+            fieldGroup: [
+              {
+                className: 'flex-1',
+                type: 'input',
+                key: 'bankStatements.balance',
+                templateOptions: {
+                  type: 'number',
+                  label: 'Current Balance',
+                  placeholder: '$',
+                  description: ''
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
+                }
+              },
+              {
+                className: 'flex-1',
+                type: 'input',
+                key: 'bankStatements.deposits',
+                templateOptions: {
+                  type: 'number',
+                  label: '90 Day Deposits',
+                  placeholder: '',
+                  description: ''
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
+                }
+              },
+              {
+                className: 'flex-1',
+                type: 'input',
+                key: 'bankStatements.expenses',
+                templateOptions: {
+                  type: 'number',
+                  label: '90 Day Expenses',
+                  placeholder: '',
+                  description: ''
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
+                }
+              }
+            ]
+          },
+          {
+            className: 'display-flex',
+            fieldGroup: [
+              {
+                className: 'flex-1',
+                type: 'input',
+                key: 'bankStatements.leftover',
+                templateOptions: {
+                  type: 'number',
+                  label: '90 Day Leftover',
+                  placeholder: '$',
+                  description: ''
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
+                }
+              },
+              {
+                className: 'flex-1',
+                type: 'input',
+                key: 'bankStatements.cashFlow',
+                templateOptions: {
+                  type: 'number',
+                  label: 'Average Free Cash Flow ratio',
+                  placeholder: '',
+                  description: ''
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
+                }
+              },
+              {
+                className: 'flex-1',
+                type: 'input',
+                key: 'bankStatements.income',
+                templateOptions: {
+                  type: 'number',
+                  label: 'Estimated Annual Income',
+                  placeholder: '',
+                  description: ''
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
+                }
               }
             ]
           }
         ];
-
-
       }
 
     },

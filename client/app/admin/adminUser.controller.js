@@ -12,6 +12,7 @@ class AdminUserController {
     vm.investorProfile = vm.Form.getInvestorProfile();
     vm.investorAdmin = vm.Form.getInvestorAdmin();
     vm.borrowerProfile = vm.Form.getBorrowerProfile();
+    vm.borrowerAdmin = vm.Form.getBorrowerAdmin();
   }
 
   updateInvestor(form) {
@@ -20,6 +21,8 @@ class AdminUserController {
     var investor = {};
 
     vm.submitted = true;
+
+    console.log(vm.user);
 
     if (form.$valid) {
       vm.$http.put('/api/users/' + vm.user._id, {

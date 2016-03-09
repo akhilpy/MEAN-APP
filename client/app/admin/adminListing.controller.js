@@ -70,7 +70,6 @@ class AdminListingController {
     }
 
     if( vm.currentListing.admin ) {
-      console.log(vm.pageData(vm.currentListing, 'admin'));
       savedListing.admin = vm.pageData(vm.currentListing, 'admin');
     }
 

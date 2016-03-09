@@ -45,6 +45,19 @@
       },
 
       /**
+       * Verify a user's bank account
+       */
+      verifyAccount(user) {
+        return $http({
+          method: 'POST',
+          url: '/api/payments/verify-account',
+          headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+          transformRequest: transformRequest,
+          data: user
+        });
+      },
+
+      /**
        * Create a transaction
        */
       createTransaction(transaction) {

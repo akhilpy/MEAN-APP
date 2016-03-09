@@ -55,7 +55,7 @@ var reviews = {
 		type: String,
 		default: ''
 	},
-	link: {
+	title: {
 		type: String,
 		default: ''
 	}
@@ -140,13 +140,30 @@ var underwriting = {
 		default: ''
 	},
 	underwritingReport: String,
-	taxReturns: String,
-	bankStatements: String,
-	firstLien: String,
-	bankruptcies: String,
-	taxLiens: String,
-	legalProceedings: String,
-	ownerCreditReport: String,
+	taxReturns: {
+		type: String,
+		default: 'No'
+	},
+	bankStatements: {
+		type: String,
+		default: 'No'
+	},
+	firstLien: {
+		type: String,
+		default: 'No'
+	},
+	bankruptcies: {
+		type: String,
+		default: 'No'
+	},
+	taxLiens: {
+		type: String,
+		default: 'No'
+	},
+	legalProceedings: {
+		type: String,
+		default: 'No'
+	}
 };
 
 var scores = {
@@ -155,7 +172,10 @@ var scores = {
 	cds: Number,
 	bfrs: Number,
 	paynet: Number,
-	proxy: Number,
+	proxy: {
+		type: String,
+		default: 'No'
+	},
 	tbill: Number,
 	bond: Number,
 	rating: {
@@ -172,7 +192,7 @@ var scores = {
 
 var financials = {
 	creditExposure: {
-		type: String,
+		type: Number,
 		default: ''
 	},
 	loanRatio: Number,

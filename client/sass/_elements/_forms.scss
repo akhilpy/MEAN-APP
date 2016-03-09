@@ -82,6 +82,21 @@ input[type="radio"] {
 
 /*----------  Layout  ----------*/
 
+.form-subtitle {
+  @include font-primary(600);
+  @include font-size(18);
+  text-transform: uppercase;
+  margin: 0 0 rem(20) 0;
+  color: $color-slate-dark;
+  border-bottom: 1px solid $color-grey-light;
+}
+
+.form-break {
+  background: none;
+  height: 1px;
+  margin: rem(20) 0;
+}
+
 .form__rows {
   @include list-zero;
 

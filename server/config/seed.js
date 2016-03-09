@@ -125,7 +125,12 @@ User.find({}).remove()
             {
               name: 'Jane Smith',
               title: 'Our First Customer',
-              link: '#'
+              review: 'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.'
+            },
+            {
+              name: 'John Smith',
+              title: 'Our Second Customer',
+              review: 'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.'
             }
           ],
           images: [
@@ -274,7 +279,12 @@ User.find({}).remove()
             {
               name: 'Jane Smith',
               title: 'Our First Customer',
-              link: '#'
+              review: 'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.'
+            },
+            {
+              name: 'John Smith',
+              title: 'Our Second Customer',
+              review: 'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.'
             }
           ],
           images: []

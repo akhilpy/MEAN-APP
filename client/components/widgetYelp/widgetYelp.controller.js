@@ -13,8 +13,6 @@ class widgetYelpController {
     var yelpID = yelpArray[yelpArray.length-1];
 
     YelpService.getBusiness(yelpID).then(function(reponse) {
-      console.log(reponse.data);
-
       yelp.overview = {
         image: reponse.data.image_url,
         name: reponse.data.name,
