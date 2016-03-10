@@ -110,6 +110,7 @@ export function create(req, res) {
   User.findByIdAsync(userID)
     .then(user => {
       newOffer.user = user;
+      user.investor.balance -= newOffer.amount;
       user.investor.offers.push(newOffer);
       return Offer.createAsync(newOffer).then(offer => {
         user.saveAsync().then(() => {

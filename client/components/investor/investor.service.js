@@ -2,86 +2,42 @@
 
 (function() {
 
-function InvestorService($location, $cookies, $http, User, Auth, Offers) {
-  var currentUser = {};
-
-  if ($cookies.get('token') && $location.path() !== '/logout') {
-    currentUser = User.get();
-  }
+function InvestorService($http, Offers, ListingService) {
 
   var Investor = {
 
-
     /**
-     * Get account balance
+     * Get all Investor information
      *
      * @return {String}
      */
-    getBalance() {
-      return '73845.75';
-    },
-
-    /**
-     * Get monetary value of offers
-     *
-     * @return {String}
-     */
-    getOffersAmount() {
-      return '24000';
-    },
-
-    /**
-     * Get number of offers
-     *
-     * @return {String}
-     */
-    getOffersNumber() {
-      return 4;
-    },
-
-    /**
-     * Get investor status
-     *
-     * @return {String}
-     */
-    getInvestorStatus() {
-      return 'Unconfirmed';
-    },
-
-    /**
-     * Get total amount invested
-     *
-     * @return {String}
-     */
-    getTotalInvested() {
-      return '60000';
-    },
-
-    /**
-     * Get total interest earned
-     *
-     * @return {String}
-     */
-    getTotalInterest() {
-      return '13845';
-    },
-
-    /**
-     * Get forecast interest
-     *
-     * @return {String}
-     */
-    getForecastInterest() {
-      return '15560';
-    },
-
-    /**
-     * Get late payments
-     *
-     * @return {String}
-     */
-    getLatePayments() {
-      return '0';
+    getInvestorInfo() {
+      var info = {};
+      return ListingService.getCurrentUser()
+        .then(user => {
+          return Offers.getUserOffers(user._id).then(data => {
+            var offers = data.data;
+            var total = 0;
+            angular.forEach(offers, function(offer, key) {
+              total += offer.amount;
+            });
+            return total;
+          }).then(total => {
+            return {
+              balance: user.investor.balance,
+              amount: total,
+              number: user.investor.offers.length,
+              total: 0,
+              interest: 13845,
+              forecast: 15560,
+              late: 0,
+              status: user.investor.status
+            }
+          });
+        })
+        .catch(err => {
+          console.log(err.message);
+        });
     },
 
     /**
@@ -141,7 +97,7 @@ function InvestorService($location, $cookies, $http, User, Auth, Offers) {
      * @return {String}
      */
     getBookmarks() {
-      return Auth.getCurrentUser(null)
+      return ListingService.getCurrentUser()
         .then(user => {
           return $http.get('/api/users/' + user._id + '/bookmarks');
         })

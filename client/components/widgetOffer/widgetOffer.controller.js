@@ -3,12 +3,18 @@
 (function() {
 
 class WidgetOfferController {
-  constructor($scope, Offers) {
+  constructor($scope, Offers, Investor) {
     var widget = this;
     widget.$scope = $scope;
     widget.Offers = Offers;
+    widget.investorInfo = Investor.getInvestorInfo();
 
+    widget.$scope.balance = 0;
     widget.$scope.offered = false;
+
+    Investor.getInvestorInfo().then(data => {
+      widget.$scope.balance = data.balance;
+    });
 
     widget.$scope.rates = [
       {
@@ -47,6 +53,7 @@ class WidgetOfferController {
       widget.newOffer.listing = widget.$scope.vm.currentListing;
       widget.Offers.new(widget.newOffer);
       widget.$scope.offered = true;
+      widget.$scope.balance -= widget.newOffer.amount;
     }
   }
 }

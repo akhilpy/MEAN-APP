@@ -5,7 +5,7 @@
     </header><!-- /.widget__header -->
 
     <div class="widget__subtitle">
-      <h4>$73,845.75</h4>
+      <h4>{{balance | currency}}</h4>
       <span>Available Balance</span>
     </div><!-- /.widget__subtitle -->
 
@@ -18,7 +18,7 @@
           <select chosen="amounts" data-placeholder="Amount*" ng-model="offerWidget.newOffer.amount" ng-options="amount.value as amount.label for amount in amounts"></select>
         </li><!-- /.form__row -->
         <li class="form__row form__row--submit ">
-          <button ng-class="{disabled: offered}" ng-click="offerWidget.makeOffer()">{{offered ? 'Offered' : 'Submit'}}</button>
+          <button ng-click="offerWidget.makeOffer()">{{offered ? 'Offered' : 'Submit'}}</button>
         </li><!-- /.form__row -->
       </ul><!-- /.form__rows -->
     </form><!-- /.widget__form -->

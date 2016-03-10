@@ -22,7 +22,10 @@ var newUser = new User({
     last: 'Investor'
   },
   email: 'test@investor.com',
-  password: 'password'
+  password: 'password',
+  investor: {
+    balance: 75000
+  }
 });
 
 User.find({}).remove()

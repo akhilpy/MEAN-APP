@@ -1,10 +1,12 @@
 <ul class="dashboard__navigation--list">
   <li><a ui-sref-active="active" ui-sref="admin.offers.index">All Offers</a></li>
   <li><a ui-sref-active="active" ui-sref="admin.offers.status({status: 'pending'})">Pending</a></li>
-  <li><a ui-sref-active="active" ui-sref="admin.offers.status({status: 'accepted'})">Accepted</a></li>
+  <li><a ui-sref-active="active" ui-sref="admin.offers.status({status: 'review'})">Review</a></li>
   <li><a ui-sref-active="active" ui-sref="admin.offers.status({status: 'live'})">Live</a></li>
-  <li><a ui-sref-active="active" ui-sref="admin.offers.status({status: 'risk'})">Risk</a></li>
+  <li><a ui-sref-active="active" ui-sref="admin.offers.status({status: 'cancelled'})">Cancelled</a></li>
+  <li><a ui-sref-active="active" ui-sref="admin.offers.status({status: 'risk'})">At Risk</a></li>
   <li><a ui-sref-active="active" ui-sref="admin.offers.status({status: 'outbid'})">Outbid</a></li>
+  <li><a ui-sref-active="active" ui-sref="admin.offers.status({status: 'accepted'})">Accepted</a></li>
 </ul><!-- /.dashboard__navigation--list -->
 
 <ui-view class="admin-dashboard__main"></ui-view>

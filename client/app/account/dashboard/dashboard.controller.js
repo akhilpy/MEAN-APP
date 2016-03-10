@@ -3,7 +3,7 @@
 (function() {
 
 class DashboardController {
-  constructor(Auth, Investor, bookmarks) {
+  constructor(Auth, Investor, offers, bookmarks, investorInfo, $scope) {
     this.errors = {};
     this.submitted = false;
 
@@ -13,10 +13,28 @@ class DashboardController {
     this.isAdmin = Auth.isAdmin;
     this.isBorrower = Auth.isBorrower;
     this.isInvestor = Auth.isInvestor;
+
+    this.hasOffers = false;
+    this.hasBookmarks = false;
+
+    this.investorInfo = investorInfo;
+
     this.statements = Investor.getStatements();
+
+    if(offers.data) {
+      this.offers = offers.data;
+      if(this.offers.length > 0) {
+        this.hasOffers = true;
+      }
+    } else {
+      this.offers = [];
+    }
 
     if(bookmarks.data) {
       this.watchlist = bookmarks.data.bookmarks;
+      if(this.watchlist.length > 0) {
+        this.hasBookmarks = true;
+      }
     } else {
       this.watchlist = [];
     }

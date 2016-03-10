@@ -1,4 +1,6 @@
-<table>
+<p ng-hide="vm.hasOffers" class="dashboard__main--intro">You have not made any offers.</p>
+
+<table ng-show="vm.hasOffers">
   <thead>
     <tr>
       <th><a href="#">Date</a></th>

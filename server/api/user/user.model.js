@@ -112,6 +112,10 @@ var UserSchema = new Schema({
 		}]
 	},
 	investor: {
+		balance: {
+			type: Number,
+			default: 0
+		},
 		increase: Boolean,
 		status: {
 			type: String,

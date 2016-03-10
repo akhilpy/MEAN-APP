@@ -2,7 +2,7 @@
 
 (function() {
 
-  function OfferService($http, Auth) {
+  function OfferService($http, Auth, $q) {
 
     var Offers = {
 
@@ -53,7 +53,7 @@
        */
       getUserOffers(userID) {
         if(userID) {
-          return $http.get('/api/offers/user/' + user);
+          return $http.get('/api/offers/user/' + userID);
         } else {
           return Auth.getCurrentUser(null)
             .then(user => {
@@ -63,6 +63,23 @@
               console.log(err.message);
             });
         }
+      },
+
+      /**
+       * Get a user's offers Async
+       *
+       * @return {String}
+       */
+      getUserOffersAsync(userID) {
+        var deferred = $q.defer();
+
+        Offers.getUserOffers(userID, function(res) {
+          deferred.resolve(res);
+        }, function(err) {
+          deferred.reject(err);
+        });
+
+        return deferred.promise;
       },
 
     };

@@ -1,6 +1,6 @@
-<p class="dashboard__main--intro">Your bank account must be verified and transactions can take up to three business days to complete. Check your email for more information on verifying your bank account.</p>
+<p ng-hide="vm.hasBookmarks" class="dashboard__main--intro">You are not watching any listings.</p>
 
-<table>
+<table ng-show="vm.hasBookmarks">
   <thead>
     <tr>
       <th><a href="#">Date</a></th>

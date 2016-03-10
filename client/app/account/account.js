@@ -26,6 +26,7 @@ angular.module('investnextdoorCaApp')
         controllerAs: 'vm',
         abstract: true,
         resolve: {
+          investorInfo: function() { return []; },
           bookmarks: function() { return []; },
           offers: function() { return []; }
         }
@@ -58,9 +59,19 @@ angular.module('investnextdoorCaApp')
         controller: 'DashboardController',
         controllerAs: 'vm',
         resolve: {
+          investorInfo: ['Investor',
+            function(Investor) {
+              return Investor.getInvestorInfo();
+            }
+          ],
           bookmarks: ['Investor',
             function(Investor) {
               return Investor.getBookmarks();
+            }
+          ],
+          offers: ['Offers',
+            function(Offers) {
+              return Offers.getUserOffers();
             }
           ]
         }
