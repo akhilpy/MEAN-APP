@@ -233,7 +233,10 @@ var ListingSchema = new Schema({
 		phone: String,
 		website: String,
 		address: address,
-		founded: String,
+		founded: {
+			type: Date,
+			default: Date.now
+		},
 		structure: String,
 		industry: String,
 		naics: String,

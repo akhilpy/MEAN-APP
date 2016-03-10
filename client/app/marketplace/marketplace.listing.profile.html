@@ -80,7 +80,7 @@
           </tr>
           <tr>
             <th><strong>Founded:</strong></th>
-            <td>{{vm.currentListing.general.founded}}</td>
+            <td>{{vm.currentListing.general.founded | date}}</td>
           </tr>
           <tr>
             <th><strong>Employees:</strong></th>
@@ -104,7 +104,7 @@
                 <span class="meter__marker">10</span>
               </div>
             </div>
-            <h3 class="meter__label">4.3 years</h3>
+            <h3 class="meter__label"><span am-time-ago="vm.currentListing.founded"></span></h3>
           </div><!-- /.meter__wrapper -->
         </li>
         <li>

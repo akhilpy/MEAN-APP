@@ -16,6 +16,10 @@ class MarketplaceListingController {
     vm.requested = false;
     vm.bookmarked = false;
 
+    if(vm.currentListing) {
+      vm.currentListing.founded = vm.currentListing.general.founded;
+    }
+
     // check if user has already requested more info
     if(vm.currentListing.infoRequest.length > 0) {
       angular.forEach(vm.currentListing.infoRequest, function(request) {

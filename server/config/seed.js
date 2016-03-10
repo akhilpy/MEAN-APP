@@ -73,7 +73,7 @@ User.find({}).remove()
             province: 'BC',
             postal: '12345'
           },
-      		founded: '2000',
+      		founded: Date.now(),
       		structure: 'Limited Partnership',
       		industry: 'Professional Services',
       		naics: '123',
