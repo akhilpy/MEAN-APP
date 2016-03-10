@@ -2,7 +2,7 @@
 
 (function() {
 
-function InvestorService($location, $cookies, $http, User, Auth) {
+function InvestorService($location, $cookies, $http, User, Auth, Offers) {
   var currentUser = {};
 
   if ($cookies.get('token') && $location.path() !== '/logout') {
@@ -36,7 +36,7 @@ function InvestorService($location, $cookies, $http, User, Auth) {
      * @return {String}
      */
     getOffersNumber() {
-      return '4';
+      return 4;
     },
 
     /**

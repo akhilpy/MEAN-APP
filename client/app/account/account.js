@@ -26,7 +26,8 @@ angular.module('investnextdoorCaApp')
         controllerAs: 'vm',
         abstract: true,
         resolve: {
-          bookmarks: function() { return []; }
+          bookmarks: function() { return []; },
+          offers: function() { return []; }
         }
       })
       .state('dashboard.index', {

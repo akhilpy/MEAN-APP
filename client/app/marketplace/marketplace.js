@@ -7,7 +7,8 @@ angular.module('investnextdoorCaApp')
         url: '/marketplace',
         templateUrl: 'app/marketplace/marketplace.html',
         resolve: {
-          listings: function() { return []; }
+          listings: function() { return []; },
+          offers: function() { return []; }
         },
         controller: 'MarketplaceController',
         controllerAs: 'vm',
@@ -35,6 +36,11 @@ angular.module('investnextdoorCaApp')
           listing: ['$stateParams', 'ListingService',
             function($stateParams, ListingService) {
               return ListingService.getOne($stateParams.id);
+            }
+          ],
+          offers: ['$stateParams', 'Offers',
+            function($stateParams, Offers) {
+              return Offers.getListingOffers($stateParams.id);
             }
           ]
         },

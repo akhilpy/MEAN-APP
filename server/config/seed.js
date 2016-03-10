@@ -6,7 +6,13 @@
 'use strict';
 import User from '../api/user/user.model';
 import Listing from '../api/listing/listing.model';
+import Offers from '../api/offer/offer.model';
 import Faq from '../api/faq/faq.model';
+
+Offers.find({}).remove()
+.then(() => {
+  console.log('finished removing offers');
+});
 
 var newUser = new User({
   provider: 'local',

@@ -3,7 +3,7 @@
 (function() {
 
 class MarketplaceListingController {
-  constructor(listing, ListingService, Auth, $scope, ngDialog) {
+  constructor(listing, offers, ListingService, Auth, $scope, ngDialog) {
     var vm = this;
     vm.ListingService = ListingService;
     vm.Auth = Auth;
@@ -11,6 +11,7 @@ class MarketplaceListingController {
     vm.ngDialog = ngDialog;
     vm.currentListing = listing.data;
     vm.currentListing.link = window.location.href;
+    vm.currentOffers = offers.data;
     vm.currentUser = Auth.getCurrentUser();
     vm.requested = false;
     vm.bookmarked = false;
@@ -37,14 +38,6 @@ class MarketplaceListingController {
       title: 'Make an Offer',
       message: 'Details on your offer will be shown here.'
     }
-  }
-
-  makeOffer() {
-    this.ngDialog.open({
-      template: 'dialog.default',
-      className: 'ngdialog-theme-default',
-      scope: this.$scope
-    });
   }
 
   bookmark() {

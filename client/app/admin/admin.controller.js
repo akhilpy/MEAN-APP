@@ -3,7 +3,7 @@
 (function() {
 
 class AdminController {
-  constructor(listings, users, ListingService, $state, $stateParams, $scope) {
+  constructor(listings, users, offers, ListingService, $state, $stateParams, $scope) {
     var vm = this;
     vm.$state = $state;
     vm.$scope = $scope;
@@ -12,6 +12,7 @@ class AdminController {
 
     vm.allListings = listings.data;
     vm.users = users.data;
+    vm.offers = offers.data;
 
     vm.$scope.sortType = 'name.last';
     vm.$scope.sortReverse = false;

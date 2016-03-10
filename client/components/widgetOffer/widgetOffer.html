@@ -12,13 +12,13 @@
     <form class="widget__form">
       <ul class="form__rows">
         <li class="form__row">
-          <select chosen="" data-placeholder="Rate *"></select>
+          <select chosen="rates" data-placeholder="Rate*" ng-model="offerWidget.newOffer.rate" ng-options="rate.value as rate.label for rate in rates"></select>
         </li><!-- /.form__row -->
         <li class="form__row">
-          <select chosen="" data-placeholder="Amount *"></select>
+          <select chosen="amounts" data-placeholder="Amount*" ng-model="offerWidget.newOffer.amount" ng-options="amount.value as amount.label for amount in amounts"></select>
         </li><!-- /.form__row -->
         <li class="form__row form__row--submit ">
-          <button ng-click="widget.offer()">Submit</button>
+          <button ng-class="{disabled: offered}" ng-click="offerWidget.makeOffer()">{{offered ? 'Offered' : 'Submit'}}</button>
         </li><!-- /.form__row -->
       </ul><!-- /.form__rows -->
     </form><!-- /.widget__form -->

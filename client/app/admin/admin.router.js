@@ -9,6 +9,7 @@ angular.module('investnextdoorCaApp.admin')
         resolve: {
           listings: function() { return []; },
           users: function() { return []; },
+          offers: function() { return []; },
           currentListing: function() { return []; },
           currentUser: function() { return []; },
           status: function($stateParams) {
@@ -271,4 +272,49 @@ angular.module('investnextdoorCaApp.admin')
         },
         authenticate: 'admin'
       })
+      .state('admin.offers', {
+        url: '/offers',
+        templateUrl: 'app/admin/admin.offers.html',
+        resolve: {
+          offers: function() { return []; }
+        },
+        abstract: true,
+        authenticate: 'admin'
+      })
+      .state('admin.offers.index', {
+        url: '',
+        templateUrl: 'app/admin/admin.offers.status.html',
+        controller: 'AdminController',
+        controllerAs: 'vm',
+        resolve: {
+          offers: ['$stateParams', 'Offers',
+            function($stateParams, Offers) {
+              return Offers.getAll();
+            }
+          ]
+        },
+        ncyBreadcrumb: {
+          label: 'Offers',
+          parent: 'admin.index'
+        },
+        authenticate: 'admin',
+      })
+      .state('admin.offers.status', {
+        url: '/:status',
+        templateUrl: 'app/admin/admin.offers.status.html',
+        controller: 'AdminController',
+        controllerAs: 'vm',
+        resolve: {
+          offers: ['$stateParams', 'Offers',
+            function($stateParams, Offers) {
+              return Offers.getAll($stateParams.status);
+            }
+          ]
+        },
+        ncyBreadcrumb: {
+          label: '{{breadcrumb}}',
+          parent: 'admin.offers.index'
+        },
+        authenticate: 'admin',
+      });
   });

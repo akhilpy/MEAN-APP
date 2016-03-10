@@ -1,1 +1,20 @@
-<p>These are the account offers</p>
+<table>
+  <thead>
+    <tr>
+      <th><a href="#">Date</a></th>
+      <th><a href="#">Listing</a></th>
+      <th><a href="#">Rate</a></th>
+      <th><a href="#">Amount</a></th>
+      <th><a href="#">Status</a></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="offer in vm.offers">
+      <td>{{offer.date | date}}</td>
+      <td>{{offer.listing.general.businessName}}</td>
+      <td class="dashboard__table--credits">{{offer.rate}}%</td>
+      <td class="dashboard__table--debits">{{offer.amount | currency}}</td>
+      <td>{{offer.status}}</td>
+    </tr>
+  </tbody>
+</table>

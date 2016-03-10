@@ -123,6 +123,13 @@
       </tr>
     </thead>
     <tbody>
+      <tr ng-repeat="offer in vm.currentOffers">
+        <td>Investor 1</td>
+        <td>{{offer.amount | currency}}</td>
+        <td>{{offer.rate}}%</td>
+        <td>{{offer.date}}</td>
+        <td><span class="table-key table-key--live"></span></td>
+      </tr>
       <tr>
         <td>Investor 1</td>
         <td>$500.00</td>

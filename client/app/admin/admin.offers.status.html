@@ -1,0 +1,74 @@
+<div class="marketplace-listings__wrapper">
+  <div class="marketplace-listings">
+    <table>
+      <thead>
+        <tr>
+          <th>
+            <a href="#" ng-click="sortType = 'username'; sortReverse = !sortReverse">
+              Date
+              <span class="sort-icon">
+                <i class="fa fa-angle-down"></i>
+                <i class="fa fa-angle-up"></i>
+              </span>
+            </a>
+          </th>
+          <th>
+            <a href="#" ng-click="sortType = 'name.last'; sortReverse = !sortReverse">
+              Listing
+              <span class="sort-icon">
+                <i class="fa fa-angle-down"></i>
+                <i class="fa fa-angle-up"></i>
+              </span>
+            </a>
+          </th>
+          <th>
+            <a href="#" ng-click="sortType = 'email'; sortReverse = !sortReverse">
+              Investor
+              <span class="sort-icon">
+                <i class="fa fa-angle-down"></i>
+                <i class="fa fa-angle-up"></i>
+              </span>
+            </a>
+          </th>
+          <th>
+            <a href="#" ng-click="sortType = 'role'; sortReverse = !sortReverse">
+              Rate
+              <span class="sort-icon">
+                <i class="fa fa-angle-down"></i>
+                <i class="fa fa-angle-up"></i>
+              </span>
+            </a>
+          </th>
+          <th>
+            <a href="#" ng-click="sortType = 'borrower.status'; sortReverse = !sortReverse">
+              Amount
+              <span class="sort-icon">
+                <i class="fa fa-angle-down"></i>
+                <i class="fa fa-angle-up"></i>
+              </span>
+            </a>
+          </th>
+          <th>
+            <a href="#" ng-click="sortType = 'borrower.status'; sortReverse = !sortReverse">
+              Status
+              <span class="sort-icon">
+                <i class="fa fa-angle-down"></i>
+                <i class="fa fa-angle-up"></i>
+              </span>
+            </a>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="offer in vm.offers | orderBy:sortType:sortReverse">
+          <td>{{offer.date | date}}</td>
+          <td>{{offer.listing.general.businessName}}</td>
+          <td>{{offer.user.name.first}} {{offer.user.name.last}}</td>
+          <td>{{offer.rate}}%</td>
+          <td>{{offer.amount | currency}}</td>
+          <td>{{offer.status}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div><!-- /.marketplace-listings -->
+</div><!-- /.marketplace-listings__wrapper -->

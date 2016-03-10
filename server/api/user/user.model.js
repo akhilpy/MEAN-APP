@@ -32,25 +32,6 @@ var bookmark = {
 	}
 };
 
-var offer = {
-	date: {
-		type: Date,
-		default: Date.now
-	},
-	amount: {
-		type: Number,
-		default: 0
-	},
-	rate: {
-		type: Number,
-		default: 0
-	},
-	listing: {
-		type: Schema.ObjectId,
-		ref: 'Listing'
-	}
-}
-
 var investment = {
 	date: {
 		type: Date,
@@ -148,7 +129,10 @@ var UserSchema = new Schema({
 			type: Number,
 			default: 0
 		},
-		offers: [offer],
+		offers: [{
+			type: Schema.ObjectId,
+			ref: 'Offer'
+		}],
 		investments: [investment],
 		repayments: [repayment],
 		notifications: Boolean,

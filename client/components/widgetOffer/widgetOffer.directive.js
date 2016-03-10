@@ -6,6 +6,6 @@ angular.module('investnextdoorCaApp')
       templateUrl: 'components/widgetOffer/widgetOffer.html',
       restrict: 'EA',
       controller: 'WidgetOfferController',
-      controllerAs: 'widget'
+      controllerAs: 'offerWidget'
     };
   });
