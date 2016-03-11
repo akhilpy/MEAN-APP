@@ -18,6 +18,10 @@
   &.table-key--outbid {
     background: $color-grey-light;
   }
+
+  &.table-key--pending {
+    background: rgba($color-grey-light, 0.5);
+  }
 }
 
 table {

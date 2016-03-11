@@ -65,7 +65,7 @@ User.find({}).remove()
       		doingBusinessName: 'Awesome Business',
       		contactName: 'John Smith',
       		email: 'john@awesomebuisness.com',
-      		phone: '(555) 555-5555',
+      		phone: '5555555555',
       		website: 'http://www.awesomebuisness.com',
       		address: {
             street: '123 Fake Street',
@@ -163,7 +163,7 @@ User.find({}).remove()
           certified: true,
           fullName: 'John Paul Smith',
           position: 'Principal',
-          phone: '(555) 555-5555',
+          phone: '5555555555',
           signature: 'John Paul Smith'
         },
         comments: [

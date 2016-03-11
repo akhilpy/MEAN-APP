@@ -170,7 +170,10 @@ var scores = {
 	ci: Number,
 	pi: Number,
 	cds: Number,
-	bfrs: Number,
+	bfrs: {
+		type: Number,
+		default: 0
+	},
 	paynet: Number,
 	proxy: {
 		type: String,
@@ -207,7 +210,10 @@ var bankStatements = {
 	deposits: Number,
 	expenses: Number,
 	leftover: Number,
-	cashFlow: Number,
+	cashFlow: {
+		type: Number,
+		default: 0
+	},
 	income: Number
 }
 

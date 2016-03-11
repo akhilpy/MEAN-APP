@@ -15,6 +15,11 @@ class MarketplaceListingController {
     vm.currentUser = Auth.getCurrentUser();
     vm.requested = false;
     vm.bookmarked = false;
+    vm.hasReviews = false;
+
+    if(vm.currentListing.social.reviews.length > 0) {
+      vm.hasReviews = true;
+    }
 
     vm.meters = {
       years: {
@@ -29,7 +34,7 @@ class MarketplaceListingController {
         labels: [0.0, 0.5, 1.0, 1.5, 2.0, 2.5],
         type: 'number',
         max: 2.5,
-        value: 1.2,
+        value: vm.currentListing.admin.bankStatements.cashFlow,
         unit: '',
         suffix: ''
       },
@@ -45,7 +50,8 @@ class MarketplaceListingController {
         labels: [0, 5, 10, 15, 20, 25],
         type: 'number',
         max: 25,
-        value: 5,
+        value: vm.currentListing.admin.scores.bfrs,
+        unit: '',
         suffix: '%'
       }
     };

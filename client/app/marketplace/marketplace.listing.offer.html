@@ -70,6 +70,7 @@
     <li><span class="table-key table-key--live"></span> Live offers</li>
     <li><span class="table-key table-key--risk"></span> At risk of being outbid</li>
     <li><span class="table-key table-key--outbid"></span> Outbid</li>
+    <li><span class="table-key table-key--pending"></span> Pending</li>
   </ul><!-- /.general-content__table-keys -->
 
   <table>
@@ -123,47 +124,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="offer in vm.currentOffers">
-        <td>Investor 1</td>
+      <tr ng-repeat="offer in vm.currentOffers" ng-class="{'row-disabled': offer.status==='pending'}">
+        <td>{{offer.user.name.first}} {{offer.user.name.last}}</td>
         <td>{{offer.amount | currency}}</td>
         <td>{{offer.rate}}%</td>
-        <td>{{offer.date}}</td>
-        <td><span class="table-key table-key--live"></span></td>
-      </tr>
-      <tr>
-        <td>Investor 1</td>
-        <td>$500.00</td>
-        <td>9%</td>
-        <td>18 Aug | 07.53</td>
-        <td><span class="table-key table-key--live"></span></td>
-      </tr>
-      <tr>
-        <td>Investor 2</td>
-        <td>$1000.00</td>
-        <td>8%</td>
-        <td>07 Oct | 23:28</td>
-        <td><span class="table-key table-key--risk"></span></td>
-      </tr>
-      <tr class="row-disabled">
-        <td>Service</td>
-        <td>$5000.00</td>
-        <td>22%</td>
-        <td>30 Sept | 23:48</td>
-        <td><span class="table-key table-key--outbid"></span></td>
-      </tr>
-      <tr class="row-disabled">
-        <td>Investor 2</td>
-        <td>$500.00</td>
-        <td>11%</td>
-        <td>18 Aug | 08:10</td>
-        <td><span class="table-key table-key--outbid"></span></td>
-      </tr>
-      <tr class="row-disabled">
-        <td>Investor 1</td>
-        <td>$1500.00</td>
-        <td>10%</td>
-        <td>18 Aug | 08:01</td>
-        <td><span class="table-key table-key--outbid"></span></td>
+        <td>{{offer.date | date}}</td>
+        <td><span class="table-key table-key--{{offer.status}}"></span></td>
       </tr>
     </tbody>
   </table>

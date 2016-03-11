@@ -11,7 +11,7 @@
           {{vm.currentListing.general.address.city}}, {{vm.currentListing.general.address.province}}, {{vm.currentListing.general.address.postal}}
         </li><!-- /.profile__details--address -->
         <li class="profile__details--phone">
-          <a href="#">{{vm.currentListing.general.phone}}</a>
+          <a href="#">{{vm.currentListing.general.phone | phone}}</a>
         </li><!-- /.profile__details--phone -->
         <li class="profile__details--website">
           <a href="{{vm.currentListing.general.website}}" target="_blank">{{vm.currentListing.general.website}}</a>
@@ -114,7 +114,7 @@
   </table>
 </div><!-- /.general-content__section -->
 
-<div class="general-content__section profile-endorsements">
+<div class="general-content__section profile-endorsements" ng-show="vm.hasReviews">
   <header class="general-content__section--header">
     <h3 class="general-content__section--title">
       Endorsements
