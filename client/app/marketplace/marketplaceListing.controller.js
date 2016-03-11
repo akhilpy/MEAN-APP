@@ -25,7 +25,14 @@ class MarketplaceListingController {
         unit: 'year',
         suffix: ' years'
       },
-      cash: [0.0, 0.5, 1.0, 1.5, 2.0],
+      cash: {
+        labels: [0.0, 0.5, 1.0, 1.5, 2.0, 2.5],
+        type:'number',
+        max: 2.5,
+        value: 1.2,
+        unit: '',
+        suffix: ''
+      },
       revenue: [0, 10, 20, 30, 40, 50],
       probability: [0, 5, 10, 15, 20, 25]
     };

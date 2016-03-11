@@ -5,6 +5,7 @@
 class MeterController {
   constructor($state, $scope) {
     var meter = this;
+    var value;
 
     var data = $scope.meter;
 
@@ -18,19 +19,24 @@ class MeterController {
         var year = date.getFullYear();
         var currentYear = now.getFullYear();
 
-        var value = currentYear - year;
+        value = currentYear - year;
       }
+    } else if (data.type === 'number') {
+      value = data.value;
     }
 
     var percentage = (value / data.max) * 100;
     var markers = [];
 
-    angular.forEach(data.labels, function(value, key) {
+    angular.forEach(data.labels, function(label, key) {
       var markerPoint = (key + 1) * 10;
       var marker = {
         filled: false,
-        value: value
+        value: label // you are here!
       };
+
+      console.log(markerPoint);
+      console.log(percentage);
 
       if(markerPoint <= percentage) {
         marker.filled = true;
