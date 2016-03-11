@@ -3,11 +3,16 @@
 (function() {
 
 class MeterController {
-  constructor($state, $scope) {
+  constructor($state, $scope, $filter) {
     var meter = this;
-    var value;
+    meter.$filter = $filter;
+    meter.$scope = $scope;
 
-    var data = $scope.meter;
+    var value;
+    var unit = '';
+    var limit = '';
+
+    var data = meter.$scope.meter;
 
     console.log(data);
 
@@ -26,17 +31,15 @@ class MeterController {
     }
 
     var percentage = (value / data.max) * 100;
+    var markerNumber = data.labels.length;
     var markers = [];
 
     angular.forEach(data.labels, function(label, key) {
-      var markerPoint = (key + 1) * 10;
+      var markerPoint = (100 / markerNumber) * key;
       var marker = {
         filled: false,
-        value: label // you are here!
+        value: label
       };
-
-      console.log(markerPoint);
-      console.log(percentage);
 
       if(markerPoint <= percentage) {
         marker.filled = true;
@@ -45,10 +48,18 @@ class MeterController {
       markers.push(marker);
     });
 
-    $scope.result = {
+    if(data.unit === '$') {
+      value = meter.$filter('currency')(value);
+      unit = '$';
+      limit = 2;
+    }
+
+    meter.$scope.result = {
       percentage: percentage,
       markers: markers,
-      label: value + data.suffix
+      label: value + data.suffix,
+      unit: unit,
+      limit: limit
     }
   }
 }

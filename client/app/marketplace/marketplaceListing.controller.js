@@ -27,14 +27,27 @@ class MarketplaceListingController {
       },
       cash: {
         labels: [0.0, 0.5, 1.0, 1.5, 2.0, 2.5],
-        type:'number',
+        type: 'number',
         max: 2.5,
         value: 1.2,
         unit: '',
         suffix: ''
       },
-      revenue: [0, 10, 20, 30, 40, 50],
-      probability: [0, 5, 10, 15, 20, 25]
+      revenue: {
+        labels: [0, 10000000, 20000000, 30000000, 40000000, 50000000],
+        type: 'number',
+        max: 50000000,
+        value: 10000000,
+        unit: '$',
+        suffix: ''
+      },
+      probability: {
+        labels: [0, 5, 10, 15, 20, 25],
+        type: 'number',
+        max: 25,
+        value: 5,
+        suffix: '%'
+      }
     };
 
     // check if user has already requested more info
