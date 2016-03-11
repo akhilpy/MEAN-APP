@@ -16,9 +16,19 @@ class MarketplaceListingController {
     vm.requested = false;
     vm.bookmarked = false;
 
-    if(vm.currentListing) {
-      vm.currentListing.founded = vm.currentListing.general.founded;
-    }
+    vm.meters = {
+      years: {
+        labels: [0, 2, 4, 6, 8, 10],
+        type: 'date',
+        max: 10,
+        value: vm.currentListing.general.founded,
+        unit: 'year',
+        suffix: ' years'
+      },
+      cash: [0.0, 0.5, 1.0, 1.5, 2.0],
+      revenue: [0, 10, 20, 30, 40, 50],
+      probability: [0, 5, 10, 15, 20, 25]
+    };
 
     // check if user has already requested more info
     if(vm.currentListing.infoRequest.length > 0) {

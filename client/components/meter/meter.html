@@ -1,0 +1,8 @@
+<div class="meter__wrapper">
+  <div class="meter years">
+    <div class="meter__inner" style="width: {{result.percentage}}%">
+      <span class="meter__marker" ng-class="{'filled': marker.filled}" ng-repeat="marker in result.markers">{{marker.value}}</span>
+    </div>
+  </div>
+  <h3 class="meter__label">{{result.label}}</h3>
+</div><!-- /.meter__wrapper -->

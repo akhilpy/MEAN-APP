@@ -73,7 +73,6 @@ User.find({}).remove()
             province: 'BC',
             postal: '12345'
           },
-      		founded: Date.now(),
       		structure: 'Limited Partnership',
       		industry: 'Professional Services',
       		naics: '123',
@@ -222,7 +221,7 @@ User.find({}).remove()
             province: 'BC',
             postal: '12345'
           },
-      		founded: '2000',
+          founded: "2014-03-11T01:46:24.662Z",
       		structure: 'Federal Cooporation',
       		industry: 'Manufacturing',
       		naics: '345',
