@@ -37,7 +37,7 @@ class MarketplaceListingController {
         labels: [0, 10000000, 20000000, 30000000, 40000000, 50000000],
         type: 'number',
         max: 50000000,
-        value: 10000000,
+        value: vm.currentListing.financial.revenue,
         unit: '$',
         suffix: ''
       },

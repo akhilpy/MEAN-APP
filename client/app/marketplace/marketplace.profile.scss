@@ -92,6 +92,14 @@
       color: $color-white;
       background: #dd4b39;
     }
+    &.fa-linkedin {
+      color: $color-white;
+      background: #007bb6;
+    }
+    &.fa-youtube {
+      color: $color-white;
+      background: #bb0000;
+    }
   }
 }
 
@@ -118,74 +126,6 @@
     width: 50%;
     padding-right: rem(40);
     margin-bottom: rem(20);
-  }
-}
-
-.meter {
-  position: relative;
-  padding: rem(10) 0 rem(20);
-}
-
-.meter__inner {
-  display: block;
-  background: $color-success;
-  height: rem(3);
-  content: "";
-
-  &:before {
-    position: absolute;
-    display: block;
-    background: $color-grey-light;
-    height: rem(3);
-    content: "";
-    left: 0;
-    right: 0;
-    z-index: -1;
-  }
-}
-
-.meter__marker {
-  @include font-size(10);
-  font-weight: 600;
-  position: absolute;
-  top: rem(6);
-  z-index: -1;
-  text-align: center;
-  color: $color-grey-light;
-
-  &:before {
-    display: block;
-    content: "";
-    border: 1px solid $color-grey-light;
-    background: $color-white;
-    width: rem(11);
-    height: rem(11);
-    border-radius: 100%;
-  }
-
-  &:nth-of-type(1) {
-    left: -5px;
-  }
-  &:nth-of-type(2) {
-    left: calc(20% - 5px);
-  }
-  &:nth-of-type(3) {
-    left: calc(40% - 5px);
-  }
-  &:nth-of-type(4) {
-    left: calc(60% - 5px);
-  }
-  &:nth-of-type(5) {
-    left: calc(80% - 5px);
-  }
-  &:nth-of-type(6) {
-    left: calc(100% - 5px);
-  }
-
-  &.filled {
-    &:before {
-        background: $color-success;
-    }
   }
 }
 

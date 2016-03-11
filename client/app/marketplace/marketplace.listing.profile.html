@@ -20,33 +20,17 @@
     </div><!-- /.profile__details -->
     <div class="profile__sharing">
       <ul class="social-sharing">
-        <li>
-          <a href="#"
-            socialshare
-            socialshare-provider="facebook"
-            socialshare-text="{{vm.currentListing.general.businessName}}"
-            socialshare-description="{{vm.currentListing.details.title}}"
-            socialshare-url="{{vm.currentListing.link}}">
-            <i class="fa fa-facebook"></i>
-          </a>
+        <li ng-show="vm.currentListing.social.facebook">
+          <a href="{{vm.currentListing.social.facebook}}" target="_blank"><i class="fa fa-facebook"></i></a>
         </li>
-        <li>
-          <a href="#"
-            socialshare
-            socialshare-provider="twitter"
-            socialshare-text="{{vm.currentListing.general.businessName}} - {{vm.currentListing.details.title}}"
-            socialshare-hashtags="investnextdoor"
-            socialshare-url="{{vm.currentListing.link}}">
-            <i class="fa fa-twitter"></i>
-          </a>
+        <li ng-show="vm.currentListing.social.twitter">
+          <a href="{{vm.currentListing.social.twitter}}" target="_blank"><i class="fa fa-twitter"></i></a>
         </li>
-        <li>
-          <a href="#"
-            socialshare
-            socialshare-provider="google+"
-            socialshare-url="{{vm.currentListing.link}}">
-            <i class="fa fa-google-plus"></i>
-          </a>
+        <li ng-show="vm.currentListing.social.linkedin">
+          <a href="{{vm.currentListing.social.linkedin}}" target="_blank"><i class="fa fa-linkedin"></i></a>
+        </li>
+        <li ng-show="vm.currentListing.social.youtube">
+          <a href="{{vm.currentListing.social.youtube}}" target="_blank"><i class="fa fa-youtube"></i></a>
         </li>
       </ul><!-- /.social-sharing -->
 

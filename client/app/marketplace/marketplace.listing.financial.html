@@ -90,9 +90,7 @@
   </header><!-- /.general-content__section--header -->
 
   <ul class="list--zero financial__files">
-    <li><a href="#"><i class="fa fa-file-text-o"></i> Assets</a></li>
-    <li><a href="#"><i class="fa fa-file-text-o"></i> Inventory</a></li>
-    <li><a href="#"><i class="fa fa-file-text-o"></i> Business Plan</a></li>
     <li><a href="#"><i class="fa fa-file-text-o"></i> Statements</a></li>
+    <li ng-repeat="file in vm.currentListing.financial.additionalDocuments"><a href="{{file.link}}" target="_blank"><i class="fa fa-file-text-o"></i> {{file.name}}</a></li>
   </ul><!-- /.list--zero -->
 </div><!-- /.general-content__section -->

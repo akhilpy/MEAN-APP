@@ -14,8 +14,6 @@ class MeterController {
 
     var data = meter.$scope.meter;
 
-    console.log(data);
-
     if(data.type === 'date') {
       var date = new Date(data.value);
       var now = new Date();
