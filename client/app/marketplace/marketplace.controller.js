@@ -14,7 +14,7 @@ class MarketplaceController {
 
     vm.filters = {
       distances: ListingService.getDistance(),
-      rates: ListingService.getRates(),
+      rates: ListingService.getFilterRates(),
       minimums: ListingService.getMinimum(),
       terms: ListingService.getTerms(),
       purposes: ListingService.getPurposes(),
@@ -29,9 +29,16 @@ class MarketplaceController {
 
     vm.$scope.filterTerm = function(val) {
       return function(item) {
-        return item.details.term > val;
+        return item.details.term >= val;
       }
     }
+
+    vm.$scope.filterRate = function(val) {
+      return function(item) {
+        return item.admin.basics.listedRate >= val;
+      }
+    }
+
   }
 }
 

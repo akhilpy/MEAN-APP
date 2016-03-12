@@ -59,13 +59,12 @@ User.find({}).remove()
   Listing.find({}).remove()
     .then(() => {
       Listing.create({
-        status: 'approved',
         general: {
       		businessName: 'Awesome Business, LLC',
       		doingBusinessName: 'Awesome Business',
       		contactName: 'John Smith',
       		email: 'john@awesomebuisness.com',
-      		phone: '5555555555',
+      		phone: 5555555555,
       		website: 'http://www.awesomebuisness.com',
       		address: {
             street: '123 Fake Street',
@@ -76,15 +75,15 @@ User.find({}).remove()
       		structure: 'Limited Partnership',
       		industry: 'Professional Services',
       		naics: '123',
-      		employees: '100'
+      		employees: 100
       	},
         details: {
       		title: 'Opening Second Location for the Awesome Business',
       		listingType: 'Marketplace',
       		usage: 'Expansion Capital',
       		term: 6,
-      		amount: '10000',
-      		jobs: '20',
+      		amount: 10000,
+      		jobs: 20,
       		loanPartners: 'No',
       		reason: 'Cras mattis consectetur purus sit amet fermentum. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Vestibulum id ligula porta felis euismod semper. Nulla vitae elit libero, a pharetra augue. Maecenas faucibus mollis interdum.'
       	},
@@ -94,14 +93,14 @@ User.find({}).remove()
       		owners: [
             {
               name: 'John Smith',
-              percentage: '100%',
+              percentage: 100,
               guarantee: 'Yes'
             }
           ],
-      		revenue: '500000',
-      		projection: '1000000',
-      		debt: '10000',
-      		repayments: '500',
+      		revenue: 500000,
+      		projection: 1000000,
+      		debt: 10000,
+      		repayments: 500,
       		bankStatements: [],
       		taxReturns: [],
       		whyInvest: 'Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Nullam quis risus eget urna mollis ornare vel eu leo. Etiam porta sem malesuada magna mollis euismod. Maecenas sed diam eget risus varius blandit sit amet non magna.',
@@ -163,7 +162,7 @@ User.find({}).remove()
           certified: true,
           fullName: 'John Paul Smith',
           position: 'Principal',
-          phone: '5555555555',
+          phone: 5555555555,
           signature: 'John Paul Smith'
         },
         comments: [
@@ -205,15 +204,19 @@ User.find({}).remove()
               }
             ]
           }
-        ]
+        ],
+        admin: {
+          basics: {
+            status: 'active'
+          }
+        }
       },{
-        status: 'approved',
         general: {
       		businessName: 'Acme Corporation',
       		doingBusinessName: 'Acme',
       		contactName: 'Bill Jones',
       		email: 'info@acme.com',
-      		phone: '(555) 555-5555',
+      		phone: 5555555555,
       		website: 'http://www.acme.com',
       		address: {
             street: '123 Acme Street',
@@ -225,15 +228,15 @@ User.find({}).remove()
       		structure: 'Federal Cooporation',
       		industry: 'Manufacturing',
       		naics: '345',
-      		employees: '1000'
+      		employees: 1000
       	},
         details: {
       		title: 'Building a New Factory',
       		listingType: 'Private',
       		usage: 'Expansion Capital',
       		term: 18,
-      		amount: '1000000',
-      		jobs: '250',
+      		amount: 1000000,
+      		jobs: 250,
       		loanPartners: 'No',
       		reason: 'Cras mattis consectetur purus sit amet fermentum. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Vestibulum id ligula porta felis euismod semper. Nulla vitae elit libero, a pharetra augue. Maecenas faucibus mollis interdum.'
       	},
@@ -243,19 +246,19 @@ User.find({}).remove()
       		owners: [
             {
               name: 'Bill Jones',
-              percentage: '50%',
+              percentage: 50,
               guarantee: 'Yes'
             },
             {
               name: 'Bob Jones',
-              percentage: '50%',
+              percentage: 50,
               guarantee: 'Yes'
             }
           ],
       		revenue: '500000000',
       		projection: '100000000000',
-      		debt: '0',
-      		repayments: '0',
+      		debt: 0,
+      		repayments: 0,
       		bankStatements: [],
       		taxReturns: [],
       		whyInvest: 'Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Nullam quis risus eget urna mollis ornare vel eu leo. Etiam porta sem malesuada magna mollis euismod. Maecenas sed diam eget risus varius blandit sit amet non magna.',
@@ -304,7 +307,7 @@ User.find({}).remove()
           certified: true,
           fullName: 'Bill Bob Jones',
           position: 'CEO',
-          phone: '(555) 555-5555',
+          phone: 5555555555,
           signature: 'Bill Bob Jones'
         },
         comments: [
@@ -346,7 +349,12 @@ User.find({}).remove()
               }
             ]
           }
-        ]
+        ],
+        admin: {
+          basics: {
+            status: 'active'
+          }
+        }
       })
       .then(() => {
         console.log('finished populating listings');

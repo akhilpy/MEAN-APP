@@ -2,7 +2,7 @@
 
 (function() {
 
-function ListingService($location, $cookies, $q, $resource, $http, Auth, User) {
+function ListingService($location, $cookies, $q, $resource, $http, Auth, User, $filter) {
 
   var Listing = {
 
@@ -279,6 +279,23 @@ function ListingService($location, $cookies, $q, $resource, $http, Auth, User) {
 
 
 
+    /**
+     * Remove a listing to your bookmarks
+     *
+     * @return {String}
+     */
+    removeBookmark(listing) {
+      return Auth.getCurrentUser(null)
+        .then(user => {
+          console.log(user);
+          return $http.delete('/api/listings/bookmark/' + user._id);
+        })
+        .catch(err => {
+          console.log(err.message);
+        });
+    },
+
+
 
     /**
      * Calculate an investment based on the provided paramters
@@ -337,9 +354,15 @@ function ListingService($location, $cookies, $q, $resource, $http, Auth, User) {
      *
      * @return {String}
      */
-    getRates() {
+    getRates(placeholder) {
+      var none = 'Interest Rate (All)';
+
+      if(placeholder) {
+        none = placeholder;
+      }
+
       return [
-        {label: 'Interest Rate (All)', value: 0},
+        {label: none, value: 0},
         {label: '6%', value: 6},
         {label: '7%', value: 7},
         {label: '8%', value: 8},
@@ -360,6 +383,29 @@ function ListingService($location, $cookies, $q, $resource, $http, Auth, User) {
         {label: '23%', value: 23},
         {label: '24%', value: 24},
         {label: '25%', value: 25}
+      ];
+    },
+
+
+
+    /**
+     * Get listing rates options
+     *
+     * @return {String}
+     */
+    getFilterRates(placeholder) {
+      var none = 'Interest Rate (All)';
+
+      if(placeholder) {
+        none = placeholder;
+      }
+
+      return [
+        {label: none, value: 0},
+        {label: '10%+', value: 10},
+        {label: '15%+', value: 15},
+        {label: '20%+', value: 20},
+        {label: '25%+', value: 25}
       ];
     },
 
@@ -417,14 +463,40 @@ function ListingService($location, $cookies, $q, $resource, $http, Auth, User) {
     getTimes() {
       return [
         {label: 'Time Remaining (All)'},
-        {label: '1 Day', value: 1},
-        {label: '5 Days', value: 5},
-        {label: '10 Days', value: 10},
-        {label: '15 Days', value: 15},
-        {label: '20 Days', value: 20},
-        {label: '25 Days', value: 25},
-        {label: '30 Days', value: 30}
+        {label: 'Less than 12 hours', value: 12},
+        {label: 'Less than 24 hours', value: 24},
+        {label: 'Less than 5 days', value: 125},
+        {label: 'Less than 10 days', value: 240},
+        {label: 'Less than 30 days', value: 720},
       ];
+    },
+
+
+
+    /**
+     * Get offer amounts
+     *
+     * @return {String}
+     */
+    getAmounts(placeholder, listing) {
+      var none = 'Minimum Amount (All)';
+
+      var max = listing.admin.basics.investment.max;
+      var min = listing.admin.basics.investment.min;
+
+      if(placeholder) {
+        none = placeholder;
+      }
+
+      var values = [{label: none, value: 0}];
+
+      for (var i = min; i <= max; i = i + 500) {
+        var label = $filter('currency')(i);
+        var value = i;
+        values.push({ label: label, value: value});
+      }
+
+      return values;
     },
 
 

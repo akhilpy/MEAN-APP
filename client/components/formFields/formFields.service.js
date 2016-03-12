@@ -66,6 +66,7 @@ function FormService(appConfig) {
                 labelProp: 'name',
                 valueProp: 'value',
                 options: roles,
+                ngOptions: 'option.name for option in to.options track by option.value',
                 placeholder: 'Select'
               }
             }
@@ -585,7 +586,10 @@ function FormService(appConfig) {
                 templateOptions: {
                   label: 'Registered Business Name',
                   placeholder: '',
-                  description: 'Enter registered business name.'
+                  description: 'Enter registered business name.',
+                  addonLeft: {
+                    class: 'fa fa-building'
+                  }
                 },
                 expressionProperties: {
                   'templateOptions.disabled': 'formState.disabled'
@@ -598,7 +602,10 @@ function FormService(appConfig) {
                 templateOptions: {
                   label: 'Doing Business As',
                   placeholder: '',
-                  description: 'Provide only if differs from registered name.'
+                  description: 'Provide only if differs from registered name.',
+                  addonLeft: {
+                    class: 'fa fa-building-o'
+                  }
                 },
                 expressionProperties: {
                   'templateOptions.disabled': 'formState.disabled'
@@ -611,7 +618,10 @@ function FormService(appConfig) {
                 templateOptions: {
                   label: 'Contact Name',
                   placeholder: '',
-                  description: 'Contact name will be displayed on listing (default user name).'
+                  description: 'Contact name will be displayed on listing (default user name).',
+                  addonLeft: {
+                    class: 'fa fa-user'
+                  }
                 }
               },
             ]
@@ -627,7 +637,10 @@ function FormService(appConfig) {
                   type: 'email',
                   label: 'Contact Email',
                   placeholder: 'name@host.com',
-                  description: 'Email to be displayed on your listing (default user email).'
+                  description: 'Email to be displayed on your listing (default user email).',
+                  addonLeft: {
+                    class: 'fa fa-envelope'
+                  }
                 }
               },
               {
@@ -638,7 +651,10 @@ function FormService(appConfig) {
                   label: 'Phone Number',
                   placeholder: '(###) ###-####',
                   mask: '(999) 999-9999',
-                  description: ''
+                  description: '',
+                  addonLeft: {
+                    class: 'fa fa-phone'
+                  }
                 }
               },
               {
@@ -649,7 +665,10 @@ function FormService(appConfig) {
                   type: 'url',
                   label: 'Website',
                   placeholder: 'http://',
-                  description: ''
+                  description: '',
+                  addonLeft: {
+                    class: 'fa fa-globe'
+                  }
                 }
               },
             ]
@@ -663,7 +682,10 @@ function FormService(appConfig) {
                 key: 'address.street',
                 templateOptions: {
                   label: 'Street Address',
-                  placeholder: ''
+                  placeholder: '',
+                  addonLeft: {
+                    class: 'fa fa-map-marker'
+                  }
                 },
                 expressionProperties: {
                   'templateOptions.disabled': 'formState.disabled'
@@ -675,7 +697,10 @@ function FormService(appConfig) {
                 key: 'address.city',
                 templateOptions: {
                   label: 'City',
-                  placeholder: ''
+                  placeholder: '',
+                  addonLeft: {
+                    class: 'fa fa-map-marker'
+                  }
                 },
                 expressionProperties: {
                   'templateOptions.disabled': 'formState.disabled'
@@ -702,7 +727,10 @@ function FormService(appConfig) {
                 key: 'address.postal',
                 templateOptions: {
                   label: 'Postal Code',
-                  placeholder: ''
+                  placeholder: '',
+                  addonLeft: {
+                    class: 'fa fa-map-marker'
+                  }
                 },
                 expressionProperties: {
                   'templateOptions.disabled': 'formState.disabled'
@@ -720,7 +748,10 @@ function FormService(appConfig) {
                 templateOptions: {
                   label: 'Company Founded',
                   placeholder: '',
-                  description: ''
+                  description: '',
+                  addonLeft: {
+                    class: 'fa fa-calendar'
+                  }
                 },
                 expressionProperties: {
                   'templateOptions.disabled': 'formState.disabled'
@@ -768,7 +799,10 @@ function FormService(appConfig) {
                 templateOptions: {
                   label: 'NAICS Code',
                   placeholder: '',
-                  description: 'http://www.naics.com/naics-search-results/'
+                  description: 'http://www.naics.com/naics-search-results/',
+                  addonLeft: {
+                    class: 'fa fa-hashtag'
+                  }
                 },
                 expressionProperties: {
                   'templateOptions.disabled': 'formState.disabled'
@@ -779,9 +813,13 @@ function FormService(appConfig) {
                 type: 'input',
                 key: 'employees',
                 templateOptions: {
+                  type: 'number',
                   label: 'Number of Employees',
                   placeholder: '',
-                  description: ''
+                  description: '',
+                  addonLeft: {
+                    class: 'fa fa-hashtag'
+                  }
                 },
                 expressionProperties: {
                   'templateOptions.disabled': 'formState.disabled'
@@ -937,9 +975,13 @@ function FormService(appConfig) {
                 type: 'input',
                 key: 'amount',
                 templateOptions: {
+                  type: 'number',
                   label: 'How much do you want to borrow?',
-                  placeholder: '$',
-                  description: 'How much are you looking to borrower through InvestNextDoor? ($10,000-$250,000)'
+                  placeholder: '',
+                  description: 'How much are you looking to borrower through InvestNextDoor? ($10,000-$250,000)',
+                  addonLeft: {
+                    class: 'fa fa-usd'
+                  }
                 },
                 expressionProperties: {
                   'templateOptions.disabled': 'formState.disabled'
@@ -950,9 +992,13 @@ function FormService(appConfig) {
                 type: 'input',
                 key: 'jobs',
                 templateOptions: {
+                  type: 'number',
                   label: 'Number of Jobs',
-                  placeholder: '#',
-                  description: 'Enter number of full time jobs created/retained by this funding.'
+                  placeholder: '',
+                  description: 'Enter number of full time jobs created/retained by this funding.',
+                  addonLeft: {
+                    class: 'fa fa-hashtag'
+                  }
                 },
                 expressionProperties: {
                   'templateOptions.disabled': 'formState.disabled'
@@ -1012,7 +1058,10 @@ function FormService(appConfig) {
                 templateOptions: {
                   label: 'Business Number (BN)',
                   placeholder: '',
-                  description: ''
+                  description: '',
+                  addonLeft: {
+                    class: 'fa fa-hashtag'
+                  }
                 },
                 expressionProperties: {
                   'templateOptions.disabled': 'formState.disabled'
@@ -1054,7 +1103,10 @@ function FormService(appConfig) {
                 {
                   key: 'name',
                   templateOptions: {
-                    label: 'Owner Name'
+                    label: 'Owner Name',
+                    addonLeft: {
+                      class: 'fa fa-user'
+                    }
                   },
                   className: 'flex-3',
                   type: 'input',
@@ -1062,7 +1114,11 @@ function FormService(appConfig) {
                 {
                   key: 'percentage',
                   templateOptions: {
-                    label: 'Owner Percentage'
+                    type: 'number',
+                    label: 'Owner Percentage',
+                    addonLeft: {
+                      class: 'fa fa-percent'
+                    }
                   },
                   className: 'flex-1',
                   type: 'input',
@@ -1102,9 +1158,13 @@ function FormService(appConfig) {
                 type: 'input',
                 key: 'revenue',
                 templateOptions: {
+                  type: 'number',
                   label: '12 Month Revenue',
-                  placeholder: '$',
-                  description: 'Please make sure that you enter the revenue from the last 12 months.'
+                  placeholder: '',
+                  description: 'Please make sure that you enter the revenue from the last 12 months.',
+                  addonLeft: {
+                    class: 'fa fa-usd'
+                  }
                 },
                 expressionProperties: {
                   'templateOptions.disabled': 'formState.disabled'
@@ -1115,9 +1175,13 @@ function FormService(appConfig) {
                 type: 'input',
                 key: 'projection',
                 templateOptions: {
+                  type: 'number',
                   label: '12 Month Projection',
-                  placeholder: '$',
-                  description: ''
+                  placeholder: '',
+                  description: '',
+                  addonLeft: {
+                    class: 'fa fa-usd'
+                  }
                 },
                 expressionProperties: {
                   'templateOptions.disabled': 'formState.disabled'
@@ -1128,9 +1192,13 @@ function FormService(appConfig) {
                 type: 'input',
                 key: 'debt',
                 templateOptions: {
+                  type: 'number',
                   label: 'Total Outstanding Debt',
-                  placeholder: '$',
-                  description: ''
+                  placeholder: '',
+                  description: '',
+                  addonLeft: {
+                    class: 'fa fa-usd'
+                  }
                 },
                 expressionProperties: {
                   'templateOptions.disabled': 'formState.disabled'
@@ -1141,9 +1209,13 @@ function FormService(appConfig) {
                 type: 'input',
                 key: 'repayments',
                 templateOptions: {
+                  type: 'number',
                   label: 'Debt Payments (Monthly)',
-                  placeholder: '$',
-                  description: ''
+                  placeholder: '',
+                  description: '',
+                  addonLeft: {
+                    class: 'fa fa-usd'
+                  }
                 },
                 expressionProperties: {
                   'templateOptions.disabled': 'formState.disabled'
@@ -1226,7 +1298,10 @@ function FormService(appConfig) {
                 templateOptions: {
                   label: 'As of Date',
                   placeholder: '',
-                  description: 'Date of financial information'
+                  description: 'Date of financial information',
+                  addonLeft: {
+                    class: 'fa fa-calendar'
+                  }
                 }
               },
               {
@@ -1235,8 +1310,12 @@ function FormService(appConfig) {
                 key: 'assets',
                 templateOptions: {
                   label: 'Total Assets',
-                  placeholder: '$',
-                  description: ''
+                  type: 'number',
+                  placeholder: '',
+                  description: '',
+                  addonLeft: {
+                    class: 'fa fa-usd'
+                  }
                 }
               },
               {
@@ -1244,9 +1323,13 @@ function FormService(appConfig) {
                 type: 'input',
                 key: 'inventory',
                 templateOptions: {
+                  type: 'number',
                   label: 'Current Inventory',
-                  placeholder: '$',
-                  description: ''
+                  placeholder: '',
+                  description: '',
+                  addonLeft: {
+                    class: 'fa fa-usd'
+                  }
                 }
               },
               {
@@ -1254,9 +1337,13 @@ function FormService(appConfig) {
                 type: 'input',
                 key: 'receivable',
                 templateOptions: {
+                  type: 'number',
                   label: 'Total Liabilities',
-                  placeholder: '$',
-                  description: ''
+                  placeholder: '',
+                  description: '',
+                  addonLeft: {
+                    class: 'fa fa-usd'
+                  }
                 }
               },
               {
@@ -1264,9 +1351,13 @@ function FormService(appConfig) {
                 type: 'input',
                 key: 'liabilities',
                 templateOptions: {
+                  type: 'number',
                   label: 'Accounts Receivable',
-                  placeholder: '$',
-                  description: ''
+                  placeholder: '',
+                  description: '',
+                  addonLeft: {
+                    class: 'fa fa-usd'
+                  }
                 }
               },
             ],
@@ -1342,7 +1433,10 @@ function FormService(appConfig) {
                 {
                   key: 'name',
                   templateOptions: {
-                    label: 'Name'
+                    label: 'Name',
+                    addonLeft: {
+                      class: 'fa fa-user'
+                    }
                   },
                   className: 'flex-1',
                   type: 'input',
@@ -1350,7 +1444,10 @@ function FormService(appConfig) {
                 {
                   key: 'title',
                   templateOptions: {
-                    label: 'Title'
+                    label: 'Title',
+                    addonLeft: {
+                      class: 'fa fa-briefcase'
+                    }
                   },
                   className: 'flex-1',
                   type: 'input',
@@ -1359,7 +1456,10 @@ function FormService(appConfig) {
                   key: 'linkedin',
                   templateOptions: {
                     label: 'LinkedIn',
-                    placeholder: 'http://'
+                    placeholder: 'http://',
+                    addonLeft: {
+                      class: 'fa fa-linkedin'
+                    }
                   },
                   className: 'flex-1',
                   type: 'input'
@@ -1377,7 +1477,10 @@ function FormService(appConfig) {
                 templateOptions: {
                   label: 'Feature Video',
                   placeholder: 'http://',
-                  description: ''
+                  description: '',
+                  addonLeft: {
+                    class: 'fa fa-globe'
+                  }
                 }
               },
               {
@@ -1387,7 +1490,10 @@ function FormService(appConfig) {
                 templateOptions: {
                   label: 'Facebook',
                   placeholder: 'http://',
-                  description: ''
+                  description: '',
+                  addonLeft: {
+                    class: 'fa fa-facebook'
+                  }
                 }
               },
               {
@@ -1397,7 +1503,10 @@ function FormService(appConfig) {
                 templateOptions: {
                   label: 'Twitter',
                   placeholder: 'http://',
-                  description: ''
+                  description: '',
+                  addonLeft: {
+                    class: 'fa fa-twitter'
+                  }
                 }
               }
             ]
@@ -1412,7 +1521,10 @@ function FormService(appConfig) {
                 templateOptions: {
                   label: 'LinkedIn',
                   placeholder: 'http://',
-                  description: ''
+                  description: '',
+                  addonLeft: {
+                    class: 'fa fa-linkedin'
+                  }
                 }
               },
               {
@@ -1422,7 +1534,10 @@ function FormService(appConfig) {
                 templateOptions: {
                   label: 'YouTube',
                   placeholder: 'http://',
-                  description: ''
+                  description: '',
+                  addonLeft: {
+                    class: 'fa fa-youtube'
+                  }
                 }
               },
               {
@@ -1432,7 +1547,10 @@ function FormService(appConfig) {
                 templateOptions: {
                   label: 'Yelp',
                   placeholder: 'http://',
-                  description: ''
+                  description: '',
+                  addonLeft: {
+                    class: 'fa fa-yelp'
+                  }
                 }
               }
             ]
@@ -1449,7 +1567,10 @@ function FormService(appConfig) {
                   key: 'name',
                   templateOptions: {
                     label: 'Name',
-                    description: 'Name of Company/Person'
+                    description: 'Name of Company/Person',
+                    addonLeft: {
+                      class: 'fa fa-user'
+                    }
                   },
                   className: 'flex-1',
                   type: 'input',
@@ -1459,7 +1580,10 @@ function FormService(appConfig) {
                   templateOptions: {
                     label: 'Title/Location',
                     placeholder: 'Manager',
-                    description: 'Press, News, Websites'
+                    description: 'Press, News, Websites',
+                    addonLeft: {
+                      class: 'fa fa-briefcase'
+                    }
                   },
                   className: 'flex-1',
                   type: 'input'
@@ -1569,7 +1693,10 @@ function FormService(appConfig) {
                 templateOptions: {
                   label: 'Full Legal Name',
                   placeholder: '',
-                  description: '(first name, middle name and last name)'
+                  description: '(first name, middle name and last name)',
+                  addonLeft: {
+                    class: 'fa fa-user'
+                  }
                 },
                 expressionProperties: {
                   'templateOptions.disabled': 'formState.disabled'
@@ -1582,7 +1709,10 @@ function FormService(appConfig) {
                 templateOptions: {
                   label: 'Position',
                   placeholder: '',
-                  description: 'Director, officer, executive or control person of the business.'
+                  description: 'Director, officer, executive or control person of the business.',
+                  addonLeft: {
+                    class: 'fa fa-briefcase'
+                  }
                 },
                 expressionProperties: {
                   'templateOptions.disabled': 'formState.disabled'
@@ -1590,12 +1720,16 @@ function FormService(appConfig) {
               },
               {
                 className: 'flex-1',
-                type: 'input',
+                type: 'maskedInput',
                 key: 'phone',
                 templateOptions: {
                   label: 'Phone Number',
                   placeholder: '###-###-####',
-                  description: 'Required so that questions may be asked by purchasers and security regulatory authority or regulators.'
+                  mask: '(999) 999-9999',
+                  description: 'Required so that questions may be asked by purchasers and security regulatory authority or regulators.',
+                  addonLeft: {
+                    class: 'fa fa-phone'
+                  }
                 },
                 expressionProperties: {
                   'templateOptions.disabled': 'formState.disabled'
@@ -1613,7 +1747,10 @@ function FormService(appConfig) {
                 templateOptions: {
                   label: 'Electronic Signature',
                   placeholder: '',
-                  description: 'I acknowledge that I am signing this offering document electronically and agree that this is the legal equivalent of my handwritten signature. I will not at any time in the future claim that my electronic signature is not legally binding.'
+                  description: 'I acknowledge that I am signing this offering document electronically and agree that this is the legal equivalent of my handwritten signature. I will not at any time in the future claim that my electronic signature is not legally binding.',
+                  addonLeft: {
+                    class: 'fa fa-paint-brush'
+                  }
                 },
                 expressionProperties: {
                   'templateOptions.disabled': 'formState.disabled'
@@ -1635,13 +1772,149 @@ function FormService(appConfig) {
             fieldGroup: [
               {
                 className: 'flex-1',
+                type: 'chosen',
+                key: 'basics.status',
+                templateOptions: {
+                  label: 'Status',
+                  labelProp: 'name',
+                  valueProp: 'value',
+                  options: [
+                    {
+                      name: 'In Progress',
+                      value: 'in-progress'
+                    },
+                    {
+                      name: 'Pending Review',
+                      value: 'review'
+                    },
+                    {
+                      name: 'Approved',
+                      value: 'approved'
+                    },
+                    {
+                      name: 'Active',
+                      value: 'active'
+                    },
+                    {
+                      name: 'Closed',
+                      value: 'closed'
+                    }
+                  ],
+                  description: ''
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
+                }
+              },
+              {
+                className: 'flex-1',
+                type: 'chosen',
+                key: 'basics.stage',
+                templateOptions: {
+                  label: 'Stage',
+                  labelProp: 'name',
+                  valueProp: 'value',
+                  options: [
+                    {
+                      name: 'Open',
+                      value: 'open'
+                    },
+                    {
+                      name: 'Funding Pending',
+                      value: 'funding-pending'
+                    },
+                    {
+                      name: 'Funding Complete',
+                      value: 'funding-complete'
+                    },
+                    {
+                      name: 'Repayment Complete',
+                      value: 'repayment-complete'
+                    },
+                    {
+                      name: 'Expired',
+                      value: 'expired'
+                    },
+                    {
+                      name: 'Cancelled',
+                      value: 'cancelled'
+                    },
+                    {
+                      name: 'Rejected',
+                      value: 'rejected'
+                    }
+                  ],
+                  description: ''
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
+                }
+              },
+              {
+                className: 'flex-1',
+                type: 'chosen',
+                key: 'basics.listingType',
+                templateOptions: {
+                  label: 'Type',
+                  labelProp: 'name',
+                  valueProp: 'value',
+                  options: [
+                    {
+                      name: 'Private',
+                      value: 'Private'
+                    },
+                    {
+                      name: 'Marketplace',
+                      value: 'Marketplace'
+                    },
+                    {
+                      name: 'Private Network',
+                      value: 'Private Network'
+                    },
+                    {
+                      name: 'Restricted',
+                      value: 'Restricted'
+                    }
+                  ],
+                  description: ''
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
+                }
+              },
+              {
+                className: 'flex-1',
+                type: 'date',
+                key: 'basics.published',
+                templateOptions: {
+                  label: 'Listing Start',
+                  placeholder: '',
+                  description: '',
+                  addonLeft: {
+                    class: 'fa fa-calendar'
+                  }
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
+                }
+              }
+            ]
+          },
+          {
+            className: 'display-flex',
+            fieldGroup: [
+              {
+                className: 'flex-1',
                 type: 'input',
                 key: 'basics.investment.max',
                 templateOptions: {
                   type: 'number',
                   label: 'Maximum Investment',
-                  placeholder: '$',
-                  description: ''
+                  placeholder: '',
+                  description: '',
+                  addonLeft: {
+                    class: 'fa fa-usd'
+                  }
                 },
                 expressionProperties: {
                   'templateOptions.disabled': 'formState.disabled'
@@ -1654,8 +1927,11 @@ function FormService(appConfig) {
                 templateOptions: {
                   type: 'number',
                   label: 'Minimum Investment',
-                  placeholder: '$',
-                  description: ''
+                  placeholder: '',
+                  description: '',
+                  addonLeft: {
+                    class: 'fa fa-usd'
+                  }
                 },
                 expressionProperties: {
                   'templateOptions.disabled': 'formState.disabled'
@@ -1669,7 +1945,10 @@ function FormService(appConfig) {
                   type: 'number',
                   label: 'Institutional Eligibility',
                   placeholder: '',
-                  description: ''
+                  description: '',
+                  addonLeft: {
+                    class: 'fa fa-hashtag'
+                  }
                 },
                 expressionProperties: {
                   'templateOptions.disabled': 'formState.disabled'
@@ -1682,8 +1961,11 @@ function FormService(appConfig) {
                 templateOptions: {
                   type: 'number',
                   label: 'Benchmark Rate',
-                  placeholder: '%',
-                  description: ''
+                  placeholder: '',
+                  description: '',
+                  addonLeft: {
+                    class: 'fa fa-percent'
+                  }
                 },
                 expressionProperties: {
                   'templateOptions.disabled': 'formState.disabled'
@@ -1701,8 +1983,11 @@ function FormService(appConfig) {
                 templateOptions: {
                   type: 'number',
                   label: 'Late Payment Penalty',
-                  placeholder: '$',
-                  description: ''
+                  placeholder: '',
+                  description: '',
+                  addonLeft: {
+                    class: 'fa fa-usd'
+                  }
                 },
                 expressionProperties: {
                   'templateOptions.disabled': 'formState.disabled'
@@ -1716,7 +2001,10 @@ function FormService(appConfig) {
                   type: 'number',
                   label: 'FinApps ID',
                   placeholder: '',
-                  description: ''
+                  description: '',
+                  addonLeft: {
+                    class: 'fa fa-hashtag'
+                  }
                 },
                 expressionProperties: {
                   'templateOptions.disabled': 'formState.disabled'
@@ -1730,7 +2018,10 @@ function FormService(appConfig) {
                   type: 'number',
                   label: 'Credit ID',
                   placeholder: '',
-                  description: ''
+                  description: '',
+                  addonLeft: {
+                    class: 'fa fa-hashtag'
+                  }
                 },
                 expressionProperties: {
                   'templateOptions.disabled': 'formState.disabled'
@@ -1744,7 +2035,10 @@ function FormService(appConfig) {
                   type: 'text',
                   label: 'Reviewed by',
                   placeholder: '',
-                  description: ''
+                  description: '',
+                  addonLeft: {
+                    class: 'fa fa-user'
+                  }
                 },
                 expressionProperties: {
                   'templateOptions.disabled': 'formState.disabled'
@@ -1956,7 +2250,10 @@ function FormService(appConfig) {
                   type: 'number',
                   label: 'CI Score',
                   placeholder: '',
-                  description: ''
+                  description: '',
+                  addonLeft: {
+                    class: 'fa fa-hashtag'
+                  }
                 },
                 expressionProperties: {
                   'templateOptions.disabled': 'formState.disabled'
@@ -1970,7 +2267,10 @@ function FormService(appConfig) {
                   type: 'number',
                   label: 'PI Score',
                   placeholder: '',
-                  description: ''
+                  description: '',
+                  addonLeft: {
+                    class: 'fa fa-hashtag'
+                  }
                 },
                 expressionProperties: {
                   'templateOptions.disabled': 'formState.disabled'
@@ -1984,7 +2284,10 @@ function FormService(appConfig) {
                   type: 'number',
                   label: 'Probability of Default (CDS Score)',
                   placeholder: '',
-                  description: ''
+                  description: '',
+                  addonLeft: {
+                    class: 'fa fa-hashtag'
+                  }
                 },
                 expressionProperties: {
                   'templateOptions.disabled': 'formState.disabled'
@@ -1998,7 +2301,10 @@ function FormService(appConfig) {
                   type: 'number',
                   label: 'Probability of Business Failure (BFRS Score)',
                   placeholder: '',
-                  description: ''
+                  description: '',
+                  addonLeft: {
+                    class: 'fa fa-hashtag'
+                  }
                 },
                 expressionProperties: {
                   'templateOptions.disabled': 'formState.disabled'
@@ -2017,7 +2323,10 @@ function FormService(appConfig) {
                   type: 'number',
                   label: 'Paynet Score',
                   placeholder: '',
-                  description: ''
+                  description: '',
+                  addonLeft: {
+                    class: 'fa fa-hashtag'
+                  }
                 },
                 expressionProperties: {
                   'templateOptions.disabled': 'formState.disabled'
@@ -2031,7 +2340,10 @@ function FormService(appConfig) {
                   type: 'number',
                   label: 'T-Bill Rate',
                   placeholder: '',
-                  description: ''
+                  description: '',
+                  addonLeft: {
+                    class: 'fa fa-hashtag'
+                  }
                 },
                 expressionProperties: {
                   'templateOptions.disabled': 'formState.disabled'
@@ -2072,7 +2384,10 @@ function FormService(appConfig) {
                   type: 'number',
                   label: 'Bond Yield',
                   placeholder: '',
-                  description: ''
+                  description: '',
+                  addonLeft: {
+                    class: 'fa fa-hashtag'
+                  }
                 },
                 expressionProperties: {
                   'templateOptions.disabled': 'formState.disabled'
@@ -2086,7 +2401,10 @@ function FormService(appConfig) {
                   type: 'text',
                   label: 'Credit Rating',
                   placeholder: '',
-                  description: ''
+                  description: '',
+                  addonLeft: {
+                    class: 'fa fa-hashtag'
+                  }
                 },
                 expressionProperties: {
                   'templateOptions.disabled': 'formState.disabled'
@@ -2100,7 +2418,10 @@ function FormService(appConfig) {
                   type: 'number',
                   label: 'IND Factor',
                   placeholder: '',
-                  description: ''
+                  description: '',
+                  addonLeft: {
+                    class: 'fa fa-hashtag'
+                  }
                 },
                 expressionProperties: {
                   'templateOptions.disabled': 'formState.disabled'
@@ -2133,7 +2454,10 @@ function FormService(appConfig) {
                   type: 'text',
                   label: 'Highest Owner FICO',
                   placeholder: '',
-                  description: ''
+                  description: '',
+                  addonLeft: {
+                    class: 'fa fa-hashtag'
+                  }
                 },
                 expressionProperties: {
                   'templateOptions.disabled': 'formState.disabled'
@@ -2147,7 +2471,10 @@ function FormService(appConfig) {
                   type: 'number',
                   label: 'Lowest Owner FICO',
                   placeholder: '',
-                  description: ''
+                  description: '',
+                  addonLeft: {
+                    class: 'fa fa-hashtag'
+                  }
                 },
                 expressionProperties: {
                   'templateOptions.disabled': 'formState.disabled'
@@ -2169,8 +2496,11 @@ function FormService(appConfig) {
                 templateOptions: {
                   type: 'number',
                   label: 'Total Current Credit Exposure',
-                  placeholder: '$',
-                  description: ''
+                  placeholder: '',
+                  description: '',
+                  addonLeft: {
+                    class: 'fa fa-percent'
+                  }
                 },
                 expressionProperties: {
                   'templateOptions.disabled': 'formState.disabled'
@@ -2184,7 +2514,10 @@ function FormService(appConfig) {
                   type: 'number',
                   label: 'Loan to New Revenue Ratio',
                   placeholder: '',
-                  description: ''
+                  description: '',
+                  addonLeft: {
+                    class: 'fa fa-hashtag'
+                  }
                 },
                 expressionProperties: {
                   'templateOptions.disabled': 'formState.disabled'
@@ -2198,7 +2531,10 @@ function FormService(appConfig) {
                   type: 'number',
                   label: 'Debt/Revenue Ratio',
                   placeholder: '',
-                  description: ''
+                  description: '',
+                  addonLeft: {
+                    class: 'fa fa-hashtag'
+                  }
                 },
                 expressionProperties: {
                   'templateOptions.disabled': 'formState.disabled'
@@ -2220,8 +2556,11 @@ function FormService(appConfig) {
                 templateOptions: {
                   type: 'number',
                   label: 'Current Balance',
-                  placeholder: '$',
-                  description: ''
+                  placeholder: '',
+                  description: '',
+                  addonLeft: {
+                    class: 'fa fa-usd'
+                  }
                 },
                 expressionProperties: {
                   'templateOptions.disabled': 'formState.disabled'
@@ -2235,7 +2574,10 @@ function FormService(appConfig) {
                   type: 'number',
                   label: '90 Day Deposits',
                   placeholder: '',
-                  description: ''
+                  description: '',
+                  addonLeft: {
+                    class: 'fa fa-usd'
+                  }
                 },
                 expressionProperties: {
                   'templateOptions.disabled': 'formState.disabled'
@@ -2249,7 +2591,10 @@ function FormService(appConfig) {
                   type: 'number',
                   label: '90 Day Expenses',
                   placeholder: '',
-                  description: ''
+                  description: '',
+                  addonLeft: {
+                    class: 'fa fa-usd'
+                  }
                 },
                 expressionProperties: {
                   'templateOptions.disabled': 'formState.disabled'
@@ -2267,8 +2612,11 @@ function FormService(appConfig) {
                 templateOptions: {
                   type: 'number',
                   label: '90 Day Leftover',
-                  placeholder: '$',
-                  description: ''
+                  placeholder: '',
+                  description: '',
+                  addonLeft: {
+                    class: 'fa fa-usd'
+                  }
                 },
                 expressionProperties: {
                   'templateOptions.disabled': 'formState.disabled'
@@ -2282,7 +2630,10 @@ function FormService(appConfig) {
                   type: 'number',
                   label: 'Average Free Cash Flow ratio',
                   placeholder: '',
-                  description: ''
+                  description: '',
+                  addonLeft: {
+                    class: 'fa fa-hashtag'
+                  }
                 },
                 expressionProperties: {
                   'templateOptions.disabled': 'formState.disabled'
@@ -2296,7 +2647,10 @@ function FormService(appConfig) {
                   type: 'number',
                   label: 'Estimated Annual Income',
                   placeholder: '',
-                  description: ''
+                  description: '',
+                  addonLeft: {
+                    class: 'fa fa-usd'
+                  }
                 },
                 expressionProperties: {
                   'templateOptions.disabled': 'formState.disabled'

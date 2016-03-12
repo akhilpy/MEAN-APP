@@ -22,7 +22,7 @@ var owners = {
 		default: ''
 	},
 	percentage: {
-		type: String,
+		type: Number,
 		default: ''
 	},
 	guarantee: {
@@ -118,15 +118,33 @@ var file = {
 };
 
 var basics = {
+	status: {
+		type: String,
+		default: 'in-progress'
+	},
+	stage: {
+		type: String,
+		default: 'open'
+	},
+	listingType: String,
+	published: Date,
+	deadline: Date,
 	investment: {
-		max: Number,
+		max: {
+			type: Number,
+			default: 50000
+		},
 		min: {
 			type: Number,
 			default: 500
 		}
 	},
 	eligibility: Number,
-	benchmarkRate: Number,
+	benchmarkRate: {
+		type: Number,
+		default: 6
+	},
+	listedRate: Number,
 	latePenalty: Number,
 	finappsID: Number,
 	creditID: Number,
@@ -227,16 +245,12 @@ var ListingSchema = new Schema({
 		type: Date,
 		default: Date.now
 	},
-	status: {
-		type: String,
-		default: 'in-progress'
-	},
 	general: {
 		businessName: String,
 		doingBusinessName: String,
 		contactName: String,
 		email: String,
-		phone: String,
+		phone: Number,
 		website: String,
 		address: address,
 		founded: {
@@ -246,7 +260,7 @@ var ListingSchema = new Schema({
 		structure: String,
 		industry: String,
 		naics: String,
-		employees: String
+		employees: Number
 	},
 	details: {
 		title: String,
@@ -256,8 +270,8 @@ var ListingSchema = new Schema({
 		},
 		usage: String,
 		term: Number,
-		amount: String,
-		jobs: String,
+		amount: Number,
+		jobs: Number,
 		loanPartners: {
 			type: String,
 			default: 'Yes'
@@ -271,10 +285,13 @@ var ListingSchema = new Schema({
 			default: 'No'
 		},
 		owners: [owners],
-		revenue: String,
-		projection: String,
-		debt: String,
-		repayments: String,
+		revenue: {
+			type: Number,
+			value: 0
+		},
+		projection: Number,
+		debt: Number,
+		repayments: Number,
 		bankStatements: [file],
 		taxReturns: [file],
 		whyInvest: String,
@@ -283,10 +300,10 @@ var ListingSchema = new Schema({
 			default: false
 		},
 		upToDate: Date,
-		assets: String,
-		inventory: String,
-		receivable: String,
-		liabilities: String,
+		assets: Number,
+		inventory: Number,
+		receivable: Number,
+		liabilities: Number,
 		financialStatements: String,
 		additionalDocuments: [file],
     additionalInfo: String
@@ -321,7 +338,7 @@ var ListingSchema = new Schema({
 		},
 		fullName: String,
 		position: String,
-		phone: String,
+		phone: Number,
 		signature: String
 	},
 	comments: [comment],
@@ -333,6 +350,26 @@ var ListingSchema = new Schema({
 		financials: financials,
 		bankStatements: bankStatements
 	}
+});
+
+ListingSchema.pre('save', function (next) {
+
+	if(!this.admin.basics.listedRate) {
+		this.admin.basics.listedRate = this.get('admin.basics.benchmarkRate');
+	}
+
+	if(!this.admin.basics.listingType) {
+		this.admin.basics.listingType = this.get('details.listingType');
+	}
+
+	if(this.admin.basics.published) {
+		var published = this.admin.basics.published;
+		var deadline = new Date();
+		deadline.setDate(published.getDate() + 60);
+		this.admin.basics.deadline = deadline;
+	}
+
+  next();
 });
 
 ListingSchema.plugin(autopopulate);

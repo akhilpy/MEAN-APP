@@ -78,9 +78,9 @@
           <td>{{listing.general.businessName}}</td>
           <td>{{listing.general.address.city}} {{listing.general.address.province}}</td>
           <td>{{listing.general.industry}}</td>
-          <td></td>
+          <td>{{listing.admin.basics.listedRate}}%</td>
           <td>{{listing.details.term}} Months</td>
-          <td></td>
+          <td>{{listing.admin.basics.deadline | amCalendar}}</td>
           <td></td>
           <td>
             <a ng-show="listing.status!='approved'" ui-sref="marketplace.listing.profile({id: listing._id})" class="button small accent"><i class="fa fa-eye"></i></a>

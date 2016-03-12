@@ -13,12 +13,28 @@ class MarketplaceListingController {
     vm.currentListing.link = window.location.href;
     vm.currentOffers = offers.data;
     vm.currentUser = Auth.getCurrentUser();
+
     vm.requested = false;
     vm.bookmarked = false;
+    vm.hasManagers = false;
     vm.hasReviews = false;
+    vm.hasOffers = false;
+    vm.hasFiles = false;
 
-    if(vm.currentListing.social.reviews.length > 0) {
+    if(vm.currentListing.social.managers && vm.currentListing.social.managers.length > 0) {
+      vm.hasManagers = true;
+    }
+
+    if(vm.currentListing.social.reviews && vm.currentListing.social.reviews.length > 0) {
       vm.hasReviews = true;
+    }
+
+    if(vm.currentListing.financial.additionalDocuments && vm.currentListing.financial.additionalDocuments.length > 0) {
+      vm.hasFiles = true;
+    }
+
+    if(vm.currentOffers && vm.currentOffers.length > 0) {
+      vm.hasOffers = true;
     }
 
     vm.meters = {
@@ -84,6 +100,9 @@ class MarketplaceListingController {
     if(!this.bookmarked) {
       this.ListingService.addBookmark(this.currentListing);
       this.bookmarked = true;
+    } else {
+      this.ListingService.removeBookmark(this.currentListing);
+      this.bookmarked = false;
     }
   }
 

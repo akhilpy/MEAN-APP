@@ -3,7 +3,7 @@
 (function() {
 
 class WidgetOfferController {
-  constructor($scope, Offers, Investor) {
+  constructor($scope, Offers, Investor, ListingService) {
     var widget = this;
     widget.$scope = $scope;
     widget.Offers = Offers;
@@ -12,39 +12,17 @@ class WidgetOfferController {
     widget.$scope.balance = 0;
     widget.$scope.offered = false;
 
+    widget.newOffer = {
+      rate: widget.$scope.vm.currentListing.admin.basics.listedRate,
+      amount: widget.$scope.vm.currentListing.admin.basics.investment.min
+    };
+
     Investor.getInvestorInfo().then(data => {
       widget.$scope.balance = data.balance;
     });
 
-    widget.$scope.rates = [
-      {
-        label: '10%',
-        value: 10
-      },
-      {
-        label: '11%',
-        value: 11
-      },
-      {
-        label: '12%',
-        value: 12
-      }
-    ]
-
-    widget.$scope.amounts = [
-      {
-        label: '$500',
-        value: 500
-      },
-      {
-        label: '$1000',
-        value: 1000
-      },
-      {
-        label: '$1500',
-        value: 1500
-      }
-    ]
+    widget.$scope.rates = ListingService.getRates('Rate*');
+    widget.$scope.amounts = ListingService.getAmounts('Amount*', widget.$scope.vm.currentListing);
   }
 
   makeOffer() {

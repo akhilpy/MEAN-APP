@@ -72,7 +72,7 @@ export function index(req, res) {
 export function status(req, res) {
   var status = req.params.status;
 
-  Listing.findAsync({ status: status })
+  Listing.findAsync({ 'admin.basics.status': status })
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
@@ -264,6 +264,28 @@ export function bookmark(req, res) {
           }
           respondWithResult(user);
         });
+    });
+}
+
+
+
+// Updates an existing Listing in the DB with comments
+export function bookmarkRemove(req, res) {
+  if (req.body._id) {
+    delete req.body._id;
+  }
+
+  var userID = req.params.id;
+  var bookmark = {};
+
+  User.findByIdAndUpdate(userID,
+    {$pull: {bookmarks: bookmark}},
+    {},
+    function(err, user) {
+      if(err) {
+        console.log(err);
+      }
+      respondWithResult(user);
     });
 }
 

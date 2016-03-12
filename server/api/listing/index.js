@@ -16,6 +16,7 @@ router.put('/reply/:id', controller.reply);
 router.post('/reply/:id', controller.replyDelete);
 router.put('/request-more/:id', controller.requestMore);
 router.put('/bookmark/:id', controller.bookmark);
+router.delete('/bookmark/:id', controller.bookmarkRemove);
 router.patch('/:id', controller.update);
 router.delete('/:id', controller.destroy);
 
