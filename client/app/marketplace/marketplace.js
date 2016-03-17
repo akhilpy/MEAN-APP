@@ -21,7 +21,7 @@ angular.module('investnextdoorCaApp')
         resolve: {
           listings: ['ListingService',
             function(ListingService) {
-              return ListingService.getAll('approved');
+              return ListingService.getAll('active');
             }
           ]
         },

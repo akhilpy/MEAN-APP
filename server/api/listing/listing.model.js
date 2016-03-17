@@ -108,6 +108,10 @@ var requester = {
 	date: {
 		type: Date,
 		default: Date.now
+	},
+	status: {
+		type: String,
+		default: 'Pending'
 	}
 }
 
@@ -144,6 +148,7 @@ var basics = {
 		type: Number,
 		default: 6
 	},
+	userRate: Number,
 	listedRate: Number,
 	latePenalty: Number,
 	finappsID: Number,

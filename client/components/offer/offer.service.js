@@ -46,6 +46,7 @@
         return $http.get('/api/offers/listing/' + listingID);
       },
 
+
       /**
        * Get a user's offers
        *
@@ -80,6 +81,15 @@
         });
 
         return deferred.promise;
+      },
+
+      /**
+       * Reject an Offer
+       *
+       * @return {String}
+       */
+      updateOffer(offer) {
+        return $http.put('/api/offers/' + offer._id, offer);
       },
 
     };

@@ -66,7 +66,7 @@ class MarketplaceListingController {
         labels: [0, 5, 10, 15, 20, 25],
         type: 'number',
         max: 25,
-        value: vm.currentListing.admin.scores.bfrs,
+        value: vm.currentListing.admin.scores.cds,
         unit: '',
         suffix: '%'
       }

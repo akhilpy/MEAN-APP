@@ -7,19 +7,22 @@ class WidgetCurrentOffersController {
     var widget = this;
     widget.ngDialog = ngDialog;
     widget.$scope = $scope;
+    widget.$scope.makeOutbid = false;
 
-    this.$scope.dialogModel = {
-      title: 'Outbid',
-      message: 'Details on your offer will be shown here.'
+    if(this.$scope.vm.currentOffers.length > 0) {
+      var rates = 0
+
+      angular.forEach(this.$scope.vm.currentOffers, function(offer) {
+        rates += offer.rate;
+      });
+
+      $scope.vm.averageRate = Math.ceil(rates / this.$scope.vm.currentOffers.length);
     }
   }
 
   outbid() {
-    this.ngDialog.open({
-      template: 'dialog.default',
-      className: 'ngdialog-theme-default',
-      scope: this.$scope
-    });
+    this.$scope.makeOutbid = true;
+    this.$scope.offerWidget.newOffer.rate = this.$scope.vm.averageRate;
   }
 }
 

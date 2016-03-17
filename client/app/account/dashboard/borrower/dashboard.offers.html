@@ -1,0 +1,37 @@
+<p ng-hide="vm.hasOffers" class="dashboard__main--intro">You do not have any offers.</p>
+
+<ul class="general-content__table-keys" ng-show="vm.hasOffers">
+  <li><i class="fa fa-circle pending"></i> In Review</li>
+  <li><i class="fa fa-check-circle success"></i> Active</li>
+  <li><i class="fa fa-times-circle warning"></i> Rejected</li>
+</ul><!-- /.general-content__table-keys -->
+<table ng-show="vm.hasOffers">
+  <thead>
+    <tr>
+      <th class="status"><a><i class="fa fa-circle-o"></i></a></th>
+      <th><a href="#">Date</a></th>
+      <th><a href="#">Listing</a></th>
+      <th><a href="#">Username</a></th>
+      <th><a href="#">Amount</a></th>
+      <th><a href="#">Rate</a></th>
+      <th><a href="#">Actions</a></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="offer in offers">
+      <td class="status">
+        <i ng-show=offer.status==='pending' class="fa fa-circle pending"></i>
+        <i ng-show=offer.status==='active' class="fa fa-check-circle success"></i>
+        <i ng-show=offer.status==='rejected' class="fa fa-times-circle warning"></i>
+      </td>
+      <td>{{offer.date | date}}</td>
+      <td>{{offer.listing.general.businessName}}</td>
+      <td>{{offer.user.username}}</td>
+      <td>{{offer.amount | currency}}</td>
+      <td>{{offer.rate}}%</td>
+      <td>
+        <a href="#" ng-click="vm.rejectOffer(offer)" class="button small warning"><i class="fa fa-times"></i></a>
+      </td>
+    </tr>
+  </tbody>
+</table>

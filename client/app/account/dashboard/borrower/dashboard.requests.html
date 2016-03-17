@@ -1,0 +1,44 @@
+<p ng-hide="vm.hasRequests" class="dashboard__main--intro">You do not have any information requests.</p>
+
+<ul class="general-content__table-keys" ng-show="vm.hasRequests">
+  <li><i class="fa fa-exclamation-circle new"></i> New</li>
+  <li><i class="fa fa-check-circle success"></i> Approved</li>
+  <li><i class="fa fa-times-circle warning"></i> Rejected</li>
+</ul><!-- /.general-content__table-keys -->
+<table ng-show="vm.hasRequests">
+  <thead>
+    <tr>
+      <th><a><i class="fa fa-circle-o"></i></a></th>
+      <th><a href="#">Date</a></th>
+      <th><a href="#">Listing</a></th>
+      <th><a href="#">Name</a></th>
+      <th><a href="#">Phone</a></th>
+      <th><a href="#">Email</a></th>
+      <th><a href="#">City</a></th>
+      <th><a href="#">Province</a></th>
+      <th><a href="#">Status</a></th>
+      <th><a href="#">Actions</a></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="request in requests">
+      <td>
+        <i ng-show=request.status==='Pending' class="fa fa-exclamation-circle new"></i>
+        <i ng-show=request.status==='Approved' class="fa fa-check-circle success"></i>
+        <i ng-show=request.status==='Rejected' class="fa fa-times-circle warning"></i>
+      </td>
+      <td>{{request.date | date}}</td>
+      <td>{{request.name}}</td>
+      <td>{{request.user.name.first}} {{request.user.name.last}}</td>
+      <td>{{request.user.phone}}</td>
+      <td>{{request.user.email}}</td>
+      <td>{{request.user.address.city}}</td>
+      <td>{{request.user.address.province}}</td>
+      <td>{{request.user.investor.level}}</td>
+      <td>
+        <a href="#" ng-click="vm.approveRequest(request)" class="button small edit"><i class="fa fa-check"></i></a>
+        <a href="#" ng-click="vm.rejectRequest(request)" class="button small warning"><i class="fa fa-times"></i></a>
+      </td>
+    </tr>
+  </tbody>
+</table>

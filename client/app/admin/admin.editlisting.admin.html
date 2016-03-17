@@ -23,7 +23,7 @@
       <label>Borrower Rate</label>
       <div class="input-group">
         <div class="input-group-addon"><i class="fa fa-percent"></i></div>
-        <input type="number" disabled="disabled">
+        <input type="number" disabled="disabled" ng-model="vm.currentListing.admin.basics.userRate">
       </div><!-- /.input-group -->
     </div><!-- /.flex-1 -->
   </div><!-- /.display-flex -->
@@ -102,7 +102,7 @@
       <label>Application ID</label>
       <div class="input-group">
         <div class="input-group-addon"><i class="fa fa-hashtag"></i></div>
-        <input type="number" disabled="disabled">
+        <input type="text" disabled="disabled" ng-model="vm.currentListing._id">
       </div><!-- /.input-group -->
     </div><!-- /.flex-1 -->
     <div class="flex-1">

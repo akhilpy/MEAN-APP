@@ -162,10 +162,20 @@ function ListingService($location, $cookies, $q, $resource, $http, Auth, User, $
     approveOne(listingID) {
       return Listing.getOne(listingID)
         .then(listing => {
-          console.log(listing);
           listing.status = 'approved';
           return $http.put('/api/listings/' + listingID, listing);
         });
+    },
+
+
+
+    /**
+     * Publish listing
+     *
+     * @return {String}
+     */
+    publishOne(listing) {
+      return $http.put('/api/listings/' + listing._id, listing);
     },
 
 

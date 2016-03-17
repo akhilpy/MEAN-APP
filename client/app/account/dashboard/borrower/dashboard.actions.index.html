@@ -1,0 +1,27 @@
+<ul class="general-content__table-keys">
+  <li><i class="fa fa-exclamation-circle new"></i> New</li>
+  <li><i class="fa fa-check-circle success"></i> Complete</li>
+  <li><i class="fa fa-times-circle warning"></i> Incomplete</li>
+</ul><!-- /.general-content__table-keys -->
+
+<table>
+  <thead>
+    <tr>
+      <th class="status"><a><i class="fa fa-circle-o"></i></a></th>
+      <th><a href="#">Task</a></th>
+      <th><a href="#">Description</a></th>
+      <th><a href="#">Action</a></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="action in actions">
+      <td class="status">
+        <i ng-show=action.status==='complete' class="fa fa-check-circle success"></i>
+        <i ng-show=action.status==='incomplete' class="fa fa-times-circle warning"></i>
+      </td>
+      <td>{{action.task}}</td>
+      <td><p class="description">{{action.description}}</p></td>
+      <td><a href="#" ui-sref='{{action.state}}' class="button small edit">{{action.button}}</a></td>
+    </tr>
+  </tbody>
+</table>

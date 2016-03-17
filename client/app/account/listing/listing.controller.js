@@ -17,9 +17,9 @@ class ListingController {
     vm.currentListing = currentListing.data;
 
     if(Object.keys(currentListing).length !== 0) {
-      vm.admin.basics.status = vm.currentListing.status;
+      vm.status = vm.currentListing.admin.status;
     } else {
-      vm.admin.basics.status = 'in-progress';
+      vm.status = 'in-progress';
     }
 
     vm.currentPage = $state.current.name;
@@ -32,7 +32,7 @@ class ListingController {
         disabled: true
       }
     };
-    if(vm.admin.basics.status == 'in-progress') {
+    if(vm.status == 'in-progress') {
       vm.options.formState.disabled = false;
     }
 

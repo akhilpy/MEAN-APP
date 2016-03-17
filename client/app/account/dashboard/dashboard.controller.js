@@ -3,9 +3,10 @@
 (function() {
 
 class DashboardController {
-  constructor(Auth, Investor, offers, bookmarks, investorInfo, $scope) {
+  constructor(Auth, Investor, Offers, $scope) {
     this.errors = {};
     this.submitted = false;
+    this.$scope = $scope;
 
     this.Auth = Auth;
     this.Investor = Investor;
@@ -14,29 +15,30 @@ class DashboardController {
     this.isBorrower = Auth.isBorrower;
     this.isInvestor = Auth.isInvestor;
 
+    this.$scope.investorInfo = Investor.getInvestorInfo();
+    this.offers = Offers.getUserOffers();
+    this.bookmarks = Investor.getBookmarks();
+    this.statements = Investor.getStatements();
+
     this.hasOffers = false;
     this.hasBookmarks = false;
 
-    this.investorInfo = investorInfo;
-
-    this.statements = Investor.getStatements();
-
-    if(offers.data) {
-      this.offers = offers.data;
-      if(this.offers.length > 0) {
+    if(this.offers.data) {
+      this.$scope.offers = this.offers.data;
+      if(this.offers.data.length > 0) {
         this.hasOffers = true;
       }
     } else {
-      this.offers = [];
+      this.$scope.offers = [];
     }
 
-    if(bookmarks.data) {
-      this.watchlist = bookmarks.data.bookmarks;
-      if(this.watchlist.length > 0) {
+    if(this.bookmarks.data) {
+      this.$scope.watchlist = this.bookmarks.data.bookmarks;
+      if(this.bookmarks.length > 0) {
         this.hasBookmarks = true;
       }
     } else {
-      this.watchlist = [];
+      this.$scope.watchlist = [];
     }
   }
 

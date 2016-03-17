@@ -1,0 +1,35 @@
+<p ng-hide="vm.hasListings" class="dashboard__main--intro">You do not have any listings.</p>
+
+<ul class="general-content__table-keys" ng-show="vm.hasListings">
+  <li><i class="fa fa-circle pending"></i> In Progress</li>
+  <li><i class="fa fa-exclamation-circle new"></i> Approved</li>
+  <li><i class="fa fa-check-circle success"></i> Active</li>
+  <li><i class="fa fa-times-circle warning"></i> Rejected</li>
+</ul><!-- /.general-content__table-keys -->
+<table ng-show="vm.hasListings">
+  <thead>
+    <tr>
+      <th class="status"><a><i class="fa fa-circle-o"></i></a></th>
+      <th><a href="#">Date</a></th>
+      <th><a href="#">Business</a></th>
+      <th><a href="#">Actions</a></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="listing in listings">{{listing.admin.basics.status}}
+      <td class="status">
+        <i ng-show=listing.admin.basics.status==='in-progress' class="fa fa-circle pending"></i>
+        <i ng-show=listing.admin.basics.status==='approved' class="fa fa-exclamation-circle new"></i>
+        <i ng-show=listing.admin.basics.status==='active' class="fa fa-check-circle success"></i>
+        <i ng-show=listing.admin.basics.status==='rejected' class="fa fa-times-circle warning"></i>
+      </td>
+      <td>{{listing.date | date}}</td>
+      <td>{{listing.general.businessName}}</td>
+      <td>
+        <a ng-show="listing.admin.basics.status=='active'" ui-sref="marketplace.listing.profile({id: listing._id})" class="button small accent"><i class="fa fa-eye"></i></a>
+        <a ui-sref="listing.general" class="button small edit"><i class="fa fa-pencil"></i></a>
+        <a ng-show="listing.admin.basics.status=='approved'" ui-sref="dashboard.borrower.listings.actions({id: listing._id})" ng-click="vm.setListing(listing)" class="button small"><i class="fa fa-cog"></i></a>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -14,7 +14,161 @@ Offers.find({}).remove()
   console.log('finished removing offers');
 });
 
-var newUser = new User({
+var newListing = new Listing({
+  general: {
+    businessName: 'Awesome Business, LLC',
+    doingBusinessName: 'Awesome Business',
+    contactName: 'John Smith',
+    email: 'john@awesomebuisness.com',
+    phone: 5555555555,
+    website: 'http://www.awesomebuisness.com',
+    address: {
+      street: '123 Fake Street',
+      city: 'Vancouver',
+      province: 'BC',
+      postal: '12345'
+    },
+    structure: 'Limited Partnership',
+    industry: 'Professional Services',
+    naics: '123',
+    employees: 100
+  },
+  details: {
+    title: 'Opening Second Location for the Awesome Business',
+    listingType: 'Marketplace',
+    usage: 'Expansion Capital',
+    term: 6,
+    amount: 10000,
+    jobs: 20,
+    loanPartners: 'No',
+    reason: 'Cras mattis consectetur purus sit amet fermentum. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Vestibulum id ligula porta felis euismod semper. Nulla vitae elit libero, a pharetra augue. Maecenas faucibus mollis interdum.'
+  },
+  financial: {
+    businessNumber: '123',
+    commercialSpace: 'Own',
+    owners: [
+      {
+        name: 'John Smith',
+        percentage: 100,
+        guarantee: 'Yes'
+      }
+    ],
+    revenue: 500000,
+    projection: 1000000,
+    debt: 10000,
+    repayments: 500,
+    bankStatements: [],
+    taxReturns: [],
+    whyInvest: 'Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Nullam quis risus eget urna mollis ornare vel eu leo. Etiam porta sem malesuada magna mollis euismod. Maecenas sed diam eget risus varius blandit sit amet non magna.',
+    provideMore: false,
+    upToDate: '',
+    assets: '',
+    inventory: '',
+    receivable: '',
+    liabilities: '',
+    financialStatements: '',
+    additionalDocuments: [],
+    additionalInfo: ''
+  },
+  social: {
+    managers: [
+      {
+        name: 'Mary Ryan',
+        title: 'Public Relations Manager',
+        linkedin: 'http://linkedin.com'
+      }
+    ],
+    video: '#',
+    facebook: 'http://facebook.com',
+    twitter: 'http://twitter.com',
+    linkedin: 'http://linkedin.com',
+    youtube: 'http://youtube.com',
+    yelp: 'http://www.yelp.ca/biz/stone-fox-salon-milwaukee',
+    reviews: [
+      {
+        name: 'Jane Smith',
+        title: 'Our First Customer',
+        review: 'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.'
+      },
+      {
+        name: 'John Smith',
+        title: 'Our Second Customer',
+        review: 'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.'
+      }
+    ],
+    images: [
+      {
+        name: 'Great Picture 1',
+        link: 'http://thesn.ug/20vFzrh'
+      },
+      {
+        name: 'Great Picture 2',
+        link: 'http://thesn.ug/20vFzrh'
+      },
+      {
+        name: 'Great Picture 3',
+        link: 'http://thesn.ug/20vFzrh'
+      }
+    ]
+  },
+  terms: {
+    businessAgreements: true,
+    authority: true,
+    moreRequired: true,
+    certified: true,
+    fullName: 'John Paul Smith',
+    position: 'Principal',
+    phone: 5555555555,
+    signature: 'John Paul Smith'
+  },
+  comments: [
+    {
+      text: 'This business is amazing!',
+      user: newInvestor,
+      tags: [
+        'Business',
+        'Local',
+        'Funding'
+      ],
+      replies: [
+        {
+          text: 'I really agree with that statement',
+          user: newInvestor
+        },
+        {
+          text: 'Me too!',
+          user: newInvestor
+        }
+      ]
+    },
+    {
+      text: 'This business is amazing!',
+      user: newInvestor,
+      tags: [
+        'Business',
+        'Local',
+        'Funding'
+      ],
+      replies: [
+        {
+          text: 'I really agree with that statement',
+          user: newInvestor
+        },
+        {
+          text: 'Me too!',
+          user: newInvestor
+        }
+      ]
+    }
+  ],
+  admin: {
+    basics: {
+      status: 'active'
+    }
+  }
+});
+
+var newInvestor = new User({
   provider: 'local',
   role: 'investor',
   name: {
@@ -28,19 +182,25 @@ var newUser = new User({
   }
 });
 
+var newBorrower = new User({
+  provider: 'local',
+  role: 'borrower',
+  name: {
+    first: 'Test',
+    last: 'Borrower'
+  },
+  email: 'test@borrower.com',
+  password: 'password',
+  borrower: {
+    listings: [newListing]
+  }
+});
+
 User.find({}).remove()
   .then(() => {
-    User.create({
-      provider: 'local',
-      role: 'borrower',
-      name: {
-        first: 'Test',
-        last: 'Borrower'
-      },
-      email: 'test@borrower.com',
-      password: 'password'
-    },
-    newUser,
+    User.create(
+    newBorrower,
+    newInvestor,
     {
       provider: 'local',
       role: 'admin',
@@ -58,159 +218,9 @@ User.find({}).remove()
 
   Listing.find({}).remove()
     .then(() => {
-      Listing.create({
-        general: {
-      		businessName: 'Awesome Business, LLC',
-      		doingBusinessName: 'Awesome Business',
-      		contactName: 'John Smith',
-      		email: 'john@awesomebuisness.com',
-      		phone: 5555555555,
-      		website: 'http://www.awesomebuisness.com',
-      		address: {
-            street: '123 Fake Street',
-            city: 'Vancouver',
-            province: 'BC',
-            postal: '12345'
-          },
-      		structure: 'Limited Partnership',
-      		industry: 'Professional Services',
-      		naics: '123',
-      		employees: 100
-      	},
-        details: {
-      		title: 'Opening Second Location for the Awesome Business',
-      		listingType: 'Marketplace',
-      		usage: 'Expansion Capital',
-      		term: 6,
-      		amount: 10000,
-      		jobs: 20,
-      		loanPartners: 'No',
-      		reason: 'Cras mattis consectetur purus sit amet fermentum. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Vestibulum id ligula porta felis euismod semper. Nulla vitae elit libero, a pharetra augue. Maecenas faucibus mollis interdum.'
-      	},
-        financial: {
-      		businessNumber: '123',
-      		commercialSpace: 'Own',
-      		owners: [
-            {
-              name: 'John Smith',
-              percentage: 100,
-              guarantee: 'Yes'
-            }
-          ],
-      		revenue: 500000,
-      		projection: 1000000,
-      		debt: 10000,
-      		repayments: 500,
-      		bankStatements: [],
-      		taxReturns: [],
-      		whyInvest: 'Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Nullam quis risus eget urna mollis ornare vel eu leo. Etiam porta sem malesuada magna mollis euismod. Maecenas sed diam eget risus varius blandit sit amet non magna.',
-      		provideMore: false,
-      		upToDate: '',
-      		assets: '',
-      		inventory: '',
-      		receivable: '',
-      		liabilities: '',
-      		financialStatements: '',
-      		additionalDocuments: [],
-          additionalInfo: ''
-      	},
-        social: {
-          managers: [
-            {
-              name: 'Mary Ryan',
-              title: 'Public Relations Manager',
-              linkedin: 'http://linkedin.com'
-            }
-          ],
-          video: '#',
-          facebook: 'http://facebook.com',
-          twitter: 'http://twitter.com',
-          linkedin: 'http://linkedin.com',
-          youtube: 'http://youtube.com',
-          yelp: 'http://www.yelp.ca/biz/stone-fox-salon-milwaukee',
-          reviews: [
-            {
-              name: 'Jane Smith',
-              title: 'Our First Customer',
-              review: 'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.'
-            },
-            {
-              name: 'John Smith',
-              title: 'Our Second Customer',
-              review: 'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.'
-            }
-          ],
-          images: [
-            {
-              name: 'Great Picture 1',
-              link: 'http://thesn.ug/20vFzrh'
-            },
-            {
-              name: 'Great Picture 2',
-              link: 'http://thesn.ug/20vFzrh'
-            },
-            {
-              name: 'Great Picture 3',
-              link: 'http://thesn.ug/20vFzrh'
-            }
-          ]
-        },
-        terms: {
-          businessAgreements: true,
-          authority: true,
-          moreRequired: true,
-          certified: true,
-          fullName: 'John Paul Smith',
-          position: 'Principal',
-          phone: 5555555555,
-          signature: 'John Paul Smith'
-        },
-        comments: [
-          {
-            text: 'This business is amazing!',
-            user: newUser,
-            tags: [
-              'Business',
-              'Local',
-              'Funding'
-            ],
-            replies: [
-              {
-                text: 'I really agree with that statement',
-                user: newUser
-              },
-              {
-                text: 'Me too!',
-                user: newUser
-              }
-            ]
-          },
-          {
-            text: 'This business is amazing!',
-            user: newUser,
-            tags: [
-              'Business',
-              'Local',
-              'Funding'
-            ],
-            replies: [
-              {
-                text: 'I really agree with that statement',
-                user: newUser
-              },
-              {
-                text: 'Me too!',
-                user: newUser
-              }
-            ]
-          }
-        ],
-        admin: {
-          basics: {
-            status: 'active'
-          }
-        }
-      },{
+      Listing.create(
+        newListing,
+        {
         general: {
       		businessName: 'Acme Corporation',
       		doingBusinessName: 'Acme',
@@ -313,7 +323,7 @@ User.find({}).remove()
         comments: [
           {
             text: 'This business is amazing!',
-            user: newUser,
+            user: newInvestor,
             tags: [
               'Business',
               'Local',
@@ -322,17 +332,17 @@ User.find({}).remove()
             replies: [
               {
                 text: 'I really agree with that statement',
-                user: newUser
+                user: newInvestor
               },
               {
                 text: 'Me too!',
-                user: newUser
+                user: newInvestor
               }
             ]
           },
           {
             text: 'This business is amazing!',
-            user: newUser,
+            user: newInvestor,
             tags: [
               'Business',
               'Local',
@@ -341,11 +351,11 @@ User.find({}).remove()
             replies: [
               {
                 text: 'I really agree with that statement',
-                user: newUser
+                user: newInvestor
               },
               {
                 text: 'Me too!',
-                user: newUser
+                user: newInvestor
               }
             ]
           }

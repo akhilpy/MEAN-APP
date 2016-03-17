@@ -48,67 +48,104 @@ angular.module('investnextdoorCaApp')
         }
       })
       .state('dashboard.borrower', {
+        url: '/borrower',
+        templateUrl: 'app/account/dashboard/borrower/dashboard.html',
+        authenticate: true,
+        controller: 'BorrowerController',
+        controllerAs: 'vm'
+      })
+      .state('dashboard.borrower.actions', {
+        url: '/actions',
+        templateUrl: 'app/account/dashboard/borrower/dashboard.actions.html',
+        authenticate: true,
+        abstract: true
+      })
+      .state('dashboard.borrower.actions.index', {
         url: '',
-        templateUrl: 'app/account/dashboard/dashboard.borrower.html',
+        templateUrl: 'app/account/dashboard/borrower/dashboard.actions.index.html',
+        authenticate: true
+      })
+      .state('dashboard.borrower.actions.account', {
+        url: '/account',
+        templateUrl: 'app/account/dashboard/borrower/dashboard.actions.account.html',
+        authenticate: true
+      })
+      .state('dashboard.borrower.listings', {
+        url: '/listings',
+        templateUrl: 'app/account/dashboard/borrower/dashboard.listings.html',
+        authenticate: true,
+        abstract: true
+      })
+      .state('dashboard.borrower.listings.index', {
+        url: '',
+        templateUrl: 'app/account/dashboard/borrower/dashboard.listings.index.html',
+        authenticate: true
+      })
+      .state('dashboard.borrower.listings.actions', {
+        url: '/:id/actions',
+        templateUrl: 'app/account/dashboard/borrower/dashboard.listings.actions.html',
+        authenticate: true
+      })
+      .state('dashboard.borrower.offers', {
+        url: '/offers',
+        templateUrl: 'app/account/dashboard/borrower/dashboard.offers.html',
+        authenticate: true
+      })
+      .state('dashboard.borrower.statements', {
+        url: '/statements',
+        templateUrl: 'app/account/dashboard/borrower/dashboard.statements.html',
+        authenticate: true
+      })
+      .state('dashboard.borrower.repayments', {
+        url: '/repayments',
+        templateUrl: 'app/account/dashboard/borrower/dashboard.repayments.html',
+        authenticate: true
+      })
+      .state('dashboard.borrower.requests', {
+        url: '/requests',
+        templateUrl: 'app/account/dashboard/borrower/dashboard.requests.html',
         authenticate: true
       })
       .state('dashboard.investor', {
-        url: '',
-        templateUrl: 'app/account/dashboard/dashboard.investor.html',
+        url: '/investor',
+        templateUrl: 'app/account/dashboard/investor/dashboard.html',
         authenticate: true,
-        controller: 'DashboardController',
-        controllerAs: 'vm',
-        resolve: {
-          investorInfo: ['Investor',
-            function(Investor) {
-              return Investor.getInvestorInfo();
-            }
-          ],
-          bookmarks: ['Investor',
-            function(Investor) {
-              return Investor.getBookmarks();
-            }
-          ],
-          offers: ['Offers',
-            function(Offers) {
-              return Offers.getUserOffers();
-            }
-          ]
-        }
+        controller: 'InvestorController',
+        controllerAs: 'vm'
       })
       .state('dashboard.investor.actions', {
         url: '/actions',
-        templateUrl: 'app/account/dashboard/dashboard.actions.html',
+        templateUrl: 'app/account/dashboard/investor/dashboard.actions.html',
         authenticate: true
       })
       .state('dashboard.investor.investments', {
         url: '/investments',
-        templateUrl: 'app/account/dashboard/dashboard.investments.html',
+        templateUrl: 'app/account/dashboard/investor/dashboard.investments.html',
         authenticate: true
       })
       .state('dashboard.investor.offers', {
         url: '/offers',
-        templateUrl: 'app/account/dashboard/dashboard.offers.html',
+        templateUrl: 'app/account/dashboard/investor/dashboard.offers.html',
         authenticate: true
       })
       .state('dashboard.investor.statements', {
         url: '/statements',
-        templateUrl: 'app/account/dashboard/dashboard.statements.html',
+        templateUrl: 'app/account/dashboard/investor/dashboard.statements.html',
         authenticate: true
       })
       .state('dashboard.investor.watchlist', {
         url: '/watchlist',
-        templateUrl: 'app/account/dashboard/dashboard.watchlist.html',
+        templateUrl: 'app/account/dashboard/investor/dashboard.watchlist.html',
         authenticate: true
       })
       .state('dashboard.investor.agreements', {
         url: '/agreements',
-        templateUrl: 'app/account/dashboard/dashboard.agreements.html',
+        templateUrl: 'app/account/dashboard/investor/dashboard.agreements.html',
         authenticate: true
       })
       .state('dashboard.investor.pending', {
         url: '/pending',
-        templateUrl: 'app/account/dashboard/dashboard.pending.html',
+        templateUrl: 'app/account/dashboard/investor/dashboard.pending.html',
         authenticate: true
       })
       .state('profile', {

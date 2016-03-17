@@ -69,19 +69,24 @@ th {
     }
   }
 
-  .fa {
+  .fa-angle-up,
+  .fa-angle-down {
     @include font-size(20);
     position: absolute;
     right: rem(10);
     color: $color-primary;
+  }
 
-    &.fa-angle-up {
-      top: rem(2);
-    }
+  .fa-angle-up {
+    top: rem(2);
+  }
 
-    &.fa-angle-down {
-      bottom: rem(2);
-    }
+  .fa-angle-down {
+    bottom: rem(2);
+  }
+
+  &.status {
+    text-align: center;
   }
 }
 
@@ -111,6 +116,11 @@ td {
   }
   &.dashboard__table--debits {
     color: $color-warning;
+  }
+
+  &.status {
+    text-align: center;
+    padding-right: rem(25);
   }
 }
 

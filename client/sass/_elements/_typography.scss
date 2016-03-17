@@ -264,6 +264,14 @@ p {
     @include font-size(18);
     max-width: rem(600);
   }
+
+  &.description {
+    @include font-size;
+    font-weight: 600;
+    font-style: italic;
+    color: $color-grey-med;
+    margin-bottom: 0;
+  }
 }
 
 strong {
@@ -515,6 +523,24 @@ hr {
   height: rem(1);
   margin: rem(40) 0;
   border: none;
+}
+
+.fa {
+  &.warning {
+    color: $color-warning;
+  }
+
+  &.success {
+    color: $color-success;
+  }
+
+  &.pending {
+    color: $color-grey-light;
+  }
+
+  &.new {
+    color: $color-primary-med;
+  }
 }
 
 

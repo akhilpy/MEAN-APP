@@ -1,0 +1,33 @@
+<p class="dashboard__main--intro">Specific listing actions, such as setting the rate, publishing and completing the loan.</p>
+
+<div class="listing-form__wrapper dashboard__form--wrapper">
+  <h3 class="form-subtitle">Publish Your Listing</h3>
+  <div class="formly-field-group">
+    <div class="display-flex not-form">
+      <div class="flex-1">
+        <label>Benchmark Rate</label>
+        <div class="input-group">
+          <div class="input-group-addon"><i class="fa fa-percent"></i></div>
+          <input type="number" ng-model="currentListing.admin.basics.benchmarkRate" disabled="disabled">
+        </div><!-- /.input-group -->
+      </div><!-- /.flex-1 -->
+      <div class="flex-1">
+        <label>Your Rate</label>
+        <div class="input-group">
+          <div class="input-group-addon"><i class="fa fa-percent"></i></div>
+          <input type="number" ng-model="currentListing.admin.basics.userRate">
+        </div><!-- /.input-group -->
+      </div><!-- /.flex-1 -->
+    </div><!-- /.display-flex -->
+  </div><!-- /.formly-field-group -->
+
+  <div class="formly-submit">
+    <ul class="listing-form__pagination">
+      <li>&nbsp;</li>
+      <li>
+        <button class="listing-form__save" type="submit" name="update" ng-click="vm.publishListing(currentListing)">Publish</button>
+      </li>
+      <li>&nbsp;</li>
+    </ul><!-- end of .listing-form__pagination -->
+  </div><!-- /.formly-submit -->
+</div>

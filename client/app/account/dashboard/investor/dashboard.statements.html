@@ -1,0 +1,22 @@
+<p class="dashboard__main--intro">Your bank account must be verified and transactions can take up to three business days to complete. Check your email for more information on verifying your bank account.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th><a href="#">Date</a></th>
+      <th><a href="#">Description</a></th>
+      <th><a href="#">Credits</a></th>
+      <th><a href="#">Debits</a></th>
+      <th><a href="#">Balance</a></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="statement in statements">
+      <td>{{statement.date}}</td>
+      <td><strong>{{statement.type}}:</strong> {{statement.description}}</td>
+      <td class="dashboard__table--credits">{{statement.credit | currency}}</td>
+      <td class="dashboard__table--debits">{{statement.debit | currency}}</td>
+      <td>{{statement.balance | currency}}</td>
+    </tr>
+  </tbody>
+</table>

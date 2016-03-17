@@ -9,7 +9,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="bookmark in vm.watchlist">
+    <tr ng-repeat="bookmark in watchlist">
       <td>{{bookmark.date | date}}</td>
       <td><strong>{{bookmark.listing.general.doingBusinessName}}:</strong> {{bookmark.listing.details.title}}</td>
       <td><a href="/marketplace/listing/{{bookmark.listing._id}}">View</a></td>
