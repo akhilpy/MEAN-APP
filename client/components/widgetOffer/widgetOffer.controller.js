@@ -3,9 +3,10 @@
 (function() {
 
 class WidgetOfferController {
-  constructor($scope, Offers, Investor, ListingService) {
+  constructor($scope, Offers, Investor, ListingService, socket) {
     var widget = this;
     widget.$scope = $scope;
+    widget.socket = socket;
     widget.Offers = Offers;
     widget.investorInfo = Investor.getInvestorInfo();
 
@@ -32,7 +33,7 @@ class WidgetOfferController {
       widget.Offers.new(widget.newOffer);
       widget.$scope.offered = true;
       widget.$scope.balance -= widget.newOffer.amount;
-      widget.$scope.$apply();
+      widget.socket.syncUpdates('offer', widget.$scope.vm.currentOffers);
     }
   }
 }

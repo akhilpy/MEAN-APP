@@ -147,7 +147,8 @@ function ListingService($location, $cookies, $q, $resource, $http, Auth, User, $
     submitOne(listingID) {
       return Listing.getOne(listingID)
         .then(listing => {
-          listing.status = 'review';
+          var listing = listing.data;
+          listing.admin.basics.status = 'review';
           return $http.put('/api/listings/' + listingID, listing);
         });
     },
@@ -162,7 +163,7 @@ function ListingService($location, $cookies, $q, $resource, $http, Auth, User, $
     approveOne(listingID) {
       return Listing.getOne(listingID)
         .then(listing => {
-          listing.status = 'approved';
+          listing.data.admin.basics.status = 'approved';
           return $http.put('/api/listings/' + listingID, listing);
         });
     },

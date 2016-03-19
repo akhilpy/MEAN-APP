@@ -17,7 +17,7 @@ class ListingController {
     vm.currentListing = currentListing.data;
 
     if(Object.keys(currentListing).length !== 0) {
-      vm.status = vm.currentListing.admin.status;
+      vm.status = vm.currentListing.admin.basics.status;
     } else {
       vm.status = 'in-progress';
     }
