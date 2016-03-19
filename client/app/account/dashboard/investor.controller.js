@@ -4,6 +4,7 @@
 
 class InvestorController {
   constructor(Investor, Offers, $scope) {
+    var vm = this;
     this.errors = {};
     this.submitted = false;
     this.$scope = $scope;

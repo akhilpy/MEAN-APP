@@ -48,6 +48,34 @@
 
 
       /**
+       * Get a listing's offers
+       *
+       * @return {String}
+       */
+      getAverageOffer(listingID) {
+        return $http.get('/api/offers/listing/' + listingID).then(listing => {
+          var offersArray = [];
+          var promises = [];
+
+          angular.forEach(listings, function(listing, key) {
+            promises.push(
+              Offers.getListingOffers(listing._id)
+                .then(offers => {
+                  offersArray.push(offers.data);
+                })
+            );
+          });
+
+          return $q.all(promises).then(function() {
+            return offersArray;
+          });
+        })
+        .catch(err => {
+          console.log(err.message);
+        });
+      },
+
+      /**
        * Get a user's offers
        *
        * @return {String}

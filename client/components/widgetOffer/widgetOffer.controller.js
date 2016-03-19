@@ -32,6 +32,7 @@ class WidgetOfferController {
       widget.Offers.new(widget.newOffer);
       widget.$scope.offered = true;
       widget.$scope.balance -= widget.newOffer.amount;
+      widget.$scope.$apply();
     }
   }
 }
