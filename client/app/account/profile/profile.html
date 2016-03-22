@@ -19,6 +19,7 @@
 
               <div class="borrower-profile" ng-show="profile.isBorrower()">
                 <div class="listing-form__wrapper listing-form__borrower">
+                  <h3 class="form-subtitle">Update Profile</h3>
                   <formly-form model="profile.user" fields="profile.borrowerProfile" form="borrower">
                     <div class="formly-submit">
                       <ul class="listing-form__pagination">
@@ -29,10 +30,6 @@
                     </div><!-- /.formly-submit -->
                   </formly-form>
                 </div>
-
-                <div class="listing-form__footer">
-                  <p>While InvestNextDoor wants to support as many businesses as possible we hold the right to reject listings at our discretion.</p>
-                </div><!-- /.listing-form__footer -->
               </div><!-- /.borrower-profile -->
 
               <div class="investor-profile" ng-show="profile.isInvestor()">
@@ -47,10 +44,6 @@
                     </div><!-- /.formly-submit -->
                   </formly-form>
                 </div>
-
-                <div class="listing-form__footer">
-                  <p>While InvestNextDoor wants to support as many businesses as possible we hold the right to reject listings at our discretion.</p>
-                </div><!-- /.listing-form__footer -->
               </div><!-- /.investor-profile -->
 
             </div><!-- /.content-wrapper -->

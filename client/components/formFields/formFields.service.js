@@ -319,6 +319,43 @@ function FormService(appConfig) {
               }
             }
           ]
+        },
+        {
+          className: 'display-flex',
+          fieldGroup: [
+            {
+              className: 'flex-1',
+              type: 'input',
+              key: 'oldPassword',
+              name: 'password',
+              templateOptions: {
+                type: 'password',
+                label: 'Current Password',
+                placeholder: '',
+                description: 'You only need to enter your password if you wish to update it.'
+              }
+            },
+            {
+              className: 'flex-1',
+              type: 'input',
+              key: 'newPassword',
+              templateOptions: {
+                type: 'password',
+                label: 'New Password',
+                placeholder: ''
+              }
+            },
+            {
+              className: 'flex-1',
+              type: 'input',
+              key: 'confirmPassword',
+              templateOptions: {
+                type: 'password',
+                label: 'Confirm New Password',
+                placeholder: ''
+              }
+            }
+          ]
         }
       ];
 
@@ -496,6 +533,43 @@ function FormService(appConfig) {
                 type: 'email',
                 label: 'Email Address',
                 placeholder: 'name@host.com'
+              }
+            }
+          ]
+        },
+        {
+          className: 'display-flex',
+          fieldGroup: [
+            {
+              className: 'flex-1',
+              type: 'input',
+              key: 'oldPassword',
+              name: 'password',
+              templateOptions: {
+                type: 'password',
+                label: 'Current Password',
+                placeholder: '',
+                description: 'You only need to enter your password if you wish to update it.'
+              }
+            },
+            {
+              className: 'flex-1',
+              type: 'input',
+              key: 'newPassword',
+              templateOptions: {
+                type: 'password',
+                label: 'New Password',
+                placeholder: ''
+              }
+            },
+            {
+              className: 'flex-1',
+              type: 'input',
+              key: 'confirmPassword',
+              templateOptions: {
+                type: 'password',
+                label: 'Confirm New Password',
+                placeholder: ''
               }
             }
           ]

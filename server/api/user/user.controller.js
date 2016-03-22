@@ -208,6 +208,36 @@ export function changePassword(req, res, next) {
 
 
 
+
+/**
+ * Confirm Bank Account
+ */
+export function confirmAccount(req, res, next) {
+  var userID = req.user._id;
+
+  User.findByIdAsync(userID)
+    .then(user => {
+      if (!user) {
+        return res.status(401).end();
+      }
+
+      if(user.role === 'borrower') {
+        user.borrower.status = 'Active';
+      } else if(user.role === 'investor') {
+        user.investor.status = 'Active';
+      }
+
+      return user.saveAsync()
+        .then(user => {
+          res.json(user);
+        })
+        .catch(validationError(res));
+    })
+    .catch(err => next(err));
+}
+
+
+
 /**
  * Authentication callback
  */

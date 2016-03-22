@@ -96,16 +96,54 @@ function BorrowerService($http, Offers, $q, ListingService) {
      *
      * @return {String}
      */
-    getActions() {
-      return [
-        {
-          task: 'Verify Bank',
-          description: 'We need you to confirm that you are the owner of your bank account before we can process your application. You will receive two small deposits in your account within two days. When you see these deposits, return here to verify your account.',
-          button: 'Confirm',
-          state: 'dashboard.borrower.actions.account',
-          status: 'incomplete'
+    getActions(user) {
+      var userStatus;
+      var bankStatus = 'incomplete';
+
+      if(user) {
+        userStatus = user.borrower.status;
+        if( userStatus === 'Active' ) {
+          bankStatus = 'complete';
         }
-      ]
+
+        return [
+          {
+            task: 'Verify Bank',
+            description: 'We need you to confirm that you are the owner of your bank account before we can process your application. You will receive two small deposits in your account within two days. When you see these deposits, return here to verify your account.',
+            buttons: {
+              complete: 'Done',
+              incomplete: 'Confirm'
+            },
+            state: 'dashboard.borrower.actions.account',
+            status: bankStatus
+          }
+        ]
+
+      } else {
+
+        return ListingService.getCurrentUser()
+        .then(user => {
+          userStatus = user.borrower.status;
+          bankStatus = 'incomplete';
+          if( userStatus === 'Active' ) {
+            bankStatus = 'complete';
+          }
+
+          return [
+            {
+              task: 'Verify Bank',
+              description: 'We need you to confirm that you are the owner of your bank account before we can process your application. You will receive two small deposits in your account within two days. When you see these deposits, return here to verify your account.',
+              buttons: {
+                complete: 'Done',
+                incomplete: 'Confirm'
+              },
+              state: 'dashboard.borrower.actions.account',
+              status: bankStatus
+            }
+          ]
+        });
+      }
+
     },
 
     /**
@@ -191,6 +229,26 @@ function BorrowerService($http, Offers, $q, ListingService) {
         })
         .catch(err => {
           console.log(err.message);
+        });
+    },
+
+
+    /**
+     * Confirm Bank
+     *
+     * @return {String}
+     */
+    confirmBank(amount) {
+      return ListingService.getCurrentUser()
+        .then(user => {
+          if(amount === 101) {
+            return $http.put('/api/users/' + user._id + '/confirm-account');
+          } else {
+            return false;
+          }
+        })
+        .catch(err => {
+          console.log(err);
         });
     }
 

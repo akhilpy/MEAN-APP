@@ -134,6 +134,20 @@ tr {
   &.row-disabled {
     * {
       color: $color-grey-light;
+
+      a {
+        pointer-events: none;
+      }
+    }
+  }
+
+  &.row-disabled-light {
+    * {
+      opacity: 0.7;
+
+      a {
+        pointer-events: none;
+      }
     }
   }
 }

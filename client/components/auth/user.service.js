@@ -8,9 +8,7 @@ function UserResource($resource) {
   }, {
     changePassword: {
       method: 'PUT',
-      params: {
-        userController: 'password'
-      }
+      url: '/api/users/:id/password'
     },
     get: {
       method: 'GET',

@@ -3,14 +3,14 @@
 (function() {
 
 class DashboardController {
-  constructor(Auth, Investor, Offers, $scope) {
+  constructor(Auth, Investor, ListingService, Offers, $scope) {
     this.errors = {};
     this.submitted = false;
     this.$scope = $scope;
 
     this.Auth = Auth;
     this.Investor = Investor;
-    this.getCurrentUser = Auth.getCurrentUser;
+    this.getCurrentUser = ListingService.getCurrentUser;
     this.isAdmin = Auth.isAdmin;
     this.isBorrower = Auth.isBorrower;
     this.isInvestor = Auth.isInvestor;
@@ -19,6 +19,11 @@ class DashboardController {
     this.offers = Offers.getUserOffers();
     this.bookmarks = Investor.getBookmarks();
     this.statements = Investor.getStatements();
+
+    this.getCurrentUser()
+    .then(user => {
+      this.$scope.currentUser = user;
+    });
 
     this.hasOffers = false;
     this.hasBookmarks = false;

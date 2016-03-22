@@ -32,17 +32,30 @@ angular.module('investnextdoorCaApp')
          * Syncs item creation/updates on 'model:save'
          */
         socket.on(modelName + ':save', function (item) {
-          var oldItem = _.find(array, {_id: item._id});
-          var index = array.indexOf(oldItem);
-          var event = 'created';
+          var oldItem;
+          var index;
+          var event;
 
           // replace oldItem if it exists
           // otherwise just add item to the collection
-          if (oldItem) {
-            array.splice(index, 1, item);
+          if (typeof array.length === 'undefined') {
+
+            array = item;
             event = 'updated';
+
           } else {
-            array.push(item);
+
+            oldItem = _.find(array, {_id: item._id});
+            index = array.indexOf(oldItem);
+            event = 'created';
+
+            if (oldItem) {
+              array.splice(index, 1, item);
+              event = 'updated';
+            } else {
+              array.push(item);
+            }
+
           }
 
           cb(event, item, array);

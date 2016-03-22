@@ -9,8 +9,10 @@ class BorrowerController {
     this.errors = {};
     this.submitted = false;
     this.$scope = $scope;
+    this.socket = socket;
     this.Offers = Offers;
     this.Listings = ListingService;
+    this.Borrower = Borrower;
 
     this.hasListings = false;
     this.hasOffers = false;
@@ -21,7 +23,9 @@ class BorrowerController {
       this.$scope.borrowerInfo = borrowerInfo;
     });
 
-    this.$scope.actions = Borrower.getActions();
+    Borrower.getActions().then(actions => {
+      this.$scope.actions = actions;
+    });
 
     Borrower.getApplications().then(listings => {
       if(listings.length > 0) {
@@ -82,7 +86,18 @@ class BorrowerController {
   }
 
   confirmBankAccount() {
-    console.log('confirm bank account');
+    var vm = this;
+
+    return vm.Borrower.confirmBank(vm.bankAmount)
+    .then(response => {
+      if(response.data) {
+        vm.$scope.currentUser = response.data[0];
+        vm.$scope.actions = vm.Borrower.getActions(response.data[0]);
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    });
   }
 
   publishListing(listing) {

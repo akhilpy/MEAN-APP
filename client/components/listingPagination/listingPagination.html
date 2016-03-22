@@ -4,7 +4,7 @@
       <a class="listing-form__pagination--back" ng-show="page.pages[page.current].prev" ng-click="page.goBack()"><i class="fa fa-angle-left"></i> Back</a>
     </li>
     <li>
-      <button class="listing-form__save" type="submit" name="update" ng-click="vm.saveListing(listing)">Save Progress</button>
+      <button class="listing-form__save" type="submit" name="update" ng-click="vm.saveListing(listing)">{{saving ? 'Saving' : 'Save'}} Progress</button>
       <button class="listing-form__save" type="submit" name="update" ng-click="vm.submitListing(listing)" ng-show="vm.status=='in-progress'">Submit for Review</button>
     </li>
     <li>

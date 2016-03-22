@@ -4,7 +4,7 @@
 
 'use strict';
 
-var UserEvents = require('./faq.events');
+var UserEvents = require('./user.events');
 
 // Model events to emit
 var events = ['save', 'remove'];

@@ -8,12 +8,12 @@ angular.module('investnextdoorCaApp')
       link: function (scope, element, attrs) {
 
         // update the select when data is loaded
-        attrs.$observe('chosen', function() {
+        scope.$watch('chosen', function() {
           element.trigger('chosen:updated');
         });
 
         // update the select when the model changes
-        attrs.$observe('ngModel', function() {
+        scope.$watch('ngModel', function() {
           element.trigger('chosen:updated');
         });
 

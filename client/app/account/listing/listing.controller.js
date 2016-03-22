@@ -11,6 +11,7 @@ class ListingController {
     vm.Form = Form;
     vm.errors = {};
     vm.submitted = false;
+    vm.$scope.saving = false;
 
     vm.user = currentUser;
     vm.listingID = currentUser.borrower.listings[0];
@@ -54,6 +55,7 @@ class ListingController {
   saveListing(form) {
     var vm = this;
     var savedListing = {};
+    vm.$scope.saving = true;
 
     if( vm.currentListing.general ) {
       savedListing.general = vm.pageData(vm.currentListing, 'general');
@@ -82,7 +84,9 @@ class ListingController {
       vm.ListingService.createOne(savedListing);
     } else {
       // if there is an existing listing, update it
-      vm.ListingService.saveOne(savedListing, vm.listingID);
+      vm.ListingService.saveOne(savedListing, vm.listingID).then(data => {
+        vm.$scope.saving = false;
+      });
     }
   }
 

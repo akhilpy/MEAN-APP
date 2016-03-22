@@ -134,7 +134,14 @@ function ListingService($location, $cookies, $q, $resource, $http, Auth, User, $
      * @return {String}
      */
     saveOne(listing, listingID) {
-      return $http.put('/api/listings/' + listingID, listing);
+      return $http.put('/api/listings/' + listingID, listing)
+      .then(response => {
+        if(response.status === 200) {
+          return true;
+        } else {
+          return false;
+        }
+      })
     },
 
 

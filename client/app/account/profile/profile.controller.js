@@ -45,15 +45,51 @@ class ProfileController {
     var vm = this;
     var address = {};
     var investor = {};
-
+    var changed = false;
     vm.submitted = true;
+
 
     if (form.$valid) {
       vm.$http.put('/api/users/' + vm.user._id, {
         user: vm.user
       })
       .then(() => {
-        vm.$state.go('dashboard.index');
+        if(vm.user.oldPassword && vm.user.newPassword && vm.user.confirmPassword) {
+
+          if(vm.user.newPassword === vm.user.confirmPassword) {
+
+            vm.Auth.changePassword(vm.user.oldPassword, vm.user.newPassword)
+              .then(() => {
+                vm.message = 'Password successfully changed.';
+                vm.user.oldPassword = '';
+                vm.user.newPassword = '';
+                vm.user.confirmPassword = '';
+                vm.$state.go('dashboard.index');
+              })
+              .catch(() => {
+                form.password.$setValidity('mongoose', false);
+                vm.errors.other = 'Incorrect password';
+                vm.message = 'Your have entered the wrong password.';
+                console.log('wrong password');
+              });
+
+          } else {
+
+            vm.message = 'Your new passwords do not match.';
+            console.log('no match');
+
+          }
+
+        } else if(vm.user.newPassword || vm.user.confirmPassword) {
+
+          vm.message = 'You must enter your current password if you wish to update your password.';
+          console.log('cannot change');
+
+        } else {
+
+          vm.$state.go('dashboard.index');
+
+        }
       })
       .catch(err => {
         vm.errors.other = err.message;
@@ -70,7 +106,42 @@ class ProfileController {
         user: vm.user
       })
       .then(() => {
-        vm.$state.go('dashboard.index');
+        if(vm.user.oldPassword && vm.user.newPassword && vm.user.confirmPassword) {
+
+          if(vm.user.newPassword === vm.user.confirmPassword) {
+
+            vm.Auth.changePassword(vm.user.oldPassword, vm.user.newPassword)
+              .then(() => {
+                vm.message = 'Password successfully changed.';
+                vm.user.oldPassword = '';
+                vm.user.newPassword = '';
+                vm.user.confirmPassword = '';
+                vm.$state.go('dashboard.index');
+              })
+              .catch(() => {
+                form.password.$setValidity('mongoose', false);
+                vm.errors.other = 'Incorrect password';
+                vm.message = 'Your have entered the wrong password.';
+                console.log('wrong password');
+              });
+
+          } else {
+
+            vm.message = 'Your new passwords do not match.';
+            console.log('no match');
+
+          }
+
+        } else if(vm.user.newPassword || vm.user.confirmPassword) {
+
+          vm.message = 'You must enter your current password if you wish to update your password.';
+          console.log('cannot change');
+
+        } else {
+
+          vm.$state.go('dashboard.index');
+
+        }
       })
       .catch(err => {
         vm.errors.other = err.message;

@@ -15,14 +15,16 @@
         </div><!-- /.dashboard--details__element -->
       </li><!-- /.dashboard--details__element -->
       <li class="dashboard--details__element--wrapper">
-        <div class="dashboard--details__element">>
+        <div class="dashboard--details__element">
           <h3 class="dashboard--details__medium">{{borrowerOffers}}</h3>
           <p>Number of Offers <a href="#"><i class="fa fa-question-circle"></i></a></p>
         </div><!-- /.dashboard--details__element --
       </li><!-- /.dashboard--details__element -->
       <li class="dashboard--details__element--wrapper">
         <div class="dashboard--details__element">
-          <h3 class="dashboard--details__medium"><a href="#">Confirm</a></h3>
+          <h3 class="dashboard--details__medium">
+            <a ui-sref="dashboard.borrower.actions.account">{{currentUser.borrower.status==='Inactive' ? 'Confirm' : 'Active'}}</a>
+          </h3>
           <p>Borrower Status <a href="#"><i class="fa fa-question-circle"></i></a></p>
         </div><!-- /.dashboard--details__element -->
       </li><!-- /.dashboard--details__element -->
