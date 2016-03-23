@@ -38,7 +38,7 @@ angular.module('investnextdoorCaApp')
           field = {
             name: 'dropzone',
             extends: 'input',
-            template: '<button class="dropzone-uploader" dropzone="dropzoneConfig">Drag and drop files here or click to upload</button>',
+            template: '<ul class="dz-uploaded-files"><li ng-repeat="file in model[options.key] track by $index"><a href="{{file.link}}" target="_blank">{{file.name}}</a> <button class="dz-uploaded-remove" ng-click="model[options.key].splice($index, 1)"><i class="fa fa-times-circle"></i></button></li></ul><button class="dropzone-uploader" dropzone="dropzoneConfig">{{dropzoneConfig.options.message}}</button>',
             controller: 'FormlyDropzoneCtrl'
           };
           return field;

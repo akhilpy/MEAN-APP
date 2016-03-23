@@ -207,7 +207,7 @@
     display: block;
     background: $color-primary-med;
     color: $color-white;
-    padding: rem(15) rem(5);
+    padding: rem(15) rem(15);
 
     &:hover,
     &:focus {
@@ -218,6 +218,26 @@
       background: $color-slate-med;
       color: $color-primary-med;
     }
+  }
+
+  .inner-tab {
+    position: relative;
+  }
+
+  .notification {
+    @include font-size(13);
+    font-weight: 700;
+    display: block;
+    position: absolute;
+    right: rem(-22);
+    top: rem(5);
+    width: rem(17);
+    height: rem(17);
+    background: $color-white;
+    color: $color-slate-dark;
+    border-radius: 100%;
+    line-height: 1.25;
+    text-align: center;
   }
 }
 

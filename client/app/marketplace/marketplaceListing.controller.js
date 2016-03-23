@@ -76,7 +76,7 @@ class MarketplaceListingController {
     if(vm.currentListing.infoRequest.length > 0) {
       angular.forEach(vm.currentListing.infoRequest, function(request) {
         if(request.user._id === vm.currentUser._id) {
-          vm.requested = true;
+          vm.requested = 'Request ' + request.status;
         }
       });
     }

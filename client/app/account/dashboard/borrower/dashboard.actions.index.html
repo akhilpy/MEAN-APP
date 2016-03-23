@@ -23,5 +23,14 @@
       <td><p class="description">{{action.description}}</p></td>
       <td><a href="#" ui-sref="{{action.state}}" class="button small edit">{{action.status==='incomplete' ? action.buttons.incomplete : action.buttons.complete}}</a></td>
     </tr>
+
+    <tr>
+      <td class="status">
+        <i class="fa fa-times-circle warning"></i>
+      </td>
+      <td>Complete Loan</td>
+      <td><p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae voluptatibus labore ducimus minus quas nihil consequuntur quibusdam enim adipisci tempore.</p></td>
+      <td><a href="#" ui-sref="dashboard.borrower.offers" class="button small edit">Complete</a></td>
+    </tr>
   </tbody>
 </table>

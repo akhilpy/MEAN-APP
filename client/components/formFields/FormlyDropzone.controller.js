@@ -1,15 +1,20 @@
 'use strict';
 
 class FormlyDropzoneCtrl {
-  constructor($scope, Dropzone) {
+  constructor($scope, $timeout, Dropzone) {
     var vm = this;
     vm.Dropzone = Dropzone;
 
     $scope.model[$scope.options.key] = $scope.model[$scope.options.key] || [];
     var existingFiles = [];
 
+    var maxFiles = 5;
+    if($scope.options.templateOptions.maxFiles) {
+      maxFiles = $scope.options.templateOptions.maxFiles;
+    }
+
     $scope.dropzoneConfig = {
-      options: vm.Dropzone.getConfig(5, existingFiles),
+      options: vm.Dropzone.getConfig(maxFiles, existingFiles),
       eventHandlers: {
         error: function(file, response) {
           console.log(response);
@@ -20,19 +25,38 @@ class FormlyDropzoneCtrl {
             link: file.downloadUrl,
             size: file.size
           }
-          $scope.model[$scope.options.key].push(savedFile);
+
+          $timeout(function() {
+
+            if($scope.model[$scope.options.key].length < maxFiles) {
+              $scope.model[$scope.options.key].push(savedFile);
+              if($scope.model[$scope.options.key].length === maxFiles) {
+                $scope.dropzoneConfig.options.message = 'Maximum files reached';
+              } else {
+                $scope.dropzoneConfig.options.message = 'Drag and drop files here or click to upload';
+              }
+            } else {
+              $scope.dropzoneConfig.options.message = 'Maximum files reached';
+            }
+
+            $scope.$digest();
+          });
         },
         maxfilesexceeded: function(file) {
-          //alert("No more files please!");
           this.removeFile(file);
+          $scope.options.message = 'Maximum files reached';
+        },
+        maxfilesreached: function(file) {
+          $scope.dropzoneConfig.options.message = 'Maximum files reached';
         },
         addedfile : function(file) {
-          //THIS IS WHERE THE MAGIC HAPPENS! we change the model and
-          // tell angular to re-render the form and stuff. NOICE!
-          //$scope.$digest();
+          if($scope.model[$scope.options.key].length < maxFiles) {
+            $scope.dropzoneConfig.options.message = 'Uploading';
+          }
         }
       }
     };
+
   }
 }
 

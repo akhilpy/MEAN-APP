@@ -11,7 +11,7 @@ function DropzoneService($http) {
      *
      * @return {Object}
      */
-    getConfig( maxFiles, existingFiles ) {
+    getConfig(maxFiles, existingFiles) {
       return {
         url: '#',
         maxFilesize: 100,
@@ -20,19 +20,13 @@ function DropzoneService($http) {
         autoProcessQueue: true,
         maxFiles: maxFiles,
         method: 'put',
+        message: 'Drag and drop files here or click to upload',
+        createImageThumbnails: false,
         init: function() {
           this.on('maxfilesexceeded', function (file) {
             this.removeAllFiles();
             this.addFile(file);
           });
-          for (var i = 0; i < existingFiles.length; i++) {
-            var existingFile = existingFiles[i];
-            this.emit('addedfile', existingFile);
-            this.emit('thumbnail', existingFile, existingFile.link);
-            this.emit('complete', existingFile);
-          }
-          var existingFileCount = i + 1;
-          this.options.maxFiles = this.options.maxFiles - existingFileCount;
         },
         accept: function( file, done ) {
           $http.get('/api/s3Policy?mimeType=' + file.type + '&fileName=' + file.name).then(function(response) {
@@ -53,7 +47,7 @@ function DropzoneService($http) {
           xhr.send = function() {
             _send.call(xhr, file);
           };
-        },
+        }
       }
     }
 

@@ -1,7 +1,7 @@
 <div class="profile__wrapper">
   <div class="profile">
     <div class="profile__logo">
-      <img src="http://thesn.ug/1SNFvnS" alt="">
+      <img src="{{logo.link}}" alt="{{vm.currentListing.general.businessName}}" ng-repeat="logo in vm.currentListing.social.logo">
     </div><!-- /.profile__logo -->
     <div class="profile__details">
       <h2 class="profile__details--title">{{vm.currentListing.general.businessName}}</h2>

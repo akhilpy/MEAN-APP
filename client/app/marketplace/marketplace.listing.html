@@ -1,7 +1,7 @@
 <div class="listing-hero__wrapper">
   <div class="listing-hero">
     <div class="listing-hero__logo">
-      <img src="http://thesn.ug/1SNFvnS" alt="">
+      <img src="{{logo.link}}" alt="{{vm.currentListing.general.businessName}}" ng-repeat="logo in vm.currentListing.social.logo">
     </div><!-- /.listing-hero__logo -->
     <div class="listing-hero__content">
       <h2 class="listing-hero__title">{{vm.currentListing.general.businessName}}</h2>
@@ -16,7 +16,7 @@
             <a href="#" ng-click="vm.bookmark()" ng-disabled="vm.bookmarked" class="button">{{vm.bookmarked ? 'Watching' : 'Watch'}}</a>
           </li>
           <li>
-            <a href="#" ng-click="vm.requestDetails()" ng-disabled="vm.requested" class="button">{{vm.requested ? 'Request Pending' : 'Request Details'}}</a>
+            <a href="#" ng-click="vm.requestDetails()" ng-disabled="vm.requested" class="button">{{vm.requested ? vm.requested : 'Request Details'}}</a>
           </li>
         </ul><!-- /.listing-hero__actions--secondary -->
       </div><!-- /.listing-hero__actions -->

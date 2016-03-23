@@ -11,13 +11,13 @@
       <li class="dashboard--details__element--wrapper">
         <div class="dashboard--details__element">
           <h3 class="dashboard--details__medium">{{borrowerOffers}}</h3>
-          <p>Current Offers <a href="#"><i class="fa fa-question-circle"></i></a></p>
+          <p>Active Offers <a href="#"><i class="fa fa-question-circle"></i></a></p>
         </div><!-- /.dashboard--details__element -->
       </li><!-- /.dashboard--details__element -->
       <li class="dashboard--details__element--wrapper">
         <div class="dashboard--details__element">
-          <h3 class="dashboard--details__medium">{{borrowerOffers}}</h3>
-          <p>Number of Offers <a href="#"><i class="fa fa-question-circle"></i></a></p>
+          <h3 class="dashboard--details__medium">{{totalOffers | currency}}</h3>
+          <p>Total of Offers <a href="#"><i class="fa fa-question-circle"></i></a></p>
         </div><!-- /.dashboard--details__element --
       </li><!-- /.dashboard--details__element -->
       <li class="dashboard--details__element--wrapper">
@@ -40,12 +40,12 @@
     <div class="content-wrapper">
 
       <ul class="dashboard__navigation--list">
-        <li><a ui-sref-active="active" ui-sref="dashboard.borrower.actions.index">Actions</a></li>
-        <li><a ui-sref-active="active" ui-sref="dashboard.borrower.listings.index">Listings</a></li>
-        <li><a ui-sref-active="active" ui-sref="dashboard.borrower.offers">Offers</a></li>
-        <li><a ui-sref-active="active" ui-sref="dashboard.borrower.repayments">Repayments</a></li>
-        <li><a ui-sref-active="active" ui-sref="dashboard.borrower.statements">Statements</a></li>
-        <li><a ui-sref-active="active" ui-sref="dashboard.borrower.requests">Requests</a></li>
+        <li><a ui-sref-active="active" ui-sref="dashboard.borrower.actions.index"><span class="inner-tab">Actions <span class="notification" ng-hide=notifications.actions===0>{{notifications.actions}}</span></span></a></li>
+        <li><a ui-sref-active="active" ui-sref="dashboard.borrower.listings.index"><span class="inner-tab">Listings <span class="notification" ng-hide=notifications.listings===0>{{notifications.listings}}</span></span></a></li>
+        <li><a ui-sref-active="active" ui-sref="dashboard.borrower.offers"><span class="inner-tab">Offers <span class="notification" ng-hide=notifications.offers===0>{{notifications.offers}}</span></span></a></li>
+        <li><a ui-sref-active="active" ui-sref="dashboard.borrower.repayments"><span class="inner-tab">Repayments <span class="notification" ng-hide=notifications.repayments===0>{{notifications.repayments}}</span></span></a></li>
+        <li><a ui-sref-active="active" ui-sref="dashboard.borrower.statements"><span class="inner-tab">Statements <span class="notification" ng-hide=notifications.statements===0>{{notifications.statements}}</span></span></a></li>
+        <li><a ui-sref-active="active" ui-sref="dashboard.borrower.requests"><span class="inner-tab">Requests <span class="notification" ng-hide=notifications.requests===0>{{notifications.requests}}</span></span></a></li>
       </ul><!-- /.dashboard__navigation--list -->
 
       <ui-view class="dashboard__main"></ui-view>

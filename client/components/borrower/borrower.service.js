@@ -220,6 +220,7 @@ function BorrowerService($http, Offers, $q, ListingService) {
           angular.forEach(applications, function(application, key) {
             var requests = application.infoRequest;
             requests.name = application.general.businessName;
+            requests.listing = application._id;
             promises.push( requestsArray.push(requests) );
           });
 
@@ -231,6 +232,26 @@ function BorrowerService($http, Offers, $q, ListingService) {
           console.log(err.message);
         });
     },
+
+
+
+    /**
+     * Update a Request for More Information
+     *
+     * @return {String}
+     */
+    updateRequest(request) {
+      return ListingService.getCurrentUser()
+        .then(user => {
+          return $http.post('/api/listings/request-more/update/' + request.listing, {
+            request: request
+          });
+        })
+        .catch(err => {
+          console.log(err.message);
+        });
+    },
+
 
 
     /**

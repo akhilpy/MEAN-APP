@@ -59,7 +59,9 @@ class FaqController {
   }
 
   updateFaq(faq) {
-    this.$http.put('/api/faqs/' + faq._id, faq);
+    this.$http.put('/api/faqs/' + faq._id, faq).then(() => {
+      console.log(faq);
+    });
   }
 
   updateOrder(faqs) {

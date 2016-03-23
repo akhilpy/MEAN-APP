@@ -217,29 +217,50 @@ export function replyDelete(req, res) {
 
 
 // Updates an existing Listing with users that want more information
-export function requestMore(req, res) {
-  if (req.body._id) {
-    delete req.body._id;
+export var requestMore = {
+  create: function(req, res) {
+    if (req.body._id) {
+      delete req.body._id;
+    }
+
+    var userID = req.body.user._id;
+    var requester = {};
+
+    User.findByIdAsync(userID)
+      .then(user => {
+        requester.user = user._id;
+        Listing.findByIdAndUpdate(req.params.id,
+          {$push: {infoRequest: requester}},
+          {safe: true, upsert: true},
+          function(err, listing) {
+            if(err) {
+              console.log(err);
+            }
+            respondWithResult(listing);
+          });
+      });
+  },
+  update: function(req, res) {
+    if (req.body._id) {
+      delete req.body._id;
+    }
+
+    var request = req.body.request;
+
+    Listing.update(
+      {'infoRequest._id': request._id},
+      {$set: {'infoRequest.$.status': request.status}},
+      {},
+      function(err, listing) {
+        if(err) {
+          console.log(err);
+        }
+        respondWithResult(listing);
+      });
+
+
   }
-
-  var userID = req.body.user._id;
-  var requester = {};
-
-  User.findByIdAsync(userID)
-    .then(user => {
-      requester.user = user._id;
-      Listing.findByIdAndUpdate(req.params.id,
-        {$push: {infoRequest: requester}},
-        {safe: true, upsert: true},
-        function(err, listing) {
-          if(err) {
-            console.log(err);
-          }
-          respondWithResult(listing);
-        });
-    });
-}
-
+};
 
 
 
@@ -276,10 +297,10 @@ export function bookmarkRemove(req, res) {
   }
 
   var userID = req.params.id;
-  var bookmark = {};
+  var listing = req.body.listing;
 
   User.findByIdAndUpdate(userID,
-    {$pull: {bookmarks: bookmark}},
+    {$pull: {bookmarks: {listing: listing._id}}},
     {},
     function(err, user) {
       if(err) {

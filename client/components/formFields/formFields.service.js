@@ -1674,14 +1674,30 @@ function FormService(appConfig) {
             }
           },
           {
-            className: 'flex-1',
-            type: 'dropzone',
-            key: 'images',
-            templateOptions: {
-              key: 'images',
-              type: 'input',
-              label: 'Business and Product Images'
-            },
+            className: 'display-flex',
+            fieldGroup: [
+              {
+                className: 'flex-1',
+                type: 'dropzone',
+                key: 'logo',
+                templateOptions: {
+                  key: 'logo',
+                  type: 'input',
+                  label: 'Business Logo',
+                  maxFiles: 1
+                },
+              },
+              {
+                className: 'flex-2',
+                type: 'dropzone',
+                key: 'images',
+                templateOptions: {
+                  key: 'images',
+                  type: 'input',
+                  label: 'Business and Product Images'
+                },
+              }
+            ]
           }
         ];
 

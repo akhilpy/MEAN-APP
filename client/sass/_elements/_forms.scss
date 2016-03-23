@@ -645,60 +645,72 @@ a.social-button {
   width: 100%;
   padding: rem(20);
 
-  &:hover {
+  &:hover,
+  &:active {
     border-color: $color-accent;
     background: none;
     color: $color-grey-med-light;
   }
 
   .dz-preview {
-    font-size: 0;
-    background: darken($color-grey-pale, 5%);
-    margin-top: rem(20);
-    padding: rem(20);
-    position: relative;
+    display: none;
   }
 
-  .dz-image {
-    @include font-size;
-    display: inline-block;
-    vertical-align: middle;
-    width: 15%;
+  &.dz-max-files-reached {
+    pointer-events: none;
+    opacity: 0.6;
 
-    img {
-      display: block;
-      max-width: 100%;
-      height: auto;
-      border: 2px solid $color-grey-light;
-    }
-  }
-
-  .dz-details {
-    @include font-size;
-    display: inline-block;
-    vertical-align: middle;
-    width: 85%;
-    text-align: left;
-    padding: 0 rem(40);
-  }
-
-  .dz-progress {
-    @include font-size;
-    display: block;
-  }
-
-  .dz-success-mark,
-  .dz-error-mark {
-    position: absolute;
-    right: rem(20);
-    top: rem(50);
-    svg {
-      width: 20px;
-      height: 20px;
+    &:hover,
+    &:active {
+      border-color: $color-grey-light;
     }
   }
 }
 
+.dz-uploaded-files {
+  @include list-zero;
+  @include font-primary(600);
+  @include font-size(12);
+  color: $color-grey-med;
 
+  li {
+    position: relative;
+    background: rgba($color-black, 0.1);
+    padding: rem(5) rem(20) rem(5) rem(20);
+    margin-bottom: rem(5);
+    border-radius: $border-radius;
+
+    &:before {
+      font-family: $font-icons;
+      position: absolute;
+      left: rem(5);
+      top: rem(5);
+      content: "\f046";
+      font-weight: normal;
+    }
+
+    a {
+      @include font-primary(600);
+      font-style: normal;
+      color: inherit;
+    }
+  }
+
+  .dz-uploaded-remove {
+    @include font-size(14);
+    font-family: $font-icons;
+    position: absolute;
+    right: rem(5);
+    top: rem(7);
+    padding: 0;
+    color: $color-grey-med;
+    background: none;
+    opacity: 0.6;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
 
 /*-----  End of Forms  ------*/

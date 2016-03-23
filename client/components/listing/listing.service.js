@@ -277,14 +277,13 @@ function ListingService($location, $cookies, $q, $resource, $http, Auth, User, $
 
 
 
-
     /**
      * Add a listing to your bookmarks
      *
      * @return {String}
      */
     addBookmark(listing) {
-      return Auth.getCurrentUser(null)
+      return Listing.getCurrentUser()
         .then(user => {
           return $http.put('/api/listings/bookmark/' + listing._id, {
             user: user
@@ -298,15 +297,16 @@ function ListingService($location, $cookies, $q, $resource, $http, Auth, User, $
 
 
     /**
-     * Remove a listing to your bookmarks
+     * Remove a listing from your bookmarks
      *
      * @return {String}
      */
     removeBookmark(listing) {
-      return Auth.getCurrentUser(null)
+      return Listing.getCurrentUser()
         .then(user => {
-          console.log(user);
-          return $http.delete('/api/listings/bookmark/' + user._id);
+          return $http.post('/api/listings/bookmark/' + user._id, {
+            listing: listing
+          });
         })
         .catch(err => {
           console.log(err.message);
@@ -602,6 +602,7 @@ function ListingService($location, $cookies, $q, $resource, $http, Auth, User, $
           youtube: listing.social.youtube,
           yelp: listing.social.yelp,
           reviews: listing.social.reviews,
+          logo: listing.social.logo,
           images: listing.social.images
         };
 

@@ -18,7 +18,7 @@ class FormlyRepeaterCtrl {
       var lastSection = repeatsection[repeatsection.length - 1];
       var newsection = {};
       if (lastSection) {
-        newsection = angular.copy(lastSection);
+        //newsection = angular.copy(lastSection);
       }
       repeatsection.push(newsection);
     }

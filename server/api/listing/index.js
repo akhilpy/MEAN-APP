@@ -14,9 +14,10 @@ router.put('/comment/:id', controller.comment);
 router.post('/comment/:id', controller.commentDelete);
 router.put('/reply/:id', controller.reply);
 router.post('/reply/:id', controller.replyDelete);
-router.put('/request-more/:id', controller.requestMore);
+router.put('/request-more/:id', controller.requestMore.create);
+router.post('/request-more/update/:id', controller.requestMore.update);
 router.put('/bookmark/:id', controller.bookmark);
-router.delete('/bookmark/:id', controller.bookmarkRemove);
+router.post('/bookmark/:id', controller.bookmarkRemove);
 router.patch('/:id', controller.update);
 router.delete('/:id', controller.destroy);
 

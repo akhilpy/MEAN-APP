@@ -52,7 +52,10 @@ angular.module('investnextdoorCaApp')
         templateUrl: 'app/account/dashboard/borrower/dashboard.html',
         authenticate: true,
         controller: 'BorrowerController',
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        ncyBreadcrumb: {
+          label: 'Dashboard'
+        }
       })
       .state('dashboard.borrower.actions', {
         url: '/actions',
@@ -190,6 +193,10 @@ angular.module('investnextdoorCaApp')
             }
           ]
         },
+        ncyBreadcrumb: {
+          label: 'General',
+          parent: 'dashboard.borrower'
+        }
       })
       .state('listing.details', {
         url: '/details',
@@ -209,6 +216,10 @@ angular.module('investnextdoorCaApp')
             }
           ]
         },
+        ncyBreadcrumb: {
+          label: 'Details',
+          parent: 'dashboard.borrower'
+        }
       })
       .state('listing.financial', {
         url: '/financial',
@@ -228,6 +239,10 @@ angular.module('investnextdoorCaApp')
             }
           ]
         },
+        ncyBreadcrumb: {
+          label: 'Financial',
+          parent: 'dashboard.borrower'
+        }
       })
       .state('listing.social', {
         url: '/social',
@@ -247,6 +262,10 @@ angular.module('investnextdoorCaApp')
             }
           ]
         },
+        ncyBreadcrumb: {
+          label: 'Social',
+          parent: 'dashboard.borrower'
+        }
       })
       .state('listing.terms', {
         url: '/terms',
@@ -266,6 +285,10 @@ angular.module('investnextdoorCaApp')
             }
           ]
         },
+        ncyBreadcrumb: {
+          label: 'Terms',
+          parent: 'dashboard.borrower'
+        }
       });
   })
   .run(function($rootScope) {

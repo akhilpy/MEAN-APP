@@ -322,6 +322,7 @@ var ListingSchema = new Schema({
 		youtube: String,
 		yelp: String,
 		reviews: [reviews],
+		logo: [file],
 		images: [file]
 	},
 	terms: {
