@@ -6,39 +6,51 @@ function BorrowerService($http, Offers, $q, ListingService) {
 
   var Borrower = {
 
+    info: {},
+
     /**
      * Get all Borrower information
      *
      * @return {String}
      */
-    getBorrowerInfo() {
-      var info = {};
-      return ListingService.getCurrentUser()
+    getInfo() {
+      var info = ListingService.getCurrentUser()
         .then(user => {
-          return Offers.getUserOffers(user._id).then(data => {
-            var offers = data.data;
-            var total = 0;
-            angular.forEach(offers, function(offer, key) {
-              total += offer.amount;
+          var listing = user.borrower.listings[0];
+          return Offers.getListingOffers(listing).then(data => {
+            var offers = {
+              all: data.data,
+              active: [],
+              total: 0
+            };
+            angular.forEach(offers.all, function(offer, key) {
+              if(offer.status === 'pending') {
+                offers.total += offer.amount;
+                offers.active.push(offer);
+              }
+
             });
-            return total;
-          }).then(total => {
+            return offers;
+          }).then(offers => {
             return {
-              balance: user.investor.balance,
-              amount: total,
-              number: user.investor.offers.length,
-              total: 0,
-              interest: 13845,
-              forecast: 15560,
-              late: 0,
-              status: user.investor.status
+              balance: user.borrower.balance,
+              amount: offers.total,
+              number: offers.active.length,
+              status: user.borrower.status
             }
+          })
+          .catch(err => {
+            console.log(err.message);
           });
-        })
-        .catch(err => {
-          console.log(err.message);
         });
+
+      return $q.when(info)
+      .then(function(data) {
+        angular.copy(data, Borrower.info);
+      });
     },
+
+    statements: [],
 
     /**
      * Get statements
@@ -46,6 +58,7 @@ function BorrowerService($http, Offers, $q, ListingService) {
      * @return {String}
      */
     getStatements() {
+
       var statements = [
         {
           date: '11/05/15',
@@ -88,7 +101,11 @@ function BorrowerService($http, Offers, $q, ListingService) {
           balance: '81795.95'
         }
       ];
-      return statements;
+
+      return $q.when(statements)
+      .then(function(data) {
+        angular.copy(data, Borrower.statements);
+      });
     },
 
     /**

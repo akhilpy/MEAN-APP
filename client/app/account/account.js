@@ -291,7 +291,7 @@ angular.module('investnextdoorCaApp')
         }
       });
   })
-  .run(function($rootScope) {
+  .run(function($rootScope) {    
     $rootScope.$on('$stateChangeStart', function(event, next, nextParams, current) {
       if (next.name === 'logout' && current && current.name && !current.authenticate) {
         next.referrer = current.name;
