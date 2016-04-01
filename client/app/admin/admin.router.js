@@ -10,6 +10,7 @@ angular.module('investnextdoorCaApp.admin')
           listings: function() { return []; },
           users: function() { return []; },
           offers: function() { return []; },
+          offer: function() { return []; },
           currentListing: function() { return []; },
           currentUser: function() { return []; },
           status: function($stateParams) {
@@ -276,7 +277,8 @@ angular.module('investnextdoorCaApp.admin')
         url: '/offers',
         templateUrl: 'app/admin/admin.offers.html',
         resolve: {
-          offers: function() { return []; }
+          offers: function() { return []; },
+          offer: function() { return []; }
         },
         abstract: true,
         authenticate: 'admin'
@@ -284,7 +286,7 @@ angular.module('investnextdoorCaApp.admin')
       .state('admin.offers.index', {
         url: '',
         templateUrl: 'app/admin/admin.offers.status.html',
-        controller: 'AdminController',
+        controller: 'AdminOfferController',
         controllerAs: 'vm',
         resolve: {
           offers: ['$stateParams', 'Offers',
@@ -302,12 +304,30 @@ angular.module('investnextdoorCaApp.admin')
       .state('admin.offers.status', {
         url: '/:status',
         templateUrl: 'app/admin/admin.offers.status.html',
-        controller: 'AdminController',
+        controller: 'AdminOfferController',
         controllerAs: 'vm',
         resolve: {
           offers: ['$stateParams', 'Offers',
             function($stateParams, Offers) {
               return Offers.getAll($stateParams.status);
+            }
+          ]
+        },
+        ncyBreadcrumb: {
+          label: '{{breadcrumb}}',
+          parent: 'admin.offers.index'
+        },
+        authenticate: 'admin',
+      })
+      .state('admin.offers.detail', {
+        url: '/view/:id',
+        templateUrl: 'app/admin/admin.offers.detail.html',
+        controller: 'AdminOfferDetailController',
+        controllerAs: 'vm',
+        resolve: {
+          offer: ['$stateParams', 'Offers',
+            function($stateParams, Offers) {
+              return Offers.getOffer($stateParams.id);
             }
           ]
         },

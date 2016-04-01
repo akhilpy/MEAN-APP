@@ -500,7 +500,8 @@ a {
     }
   }
 
-  &.edit {
+  &.edit,
+  &.success {
     background: $color-secondary;
     &:hover {
       background: darken($color-secondary, 10%);
@@ -511,6 +512,13 @@ a {
     background: $color-accent;
     &:hover {
       background: darken($color-accent, 10%);
+    }
+  }
+
+  &.pending {
+    background: $color-grey-med-light;
+    &:hover {
+      background: darken($color-grey-med-light, 10%);
     }
   }
 }

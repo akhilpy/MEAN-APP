@@ -48,6 +48,16 @@
 
 
       /**
+       * Get an offer
+       *
+       * @return {String}
+       */
+      getOffer(offerID) {
+        return $http.get('/api/offers/' + offerID);
+      },
+
+
+      /**
        * Get a listing's offers
        *
        * @return {String}
@@ -112,7 +122,7 @@
       },
 
       /**
-       * Reject an Offer
+       * Update an Offer
        *
        * @return {String}
        */

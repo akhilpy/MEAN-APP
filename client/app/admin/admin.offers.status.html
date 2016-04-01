@@ -1,8 +1,14 @@
 <div class="marketplace-listings__wrapper">
   <div class="marketplace-listings">
+    <ul class="general-content__table-keys">
+      <li><i class="fa fa-circle pending"></i> In Review</li>
+      <li><i class="fa fa-check-circle success"></i> Active</li>
+      <li><i class="fa fa-times-circle warning"></i> Rejected</li>
+    </ul><!-- /.general-content__table-keys -->
     <table>
       <thead>
         <tr>
+          <th class="status"><a><i class="fa fa-circle-o"></i></a></th>
           <th>
             <a href="#" ng-click="sortType = 'username'; sortReverse = !sortReverse">
               Date
@@ -49,24 +55,27 @@
             </a>
           </th>
           <th>
-            <a href="#" ng-click="sortType = 'borrower.status'; sortReverse = !sortReverse">
-              Status
-              <span class="sort-icon">
-                <i class="fa fa-angle-down"></i>
-                <i class="fa fa-angle-up"></i>
-              </span>
+            <a href="#">
+              Actions
             </a>
           </th>
         </tr>
       </thead>
       <tbody>
         <tr ng-repeat="offer in vm.offers | orderBy:sortType:sortReverse">
+          <td class="status">
+            <i ng-show=offer.status==='pending' class="fa fa-circle pending"></i>
+            <i ng-show=offer.status==='live' class="fa fa-check-circle success"></i>
+            <i ng-show=offer.status==='cancelled' class="fa fa-times-circle warning"></i>
+          </td>
           <td>{{offer.date | date}}</td>
-          <td>{{offer.listing.general.businessName}}</td>
-          <td>{{offer.user.name.first}} {{offer.user.name.last}}</td>
+          <td>{{offer.listing.general.businessName}} <i ng-show=offer.notes class="fa fa-file-text-o"></i></td>
+          <td><a href="#" ui-sref="admin.edituser.profile({id: offer.user._id})">{{offer.user.name.first}} {{offer.user.name.last}}</a></td>
           <td>{{offer.rate}}%</td>
           <td>{{offer.amount | currency}}</td>
-          <td>{{offer.status}}</td>
+          <td>
+            <a ui-sref="admin.offers.detail({id: offer._id})" class="button small">Review</a>
+          </td>
         </tr>
       </tbody>
     </table>

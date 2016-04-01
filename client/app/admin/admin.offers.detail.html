@@ -1,0 +1,15 @@
+<p>{{vm.offer.status}}</p>
+<p>{{vm.offer.date | date}}</p>
+<p>{{vm.offer.listing.general.businessName}}</p>
+<p><a href="#" ui-sref="admin.edituser.profile({id: vm.offer.user._id})">{{vm.offer.user.name.first}} {{vm.offer.user.name.last}}</a></p>
+<p>{{vm.offer.rate}}%</p>
+<p>{{vm.offer.amount | currency}}</p>
+
+<p><textarea name="name" rows="8" cols="40" ng-model="vm.offer.notes"></textarea></p>
+
+<p>
+  <a href="#" ng-click="vm.updateOffer(vm.offer)" class="button small">Save</a>
+  <a href="#" ng-click="vm.updateOffer(vm.offer, 'pending')" class="button small pending"><i class="fa fa-circle"></i></a>
+  <a href="#" ng-click="vm.updateOffer(vm.offer, 'live')" class="button small success"><i class="fa fa-check"></i></a>
+  <a href="#" ng-click="vm.updateOffer(vm.offer, 'cancelled')" class="button small warning"><i class="fa fa-times"></i></a>
+</p>

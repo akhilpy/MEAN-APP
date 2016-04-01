@@ -37,6 +37,10 @@ var OfferSchema = new mongoose.Schema({
   transaction: {
     type: String,
     default: ''
+  },
+  notes: {
+    type: String,
+    default: ''
   }
 });
 
