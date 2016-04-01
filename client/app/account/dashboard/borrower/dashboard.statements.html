@@ -11,7 +11,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="statement in statements">
+    <tr ng-repeat="statement in vm.statements">
       <td>{{statement.date}}</td>
       <td><strong>{{statement.type}}:</strong> {{statement.description}}</td>
       <td class="dashboard__table--credits">{{statement.credit | currency}}</td>

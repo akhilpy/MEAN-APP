@@ -13,7 +13,7 @@ class BorrowerController {
     this.socket = socket;
     this.Offers = Offers;
     this.Listings = ListingService;
-    this.Borrower = Borrower;
+    this.$scope.Borrower = Borrower;
 
     this.$scope.notifications = {
       actions: 0,
@@ -31,7 +31,7 @@ class BorrowerController {
 
     this.$scope.totalOffers = 0;
 
-    Borrower.getBorrowerInfo().then(borrowerInfo => {
+    Borrower.getInfo().then(borrowerInfo => {
       this.$scope.borrowerInfo = borrowerInfo;
     });
 
@@ -136,7 +136,8 @@ class BorrowerController {
       }
     });
 
-    this.$scope.statements = Borrower.getStatements();
+    Borrower.getInfo();
+    Borrower.getStatements();
   }
 
   confirmBankAccount() {
