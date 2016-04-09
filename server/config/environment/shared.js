@@ -99,6 +99,9 @@ exports = module.exports = {
       name: 'British Columbia',
       value: 'BC'
     },{
+      name: 'Manitoba',
+      value: 'MB'
+    },{
       name: 'New Brunswick',
       value: 'NB'
     },{

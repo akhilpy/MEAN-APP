@@ -209,7 +209,7 @@ function BorrowerService($http, Offers, $q, ListingService) {
             promises.push(
               Offers.getListingOffers(listing._id)
                 .then(offers => {
-                  offersArray.push(offers.data);
+                  offersArray.push(offers);
                 })
             );
           });
@@ -270,7 +270,6 @@ function BorrowerService($http, Offers, $q, ListingService) {
     },
 
 
-
     /**
      * Confirm Bank
      *
@@ -287,6 +286,149 @@ function BorrowerService($http, Offers, $q, ListingService) {
         })
         .catch(err => {
           console.log(err);
+        });
+    },
+
+
+
+    /**
+     * Calculate Payment
+     *
+     * @return {String}
+     */
+    calculatePayment(amount, rate, term) {
+      var rate = rate / 100;
+
+      this.effectiveRate = +(Math.pow((1 + (rate / 12)), term)).toFixed(6);
+      this.monthlyPayment = +((amount * (rate / 12) * this.effectiveRate) / (this.effectiveRate - 1)).toFixed(4);
+      this.total = +(this.monthlyPayment * term).toFixed(2);
+      this.cost = +(this.total - amount).toFixed(2);
+      this.fees = +((this.total * 0.04) + 700).toFixed(2);
+      this.totalPayment = +(this.cost + this.fees).toFixed(2);
+      this.return = +(this.cost - (this.total * 0.01)).toFixed(2);
+      this.monthly = {
+        principal: +(amount / term).toFixed(2),
+        interest: +(this.cost / term).toFixed(2),
+        fees: +((this.total * 0.04) / term).toFixed(2),
+        total: this.monthlyPayment
+      };
+    },
+
+
+
+    /**
+     * Generate Repayment Schedule
+     *
+     * @return {String}
+     */
+    generateSchedule(offers, term) {
+      var total = 0;
+      var repayments = [];
+      var repayment = {};
+      var monthly = {
+        principal: 0,
+        interest: 0,
+        fees: 0,
+        total: 0
+      };
+
+      angular.forEach(offers, function(offer) {
+        var repayment = new Borrower.calculatePayment(offer.amount, offer.rate, term);
+        total += repayment.monthlyPayment;
+        repayments.push(repayment);
+      });
+
+      angular.forEach(repayments, function(repayment) {
+        monthly.principal += repayment.monthly.principal;
+        monthly.interest += repayment.monthly.interest;
+      });
+
+      monthly.fees = +(((total * 0.04) + 700) / term).toFixed(2);
+      monthly.total = monthly.principal + monthly.interest + monthly.fees;
+
+      repayment.repayments = repayments;
+      repayment.monthly = monthly;
+
+      return repayment;
+    },
+
+
+
+    /**
+     * Create Repayment Schedule
+     *
+     * @return {String}
+     */
+    createSchedule(listing, offers, payment) {
+      return ListingService.getCurrentUser()
+      .then(user => {
+        var promises = [];
+        var repayments = [];
+        var term = +(listing.details.term);
+        var now = new Date();
+
+        var repayment = {
+          borrower: {
+            user: user,
+            payments: []
+          },
+          investors: [],
+          listing: listing,
+        };
+
+        for(var i = 0; i < term; i++) {
+          var date = new Date(now.getFullYear(), now.getMonth() + (1 + i), 1).toISOString();
+          var borrowerRepayment = {
+            date: date,
+            amount: payment.total
+          }
+          promises.push(
+            repayment.borrower.payments.push(borrowerRepayment)
+          );
+        }
+
+        angular.forEach(offers, function(offer) {
+          var amount = payment.principal + payment.interest;
+          var investor = {
+            user: offer.user,
+            payments: []
+          };
+
+          for(var i = 0; i < term; i++) {
+            var date = new Date(now.getFullYear(), now.getMonth() + (1 + i), 1).toISOString();
+            var investorRepayment = {
+              date: date,
+              amount: amount
+            }
+            promises.push(
+              investor.payments.push(investorRepayment)
+            );
+          }
+
+          promises.push(repayment.investors.push(investor));
+        });
+
+        return $q.all(promises)
+        .then(function() {
+          return $http.post('/api/repayments', repayment);
+        });
+      });
+    },
+
+
+
+    /**
+     * Get Repayments
+     *
+     * @return {String}
+     */
+    getRepayments() {
+      return ListingService.getCurrentUser()
+        .then(user => {
+          return $http.get('/api/repayments/borrower/' + user._id);
+        })
+        .catch(err => {
+          console.log(err.message);
         });
     }
 

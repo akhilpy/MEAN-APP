@@ -28,7 +28,8 @@ angular.module('investnextdoorCaApp')
         resolve: {
           investorInfo: function() { return []; },
           bookmarks: function() { return []; },
-          offers: function() { return []; }
+          offers: function() { return []; },
+          offer: function() { return []; }
         }
       })
       .state('dashboard.index', {
@@ -51,6 +52,9 @@ angular.module('investnextdoorCaApp')
         url: '/borrower',
         templateUrl: 'app/account/dashboard/borrower/dashboard.html',
         authenticate: true,
+        resolve: {
+          offer: function() { return []; }
+        },
         controller: 'BorrowerController',
         controllerAs: 'vm',
         ncyBreadcrumb: {
@@ -61,6 +65,9 @@ angular.module('investnextdoorCaApp')
         url: '/actions',
         templateUrl: 'app/account/dashboard/borrower/dashboard.actions.html',
         authenticate: true,
+        resolve: {
+          offer: function() { return []; }
+        },
         abstract: true
       })
       .state('dashboard.borrower.actions.index', {
@@ -72,6 +79,23 @@ angular.module('investnextdoorCaApp')
         url: '/account',
         templateUrl: 'app/account/dashboard/borrower/dashboard.actions.account.html',
         authenticate: true
+      })
+      .state('dashboard.borrower.actions.addAccount', {
+        url: '/add-account',
+        templateUrl: 'app/account/dashboard/borrower/dashboard.actions.add-account.html',
+        authenticate: true
+      })
+      .state('dashboard.borrower.actions.complete', {
+        url: '/complete',
+        templateUrl: 'app/account/dashboard/borrower/dashboard.actions.complete.html',
+        authenticate: true
+      })
+      .state('dashboard.borrower.actions.accept', {
+        url: '/accept/:offer',
+        templateUrl: 'app/account/dashboard/borrower/dashboard.actions.accept.html',
+        authenticate: true,
+        controller: 'BorrowerController',
+        controllerAs: 'vm',
       })
       .state('dashboard.borrower.listings', {
         url: '/listings',
@@ -131,6 +155,11 @@ angular.module('investnextdoorCaApp')
         templateUrl: 'app/account/dashboard/investor/dashboard.offers.html',
         authenticate: true
       })
+      .state('dashboard.investor.repayments', {
+        url: '/repayments',
+        templateUrl: 'app/account/dashboard/investor/dashboard.repayments.html',
+        authenticate: true
+      })
       .state('dashboard.investor.statements', {
         url: '/statements',
         templateUrl: 'app/account/dashboard/investor/dashboard.statements.html',
@@ -144,11 +173,6 @@ angular.module('investnextdoorCaApp')
       .state('dashboard.investor.agreements', {
         url: '/agreements',
         templateUrl: 'app/account/dashboard/investor/dashboard.agreements.html',
-        authenticate: true
-      })
-      .state('dashboard.investor.pending', {
-        url: '/pending',
-        templateUrl: 'app/account/dashboard/investor/dashboard.pending.html',
         authenticate: true
       })
       .state('profile', {
@@ -291,7 +315,7 @@ angular.module('investnextdoorCaApp')
         }
       });
   })
-  .run(function($rootScope) {    
+  .run(function($rootScope) {
     $rootScope.$on('$stateChangeStart', function(event, next, nextParams, current) {
       if (next.name === 'logout' && current && current.name && !current.authenticate) {
         next.referrer = current.name;

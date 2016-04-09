@@ -12,7 +12,10 @@
     <tr ng-repeat="bookmark in watchlist">
       <td>{{bookmark.date | date}}</td>
       <td><strong>{{bookmark.listing.general.doingBusinessName}}:</strong> {{bookmark.listing.details.title}}</td>
-      <td><a href="/marketplace/listing/{{bookmark.listing._id}}">View</a></td>
+      <td>
+        <a ui-sref="marketplace.listing({id:bookmark.listing._id})" class="button small"><i class="fa fa-eye"></i></a>
+        <a href="#" ng-click="vm.removeBookmark(bookmark.listing)" class="button small warning"><i class="fa fa-times"></i></a>
+      </td>
     </tr>
   </tbody>
 </table>

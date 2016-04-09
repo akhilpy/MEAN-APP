@@ -17,8 +17,12 @@ angular.module('investnextdoorCaApp')
           element.trigger('chosen:updated');
         });
 
-        // update chosen is the select is disabled
+        // update chosen if the select is disabled
         attrs.$observe('disabled', function() {
+          element.trigger('chosen:updated');
+        });
+
+        scope.$on('updateChosen', function() {
           element.trigger('chosen:updated');
         });
 

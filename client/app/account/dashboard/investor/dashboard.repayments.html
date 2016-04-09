@@ -16,15 +16,15 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="payment in repayment.borrower.payments">
+    <tr ng-repeat="payment in repayments | orderBy: 'paymentDate'">
       <td>
         <i ng-show=payment.status==='Pending' class="fa fa-bolt new"></i>
         <i ng-show=payment.status==='Completed' class="fa fa-check success"></i>
         <i ng-show=payment.status==='Late' class="fa fa-times warning"></i>
       </td>
       <td>{{payment.date | date}}</td>
-      <td>{{repayment.listing.general.businessName}}</td>
-      <td>{{repayment.borrower.user.name.first}} {{repayment.borrower.user.name.last}}</td>
+      <td>{{payment.listing.general.businessName}}</td>
+      <td>{{payment.borrower.name.first}} {{payment.borrower.name.last}}</td>
       <td>{{payment.amount | currency}}</td>
     </tr>
   </tbody>

@@ -1,9 +1,9 @@
 <p ng-hide="vm.hasRequests" class="dashboard__main--intro">You do not have any information requests.</p>
 
 <ul class="general-content__table-keys" ng-show="vm.hasRequests">
-  <li><i class="fa fa-exclamation-circle new"></i> New</li>
-  <li><i class="fa fa-check-circle success"></i> Approved</li>
-  <li><i class="fa fa-times-circle warning"></i> Rejected</li>
+  <li><i class="fa fa-bolt new"></i> New</li>
+  <li><i class="fa fa-check success"></i> Approved</li>
+  <li><i class="fa fa-times warning"></i> Rejected</li>
 </ul><!-- /.general-content__table-keys -->
 <table ng-show="vm.hasRequests">
   <thead>
@@ -23,9 +23,9 @@
   <tbody>
     <tr ng-repeat="request in requests">
       <td>
-        <i ng-show=request.status==='Pending' class="fa fa-exclamation-circle new"></i>
-        <i ng-show=request.status==='Approved' class="fa fa-check-circle success"></i>
-        <i ng-show=request.status==='Rejected' class="fa fa-times-circle warning"></i>
+        <i ng-show=request.status==='Pending' class="fa fa-bolt new"></i>
+        <i ng-show=request.status==='Approved' class="fa fa-check success"></i>
+        <i ng-show=request.status==='Rejected' class="fa fa-times warning"></i>
       </td>
       <td>{{request.date | date}}</td>
       <td>{{request.name}}</td>

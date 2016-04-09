@@ -287,6 +287,69 @@
   border-bottom: 1px solid $color-grey-med-light;
 }
 
+.calculator__result {
+  display: flex;
+  flex-wrap: wrap;
+  padding: rem(30) 0;
+
+  h4 {
+    @include font-size(54);
+    border-bottom: 1px solid $color-white;
+    padding-bottom: rem(10);
+    margin-bottom: rem(10);
+  }
+
+  p {
+    text-transform: uppercase;
+    padding-left: rem(10);
+    font-weight: 400;
+  }
+
+  &.borrower {
+    padding: rem(20) 0;
+    
+    h4 {
+      @include font-size(40);
+    }
+  }
+}
+
+.calculator__result--profit {
+  flex: 2;
+  padding-right: rem(40);
+}
+
+.calculator__result--amount {
+  flex: 1;
+  padding-right: rem(20);
+}
+
+.calculator__result--repayment {
+  flex: 1;
+  padding-left: rem(20);
+}
+
+.calculator__result--actions {
+  flex: 1;
+  text-align: center;
+
+  .borrower & {
+    flex: 100%;
+    text-align: left;
+    margin-top: rem(20);
+  }
+}
+
+.calculator__result--reset {
+  display: inline-block;
+  text-decoration: underline;
+  margin-bottom: rem(20);
+
+  .borrower & {
+    margin-left: rem(20);
+  }
+}
+
 
 /*----------  Blue Block  ----------*/
 

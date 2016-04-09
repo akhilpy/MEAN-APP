@@ -1,12 +1,39 @@
 <div class="listing-form__wrapper dashboard__form--wrapper">
-  <h3 class="form-subtitle">Complete Your Loan</h3>
+  <h3 class="form-subtitle">Agreements</h3>
+  <p>Agreements go here.</p>
+
+  <hr class="form-break">
+  <h3 class="form-subtitle">Repayment Schedule</h3>
+  <table class="table--dark">
+    <thead>
+      <tr>
+        <th><a href="#">Date</a></th>
+        <th><a href="#">Principal</a></th>
+        <th><a href="#">Interest</a></th>
+        <th><a href="#">Fees</a></th>
+        <th><a href="#">Total</a></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="i in getNumber(currentListing.details.term) track by $index">
+        <td>{{getDate($index) | date}}</td>
+        <td>{{totals.principal | currency}}</td>
+        <td>{{totals.interest | currency}}</td>
+        <td>{{totals.fees | currency}}</td>
+        <td>{{totals.total | currency}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr class="form-break">
+  <h3 class="form-subtitle">Signing</h3>
   <div class="formly-field-group">
     <div class="display-flex not-form">
       <div class="offset-third">
-        <label>Deposit Amount</label>
+        <label>Your Name</label>
         <div class="input-group">
-          <div class="input-group-addon"><i class="fa fa-usd"></i></div>
-          <input type="number" ng-model="vm.bankAmount" placeholder="use 101 for testing">
+          <div class="input-group-addon"><i class="fa fa-pencil"></i></div>
+          <input type="text" ng-model="vm.signature" placeholder="First Last">
         </div><!-- /.input-group -->
       </div><!-- /.flex-1 -->
     </div><!-- /.display-flex -->

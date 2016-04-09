@@ -10,6 +10,8 @@ import aws from './api/config/aws.js';
 
 export default function(app) {
   // Insert routes below
+  app.use('/api/repayments', require('./api/repayment'));
+  app.use('/api/transactions', require('./api/transaction'));
   app.use('/api/offers', require('./api/offer'));
   app.use('/api/payments', require('./api/payment'));
   app.use('/api/yelp', require('./api/yelp'));

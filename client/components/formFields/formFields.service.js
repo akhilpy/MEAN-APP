@@ -202,7 +202,7 @@ function FormService(appConfig) {
             },
             {
               className: 'flex-1',
-              type: 'input',
+              type: 'maskedInput',
               key: 'phone',
               templateOptions: {
                 label: 'Phone',

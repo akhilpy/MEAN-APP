@@ -80,38 +80,47 @@
 
                 <div class="welcome__green-block--calculator">
                   <div class="calculator__wrapper">
-                    <h3 class="calculator__title">Investment Calculator</h3>
+                    <h3 class="calculator__title">Borrower Calculator</h3>
 
-                    <form class="calculator__form">
+                    <form class="calculator__form" ng-show="vm.calculate">
                       <ul class="form__rows">
                         <li class="form__row form__row--split">
                           <div class="form__split--half">
-                            <label>Amount to Invest</label>
-                            <select chosen>
-                              <option value="">Select</option>
-                            </select>
+                            <label>Amount to Borrow</label>
+                            <input type="number" ng-model="vm.borrow.amount" placeholder="min $10,000">
                           </div>
                           <div class="form__split--half">
-                            <label>Investing Term</label>
-                            <select chosen>
-                              <option value="">Select</option>
-                            </select>
+                            <label>Borrowing Term</label>
+                            <select chosen="terms" data-placeholder="Select" disable_search_threshold="15" ng-model="vm.borrow.term" ng-options="term.value as term.label for term in terms"></select>
                           </div>
                         </li><!-- /.form__row form__row--split -->
 
                         <li class="form__row form__row--split">
                           <div class="form__split--half">
-                            <label>Investor Profile</label>
-                            <select chosen>
-                              <option value="">Select</option>
-                            </select>
+                            <label>Interest Rate</label>
+                            <select chosen="rates" data-placeholder="Select" disable_search_threshold="15" ng-model="vm.borrow.rate" ng-options="option.value as option.label for option in rates"></select>
                           </div>
-                          <div class="form__split--half">
-                            <button>Submit</button>
+                          <div class="form__split--half bottom">
+                            <button ng-click="vm.calculateLoan()">Submit</button>
                           </div>
                         </li><!-- /.form__row form__row--split -->
                       </ul><!-- /.form__rows -->
                     </form><!-- /.calculator__form -->
+
+                    <div class="calculator__result borrower" ng-show="!vm.calculate">
+                      <div class="calculator__result--amount">
+                        <h4>{{vm.loan.cost | currency}}</h4>
+                        <p>Estimated Loan Cost</p>
+                      </div><!-- /.calculator__result--profit -->
+                      <div class="calculator__result--repayment">
+                        <h4>{{vm.loan.monthlyPayment | currency}}</h4>
+                        <p>Monthly Repayment</p>
+                      </div><!-- /.calculator__result--repayment -->
+                      <div class="calculator__result--actions">
+                        <button ui-sref="login">Get Started</button>
+                        <a class="calculator__result--reset" ng-click="vm.resetLoan()">Reset Calculator</a>
+                      </div><!-- /.calculator__result--actions -->
+                    </div>
                     <em>By signing up, you agree to the <a ui-sref="legal.privacypolicy">Privacy Policy</a> and the <a ui-sref="legal.termsofservice">Terms of Service</a></em>
                   </div><!-- /.calculator__wrapper -->
                 </div><!-- end of .block__green-block--calculator -->

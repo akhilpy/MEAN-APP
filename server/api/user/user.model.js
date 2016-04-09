@@ -14,6 +14,20 @@ var deepPopulate = require('mongoose-deep-populate')(mongoose);
 
 const authTypes = ['github', 'twitter', 'facebook', 'google'];
 
+var bankAccount = {
+	institution_number: Number,
+	branch_number: Number,
+	account_number: Number,
+	verified: {
+		type: Boolean,
+		default: false
+	},
+	verification: {
+		micro_debit_1: Number,
+		micro_debit_2: Number
+	}
+}
+
 var address = {
 	street: String,
 	city: String,
@@ -97,6 +111,7 @@ var UserSchema = new Schema({
     type: String,
     default: 'borrower'
   },
+	bankAccount: bankAccount,
 	borrower: {
 		status: {
 			type: String,

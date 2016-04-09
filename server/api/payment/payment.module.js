@@ -44,7 +44,7 @@ function transact_post(callback) {
 	var req_time = new Date();
 	client.post(url, args, function(data, res){
 		if(res.statusCode == 404){
-			return callback({code:404, error:res.statusMessage, error_description:'possible invalid url'},404,1);
+			return callback({code:404, error:'invalid_request', error_description:'possible invalid url'},404,1);
 		}
 		var res_time = new Date();
 		var expire = req_time.getSeconds() - res_time.getSeconds();
@@ -63,7 +63,7 @@ function trnact_url(method){
 			return config.payments.url+config.payments.prefix.auth+'/addBankAccount';
 			break;
 		case 'VBA':
-			return config.payments.url+config.payments.prefix.auth+'/verifyBankAccount';
+			return config.payments.url+config.payments.prefix.api+'/verifyBankAccount';
 			break;
 		case 'GPT':
 			return config.payments.url+config.payments.prefix.auth+'/getPublicToken';
@@ -518,7 +518,7 @@ Payments.prototype.verifyBankAccount = function(input, callback){
 	delete hdrs.Authorization;
 
 	var user_details = {};
-	var usreml,usrbun;
+	var usreml,usrbun,usrbnm,usrfnm,usrlnm;
 
 	if (!Object.keys(input).length)
 		return callback(true, {code:400, error:'invalid_request',error_description:'invaild or missing parameters'});
@@ -533,8 +533,12 @@ Payments.prototype.verifyBankAccount = function(input, callback){
 		return callback(true, {'code':412,'error':'email','error_description':'email required'});
 	}
 
-	if(!input.user_id)
+	if(!input.user_id) {
 		return callback(true, {'code':412,'error':'user_id','error_description':'user_id required'});
+	} else {
+		usrbun = validator.trim(input.user_id);
+		user_details.user_id = usrbun;
+	}
 
 	if(!(input.business_name || input.first_name && input.last_name)){
 		return callback(true, {'code':412,'error':'business_name','error_description':'business_name or first_name and last_name required'});

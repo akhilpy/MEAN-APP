@@ -1,1 +1,24 @@
-<p>These are the account investments</p>
+<p ng-hide="vm.hasInvestments" class="dashboard__main--intro">You have not made any investments.</p>
+
+<table ng-show="vm.hasInvestments">
+  <thead>
+    <tr>
+      <th class="status"><a><i class="fa fa-circle-o"></i></a></th>
+      <th><a href="#">Date</a></th>
+      <th><a href="#">Listing</a></th>
+      <th><a href="#">Rate</a></th>
+      <th><a href="#">Amount</a></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="offer in investments | orderBy: 'status'">
+      <td class="status">
+        <i class="fa fa-check success"></i>
+      </td>
+      <td>{{offer.date | date}}</td>
+      <td>{{offer.listing.general.businessName}}</td>
+      <td class="dashboard__table--credits">{{offer.rate}}%</td>
+      <td class="dashboard__table--debits">{{offer.amount | currency}}</td>
+    </tr>
+  </tbody>
+</table>

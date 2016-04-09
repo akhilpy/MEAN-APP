@@ -1,7 +1,7 @@
 <ul class="general-content__table-keys">
-  <li><i class="fa fa-exclamation-circle new"></i> New</li>
-  <li><i class="fa fa-check-circle success"></i> Complete</li>
-  <li><i class="fa fa-times-circle warning"></i> Incomplete</li>
+  <li><i class="fa fa-bolt new"></i> New</li>
+  <li><i class="fa fa-check success"></i> Complete</li>
+  <li><i class="fa fa-times warning"></i> Incomplete</li>
 </ul><!-- /.general-content__table-keys -->
 
 <table>
@@ -14,19 +14,25 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="action in actions" ng-class="{'row-disabled-light': action.status==='complete'}">
-      <td class="status">
-        <i ng-show=action.status==='complete' class="fa fa-check-circle success"></i>
-        <i ng-show=action.status==='incomplete' class="fa fa-times-circle warning"></i>
-      </td>
-      <td>{{action.task}}</td>
-      <td><p class="description">{{action.description}}</p></td>
-      <td><a href="#" ui-sref="{{action.state}}" class="button small edit">{{action.status==='incomplete' ? action.buttons.incomplete : action.buttons.complete}}</a></td>
-    </tr>
-
     <tr>
       <td class="status">
-        <i class="fa fa-times-circle warning"></i>
+        <i class="fa fa-times warning"></i>
+      </td>
+      <td>Add Bank Account</td>
+      <td><p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae voluptatibus labore ducimus minus quas nihil consequuntur quibusdam enim adipisci tempore.</p></td>
+      <td><a href="#" ui-sref="dashboard.borrower.actions.addAccount" class="button small edit">Add</a></td>
+    </tr>
+    <tr>
+      <td class="status">
+        <i class="fa fa-times warning"></i>
+      </td>
+      <td>Verify Bank Account</td>
+      <td><p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae voluptatibus labore ducimus minus quas nihil consequuntur quibusdam enim adipisci tempore.</p></td>
+      <td><a href="#" ui-sref="dashboard.borrower.actions.account" class="button small edit">Verify</a></td>
+    </tr>
+    <tr>
+      <td class="status">
+        <i class="fa fa-times warning"></i>
       </td>
       <td>Complete Loan</td>
       <td><p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae voluptatibus labore ducimus minus quas nihil consequuntur quibusdam enim adipisci tempore.</p></td>

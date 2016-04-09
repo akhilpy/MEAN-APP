@@ -2,7 +2,7 @@
 
 (function() {
 
-function InvestorService($http, Offers, ListingService) {
+function InvestorService($http, Offers, ListingService, $q) {
 
   var Investor = {
 
@@ -89,6 +89,45 @@ function InvestorService($http, Offers, ListingService) {
         }
       ];
       return statements;
+    },
+
+    /**
+     * Get Repayments
+     *
+     * @return {String}
+     */
+    getRepayments() {
+      var userID;
+      return ListingService.getCurrentUser()
+        .then(user => {
+          userID = user._id;
+          return $http.get('/api/repayments/investor/' + user._id);
+        })
+        .then(response => {
+          var promises = [];
+          var repayments = [];
+
+          if(response.data && response.data[0]) {
+            var investors = response.data[0].investors;
+            var borrower = response.data[0].borrower.user;
+            var listing = response.data[0].listing;
+
+            angular.forEach(investors, function(investor) {
+              if(investor.user._id === userID) {
+                investor.borrower = borrower;
+                investor.listing = listing;
+                promises.push(repayments.push(investor));
+              }
+            });
+          }
+
+          return $q.all(promises).then(function() {
+            return repayments;
+          });
+        })
+        .catch(err => {
+          console.log(err.message);
+        });
     },
 
     /**

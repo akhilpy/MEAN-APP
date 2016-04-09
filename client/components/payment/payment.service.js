@@ -2,7 +2,7 @@
 
 (function() {
 
-  function PaymentService($location, $cookies, $http, User, Auth) {
+  function PaymentService($location, $cookies, $http, User, Auth, ListingService) {
     var currentUser = {};
 
     if ($cookies.get('token') && $location.path() !== '/logout') {
@@ -21,40 +21,81 @@
       /**
        * Add a user's bank account
        */
-      addAccount(user) {
-        return $http({
-          method: 'POST',
-          url: '/api/payments/add-account',
-          headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-          transformRequest: transformRequest,
-          data: user
-        });
+      addAccount(account) {
+        return ListingService.getCurrentUser()
+          .then(user => {
+            account.username = user._id;
+            account.password = user._id;
+            account.email = user.email;
+            return $http({
+              method: 'POST',
+              url: '/api/payments/add-account',
+              headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+              transformRequest: transformRequest,
+              data: account
+            })
+            .catch(err => {
+              return err;
+            })
+          })
+          .catch(err => {
+            console.log(err);
+          });
       },
 
       /**
        * Update a user's bank account
        */
-      updateAccount(user) {
-        return $http({
-          method: 'POST',
-          url: '/api/payments/update-account',
-          headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-          transformRequest: transformRequest,
-          data: user
-        });
+      updateAccount(account) {
+        return ListingService.getCurrentUser()
+          .then(user => {
+            account.username = user._id;
+            account.password = user._id;
+            account.email = user.email;
+            return $http({
+              method: 'POST',
+              url: '/api/payments/update-account',
+              headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+              transformRequest: transformRequest,
+              data: account
+            })
+            .catch(err => {
+              return err;
+            })
+          })
+          .catch(err => {
+            console.log(err);
+          });
       },
 
       /**
        * Verify a user's bank account
        */
-      verifyAccount(user) {
-        return $http({
-          method: 'POST',
-          url: '/api/payments/verify-account',
-          headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-          transformRequest: transformRequest,
-          data: user
-        });
+      verifyAccount() {
+        return ListingService.getCurrentUser()
+          .then(user => {
+            console.log(user._id);
+            var data = {
+              email: user.email,
+              user_id: user._id,
+              first_name: user.name.first,
+              last_name: user.name.last
+            };
+
+            return $http({
+              method: 'POST',
+              url: '/api/payments/verify-account',
+              headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+              transformRequest: transformRequest,
+              data: data
+            })
+            .catch(err => {
+              return err;
+            });
+          })
+          .catch(err => {
+            console.log(err);
+          });
       },
 
       /**

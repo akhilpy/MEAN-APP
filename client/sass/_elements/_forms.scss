@@ -185,6 +185,10 @@ input[type="radio"] {
   display: inline-block;
   vertical-align: top;
   padding-left: rem(20);
+
+  &.bottom {
+    vertical-align: bottom;
+  }
 }
 
 .form__split--half {

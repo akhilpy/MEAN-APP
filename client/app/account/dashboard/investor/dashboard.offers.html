@@ -1,22 +1,33 @@
 <p ng-hide="vm.hasOffers" class="dashboard__main--intro">You have not made any offers.</p>
 
+<ul class="general-content__table-keys" ng-show="vm.hasOffers">
+  <li><i class="fa fa pending"></i> In Review</li>
+  <li><i class="fa fa-bolt new"></i> Active</li>
+  <li><i class="fa fa-times warning"></i> Rejected</li>
+  <li><i class="fa fa-check success"></i> Accepted</li>
+</ul><!-- /.general-content__table-keys -->
 <table ng-show="vm.hasOffers">
   <thead>
     <tr>
+      <th class="status"><a><i class="fa fa-circle-o"></i></a></th>
       <th><a href="#">Date</a></th>
       <th><a href="#">Listing</a></th>
       <th><a href="#">Rate</a></th>
       <th><a href="#">Amount</a></th>
-      <th><a href="#">Status</a></th>
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="offer in offers">
+    <tr ng-repeat="offer in offers | orderBy: 'status'" ng-class="{'row-disabled': offer.status!=='live' && offer.status!=='accepted'}">
+      <td class="status">
+        <i ng-show=offer.status==='pending' class="fa pending"></i>
+        <i ng-show=offer.status==='live' class="fa fa-bolt new"></i>
+        <i ng-show=offer.status==='rejected' class="fa fa-times warning"></i>
+        <i ng-show=offer.status==='accepted' class="fa fa-check success"></i>
+      </td>
       <td>{{offer.date | date}}</td>
       <td>{{offer.listing.general.businessName}}</td>
       <td class="dashboard__table--credits">{{offer.rate}}%</td>
       <td class="dashboard__table--debits">{{offer.amount | currency}}</td>
-      <td>{{offer.status}}</td>
     </tr>
   </tbody>
 </table>

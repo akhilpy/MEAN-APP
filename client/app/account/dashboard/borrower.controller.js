@@ -3,17 +3,30 @@
 (function() {
 
 class BorrowerController {
-  constructor(Auth, Borrower, Offers, ListingService, $scope, $timeout, socket) {
+  constructor(Auth, Borrower, Offers, ListingService, Payments, $scope, $timeout, socket, $stateParams, $state, $q) {
     var vm = this;
 
     this.errors = {};
     this.submitted = false;
     this.$scope = $scope;
+    this.$q = $q;
+    this.$state = $state;
     this.$timeout = $timeout;
     this.socket = socket;
     this.Offers = Offers;
     this.Listings = ListingService;
+    this.Payments = Payments;
     this.$scope.Borrower = Borrower;
+
+    this.account = {};
+    this.$scope.repayment = {};
+    vm.$scope.totals = {};
+
+    if($stateParams.offer) {
+      Offers.getOffer($stateParams.offer).then(response => {
+        this.$scope.currentOffer = response.data;
+      });
+    }
 
     this.$scope.notifications = {
       actions: 0,
@@ -29,7 +42,10 @@ class BorrowerController {
     this.hasRepayments = false;
     this.hasRequests = false;
 
+    this.$scope.amountReached = false;
+    this.$scope.loanComplete = false;
     this.$scope.totalOffers = 0;
+    this.$scope.acceptedOffers = 0;
 
     Borrower.getInfo().then(borrowerInfo => {
       this.$scope.borrowerInfo = borrowerInfo;
@@ -75,32 +91,67 @@ class BorrowerController {
     });
 
     Borrower.getOffers().then(allOffers => {
+      var vm = this;
       var offers = [];
       var activeOffers = [];
+      var acceptedOffers = [];
 
       if(allOffers.length > 0) {
         angular.forEach(allOffers, function(listingOffers) {
           angular.forEach(listingOffers, function(offer) {
             offers.push(offer);
 
-            if(offer.status !== 'rejected') {
-              $scope.totalOffers += offer.amount;
+            if(offer.status === 'live') {
+              vm.$scope.totalOffers += offer.amount;
+              if(vm.$scope.totalOffers >= vm.$scope.currentListing.details.amount) {
+                vm.$scope.amountReached = true;
+              }
               activeOffers.push(offer);
+            }
+
+            if(offer.status === 'accepted') {
+              vm.$scope.acceptedOffers += offer.amount;
+              if(vm.$scope.acceptedOffers >= vm.$scope.currentListing.details.amount) {
+                vm.$scope.loanComplete = true;
+              }
+              acceptedOffers.push(offer);
+            }
+
+            if(activeOffers.length > 0) {
+              $scope.notifications.offers = activeOffers.length;
             }
           });
         });
 
-        this.$scope.offers = offers;
+        vm.$scope.offers = offers;
+        socket.syncUpdates('offer', offers, function(event, item, object) {
+          vm.$scope.offers = object;
+        });
 
         if(offers.length > 0) {
-          this.hasOffers = true;
+          vm.hasOffers = true;
         }
 
         if(activeOffers.length > 0) {
-          this.$scope.borrowerOffers = activeOffers.length;
+          vm.$scope.borrowerOffers = activeOffers.length;
         } else {
-          this.$scope.borrowerOffers = 0;
+          vm.$scope.borrowerOffers = 0;
         }
+
+        if(acceptedOffers.length > 0) {
+          vm.$scope.repayment = Borrower.generateSchedule(acceptedOffers, vm.$scope.currentListing.details.term);
+          vm.$scope.totals = vm.$scope.repayment.monthly;
+        }
+      }
+    });
+
+    Borrower.getRepayments()
+    .then(response => {
+      if(response.data && response.data[0]) {
+        this.hasRepayments = true;
+        this.$scope.repayment = response.data[0];
+      } else {
+        console.log('none');
       }
     });
 
@@ -136,14 +187,64 @@ class BorrowerController {
       }
     });
 
+    $scope.getNumber = function(num) {
+      return new Array(num);
+    }
+
+    $scope.getDate = function(index) {
+      var now = new Date();
+      return new Date(now.getFullYear(), now.getMonth() + (1 + index), 1).toISOString();
+    }
+
+    $scope.$on('$destroy', function() {
+      socket.unsyncUpdates('offer');
+    });
+
     Borrower.getInfo();
     Borrower.getStatements();
+  }
+
+  addBankAccount() {
+    var vm = this;
+    var account = vm.account;
+
+    if(Object.keys(account).length === 3) {
+      vm.errors.addAccount = false;
+
+      return vm.Payments.addAccount(account)
+      .then(response => {
+        console.log(response);
+        if(response.data.status === 'success') {
+          console.log(response);
+        } else if(response.data.status === 'error') {
+          return vm.Payments.updateAccount(account)
+          .then(response => {
+            console.log(response);
+          })
+        }
+      })
+      .then(() => {
+        return vm.Payments.verifyAccount(account)
+        .then(response => {
+          console.log(response);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+    } else {
+      vm.errors.addAccount = 'Please complete all fields';
+    }
+
   }
 
   confirmBankAccount() {
     var vm = this;
 
-    return vm.Borrower.confirmBank(vm.bankAmount)
+    return vm.$scope.Borrower.confirmBank(vm.bankAmount)
     .then(response => {
       if(response.data) {
         vm.$scope.currentUser = response.data[0];
@@ -168,22 +269,64 @@ class BorrowerController {
   }
 
   acceptOffer(offer) {
+    var vm = this;
+
     offer.status = 'accepted';
-    return this.Offers.updateOffer(offer);
+    return this.Offers.updateOffer(offer)
+    .then(() => {
+      vm.$state.go('dashboard.borrower.offers')
+      .then(() => {
+        vm.socket.syncUpdates('offer', vm.$scope.offers);
+      });
+    })
   }
 
   rejectRequest(request) {
     var vm = this;
     request.status = 'Rejected';
-    return this.Borrower.updateRequest(request).then(() => {
+    return this.$scope.Borrower.updateRequest(request).then(() => {
       vm.$scope.notifications.requests -= 1;
     });
   }
 
   approveRequest(request) {
     request.status = 'Approved';
-    return this.Borrower.updateRequest(request);
+    return this.$scope.Borrower.updateRequest(request);
   }
+
+  completeLoan() {
+    var vm = this;
+
+    if(vm.$scope.offers) {
+      var offers = vm.$scope.offers;
+      var acceptedOffers = [];
+      var promises = [];
+
+      angular.forEach(offers, function(offer) {
+        if(offer.status === 'accepted') {
+          offer.status = 'complete';
+          acceptedOffers.push(offer);
+        } else {
+          offer.status = 'rejected';
+        }
+        promises.push(vm.Offers.updateOffer(offer));
+      });
+
+      return this.$q.all(promises).then(function() {
+        vm.$scope.Borrower.createSchedule(vm.$scope.currentListing, acceptedOffers, vm.$scope.totals)
+        .then(response => {
+          if(response.data[0]) {
+            vm.$scope.repayments = response.data[0].borrower.payments;
+            vm.hasRepayments = true;
+          }
+        });
+        vm.$scope.loanComplete = false;
+        vm.socket.syncUpdates('offer', offers);
+        vm.$state.go('dashboard.borrower.offers');
+      });
+    }
+  }
+
 }
 
 angular.module('investnextdoorCaApp')

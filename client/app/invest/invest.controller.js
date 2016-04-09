@@ -3,9 +3,21 @@
 (function() {
 
   class InvestController {
-    constructor($scope) {
+    constructor($scope, ListingService, Borrower) {
       var vm = this;
       vm.$scope = $scope;
+      vm.Borrower = Borrower;
+
+      vm.$scope.rates = ListingService.getRates('Select');
+      vm.$scope.terms = ListingService.getTerms('Select');
+
+      vm.calculate = true;
+
+      vm.invest = {
+        amount: null,
+        term: 0,
+        rate: 0
+      };
 
       vm.$scope.panesA = [
         {
@@ -75,6 +87,18 @@
       vm.$scope.$on('accordionA:onReady', function () {
         //console.log('accordionA is ready!');
       });
+    }
+
+    calculateInvestment() {
+      this.calculate = false;
+      this.investment = new this.Borrower.calculatePayment(this.invest.amount, this.invest.rate, this.invest.term);
+      this.invest = {};
+      this.$scope.$parent.$broadcast('updateChosen');
+    }
+
+    resetInvestment() {
+      this.$scope.$parent.$broadcast('updateChosen');
+      this.calculate = true;
     }
   }
 

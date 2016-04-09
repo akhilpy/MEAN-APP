@@ -355,6 +355,14 @@ var ListingSchema = new Schema({
 		scores: scores,
 		financials: financials,
 		bankStatements: bankStatements
+	},
+	agreements: {
+		loan: {
+			signature: {
+				type: String,
+				default: ''
+			}
+		}
 	}
 });
 

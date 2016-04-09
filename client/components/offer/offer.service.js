@@ -43,7 +43,22 @@
        * @return {String}
        */
       getListingOffers(listingID) {
-        return $http.get('/api/offers/listing/' + listingID);
+        return $http.get('/api/offers/listing/' + listingID)
+        .then(response => {
+          var offersArray = [];
+          var promises = [];
+          var offers = response.data;
+
+          angular.forEach(offers, function(offer, key) {
+            if(offer.status !== 'complete') {
+              promises.push(offersArray.push(offer));
+            }
+          });
+
+          return $q.all(promises).then(function() {
+            return offersArray;
+          });
+        })
       },
 
 

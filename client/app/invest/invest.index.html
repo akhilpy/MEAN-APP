@@ -76,36 +76,41 @@
                 <div class="calculator__wrapper">
                   <h3 class="calculator__title">Investment Calculator</h3>
 
-                  <form class="calculator__form">
+                  <form class="calculator__form" ng-show="vm.calculate">
                     <ul class="form__rows">
                       <li class="form__row form__row--split">
                         <div class="form__split--half">
                           <label>Amount to Invest</label>
-                          <select chosen>
-                            <option value="">Select</option>
-                          </select>
+                          <input type="number" ng-model="vm.invest.amount" placeholder="min $500">
                         </div>
                         <div class="form__split--half">
                           <label>Investing Term</label>
-                          <select chosen>
-                            <option value="">Select</option>
-                          </select>
+                          <select chosen="terms" data-placeholder="Select" disable_search_threshold="15" ng-model="vm.invest.term" ng-options="term.value as term.label for term in terms"></select>
                         </div>
                       </li><!-- /.form__row form__row--split -->
 
                       <li class="form__row form__row--split">
                         <div class="form__split--half">
-                          <label>Investor Profile</label>
-                          <select chosen>
-                            <option value="">Select</option>
-                          </select>
+                          <label>Interest Rate</label>
+                          <select chosen="rates" data-placeholder="Select" disable_search_threshold="15" ng-model="vm.invest.rate" ng-options="option.value as option.label for option in rates"></select>
                         </div>
-                        <div class="form__split--half">
-                          <button>Submit</button>
+                        <div class="form__split--half bottom">
+                          <button ng-click="vm.calculateInvestment()">Submit</button>
                         </div>
                       </li><!-- /.form__row form__row--split -->
                     </ul><!-- /.form__rows -->
                   </form><!-- /.calculator__form -->
+
+                  <div class="calculator__result" ng-show="!vm.calculate">
+                    <div class="calculator__result--profit">
+                      <h4>{{vm.investment.return | currency}}</h4>
+                      <p>Estimated Profit</p>
+                    </div><!-- /.calculator__result--profit -->
+                    <div class="calculator__result--actions">
+                      <a class="calculator__result--reset" ng-click="vm.resetInvestment()">Reset Calculator</a>
+                      <button ui-sref="login">Get Started</button>
+                    </div><!-- /.calculator__result--actions -->
+                  </div>
                   <em>By signing up, you agree to the <a ui-sref="legal.privacypolicy">Privacy Policy</a> and the <a ui-sref="legal.termsofservice">Terms of Service</a></em>
                 </div><!-- /.calculator__wrapper -->
               </div><!-- end of .block__green-block--calculator -->

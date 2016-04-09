@@ -49,7 +49,8 @@ th {
     }
   }
 
-  .marketplace-listings & {
+  .marketplace-listings &,
+  .table--dark & {
     a {
       background: $color-slate-dark;
       color: $color-white;
@@ -100,6 +101,10 @@ td {
     @include font-primary(400);
     border-bottom: none;
     padding: rem(10);
+  }
+
+  .table--dark & {
+    padding: rem(10) rem(20);
   }
 
   strong {

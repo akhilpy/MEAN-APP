@@ -41,6 +41,11 @@
     line-height: normal;
     color: $color-grey-med;
     font-style: italic;
+
+    span {
+      color: $color-grey-med;
+    }
+
     div {
       width: rem(40);
       background: none;

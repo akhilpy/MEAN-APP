@@ -6,13 +6,10 @@
 'use strict';
 import User from '../api/user/user.model';
 import Listing from '../api/listing/listing.model';
-import Offers from '../api/offer/offer.model';
+import Offer from '../api/offer/offer.model';
+import Transaction from '../api/transaction/transaction.model';
+import Repayment from '../api/repayment/repayment.model';
 import Faq from '../api/faq/faq.model';
-
-Offers.find({}).remove()
-.then(() => {
-  console.log('finished removing offers');
-});
 
 var newListing = new Listing({
   general: {
@@ -194,6 +191,74 @@ var newBorrower = new User({
   borrower: {
     listings: [newListing]
   }
+});
+
+Offer.find({}).remove()
+.then(() => {
+  Offer.create(
+    {
+      date: "2016-03-11T01:46:24.662Z",
+      listing: newListing,
+      user: newInvestor,
+      rate: 10,
+      amount: 10000,
+      status: 'live'
+    },
+    {
+      date: "2016-03-11T01:46:24.662Z",
+      listing: newListing,
+      user: newInvestor,
+      rate: 10,
+      amount: 20000,
+      status: 'live'
+    },
+    {
+      date: "2016-03-11T01:46:24.662Z",
+      listing: newListing,
+      user: newInvestor,
+      rate: 10,
+      amount: 10000,
+      status: 'live'
+    },
+    {
+      date: "2016-03-11T01:46:24.662Z",
+      listing: newListing,
+      user: newInvestor,
+      rate: 10,
+      amount: 5000,
+      status: 'live'
+    },
+    {
+      date: "2016-03-11T01:46:24.662Z",
+      listing: newListing,
+      user: newInvestor,
+      rate: 10,
+      amount: 5000,
+      status: 'live'
+    },
+    {
+      date: "2016-03-11T01:46:24.662Z",
+      listing: newListing,
+      user: newInvestor,
+      rate: 10,
+      amount: 10000,
+      status: 'live'
+    }
+  );
+})
+.then(() => {
+  console.log('finished populating offers');
+});
+
+
+Transaction.find({}).remove()
+.then(() => {
+  console.log('finished removing transactions');
+});
+
+Repayment.find({}).remove()
+.then(() => {
+  console.log('finished removing repayments');
 });
 
 User.find({}).remove()

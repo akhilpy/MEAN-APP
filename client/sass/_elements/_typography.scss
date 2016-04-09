@@ -534,20 +534,57 @@ hr {
 }
 
 .fa {
+
   &.warning {
-    color: $color-warning;
+    @include font-size(12);
+    display: inline-block;
+    vertical-align: text-bottom;
+    line-height: 1.5;
+    text-align: center;
+    background: $color-warning;
+    color: $color-white;
+    width: rem(18);
+    height: rem(18);
+    border-radius: 100%;
   }
 
   &.success {
-    color: $color-success;
+    @include font-size(12);
+    display: inline-block;
+    vertical-align: text-bottom;
+    line-height: 1.5;
+    text-align: center;
+    background: $color-success;
+    color: $color-white;
+    width: rem(18);
+    height: rem(18);
+    border-radius: 100%;
   }
 
   &.pending {
-    color: $color-grey-light;
+    @include font-size(12);
+    display: inline-block;
+    vertical-align: text-bottom;
+    line-height: 1.5;
+    text-align: center;
+    background: $color-grey-light;
+    color: $color-white;
+    width: rem(18);
+    height: rem(18);
+    border-radius: 100%;
   }
 
   &.new {
-    color: $color-primary-med;
+    @include font-size(12);
+    display: inline-block;
+    vertical-align: text-bottom;
+    line-height: 1.5;
+    text-align: center;
+    background: $color-primary-med;
+    color: $color-white;
+    width: rem(18);
+    height: rem(18);
+    border-radius: 100%;
   }
 }
 
