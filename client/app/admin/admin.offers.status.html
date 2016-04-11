@@ -67,8 +67,8 @@
           <td class="status">
             <i ng-show=offer.status==='pending' class="fa pending"></i>
             <i ng-show=offer.status==='live' class="fa fa-bolt new"></i>
-            <i ng-show=offer.status==='rejected' class="fa fa-times-circle warning"></i>
-            <i ng-show=offer.status==='accepted' class="fa fa-check-circle success"></i>
+            <i ng-show=offer.status==='rejected' class="fa fa-times warning"></i>
+            <i ng-show=offer.status==='accepted' class="fa fa-check success"></i>
           </td>
           <td>{{offer.date | date}}</td>
           <td>{{offer.listing.general.businessName}} <i ng-show=offer.notes class="fa fa-file-text-o"></i></td>

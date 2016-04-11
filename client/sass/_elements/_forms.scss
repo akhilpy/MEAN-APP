@@ -46,6 +46,33 @@ input:not([type=submit]):not([type=file]):not([type=radio]):not([type=checkbox])
   }
 }
 
+.formly-field-group {
+  .input-style {
+    @include transition;
+    @include input-placeholder;
+    @include font-size;
+    padding: rem(10);
+    width: 100%;
+    border: 1px solid $color-grey-light;
+    outline: none;
+    border-radius: $border-radius;
+    margin-bottom: 0;
+    line-height: normal;
+    font-style: normal;
+    color: $color-grey-dark;
+
+    a {
+      font-style: normal;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    &.has-addon {
+      border-radius: 0 $border-radius $border-radius 0;
+    }
+  }
+}
+
 input:not([type=submit]):not([type=file]):not([type=radio]):not([type=checkbox]):focus,
 input:not([type=submit]):not([type=file]):not([type=radio]):not([type=checkbox]):hover,
 #{$all-text-inputs-focus},

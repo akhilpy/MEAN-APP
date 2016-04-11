@@ -1,0 +1,8 @@
+<ul class="dashboard__navigation--list">
+  <li><a ui-sref-active="active" ui-sref="admin.loans.index">All Loans</a></li>
+  <li><a ui-sref-active="active" ui-sref="admin.loans.status({status: 'pending'})">Pending</a></li>
+  <li><a ui-sref-active="active" ui-sref="admin.loans.status({status: 'unpaid'})">Unpaid</a></li>
+  <li><a ui-sref-active="active" ui-sref="admin.loans.status({status: 'paid'})">Paid</a></li>
+</ul><!-- /.dashboard__navigation--list -->
+
+<ui-view class="admin-dashboard__main"></ui-view>

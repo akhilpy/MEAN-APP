@@ -6,19 +6,21 @@
       <div class="flex-1">
         <label>Status</label>
         <div class="input-group">
-          <select chosen="vm.offer.status" data-placeholder="Status" disable_search_threshold="15" ng-model="vm.offer.status" ng-options="status.label as status.value for status in vm.allStatus"></select>
+          <select chosen="vm.offer.status" data-placeholder="Status" disable_search_threshold="15" ng-model="vm.offer.status" ng-options="status.value as status.label for status in vm.allStatus"></select>
         </div><!-- /.input-group -->
       </div><!-- /.flex-1 -->
       <div class="flex-1">
         <label>Business</label>
         <div class="input-group">
-          <p>{{vm.offer.listing.general.businessName}}</p>
+          <div class="input-group-addon"><i class="fa fa-building-o"></i></div>
+          <p class="input-style has-addon">{{vm.offer.listing.general.businessName}}</p>
         </div><!-- /.input-group -->
       </div><!-- /.flex-1 -->
       <div class="flex-1">
         <label>Investor</label>
         <div class="input-group">
-          <p><a href="#" ui-sref="admin.edituser.profile({id: vm.offer.user._id})">{{vm.offer.user.name.first}} {{vm.offer.user.name.last}}</a></p>
+          <div class="input-group-addon"><i class="fa fa-user"></i></div>
+          <p class="input-style has-addon"><a href="#" ui-sref="admin.edituser.profile({id: vm.offer.user._id})">{{vm.offer.user.name.first}} {{vm.offer.user.name.last}}</a></p>
         </div><!-- /.input-group -->
       </div><!-- /.flex-1 -->
     </div><!-- /.display-flex -->
@@ -30,21 +32,21 @@
         <label>Date</label>
         <div class="input-group">
           <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-          <input type="text" disabled="disabled" ng-model="vm.offer.date | date">
+          <p class="input-style has-addon">{{vm.offer.date | date}}</p>
         </div><!-- /.input-group -->
       </div><!-- /.flex-1 -->
       <div class="flex-1">
         <label>Rate</label>
         <div class="input-group">
           <div class="input-group-addon"><i class="fa fa-percent"></i></div>
-          <input type="text" disabled="disabled" ng-model="vm.offer.rate">
+          <p class="input-style has-addon">{{vm.offer.rate}}</p>
         </div><!-- /.input-group -->
       </div><!-- /.flex-1 -->
       <div class="flex-1">
         <label>Amount</label>
         <div class="input-group">
           <div class="input-group-addon"><i class="fa fa-usd"></i></div>
-          <input type="text" disabled="disabled" ng-model="vm.offer.amount">
+          <p class="input-style has-addon">{{vm.offer.amount | currency}}</p>
         </div><!-- /.input-group -->
       </div><!-- /.flex-1 -->
     </div><!-- /.display-flex -->

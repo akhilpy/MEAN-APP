@@ -273,6 +273,58 @@ angular.module('investnextdoorCaApp.admin')
         },
         authenticate: 'admin'
       })
+      .state('admin.loans', {
+        url: '/loans',
+        templateUrl: 'app/admin/admin.loans.html',
+        resolve: {
+          loans: function() { return []; },
+          loan: function() { return []; }
+        },
+        abstract: true,
+        authenticate: 'admin'
+      })
+      .state('admin.loans.index', {
+        url: '',
+        templateUrl: 'app/admin/admin.loans.status.html',
+        controller: 'AdminOfferController',
+        controllerAs: 'vm',
+        resolve: {
+          loans: function() { return []; }
+        },
+        ncyBreadcrumb: {
+          label: 'Loans',
+          parent: 'admin.index'
+        },
+        authenticate: 'admin',
+      })
+      .state('admin.loans.status', {
+        url: '/:status',
+        templateUrl: 'app/admin/admin.loans.status.html',
+        controller: 'AdminOfferController',
+        controllerAs: 'vm',
+        resolve: {
+          loans: function() { return []; }
+        },
+        ncyBreadcrumb: {
+          label: '{{breadcrumb}}',
+          parent: 'admin.loans.index'
+        },
+        authenticate: 'admin',
+      })
+      .state('admin.loans.detail', {
+        url: '/view/:id',
+        templateUrl: 'app/admin/admin.loans.detail.html',
+        controller: 'AdminOfferDetailController',
+        controllerAs: 'vm',
+        resolve: {
+          loan: function() { return []; }
+        },
+        ncyBreadcrumb: {
+          label: '{{breadcrumb}}',
+          parent: 'admin.loans.index'
+        },
+        authenticate: 'admin',
+      })
       .state('admin.offers', {
         url: '/offers',
         templateUrl: 'app/admin/admin.offers.html',
