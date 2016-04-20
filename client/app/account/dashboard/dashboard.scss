@@ -89,6 +89,7 @@
 
 .dashboard--details__element {
   border-radius: $border-radius;
+  text-align: center;
 
   p {
     @include font-size(18);
@@ -118,6 +119,7 @@
     padding: rem(20);
     text-transform: uppercase;
     margin-bottom: rem(20);
+    text-align: left;
 
     p {
       @include font-primary(600);

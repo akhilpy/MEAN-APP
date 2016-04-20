@@ -13,25 +13,30 @@ function InvestorService($http, Offers, ListingService, $q) {
      */
     getInvestorInfo() {
       var info = {};
+      var total = 0;
+      var activeOffers = [];
       return ListingService.getCurrentUser()
         .then(user => {
           return Offers.getUserOffers(user._id).then(data => {
             var offers = data.data;
-            var total = 0;
             angular.forEach(offers, function(offer, key) {
-              total += offer.amount;
+              if(offer.status === 'live') {
+                activeOffers.push(offer);
+                total += offer.amount;
+              }
             });
-            return total;
-          }).then(total => {
+            return user;
+          }).then(user => {
             return {
               balance: user.investor.balance,
               amount: total,
-              number: user.investor.offers.length,
+              number: activeOffers.length,
               total: 0,
               interest: 13845,
               forecast: 15560,
               late: 0,
-              status: user.investor.status
+              status: user.investor.status,
+              level: user.investor.level
             }
           });
         })

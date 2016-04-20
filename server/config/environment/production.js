@@ -19,6 +19,6 @@ module.exports = {
           process.env.MONGOHQ_URL ||
           process.env.OPENSHIFT_MONGODB_DB_URL +
           process.env.OPENSHIFT_APP_NAME ||
-          'mongodb://localhost/investnextdoorca'
+          'mongodb://heroku_rzb2dg8l:s07stougkvena489h0fkbaa6qg@ds051635.mongolab.com:51635/heroku_rzb2dg8l'
   }
 };

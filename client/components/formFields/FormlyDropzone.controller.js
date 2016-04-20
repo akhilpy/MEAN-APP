@@ -53,6 +53,14 @@ class FormlyDropzoneCtrl {
           if($scope.model[$scope.options.key].length < maxFiles) {
             $scope.dropzoneConfig.options.message = 'Uploading';
           }
+        },
+        removedfile: function(file) {
+          var vm = this;
+
+          $timeout(function() {
+            this.removeFile(file);
+            $scope.$digest();
+          });
         }
       }
     };

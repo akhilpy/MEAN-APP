@@ -15,6 +15,7 @@ router.get('/:id', auth.isAuthenticated(), controller.show);
 router.get('/:id/bookmarks', auth.isAuthenticated(), controller.bookmarks);
 router.put('/:id/password', auth.isAuthenticated(), controller.changePassword);
 router.put('/:id/confirm-account', auth.isAuthenticated(), controller.confirmAccount);
+router.post('/:id/last-login', auth.isAuthenticated(), controller.lastLogin);
 router.post('/', controller.create);
 
 export default router;

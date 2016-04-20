@@ -9,14 +9,16 @@ class WidgetCurrentOffersController {
     widget.$scope = $scope;
     widget.$scope.makeOutbid = false;
 
-    if(this.$scope.vm.currentOffers.length > 0) {
+    console.log(this.$scope.vm.currentOffers);
+
+    if(this.$scope.vm.currentOffers.live.length > 0) {
       var rates = 0
 
-      angular.forEach(this.$scope.vm.currentOffers, function(offer) {
+      angular.forEach(this.$scope.vm.currentOffers.live, function(offer) {
         rates += offer.rate;
       });
 
-      $scope.vm.averageRate = Math.ceil(rates / this.$scope.vm.currentOffers.length);
+      $scope.vm.averageRate = Math.ceil(rates / this.$scope.vm.currentOffers.live.length);
     }
   }
 

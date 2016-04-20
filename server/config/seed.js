@@ -160,7 +160,8 @@ var newListing = new Listing({
   ],
   admin: {
     basics: {
-      status: 'active'
+      status: 'active',
+      userRate: 10
     }
   }
 });

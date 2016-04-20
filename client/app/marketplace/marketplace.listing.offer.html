@@ -67,15 +67,16 @@
     </h3><!-- /.general-content__section--title -->
   </header><!-- /.general-content__section--header -->
   <ul class="general-content__table-keys">
-    <li><span class="table-key table-key--live"></span> Live offers</li>
-    <li><span class="table-key table-key--risk"></span> At risk of being outbid</li>
-    <li><span class="table-key table-key--outbid"></span> Outbid</li>
-    <li><span class="table-key table-key--pending"></span> Pending</li>
+    <li><i class="fa fa pending"></i> In Review</li>
+    <li><i class="fa fa-bolt new"></i> Active</li>
+    <li><i class="fa fa-times warning"></i> Rejected</li>
+    <li><i class="fa fa-check success"></i> Accepted</li>
   </ul><!-- /.general-content__table-keys -->
 
   <table>
     <thead>
       <tr>
+        <th class="status"><a><i class="fa fa-circle-o"></i></a></th>
         <th>
           <a href="#">
             Investor
@@ -112,24 +113,20 @@
             </span>
           </a>
         </th>
-        <th>
-          <a href="#">
-            Status
-            <span class="sort-icon">
-              <i class="fa fa-angle-down"></i>
-              <i class="fa fa-angle-up"></i>
-            </span>
-          </a>
-        </th>
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="offer in vm.currentOffers" ng-class="{'row-disabled': offer.status==='pending'}">
+      <tr ng-repeat="offer in vm.currentOffers.all" ng-class="{'row-disabled': offer.status==='pending'}">
+        <td class="status">
+          <i ng-show=offer.status==='pending' class="fa pending"></i>
+          <i ng-show=offer.status==='live' class="fa fa-bolt new"></i>
+          <i ng-show=offer.status==='rejected' class="fa fa-times warning"></i>
+          <i ng-show=offer.status==='accepted' class="fa fa-check success"></i>
+        </td>
         <td>{{offer.user.name.first}} {{offer.user.name.last}}</td>
         <td>{{offer.amount | currency}}</td>
         <td>{{offer.rate}}%</td>
         <td>{{offer.date | date}}</td>
-        <td><span class="table-key table-key--{{offer.status}}"></span></td>
       </tr>
     </tbody>
   </table>

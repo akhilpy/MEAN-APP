@@ -34,6 +34,9 @@ function AuthService($location, $http, $cookies, $q, appConfig, Util, User) {
           safeCb(callback)(null, user);
           return user;
         })
+        .then(user => {
+          return $http.post('/api/users/' + user._id + '/last-login');
+        })
         .catch(err => {
           Auth.logout();
           safeCb(callback)(err.data);
@@ -199,6 +202,17 @@ function AuthService($location, $http, $cookies, $q, appConfig, Util, User) {
       return false;
     }
   },
+
+  /**
+   * Check if a user is an investor
+   *   (synchronous|asynchronous)
+   *
+   * @param  {Function|*} callback - optional, function(is)
+   * @return {Bool|Promise}
+   */
+ delete(userID) {
+   return $http.delete('/api/users/' + userID);
+ },
 
     /**
      * Get auth token

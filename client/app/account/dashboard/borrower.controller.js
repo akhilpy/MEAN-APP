@@ -86,62 +86,50 @@ class BorrowerController {
     });
 
     ListingService.getOne().then(listing => {
-      this.$scope.currentListing = listing.data;
+      vm.$scope.currentListing = listing.data;
       socket.syncUpdates('listing', this.$scope.currentListing);
     });
 
-    Borrower.getOffers().then(allOffers => {
+    Borrower.getOffers().then(offers => {
       var vm = this;
-      var offers = [];
-      var activeOffers = [];
-      var acceptedOffers = [];
 
-      if(allOffers.length > 0) {
-        angular.forEach(allOffers, function(listingOffers) {
-          angular.forEach(listingOffers, function(offer) {
-            offers.push(offer);
+      var activeOffers = offers.live;
+      var acceptedOffers = offers.accepted;
 
-            if(offer.status === 'live') {
-              vm.$scope.totalOffers += offer.amount;
-              if(vm.$scope.totalOffers >= vm.$scope.currentListing.details.amount) {
-                vm.$scope.amountReached = true;
-              }
-              activeOffers.push(offer);
-            }
-
-            if(offer.status === 'accepted') {
-              vm.$scope.acceptedOffers += offer.amount;
-              if(vm.$scope.acceptedOffers >= vm.$scope.currentListing.details.amount) {
-                vm.$scope.loanComplete = true;
-              }
-              acceptedOffers.push(offer);
-            }
-
-            if(activeOffers.length > 0) {
-              $scope.notifications.offers = activeOffers.length;
-            }
-          });
+      if(offers.live.length > 0) {
+        angular.forEach(offers.live, function(offer) {
+          vm.$scope.totalOffers += offer.amount;
+          if(vm.$scope.totalOffers >= vm.$scope.currentListing.details.amount) {
+            vm.$scope.amountReached = true;
+          }
         });
+      }
 
-        vm.$scope.offers = offers;
-        socket.syncUpdates('offer', offers, function(event, item, object) {
-          vm.$scope.offers = object;
+      if(offers.accepted.length > 0) {
+        angular.forEach(offers.accepted, function(offer) {
+          vm.$scope.acceptedOffers += offer.amount;
+          if(vm.$scope.acceptedOffers >= vm.$scope.currentListing.details.amount) {
+            vm.$scope.loanComplete = true;
+          }
         });
+      }
 
-        if(offers.length > 0) {
-          vm.hasOffers = true;
-        }
+      $scope.notifications.offers = offers.live.length;
+      vm.$scope.offers = offers.all;
 
-        if(activeOffers.length > 0) {
-          vm.$scope.borrowerOffers = activeOffers.length;
-        } else {
-          vm.$scope.borrowerOffers = 0;
-        }
+      if(offers.all.length > 0) {
+        vm.hasOffers = true;
+      }
 
-        if(acceptedOffers.length > 0) {
-          vm.$scope.repayment = Borrower.generateSchedule(acceptedOffers, vm.$scope.currentListing.details.term);
-          vm.$scope.totals = vm.$scope.repayment.monthly;
-        }
+      if(offers.live.length > 0) {
+        vm.$scope.borrowerOffers = offers.live.length;
+      } else {
+        vm.$scope.borrowerOffers = 0;
+      }
+
+      if(offers.accepted.length > 0) {
+        vm.$scope.repayment = Borrower.generateSchedule(offers.accepted, vm.$scope.currentListing.details.term);
+        vm.$scope.totals = vm.$scope.repayment.monthly;
       }
     });
 
@@ -272,7 +260,7 @@ class BorrowerController {
     var vm = this;
 
     offer.status = 'accepted';
-    return this.Offers.updateOffer(offer)
+    return vm.Offers.updateOffer(offer)
     .then(() => {
       vm.$state.go('dashboard.borrower.offers')
       .then(() => {

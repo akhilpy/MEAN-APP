@@ -3,12 +3,13 @@
 (function() {
 
 class AdminController {
-  constructor(listings, users, offers, ListingService, $state, $stateParams, $scope) {
+  constructor(listings, users, offers, ListingService, $state, $stateParams, $scope, Auth) {
     var vm = this;
     vm.$state = $state;
     vm.$scope = $scope;
     vm.$stateParams = $stateParams;
     vm.ListingService = ListingService;
+    vm.Auth = Auth;
 
     vm.allListings = listings.data;
     vm.users = users.data;
@@ -25,13 +26,11 @@ class AdminController {
     }
 
     vm.adminEditing = true;
-
   }
 
   delete(user) {
-    var vm = this;
-    user.$remove();
-    vm.users.splice(vm.users.indexOf(user), 1);
+    this.Auth.delete(user._id);
+    this.users.splice(this.users.indexOf(user), 1);
   }
 
   edit(user) {

@@ -116,6 +116,8 @@ angular.module('investnextdoorCaApp')
       .state('dashboard.borrower.offers', {
         url: '/offers',
         templateUrl: 'app/account/dashboard/borrower/dashboard.offers.html',
+        controller: 'BorrowerController',
+        controllerAs: 'vm',
         authenticate: true
       })
       .state('dashboard.borrower.statements', {

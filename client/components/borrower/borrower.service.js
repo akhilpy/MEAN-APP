@@ -202,20 +202,20 @@ function BorrowerService($http, Offers, $q, ListingService) {
     getOffers() {
       return Borrower.getApplications()
         .then(listings => {
-          var offersArray = [];
+          var allOffers = {};
           var promises = [];
 
           angular.forEach(listings, function(listing, key) {
             promises.push(
               Offers.getListingOffers(listing._id)
                 .then(offers => {
-                  offersArray.push(offers);
+                  allOffers = offers;
                 })
             );
           });
 
           return $q.all(promises).then(function() {
-            return offersArray;
+            return allOffers;
           });
         })
         .catch(err => {

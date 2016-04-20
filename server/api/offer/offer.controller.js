@@ -85,6 +85,16 @@ export function listing(req, res) {
     .catch(handleError(res));
 }
 
+// Gets a list of Offers from a listing by status
+export function listingStatus(req, res) {
+  var listingID = req.params.id;
+  var status = req.params.status;
+
+  Offer.findAsync({listing: listingID, status: status})
+    .then(respondWithResult(res))
+    .catch(handleError(res));
+}
+
 // Gets a list of Offers from a user
 export function user(req, res) {
   var userID = req.params.id;

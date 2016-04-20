@@ -14,7 +14,7 @@ class WidgetOfferController {
     widget.$scope.offered = false;
 
     widget.newOffer = {
-      rate: widget.$scope.vm.currentListing.admin.basics.listedRate,
+      rate: widget.$scope.vm.currentListing.admin.basics.userRate,
       amount: widget.$scope.vm.currentListing.admin.basics.investment.min
     };
 

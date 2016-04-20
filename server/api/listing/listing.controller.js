@@ -85,6 +85,17 @@ export function show(req, res) {
     .catch(handleError(res));
 }
 
+// Gets a single Listing's user from the DB
+export function showUser(req, res) {
+  var listing = req.params.id;
+
+  return User.findOne({
+    'borrower.listings': listing
+  }).exec()
+    .then(respondWithResult(res))
+    .catch(handleError(res));
+}
+
 // Creates a new Listing in the DB
 export function create(req, res) {
   var userID = req.body.user._id;

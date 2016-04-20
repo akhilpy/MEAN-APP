@@ -22,8 +22,6 @@ class AdminUserController {
 
     vm.submitted = true;
 
-    console.log(vm.user);
-
     if (form.$valid) {
       vm.$http.put('/api/users/' + vm.user._id, {
         user: vm.user

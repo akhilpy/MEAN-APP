@@ -45,18 +45,25 @@
       getListingOffers(listingID) {
         return $http.get('/api/offers/listing/' + listingID)
         .then(response => {
-          var offersArray = [];
+          var allOffers = {
+            all: [],
+            pending: [],
+            live: [],
+            rejected: [],
+            outbid: [],
+            accepted: [],
+            complete: []
+          };
           var promises = [];
           var offers = response.data;
 
           angular.forEach(offers, function(offer, key) {
-            if(offer.status !== 'complete') {
-              promises.push(offersArray.push(offer));
-            }
+            promises.push(allOffers['all'].push(offer));
+            promises.push(allOffers[offer.status].push(offer));
           });
 
           return $q.all(promises).then(function() {
-            return offersArray;
+            return allOffers;
           });
         })
       },

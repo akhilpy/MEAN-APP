@@ -2,7 +2,7 @@
 
 (function() {
 
-function DropzoneService($http) {
+function DropzoneService($http, $timeout) {
 
   var Dropzone = {
 

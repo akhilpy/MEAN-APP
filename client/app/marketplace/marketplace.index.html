@@ -138,7 +138,7 @@
             </a>
           </th>
           <th>
-            <a href="#" ng-click="sortType = 'rate'; sortReverse = !sortReverse">
+            <a href="#" ng-click="sortType = 'admin.basics.userRate'; sortReverse = !sortReverse">
               Rate
               <span class="sort-icon">
                 <i class="fa fa-angle-down"></i>
@@ -185,7 +185,7 @@
           <td>{{listing.general.businessName}}</td>
           <td>{{listing.general.address.city}} {{listing.general.address.province}}</td>
           <td>{{listing.general.industry}}</td>
-          <td>{{listing.admin.basics.listedRate}}%</td>
+          <td>{{listing.admin.basics.userRate}}%</td>
           <td>{{listing.details.term}} Mo</td>
           <td>{{listing.admin.basics.deadline | amCalendar}}</td>
           <td></td>

@@ -109,6 +109,27 @@ function ListingService($location, $cookies, $q, $resource, $http, Auth, User, $
 
 
     /**
+     * Get user from listing
+     *
+     * @return {String}
+     */
+    getUserOne(listingID) {
+      return $http.get('/api/listings/user/' + listingID)
+      .then(response => {
+        if(response.data) {
+          return response.data;
+        } else {
+          return [];
+        }
+      })
+      .catch(err => {
+        console.log(err.message);
+      });
+    },
+
+
+
+    /**
      * Create listing
      *
      * @return {String}

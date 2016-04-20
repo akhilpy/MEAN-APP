@@ -108,6 +108,10 @@ export function update(req, res, next) {
       user.name = savedUser.name;
       user.email = String(savedUser.email);
 
+      if(savedUser.newRole) {
+        user.role = savedUser.newRole;
+      }
+
       if( savedUser.role === 'investor' ) {
         if(savedUser.phone) {
           user.phone = String(savedUser.phone);
@@ -128,6 +132,11 @@ export function update(req, res, next) {
         if(savedUser.investor) {
           user.investor = savedUser.investor;
         }
+
+        if(savedUser.attachments) {
+          user.attachments = savedUser.attachments;
+        }
+
       }
 
       if( savedUser.role === 'borrower' ) {
@@ -179,6 +188,29 @@ export function bookmarks(req, res, next) {
       res.json(user);
     })
     .catch(err => next(err));
+}
+
+
+
+/**
+ * Set Last Login Time
+ */
+export function lastLogin(req, res, next) {
+  var userId = req.user._id;
+
+  User.findByIdAsync(userId)
+  .then(user => {
+    if (user) {
+      user.lastActive = new Date().toISOString();
+      return user.saveAsync()
+        .then(() => {
+          res.status(204).end();
+        })
+        .catch(validationError(res));
+    } else {
+      return res.status(403).end();
+    }
+  });
 }
 
 

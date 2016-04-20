@@ -39,6 +39,11 @@ class AdminListingController {
       admin: vm.Form.getListingPage('admin')
     };
 
+    vm.ListingService.getUserOne(vm.listingID)
+    .then(user => {
+      vm.currentBorrower = user;
+    });
+
     vm.$scope.$on('saveForm', function() {
       var form = vm.$scope.listing;
       vm.saveListing(form);

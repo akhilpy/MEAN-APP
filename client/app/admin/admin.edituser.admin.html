@@ -6,6 +6,25 @@
 
 <div class="borrower-profile" ng-show="vm.user.role==='borrower'">
   <div class="listing-form__wrapper listing-form__borrower">
+    <div class="formly-field-group">
+      <div class="display-flex not-form">
+        <div class="flex-1">
+          <label>Joined</label>
+          <div class="input-group">
+            <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+            <p class="input-style has-addon">{{vm.user.joined | date}}</p>
+          </div><!-- /.input-group -->
+        </div><!-- /.flex-1 -->
+        <div class="flex-1">
+          <label>Last Login</label>
+          <div class="input-group">
+            <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+            <p class="input-style has-addon">{{vm.user.lastActive | date}}</p>
+          </div><!-- /.input-group -->
+        </div><!-- /.flex-1 -->
+      </div><!-- /.display-flex -->
+    </div><!-- /.formly-field-group -->
+
     <formly-form model="vm.user" fields="vm.borrowerAdmin" form="borrower">
       <div class="formly-submit">
         <ul class="listing-form__pagination">
@@ -20,6 +39,25 @@
 
 <div class="investor-profile" ng-show="vm.user.role==='investor'">
   <div class="listing-form__wrapper listing-form__investor">
+    <div class="formly-field-group">
+      <div class="display-flex not-form">
+        <div class="flex-1">
+          <label>Joined</label>
+          <div class="input-group">
+            <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+            <p class="input-style has-addon">{{vm.user.joined | date}}</p>
+          </div><!-- /.input-group -->
+        </div><!-- /.flex-1 -->
+        <div class="flex-1">
+          <label>Last Login</label>
+          <div class="input-group">
+            <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+            <p class="input-style has-addon">{{vm.user.lastActive | date}}</p>
+          </div><!-- /.input-group -->
+        </div><!-- /.flex-1 -->
+      </div><!-- /.display-flex -->
+    </div><!-- /.formly-field-group -->
+
     <formly-form model="vm.user" fields="vm.investorAdmin" form="investor">
       <div class="formly-submit">
         <ul class="listing-form__pagination">

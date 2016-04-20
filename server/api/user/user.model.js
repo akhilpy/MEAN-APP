@@ -35,6 +35,12 @@ var address = {
 	postal: String
 };
 
+var file = {
+	name: String,
+	link: String,
+	size: String
+};
+
 var bookmark = {
 	listing: {
 		type: Schema.ObjectId,
@@ -107,6 +113,7 @@ var UserSchema = new Schema({
 		type: Date,
 		default: Date.now
 	},
+	lastActive: Date,
   role: {
     type: String,
     default: 'borrower'
@@ -164,7 +171,8 @@ var UserSchema = new Schema({
   facebook: {},
   google: {},
   github: {},
-	bookmarks: [bookmark]
+	bookmarks: [bookmark],
+	attachments: [file]
 });
 
 /**

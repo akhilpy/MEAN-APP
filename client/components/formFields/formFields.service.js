@@ -317,6 +317,16 @@ function FormService(appConfig) {
                 label: 'Request',
                 description: 'Let us know if there is a type of investment that you are specifically looking for.'
               }
+            },
+            {
+              className: 'flex-1',
+              type: 'dropzone',
+              key: 'attachments',
+              templateOptions: {
+                kye: 'attachments',
+                type: 'input',
+                label: 'Attach any Relevant Supporting Documentation.'
+              },
             }
           ]
         },
@@ -373,6 +383,39 @@ function FormService(appConfig) {
         {
           className: 'display-flex',
           fieldGroup: [
+            {
+              className: 'flex-1',
+              type: 'chosen',
+              key: 'newRole',
+              defaultValue: 'investor',
+              templateOptions: {
+                label: 'Role',
+                labelProp: 'name',
+                valueProp: 'value',
+                options: [
+                  {
+                    name: 'Borrower',
+                    value: 'borrower'
+                  },
+                  {
+                    name: 'Investor',
+                    value: 'investor'
+                  },
+                  {
+                    name: 'Affiliate',
+                    value: 'affiliate'
+                  },
+                  {
+                    name: 'Admin',
+                    value: 'admin'
+                  }
+                ],
+                placeholder: 'Select'
+              },
+              expressionProperties: {
+                'templateOptions.disabled': 'formState.disabled'
+              }
+            },
             {
               className: 'flex-1',
               type: 'chosen',
@@ -588,6 +631,39 @@ function FormService(appConfig) {
         {
           className: 'display-flex',
           fieldGroup: [
+            {
+              className: 'flex-1',
+              type: 'chosen',
+              key: 'newRole',
+              defaultValue: 'borrower',
+              templateOptions: {
+                label: 'Role',
+                labelProp: 'name',
+                valueProp: 'value',
+                options: [
+                  {
+                    name: 'Borrower',
+                    value: 'borrower'
+                  },
+                  {
+                    name: 'Investor',
+                    value: 'investor'
+                  },
+                  {
+                    name: 'Affiliate',
+                    value: 'affiliate'
+                  },
+                  {
+                    name: 'Admin',
+                    value: 'admin'
+                  }
+                ],
+                placeholder: 'Select'
+              },
+              expressionProperties: {
+                'templateOptions.disabled': 'formState.disabled'
+              }
+            },
             {
               className: 'flex-1',
               type: 'chosen',
@@ -1468,8 +1544,7 @@ function FormService(appConfig) {
                 templateOptions: {
                   key: 'additionalDocuments',
                   type: 'input',
-                  label: 'Additional Financial Documents',
-                  description: 'Attach documents up to 2MB (file names will be displayed) such as business plan, forecasts and financial statements.'
+                  label: 'Additional Financial Documents'
                 },
               }
             ],

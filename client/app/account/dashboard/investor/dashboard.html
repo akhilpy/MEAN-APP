@@ -23,7 +23,7 @@
       <li class="dashboard--details__element--wrapper">
         <div class="dashboard--details__element">
           <h3 class="dashboard--details__medium" ng-show="investorInfo.status==='Inactive'"><a href="#">Confirm</a></h3>
-          <h3 class="dashboard--details__medium" ng-show="investorInfo.status!=='Inactive'">{{investorInfo.status}}</h3>
+          <h3 class="dashboard--details__medium" ng-show="investorInfo.status!=='Inactive'">{{investorInfo.level}}</h3>
           <p>Investor Status <a href="#"><i class="fa fa-question-circle"></i></a></p>
         </div><!-- /.dashboard--details__element -->
       </li><!-- /.dashboard--details__element -->
@@ -71,8 +71,8 @@
 
       <ul class="dashboard__navigation--list">
         <li><a ui-sref-active="active" ui-sref="dashboard.investor.actions">Actions</a></li>
-        <li><a ui-sref-active="active" ui-sref="dashboard.investor.investments">Investments</a></li>
         <li><a ui-sref-active="active" ui-sref="dashboard.investor.offers">Offers</a></li>
+        <li><a ui-sref-active="active" ui-sref="dashboard.investor.investments">Investments</a></li>
         <li><a ui-sref-active="active" ui-sref="dashboard.investor.repayments">Repayments</a></li>
         <li><a ui-sref-active="active" ui-sref="dashboard.investor.statements">Statements</a></li>
         <li><a ui-sref-active="active" ui-sref="dashboard.investor.watchlist">Watchlist</a></li>

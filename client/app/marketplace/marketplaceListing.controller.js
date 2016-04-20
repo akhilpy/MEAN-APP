@@ -11,7 +11,7 @@ class MarketplaceListingController {
     vm.ngDialog = ngDialog;
     vm.currentListing = listing.data;
     vm.currentListing.link = window.location.href;
-    vm.currentOffers = offers.data;
+    vm.currentOffers = offers;
     vm.currentUser = Auth.getCurrentUser();
 
     vm.requested = false;
@@ -33,7 +33,7 @@ class MarketplaceListingController {
       vm.hasFiles = true;
     }
 
-    if(vm.currentOffers && vm.currentOffers.length > 0) {
+    if(vm.currentOffers && vm.currentOffers.all.length > 0) {
       vm.hasOffers = true;
     }
 
