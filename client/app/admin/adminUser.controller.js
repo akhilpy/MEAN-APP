@@ -13,6 +13,8 @@ class AdminUserController {
     vm.investorAdmin = vm.Form.getInvestorAdmin();
     vm.borrowerProfile = vm.Form.getBorrowerProfile();
     vm.borrowerAdmin = vm.Form.getBorrowerAdmin();
+
+    vm.user.newRole = vm.user.role;
   }
 
   updateInvestor(form) {

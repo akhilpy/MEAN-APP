@@ -175,8 +175,9 @@ var newInvestor = new User({
   },
   email: 'test@investor.com',
   password: 'password',
+  balance: 75000,
   investor: {
-    balance: 75000
+    maximum: 50000
   }
 });
 
@@ -201,20 +202,20 @@ Offer.find({}).remove()
       date: "2016-03-11T01:46:24.662Z",
       listing: newListing,
       user: newInvestor,
-      rate: 10,
+      rate: 6,
       amount: 10000,
       status: 'live'
     },
     {
-      date: "2016-03-11T01:46:24.662Z",
+      date: "2016-02-11T01:46:24.662Z",
       listing: newListing,
       user: newInvestor,
-      rate: 10,
+      rate: 7,
       amount: 20000,
       status: 'live'
     },
     {
-      date: "2016-03-11T01:46:24.662Z",
+      date: "2016-01-11T01:46:24.662Z",
       listing: newListing,
       user: newInvestor,
       rate: 10,
@@ -222,26 +223,26 @@ Offer.find({}).remove()
       status: 'live'
     },
     {
-      date: "2016-03-11T01:46:24.662Z",
+      date: "2015-12-11T01:46:24.662Z",
       listing: newListing,
       user: newInvestor,
-      rate: 10,
+      rate: 20,
       amount: 5000,
       status: 'live'
     },
     {
-      date: "2016-03-11T01:46:24.662Z",
+      date: "2015-11-11T01:46:24.662Z",
       listing: newListing,
       user: newInvestor,
-      rate: 10,
+      rate: 6,
       amount: 5000,
       status: 'live'
     },
     {
-      date: "2016-03-11T01:46:24.662Z",
+      date: "2015-10-11T01:46:24.662Z",
       listing: newListing,
       user: newInvestor,
-      rate: 10,
+      rate: 8,
       amount: 10000,
       status: 'live'
     }

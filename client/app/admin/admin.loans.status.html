@@ -1,1 +1,85 @@
-<p>Loans go here</p>
+<div class="marketplace-listings__wrapper">
+  <div class="marketplace-listings">
+    <ul class="general-content__table-keys">
+      <li><i class="fa fa pending"></i> Accepted</li>
+      <li><i class="fa fa-bolt new"></i> Pending</li>
+      <li><i class="fa fa-times warning"></i> Rejected</li>
+      <li><i class="fa fa-check success"></i> Closed</li>
+    </ul><!-- /.general-content__table-keys -->
+    <table>
+      <thead>
+        <tr>
+          <th class="status"><a><i class="fa fa-circle-o"></i></a></th>
+          <th>
+            <a href="#" ng-click="sortType = 'date'; sortReverse = !sortReverse">
+              Date
+              <span class="sort-icon">
+                <i class="fa fa-angle-down"></i>
+                <i class="fa fa-angle-up"></i>
+              </span>
+            </a>
+          </th>
+          <th>
+            <a href="#" ng-click="sortType = 'listing'; sortReverse = !sortReverse">
+              Listing
+              <span class="sort-icon">
+                <i class="fa fa-angle-down"></i>
+                <i class="fa fa-angle-up"></i>
+              </span>
+            </a>
+          </th>
+          <th>
+            <a href="#" ng-click="sortType = 'investor'; sortReverse = !sortReverse">
+              Investor
+              <span class="sort-icon">
+                <i class="fa fa-angle-down"></i>
+                <i class="fa fa-angle-up"></i>
+              </span>
+            </a>
+          </th>
+          <th>
+            <a href="#" ng-click="sortType = 'rate'; sortReverse = !sortReverse">
+              Rate
+              <span class="sort-icon">
+                <i class="fa fa-angle-down"></i>
+                <i class="fa fa-angle-up"></i>
+              </span>
+            </a>
+          </th>
+          <th>
+            <a href="#" ng-click="sortType = 'borrower.status'; sortReverse = !sortReverse">
+              Amount
+              <span class="sort-icon">
+                <i class="fa fa-angle-down"></i>
+                <i class="fa fa-angle-up"></i>
+              </span>
+            </a>
+          </th>
+          <th>
+            <a href="#">
+              Actions
+            </a>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="offer in vm.loans | orderBy:sortType:sortReverse">
+          <td class="status">
+            <i ng-show=offer.status==='accepted' class="fa pending"></i>
+            <i ng-show=offer.status==='live' class="fa fa-bolt new"></i>
+            <i ng-show=offer.status==='unpaid' class="fa fa-times warning"></i>
+            <i ng-show=offer.status==='closed' class="fa fa-check success"></i>
+          </td>
+          <td>{{offer.date | date}}</td>
+          <td>{{offer.listing.general.businessName}} <i ng-show=offer.notes class="fa fa-file-text-o"></i></td>
+          <td><a href="#" ui-sref="admin.edituser.profile({id: offer.user._id})">{{offer.user.name.first}} {{offer.user.name.last}}</a></td>
+          <td>{{offer.rate}}%</td>
+          <td>{{offer.amount | currency}}</td>
+          <td>
+            <a ui-sref="admin.offers.detail({id: offer._id})" class="button small">Review</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div><!-- /.marketplace-listings -->
+</div><!-- /.marketplace-listings__wrapper -->

@@ -16,32 +16,36 @@ function BorrowerService($http, Offers, $q, ListingService) {
     getInfo() {
       var info = ListingService.getCurrentUser()
         .then(user => {
-          var listing = user.borrower.listings[0];
-          return Offers.getListingOffers(listing).then(data => {
-            var offers = {
-              all: data.data,
-              active: [],
-              total: 0
-            };
-            angular.forEach(offers.all, function(offer, key) {
-              if(offer.status === 'pending') {
-                offers.total += offer.amount;
-                offers.active.push(offer);
-              }
+          if(user.borrower.listings.length > 0) {
+            var listing = user.borrower.listings[0];
+            return Offers.getListingOffers(listing).then(data => {
+              var offers = {
+                all: data.data,
+                active: [],
+                total: 0
+              };
+              angular.forEach(offers.all, function(offer, key) {
+                if(offer.status === 'pending') {
+                  offers.total += offer.amount;
+                  offers.active.push(offer);
+                }
 
+              });
+              return offers;
+            }).then(offers => {
+              return {
+                balance: user.borrower.balance,
+                amount: offers.total,
+                number: offers.active.length,
+                status: user.borrower.status
+              }
+            })
+            .catch(err => {
+              console.log(err.message);
             });
-            return offers;
-          }).then(offers => {
-            return {
-              balance: user.borrower.balance,
-              amount: offers.total,
-              number: offers.active.length,
-              status: user.borrower.status
-            }
-          })
-          .catch(err => {
-            console.log(err.message);
-          });
+          } else {
+            return {};
+          }
         });
 
       return $q.when(info)
@@ -171,6 +175,7 @@ function BorrowerService($http, Offers, $q, ListingService) {
     getApplications() {
       return ListingService.getCurrentUser()
         .then(user => {
+          console.log(user);
           return user.borrower.listings;
         }).then(listings => {
           var listingsArray = [];
@@ -333,9 +338,8 @@ function BorrowerService($http, Offers, $q, ListingService) {
       };
 
       angular.forEach(offers, function(offer) {
-        var repayment = new Borrower.calculatePayment(offer.amount, offer.rate, term);
-        total += repayment.monthlyPayment;
-        repayments.push(repayment);
+        total += offer.monthly.total;
+        repayments.push(offer);
       });
 
       angular.forEach(repayments, function(repayment) {
@@ -343,7 +347,7 @@ function BorrowerService($http, Offers, $q, ListingService) {
         monthly.interest += repayment.monthly.interest;
       });
 
-      monthly.fees = +(((total * 0.04) + 700) / term).toFixed(2);
+      monthly.fees = +( ( (total * 0.04) + 700) / term ).toFixed(2);
       monthly.total = monthly.principal + monthly.interest + monthly.fees;
 
       repayment.repayments = repayments;
@@ -388,7 +392,7 @@ function BorrowerService($http, Offers, $q, ListingService) {
         }
 
         angular.forEach(offers, function(offer) {
-          var amount = payment.principal + payment.interest;
+          var amount = offer.monthly.principal + offer.monthly.interest;
           var investor = {
             user: offer.user,
             payments: []

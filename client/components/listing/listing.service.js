@@ -210,6 +210,17 @@ function ListingService($location, $cookies, $q, $resource, $http, Auth, User, $
 
 
     /**
+     * Delete listing
+     *
+     * @return {String}
+     */
+    deleteOne(listingID) {
+      return $http.delete('/api/listings/' + listingID);
+    },
+
+
+
+    /**
      * Add a new comment
      *
      * @return {String}

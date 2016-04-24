@@ -131,6 +131,29 @@ export function create(req, res) {
     });
 }
 
+
+// Creates a new Offer in the DB
+export function outbid(req, res) {
+  var userID = req.body.user._id;
+  var outbidOffer = req.body.offer;
+
+  // update offer with outbid status and return the funds to the investor
+
+  User.findByIdAsync(userID)
+    .then(user => {
+      newOffer.user = user;
+      user.investor.balance += newOffer.amount;
+      user.investor.offers.push(outbidOffer);
+      return Offer.findByIdAsync(outbidOffer._id).then(offer => {
+        user.saveAsync().then(() => {
+          return offer;
+        }).then(respondWithResult(res))
+        .catch(handleError(res));
+      });
+    });
+}
+
+
 // Updates an existing Offer in the DB
 export function update(req, res) {
   if (req.body._id) {

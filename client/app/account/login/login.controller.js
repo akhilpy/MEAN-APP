@@ -3,7 +3,9 @@
 (function() {
 
 class LoginController {
-  constructor(Auth, $state, appConfig, Form) {
+  constructor(Auth, $state, appConfig, Form, ListingService) {
+    var vm = this;
+    this.ListingService = ListingService;
     this.user = {};
     this.newUser = {};
     this.errors = {};
@@ -39,6 +41,7 @@ class LoginController {
   }
 
   register(form) {
+    var vm = this;
     var user = this.newUser;
     this.submitted = true;
 

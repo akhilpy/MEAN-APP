@@ -1,8 +1,26 @@
+<div class="discussion-search">
+  <form class="discussion-search__form">
+    <label for="">Quick Search</label>
+    <div class="discussion-search__form--fields">
+      <input class="discussion-search__form--search" type="text" ng-model="vm.searchTerm">
+    </div><!-- /.discussion-search__form--fields -->
+  </form><!-- /.discussion-search__form -->
+</div><!-- /.discussion-search -->
+
 <div class="marketplace-listings__wrapper">
   <div class="marketplace-listings">
     <table>
       <thead>
         <tr>
+          <th>
+            <a href="#" ng-click="sortType = 'date'; sortReverse = !sortReverse">
+              Created
+              <span class="sort-icon">
+                <i class="fa fa-angle-down"></i>
+                <i class="fa fa-angle-up"></i>
+              </span>
+            </a>
+          </th>
           <th>
             <a href="#" ng-click="sortType = 'general.businessName'; sortReverse = !sortReverse">
               Business
@@ -14,7 +32,7 @@
           </th>
           <th>
             <a href="#" ng-click="sortType = 'general.address.city'; sortReverse = !sortReverse">
-              City &amp; Province
+              Location
               <span class="sort-icon">
                 <i class="fa fa-angle-down"></i>
                 <i class="fa fa-angle-up"></i>
@@ -31,7 +49,7 @@
             </a>
           </th>
           <th>
-            <a href="#" ng-click="sortType = 'rate'; sortReverse = !sortReverse">
+            <a href="#" ng-click="sortType = 'admin.basics.userRate'; sortReverse = !sortReverse">
               Rate
               <span class="sort-icon">
                 <i class="fa fa-angle-down"></i>
@@ -75,6 +93,7 @@
       </thead>
       <tbody>
         <tr ng-repeat="listing in vm.allListings | orderBy:sortType:sortReverse">
+          <td>{{listing.date | date}}</td>
           <td>{{listing.general.businessName}}</td>
           <td>{{listing.general.address.city}} {{listing.general.address.province}}</td>
           <td>{{listing.general.industry}}</td>
@@ -88,7 +107,7 @@
             <a ng-show="listing.status=='approved'" ui-sref="marketplace.listing.profile({id: listing._id})" class="button small accent"><i class="fa fa-eye"></i></a>
             <a ui-sref="admin.editlisting.general({id: listing._id})" class="button small edit"><i class="fa fa-pencil"></i></a>
             <a ui-sref="admin.editlisting.admin({id: listing._id})" class="button small"><i class="fa fa-cog"></i></a>
-            <a href="#" ng-click="admin.deleteListing(listing)" class="button small warning"><i class="fa fa-times"></i></a>
+            <a ng-click="vm.deleteListing(listing)" class="button small warning"><i class="fa fa-times"></i></a>
           </td>
         </tr>
       </tbody>

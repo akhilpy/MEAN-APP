@@ -3,12 +3,12 @@
 (function() {
 
 class AdminOfferController {
-  constructor(currentUser, $state, offers, Offers, $scope) {
+  constructor(currentUser, $state, offers, Offers, $scope, loans) {
     var vm = this;
     vm.$scope = $scope;
     vm.Offers = Offers;
 
-    vm.offers = offers.data;
+    vm.offers = offers;
     vm.user = currentUser;
 
     vm.$scope.sortType = 'date';

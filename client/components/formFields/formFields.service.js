@@ -387,7 +387,6 @@ function FormService(appConfig) {
               className: 'flex-1',
               type: 'chosen',
               key: 'newRole',
-              defaultValue: 'investor',
               templateOptions: {
                 label: 'Role',
                 labelProp: 'name',

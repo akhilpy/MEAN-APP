@@ -17,8 +17,7 @@ function InvestorService($http, Offers, ListingService, $q) {
       var activeOffers = [];
       return ListingService.getCurrentUser()
         .then(user => {
-          return Offers.getUserOffers(user._id).then(data => {
-            var offers = data.data;
+          return Offers.getUserOffers(user._id).then(offers => {
             angular.forEach(offers, function(offer, key) {
               if(offer.status === 'live') {
                 activeOffers.push(offer);
@@ -28,7 +27,7 @@ function InvestorService($http, Offers, ListingService, $q) {
             return user;
           }).then(user => {
             return {
-              balance: user.investor.balance,
+              balance: user.balance,
               amount: total,
               number: activeOffers.length,
               total: 0,

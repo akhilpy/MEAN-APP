@@ -14,13 +14,13 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
+    <tr ng-show="vm.actions.createListing">
       <td class="status">
         <i class="fa fa-times warning"></i>
       </td>
       <td>Create a Listing</td>
       <td><p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae voluptatibus labore ducimus minus quas nihil consequuntur quibusdam enim adipisci tempore.</p></td>
-      <td><a href="#" class="button small edit">Create</a></td>
+      <td><a href="#" ng-click="vm.createListing()" class="button small edit">Create</a></td>
     </tr>
     <tr>
       <td class="status">

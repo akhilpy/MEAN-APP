@@ -28,6 +28,10 @@ class BorrowerController {
       });
     }
 
+    this.actions = {
+      createListing: true
+    }
+
     this.$scope.notifications = {
       actions: 0,
       listings: 0,
@@ -71,6 +75,7 @@ class BorrowerController {
 
       if(listings.length > 0) {
         this.$scope.listings = listings;
+        this.actions.createListing = false;
         this.hasListings = true;
       }
 
@@ -96,7 +101,7 @@ class BorrowerController {
       var activeOffers = offers.live;
       var acceptedOffers = offers.accepted;
 
-      if(offers.live.length > 0) {
+      if(offers.live && offers.live.length > 0) {
         angular.forEach(offers.live, function(offer) {
           vm.$scope.totalOffers += offer.amount;
           if(vm.$scope.totalOffers >= vm.$scope.currentListing.details.amount) {
@@ -105,7 +110,7 @@ class BorrowerController {
         });
       }
 
-      if(offers.accepted.length > 0) {
+      if(offers.accepted && offers.accepted.length > 0) {
         angular.forEach(offers.accepted, function(offer) {
           vm.$scope.acceptedOffers += offer.amount;
           if(vm.$scope.acceptedOffers >= vm.$scope.currentListing.details.amount) {
@@ -114,20 +119,26 @@ class BorrowerController {
         });
       }
 
-      $scope.notifications.offers = offers.live.length;
-      vm.$scope.offers = offers.all;
+      if(offers.live) {
+        $scope.notifications.offers = offers.live.length;
+      } else {
+        $scope.notifications.offers = 0;
+      }
 
-      if(offers.all.length > 0) {
+      vm.$scope.offers = offers.all;
+      console.log(offers);
+
+      if(offers.all && offers.all.length > 0) {
         vm.hasOffers = true;
       }
 
-      if(offers.live.length > 0) {
+      if(offers.live && offers.live.length > 0) {
         vm.$scope.borrowerOffers = offers.live.length;
       } else {
         vm.$scope.borrowerOffers = 0;
       }
 
-      if(offers.accepted.length > 0) {
+      if(offers.accepted && offers.accepted.length > 0) {
         vm.$scope.repayment = Borrower.generateSchedule(offers.accepted, vm.$scope.currentListing.details.term);
         vm.$scope.totals = vm.$scope.repayment.monthly;
       }
@@ -138,8 +149,6 @@ class BorrowerController {
       if(response.data && response.data[0]) {
         this.hasRepayments = true;
         this.$scope.repayment = response.data[0];
-      } else {
-        console.log('none');
       }
     });
 
@@ -313,6 +322,12 @@ class BorrowerController {
         vm.$state.go('dashboard.borrower.offers');
       });
     }
+  }
+
+  createListing() {
+    var vm = this;
+    vm.Listings.createOne({});
+    vm.$state.go('listing.general');
   }
 
 }

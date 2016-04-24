@@ -14,6 +14,7 @@ var TransactionSchema = new mongoose.Schema({
 		type: Number,
 		default: 0
 	},
+  balance: Number,
   user: {
     type: Schema.ObjectId,
 		ref: 'User'
@@ -23,6 +24,7 @@ var TransactionSchema = new mongoose.Schema({
     ref: 'Listing',
     autopopulate: true
   },
+  kind: String,
   entry: {
     type: String,
     default: 'Debit'

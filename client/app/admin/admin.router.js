@@ -11,6 +11,7 @@ angular.module('investnextdoorCaApp.admin')
           users: function() { return []; },
           offers: function() { return []; },
           offer: function() { return []; },
+          loans: function() { return []; },
           currentListing: function() { return []; },
           currentUser: function() { return []; },
           status: function($stateParams) {
@@ -286,10 +287,14 @@ angular.module('investnextdoorCaApp.admin')
       .state('admin.loans.index', {
         url: '',
         templateUrl: 'app/admin/admin.loans.status.html',
-        controller: 'AdminOfferController',
+        controller: 'AdminLoanController',
         controllerAs: 'vm',
         resolve: {
-          loans: function() { return []; }
+          loans: ['$stateParams', 'Offers',
+            function($stateParams, Offers) {
+              return Offers.getLoans();
+            }
+          ]
         },
         ncyBreadcrumb: {
           label: 'Loans',
@@ -300,10 +305,14 @@ angular.module('investnextdoorCaApp.admin')
       .state('admin.loans.status', {
         url: '/:status',
         templateUrl: 'app/admin/admin.loans.status.html',
-        controller: 'AdminOfferController',
+        controller: 'AdminLoanController',
         controllerAs: 'vm',
         resolve: {
-          loans: function() { return []; }
+          loans: ['$stateParams', 'Offers',
+            function($stateParams, Offers) {
+              return Offers.getLoans($stateParams.status);
+            }
+          ]
         },
         ncyBreadcrumb: {
           label: '{{breadcrumb}}',

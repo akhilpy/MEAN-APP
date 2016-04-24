@@ -30,10 +30,13 @@ class WidgetOfferController {
     var widget = this;
     if(widget.newOffer && !widget.$scope.offered) {
       widget.newOffer.listing = widget.$scope.vm.currentListing;
-      widget.Offers.new(widget.newOffer);
-      widget.$scope.offered = true;
-      widget.$scope.balance -= widget.newOffer.amount;
-      widget.socket.syncUpdates('offer', widget.$scope.vm.currentOffers);
+      var result = widget.Offers.new(widget.newOffer, widget.newOffer.listing);
+
+      if(result.value) {
+        widget.$scope.offered = true;
+        widget.$scope.balance -= widget.newOffer.amount;
+        widget.socket.syncUpdates('offer', widget.$scope.vm.currentOffers);
+      }
     }
   }
 }

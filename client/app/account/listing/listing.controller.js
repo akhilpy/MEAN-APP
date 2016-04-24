@@ -14,8 +14,8 @@ class ListingController {
     vm.$scope.saving = false;
 
     vm.user = currentUser;
-    vm.listingID = currentUser.borrower.listings[0];
     vm.currentListing = currentListing.data;
+    vm.listingID = vm.currentListing._id;
 
     if(Object.keys(currentListing).length !== 0) {
       vm.status = vm.currentListing.admin.basics.status;
@@ -79,11 +79,7 @@ class ListingController {
 
     vm.submitted = true;
 
-    if (form.$valid && !vm.listingID) {
-      // if no existing listing, create one
-      vm.ListingService.createOne(savedListing);
-    } else {
-      // if there is an existing listing, update it
+    if (form.$valid) {
       vm.ListingService.saveOne(savedListing, vm.listingID).then(data => {
         vm.$scope.saving = false;
       });

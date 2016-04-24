@@ -119,6 +119,10 @@ var UserSchema = new Schema({
     default: 'borrower'
   },
 	bankAccount: bankAccount,
+	balance: {
+		type: Number,
+		default: 0
+	},
 	borrower: {
 		status: {
 			type: String,
@@ -134,10 +138,6 @@ var UserSchema = new Schema({
 		}]
 	},
 	investor: {
-		balance: {
-			type: Number,
-			default: 0
-		},
 		increase: Boolean,
 		status: {
 			type: String,

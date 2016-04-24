@@ -20,24 +20,14 @@ class InvestorController {
       this.$scope.investorInfo = investorInfo;
     });
 
-    Offers.getUserOffers().then(response => {
-      var allOffers = response.data;
-      var offers = [];
-      var investments = [];
-
-      angular.forEach(allOffers, function(offer) {
-        if(offer.status === 'complete') {
-          investments.push(offer);
-        } else {
-          offers.push(offer);
-        }
-      });
-
+    Offers.getUserOffers().then(offers => {
       if(offers.length > 0) {
         vm.$scope.offers = offers;
         vm.hasOffers = true;
       }
+    });
 
+    Offers.getUserInvestments().then(investments => {
       if(investments.length > 0) {
         vm.$scope.investments = investments;
         vm.hasInvestments = true;

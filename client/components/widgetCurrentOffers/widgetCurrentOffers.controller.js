@@ -9,8 +9,6 @@ class WidgetCurrentOffersController {
     widget.$scope = $scope;
     widget.$scope.makeOutbid = false;
 
-    console.log(this.$scope.vm.currentOffers);
-
     if(this.$scope.vm.currentOffers.live.length > 0) {
       var rates = 0
 

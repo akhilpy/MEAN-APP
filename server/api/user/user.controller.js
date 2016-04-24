@@ -107,6 +107,7 @@ export function update(req, res, next) {
       user.username = String(savedUser.username);
       user.name = savedUser.name;
       user.email = String(savedUser.email);
+      user.balance = savedUser.balance;
 
       if(savedUser.newRole) {
         user.role = savedUser.newRole;
@@ -146,8 +147,8 @@ export function update(req, res, next) {
       }
 
       return user.saveAsync()
-        .then(() => {
-          res.status(204).end();
+        .then(user => {
+          res.json(user);
         })
         .catch(validationError(res));
     });
