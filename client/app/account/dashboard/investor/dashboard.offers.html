@@ -25,7 +25,7 @@
         <i ng-show=offer.status==='accepted' class="fa fa-check success"></i>
       </td>
       <td>{{offer.date | date}}</td>
-      <td>{{offer.listing.general.businessName}}</td>
+      <td><a ui-sref="marketplace.listing.profile({id: offer.listing._id})">{{offer.listing.general.businessName}}</a></td>
       <td class="dashboard__table--credits">{{offer.rate}}%</td>
       <td class="dashboard__table--debits">{{offer.amount | currency}}</td>
     </tr>

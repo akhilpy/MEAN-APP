@@ -66,6 +66,7 @@ class InvestorController {
 
   removeBookmark(listing) {
     this.ListingService.removeBookmark(listing);
+    this.$scope.watchlist.splice(this.$scope.watchlist.indexOf(listing), 1);
   }
 }
 

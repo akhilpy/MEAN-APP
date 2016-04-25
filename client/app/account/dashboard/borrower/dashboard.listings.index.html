@@ -26,7 +26,7 @@
         <i ng-show=listing.admin.basics.status==='rejected' class="fa fa-times warning"></i>
       </td>
       <td>{{listing.date | date}}</td>
-      <td>{{listing.general.businessName}}</td>
+      <td><a ui-sref="marketplace.listing.profile({id: listing._id})">{{listing.general.businessName}}</a></td>
       <td>
         <a ng-show="listing.admin.basics.status=='active'" ui-sref="marketplace.listing.profile({id: listing._id})" class="button small accent"><i class="fa fa-eye"></i></a>
         <a ui-sref="listing.general" class="button small edit"><i class="fa fa-pencil"></i></a>

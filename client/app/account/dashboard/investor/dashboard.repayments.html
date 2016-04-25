@@ -23,7 +23,7 @@
         <i ng-show=payment.status==='Late' class="fa fa-times warning"></i>
       </td>
       <td>{{payment.date | date}}</td>
-      <td>{{payment.listing.general.businessName}}</td>
+      <td><a ui-sref="marketplace.listing.profile({id: payment.listing._id})">{{payment.listing.general.businessName}}</a></td>
       <td>{{payment.borrower.name.first}} {{payment.borrower.name.last}}</td>
       <td>{{payment.amount | currency}}</td>
     </tr>

@@ -104,10 +104,7 @@ class BorrowerController {
       if(offers.live && offers.live.length > 0) {
         angular.forEach(offers.live, function(offer) {
           vm.$scope.totalOffers += offer.amount;
-          console.log(vm.$scope.totalOffers);
-          console.log(vm.$scope.currentListing.details.amount);
           if(vm.$scope.totalOffers >= vm.$scope.currentListing.details.amount) {
-            console.log('target');
             vm.$scope.amountReached = true;
           }
         });

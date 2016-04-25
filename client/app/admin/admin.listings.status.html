@@ -94,7 +94,7 @@
       <tbody>
         <tr ng-repeat="listing in vm.allListings | orderBy:sortType:sortReverse">
           <td>{{listing.date | date}}</td>
-          <td>{{listing.general.businessName}}</td>
+          <td><a ui-sref="marketplace.listing.profile({id: listing._id})">{{listing.general.businessName}}</a></td>
           <td>{{listing.general.address.city}} {{listing.general.address.province}}</td>
           <td>{{listing.general.industry}}</td>
           <td>{{listing.admin.basics.listedRate}}%</td>
@@ -102,9 +102,7 @@
           <td>{{listing.admin.basics.deadline | amCalendar}}</td>
           <td>{{listing.admin.scores.cds}}%</td>
           <td>
-            <a ng-show="listing.status!='approved'" ui-sref="marketplace.listing.profile({id: listing._id})" class="button small accent"><i class="fa fa-eye"></i></a>
             <a ng-show="listing.status=='review'" ng-click="vm.approve(listing._id)" class="button small"><i class="fa fa-check"></i></a>
-            <a ng-show="listing.status=='approved'" ui-sref="marketplace.listing.profile({id: listing._id})" class="button small accent"><i class="fa fa-eye"></i></a>
             <a ui-sref="admin.editlisting.general({id: listing._id})" class="button small edit"><i class="fa fa-pencil"></i></a>
             <a ui-sref="admin.editlisting.admin({id: listing._id})" class="button small"><i class="fa fa-cog"></i></a>
             <a ng-click="vm.deleteListing(listing)" class="button small warning"><i class="fa fa-times"></i></a>
