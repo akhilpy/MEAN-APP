@@ -17,7 +17,7 @@ class AdminController {
     vm.users = users.data;
     vm.offers = offers.data;
 
-    vm.$scope.sortType = 'name.last';
+    vm.$scope.sortType = '-joined';
     vm.$scope.sortReverse = false;
     vm.$scope.searchListings = '';
 

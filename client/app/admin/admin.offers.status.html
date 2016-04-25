@@ -1,7 +1,7 @@
 <div class="marketplace-listings__wrapper">
   <div class="marketplace-listings">
     <ul class="general-content__table-keys">
-      <li><i class="fa fa pending"></i> In Review</li>
+      <li><i class="fa fa-ellipsis-h pending"></i> In Review</li>
       <li><i class="fa fa-bolt new"></i> Active</li>
       <li><i class="fa fa-times warning"></i> Rejected</li>
       <li><i class="fa fa-check success"></i> Accepted</li>
@@ -20,7 +20,7 @@
             </a>
           </th>
           <th>
-            <a href="#" ng-click="sortType = 'listing'; sortReverse = !sortReverse">
+            <a href="#" ng-click="sortType = 'listing.general.businessName'; sortReverse = !sortReverse">
               Listing
               <span class="sort-icon">
                 <i class="fa fa-angle-down"></i>
@@ -29,7 +29,7 @@
             </a>
           </th>
           <th>
-            <a href="#" ng-click="sortType = 'investor'; sortReverse = !sortReverse">
+            <a href="#" ng-click="sortType = 'investor.name.last'; sortReverse = !sortReverse">
               Investor
               <span class="sort-icon">
                 <i class="fa fa-angle-down"></i>
@@ -65,7 +65,7 @@
       <tbody>
         <tr ng-repeat="offer in vm.offers | orderBy:sortType:sortReverse">
           <td class="status">
-            <i ng-show=offer.status==='pending' class="fa pending"></i>
+            <i ng-show=offer.status==='pending' class="fa fa-ellipsis-h pending"></i>
             <i ng-show=offer.status==='live' class="fa fa-bolt new"></i>
             <i ng-show=offer.status==='rejected' class="fa fa-times warning"></i>
             <i ng-show=offer.status==='accepted' class="fa fa-check success"></i>
@@ -76,7 +76,7 @@
           <td>{{offer.rate}}%</td>
           <td>{{offer.amount | currency}}</td>
           <td>
-            <a ui-sref="admin.offers.detail({id: offer._id})" class="button small">Review</a>
+            <a ui-sref="admin.offers.detail({id: offer._id})" class="button small"><i class="fa fa-eye"></i></a>
           </td>
         </tr>
       </tbody>

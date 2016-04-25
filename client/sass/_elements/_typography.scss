@@ -535,6 +535,19 @@ hr {
 
 .fa {
 
+  &.review {
+    @include font-size(12);
+    display: inline-block;
+    vertical-align: text-bottom;
+    line-height: 1.5;
+    text-align: center;
+    background: $color-review;
+    color: $color-white;
+    width: rem(18);
+    height: rem(18);
+    border-radius: 100%;
+  }
+
   &.warning {
     @include font-size(12);
     display: inline-block;

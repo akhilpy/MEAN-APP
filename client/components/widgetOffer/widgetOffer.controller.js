@@ -12,6 +12,7 @@ class WidgetOfferController {
 
     widget.$scope.balance = 0;
     widget.$scope.offered = false;
+    widget.$scope.error = false;
 
     widget.newOffer = {
       rate: widget.$scope.vm.currentListing.admin.basics.userRate,
@@ -30,13 +31,17 @@ class WidgetOfferController {
     var widget = this;
     if(widget.newOffer && !widget.$scope.offered) {
       widget.newOffer.listing = widget.$scope.vm.currentListing;
-      var result = widget.Offers.new(widget.newOffer, widget.newOffer.listing);
-
-      if(result.value) {
-        widget.$scope.offered = true;
-        widget.$scope.balance -= widget.newOffer.amount;
-        widget.socket.syncUpdates('offer', widget.$scope.vm.currentOffers);
-      }
+      widget.Offers.new(widget.newOffer, widget.newOffer.listing)
+      .then(result => {
+        if(result.value) {
+          widget.$scope.offered = true;
+          widget.$scope.balance -= widget.newOffer.amount;
+          widget.socket.syncUpdates('offer', widget.$scope.vm.currentOffers);
+          widget.$scope.error = false;
+        } else {
+          widget.$scope.error = true;
+        }
+      });
     }
   }
 }

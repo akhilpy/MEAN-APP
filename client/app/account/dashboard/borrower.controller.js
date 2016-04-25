@@ -104,7 +104,10 @@ class BorrowerController {
       if(offers.live && offers.live.length > 0) {
         angular.forEach(offers.live, function(offer) {
           vm.$scope.totalOffers += offer.amount;
+          console.log(vm.$scope.totalOffers);
+          console.log(vm.$scope.currentListing.details.amount);
           if(vm.$scope.totalOffers >= vm.$scope.currentListing.details.amount) {
+            console.log('target');
             vm.$scope.amountReached = true;
           }
         });
@@ -126,7 +129,6 @@ class BorrowerController {
       }
 
       vm.$scope.offers = offers.all;
-      console.log(offers);
 
       if(offers.all && offers.all.length > 0) {
         vm.hasOffers = true;
@@ -139,8 +141,11 @@ class BorrowerController {
       }
 
       if(offers.accepted && offers.accepted.length > 0) {
-        vm.$scope.repayment = Borrower.generateSchedule(offers.accepted, vm.$scope.currentListing.details.term);
-        vm.$scope.totals = vm.$scope.repayment.monthly;
+        Borrower.generateSchedule(offers.accepted, vm.$scope.currentListing.details.term)
+        .then(response => {
+          vm.$scope.repayment = response;
+          vm.$scope.totals = vm.$scope.repayment.monthly;
+        })
       }
     });
 
@@ -302,7 +307,7 @@ class BorrowerController {
       angular.forEach(offers, function(offer) {
         if(offer.status === 'accepted') {
           offer.status = 'complete';
-          acceptedOffers.push(offer);
+          promises.push(acceptedOffers.push(offer));
         } else {
           offer.status = 'rejected';
         }

@@ -11,7 +11,7 @@ class AdminOfferController {
     vm.offers = offers;
     vm.user = currentUser;
 
-    vm.$scope.sortType = 'date';
+    vm.$scope.sortType = '-date';
   }
 
   updateOffer(offer, status) {

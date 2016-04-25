@@ -175,7 +175,6 @@ function BorrowerService($http, Offers, $q, ListingService) {
     getApplications() {
       return ListingService.getCurrentUser()
         .then(user => {
-          console.log(user);
           return user.borrower.listings;
         }).then(listings => {
           var listingsArray = [];
@@ -327,6 +326,7 @@ function BorrowerService($http, Offers, $q, ListingService) {
      * @return {String}
      */
     generateSchedule(offers, term) {
+      var promises = [];
       var total = 0;
       var repayments = [];
       var repayment = {};
@@ -339,12 +339,13 @@ function BorrowerService($http, Offers, $q, ListingService) {
 
       angular.forEach(offers, function(offer) {
         total += offer.monthly.total;
-        repayments.push(offer);
+        promises.push(repayments.push(offer));
       });
 
       angular.forEach(repayments, function(repayment) {
         monthly.principal += repayment.monthly.principal;
         monthly.interest += repayment.monthly.interest;
+        promises.push(repayment);
       });
 
       monthly.fees = +( ( (total * 0.04) + 700) / term ).toFixed(2);
@@ -353,7 +354,9 @@ function BorrowerService($http, Offers, $q, ListingService) {
       repayment.repayments = repayments;
       repayment.monthly = monthly;
 
-      return repayment;
+      return $q.all(promises).then(function() {
+        return repayment;
+      });
     },
 
 

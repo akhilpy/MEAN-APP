@@ -4,6 +4,15 @@
       <thead>
         <tr>
           <th>
+            <a href="#" ng-click="sortType = 'joined'; sortReverse = !sortReverse">
+              Joined
+              <span class="sort-icon">
+                <i class="fa fa-angle-down"></i>
+                <i class="fa fa-angle-up"></i>
+              </span>
+            </a>
+          </th>
+          <th>
             <a href="#" ng-click="sortType = 'username'; sortReverse = !sortReverse">
               Username
               <span class="sort-icon">
@@ -62,6 +71,7 @@
       </thead>
       <tbody>
         <tr ng-repeat="user in vm.users | orderBy:sortType:sortReverse">
+          <td>{{user.joined | date}}</td>
           <td>{{user.username}}</td>
           <td>{{user.name.first}} {{user.name.last}}</td>
           <td>{{user.email}}</td>

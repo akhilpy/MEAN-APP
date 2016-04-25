@@ -28,7 +28,7 @@
             return Offers.getUserOffers(user._id)
             .then(offers => {
               angular.forEach(offers, function(currentOffer, key) {
-                if(currentOffer.listing._id === listing._id) {
+                if(currentOffer.listing._id === listing._id && currentOffer.user._id === user._id) {
                   hasCurrentOffer = true;
 
                   var credit = {

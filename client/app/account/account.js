@@ -88,6 +88,8 @@ angular.module('investnextdoorCaApp')
       .state('dashboard.borrower.actions.complete', {
         url: '/complete',
         templateUrl: 'app/account/dashboard/borrower/dashboard.actions.complete.html',
+        controller: 'BorrowerController',
+        controllerAs: 'vm',
         authenticate: true
       })
       .state('dashboard.borrower.actions.accept', {

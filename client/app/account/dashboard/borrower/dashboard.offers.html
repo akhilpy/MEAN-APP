@@ -28,7 +28,7 @@
         <i ng-show=offer.status==='outbid' class="fa fa-times pending"></i>
         <i ng-show=offer.status==='rejected' class="fa fa-times warning"></i>
         <i ng-show=offer.status==='accepted' class="fa fa-check success"></i>
-        <i ng-show=offer.status==='completed' class="fa fa-check new"></i>
+        <i ng-show=offer.status==='complete' class="fa fa-check new"></i>
       </td>
       <td>{{offer.date | date}}</td>
       <td>{{offer.listing.general.businessName}}</td>
@@ -37,7 +37,7 @@
       <td>{{offer.rate}}%</td>
       <td>
         <a href="#" ng-click="vm.rejectOffer(offer)" ng-if="offer.status==='live'" class="button small warning"><i class="fa fa-times"></i></a>
-        <a ui-sref="dashboard.borrower.actions.accept({offer: offer._id})" ng-show="amountReached" class="button small"><i class="fa fa-eye"></i></a>
+        <a ui-sref="dashboard.borrower.actions.accept({offer: offer._id})" ng-show="amountReached" class="button small"><i class="fa fa-check"></i></a>
       </td>
     </tr>
   </tbody>
