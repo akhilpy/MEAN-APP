@@ -446,6 +446,11 @@ a {
 .button {
   @include button;
 
+  &.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
   &.large {
     @include font-size(30);
     text-transform: uppercase;

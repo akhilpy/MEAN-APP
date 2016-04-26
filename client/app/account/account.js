@@ -39,7 +39,7 @@ angular.module('investnextdoorCaApp')
           return Auth.getCurrentUser(null)
             .then(user => {
               if (user.role === 'borrower') {
-                $state.go('dashboard.borrower');
+                $state.go('dashboard.borrower.actions.index');
               } else if (user.role === 'investor') {
                 $state.go('dashboard.investor.actions');
               } else if (user.role === 'admin') {

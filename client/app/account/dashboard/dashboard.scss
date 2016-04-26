@@ -253,3 +253,16 @@
 .dashboard__form--wrapper {
   padding-top: rem(5);
 }
+
+
+
+/*-----  Investor Info Section  ------*/
+
+.investor-info {
+  display: flex;
+
+  .investor-info__child {
+    flex: 1;
+    max-width: 50%;
+  }
+}

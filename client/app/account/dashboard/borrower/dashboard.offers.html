@@ -43,4 +43,5 @@
   </tbody>
 </table>
 
-<a ui-sref="dashboard.borrower.actions.complete" class="button" ng-if="loanComplete">Complete Loan</a>
+<p ng-show="amountReached">To complete your loan accepting each offer and sign the related agreement.</p>
+<a ui-sref="dashboard.borrower.actions.complete" class="button" ng-class="{'disabled': !loanComplete}" ng-if="amountReached || loanComplete">Complete Loan</a>

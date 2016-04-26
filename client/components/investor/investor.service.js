@@ -13,31 +13,68 @@ function InvestorService($http, Offers, ListingService, $q) {
      */
     getInvestorInfo() {
       var info = {};
+      var amount = 0;
       var total = 0;
+      var interest = 0;
+      var forecast = 0;
       var activeOffers = [];
+      var offerPromises = [];
+      var investmentPromises = [];
+
       return ListingService.getCurrentUser()
         .then(user => {
-          return Offers.getUserOffers(user._id).then(offers => {
-            angular.forEach(offers, function(offer, key) {
-              if(offer.status === 'live') {
-                activeOffers.push(offer);
-                total += offer.amount;
-              }
+
+            return Offers.getUserOffers(user._id)
+            .then(offers => {
+              angular.forEach(offers, function(offer, key) {
+                if(offer.status === 'live') {
+                  amount += offer.amount;
+                  activeOffers.push(offer);
+                }
+
+                offerPromises.push(offer);
+              });
+
+              return $q.all(offerPromises).then(() => {
+                return user;
+              });
             });
-            return user;
+
           }).then(user => {
+
+            return Offers.getUserInvestments(user._id)
+            .then(investments => {
+              angular.forEach(investments, function(investment, key) {
+                investmentPromises.push(investment);
+                total += investment.amount;
+
+                if(investment.status === 'complete') {
+                  forecast += investment.interest;
+                }
+
+                if(investment.status === 'paid' || investment.status === 'closed') {
+                  interest += investment.interest;
+                }
+              });
+
+              return $q.all(investmentPromises).then(() => {
+                return user;
+              });
+            });
+
+          }).then(user => {
+
             return {
               balance: user.balance,
-              amount: total,
+              amount: amount,
               number: activeOffers.length,
-              total: 0,
-              interest: 13845,
-              forecast: 15560,
+              total: total,
+              interest: interest,
+              forecast: forecast,
               late: 0,
               status: user.investor.status,
               level: user.investor.level
-            }
-          });
+            };
         })
         .catch(err => {
           console.log(err.message);
