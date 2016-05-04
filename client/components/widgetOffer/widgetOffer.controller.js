@@ -13,6 +13,11 @@ class WidgetOfferController {
     widget.$scope.balance = 0;
     widget.$scope.offered = false;
     widget.$scope.error = false;
+    widget.$scope.showOfferWidget = true;
+
+    if(widget.$scope.vm.currentUser.role === 'borrower' || widget.$scope.vm.currentListing.admin.basics.status === 'closed') {
+      widget.$scope.showOfferWidget = false;
+    }
 
     widget.newOffer = {
       rate: widget.$scope.vm.currentListing.admin.basics.userRate,
@@ -33,7 +38,7 @@ class WidgetOfferController {
       widget.newOffer.listing = widget.$scope.vm.currentListing;
       widget.Offers.new(widget.newOffer, widget.newOffer.listing)
       .then(result => {
-        if(result.value) {
+        if(result) {
           widget.$scope.offered = true;
           widget.$scope.balance -= widget.newOffer.amount;
           widget.socket.syncUpdates('offer', widget.$scope.vm.currentOffers);

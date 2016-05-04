@@ -118,6 +118,21 @@
   display: table-cell;
 }
 
+.marketplace-filters__actions {
+  @include list-zero;
+  margin-top: rem(20);
+
+  li {
+    display: inline-block;
+    margin-right: rem(30);
+  }
+
+  a {
+    @include font-size(18);
+    color: $color-primary-dark;
+  }
+}
+
 .marketplace-listings__wrapper {
   padding: rem(20) 0;
 }

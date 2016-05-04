@@ -1,0 +1,7 @@
+<label>{{label}}</label>
+<div class="input-group" ng-if="icon">
+  <div class="input-group-addon"><i class="fa fa-{{icon}}"></i></div>
+  <input type="text" ng-model="model" placeholder="{{placeholder}}">
+</div><!-- /.input-group -->
+<input ng-if="!icon" type="text" ng-model="model" placeholder="{{placeholder}}">
+<p ng-if="description" class="help-block">{{description}}</p>

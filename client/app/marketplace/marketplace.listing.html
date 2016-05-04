@@ -10,13 +10,13 @@
         {{vm.currentListing.details.reason}}
       </p><!-- /.listing-hero__description -->
       <div class="listing-hero__actions">
-        <a href="#" ng-click="" class="button">Make an Offer</a>
+        <a href="#" ng-click="vm.makeNewOffer()" class="button">Make an Offer</a>
         <ul class="listing-hero__actions--secondary">
           <li>
             <a href="#" ng-click="vm.bookmark()" ng-disabled="vm.bookmarked" class="button">{{vm.bookmarked ? 'Watching' : 'Watch'}}</a>
           </li>
           <li>
-            <a href="#" ng-click="vm.requestDetails()" ng-disabled="vm.requested" class="button">{{vm.requested ? vm.requested : 'Request Details'}}</a>
+            <a href="#" ng-click="vm.requestDetails()" ng-disabled="requested" class="button">{{requested ? requested : 'Request Details'}}</a>
           </li>
         </ul><!-- /.listing-hero__actions--secondary -->
       </div><!-- /.listing-hero__actions -->
@@ -40,9 +40,9 @@
         <td class="term">{{vm.currentListing.details.term}} months</td>
         <td class="progress">
           <div class="progress-bar__wrapper">
-            <div class="progress-bar" progress-bar="75"></div>
+            <div class="progress-bar" progress-bar="{{details.funded.percentage}}"></div>
             <div class="progress-bar__status">
-              Status: <strong>Open</strong>
+              Status: <strong>{{vm.currentListing.admin.basics.status}}</strong>
             </div><!-- /.progress-bar__status -->
           </div><!-- /.progress-bar__wrapper -->
         </td>

@@ -31,21 +31,21 @@ class ListingPaginationController {
   constructor($state, $scope) {
     var page = this;
     page.state = $state;
-    page.scope = $scope;
+    page.$scope = $scope;
     page.current = page.state.current.name;
   }
 
   goBack() {
     var page = this;
     var back = page.pages[page.current].prev;
-    page.scope.$emit('saveForm');
-    page.state.go( back );
+    page.$scope.$emit('saveForm');
+    page.state.go(back);
   }
 
   goForward() {
     var page = this;
     var forward = page.pages[page.current].next;
-    page.scope.$emit('saveForm');
+    page.$scope.$emit('saveForm');
     page.state.go(forward);
   }
 }

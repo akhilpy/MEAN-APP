@@ -634,7 +634,6 @@ function FormService(appConfig) {
               className: 'flex-1',
               type: 'chosen',
               key: 'newRole',
-              defaultValue: 'borrower',
               templateOptions: {
                 label: 'Role',
                 labelProp: 'name',
@@ -1242,7 +1241,7 @@ function FormService(appConfig) {
             ]
           },
           {
-            className: 'display-flex',
+            className: 'owner-repeater',
             key: 'owners',
             type: 'repeatSection',
             templateOptions: {
@@ -1257,7 +1256,7 @@ function FormService(appConfig) {
                       class: 'fa fa-user'
                     }
                   },
-                  className: 'flex-3',
+                  className: 'owner-repeater__name',
                   type: 'input',
                 },
                 {
@@ -1269,7 +1268,7 @@ function FormService(appConfig) {
                       class: 'fa fa-percent'
                     }
                   },
-                  className: 'flex-1',
+                  className: 'owner-repeater__percentage',
                   type: 'input',
                 },
                 {
@@ -1279,6 +1278,7 @@ function FormService(appConfig) {
                     placeholder: 'placeholder',
                     valueProp: 'value',
                     keyProp: 'name',
+                    defaultValue: 'No',
                     options: [
                       {
                         name: 'Yes',
@@ -1290,8 +1290,130 @@ function FormService(appConfig) {
                       }
                     ]
                   },
-                  className: 'flex-1',
+                  className: 'owner-repeater__guarantee',
                   type: 'radio'
+                },
+                {
+                  className: 'owner-repeater__address-1',
+                  type: 'input',
+                  key: 'address.street',
+                  templateOptions: {
+                    label: 'Street Address',
+                    placeholder: '',
+                    addonLeft: {
+                      class: 'fa fa-map-marker'
+                    }
+                  },
+                  hideExpression: 'model["guarantee"]!="Yes"'
+                },
+                {
+                  className: 'owner-repeater__address-city',
+                  type: 'input',
+                  key: 'address.city',
+                  templateOptions: {
+                    label: 'City',
+                    placeholder: '',
+                    addonLeft: {
+                      class: 'fa fa-map-marker'
+                    }
+                  },
+                  hideExpression: 'model["guarantee"]!="Yes"'
+                },
+                {
+                  className: 'owner-repeater__address-province',
+                  type: 'chosen',
+                  key: 'address.province',
+                  templateOptions: {
+                    label: 'Province',
+                    labelProp: 'name',
+                    valueProp: 'value',
+                    options: provinces,
+                    placeholder: 'Select'
+                  },
+                  hideExpression: 'model["guarantee"]!="Yes"'
+                },
+                {
+                  className: 'owner-repeater__address-postal',
+                  type: 'input',
+                  key: 'address.postal',
+                  templateOptions: {
+                    label: 'Postal Code',
+                    placeholder: '',
+                    addonLeft: {
+                      class: 'fa fa-map-marker'
+                    }
+                  },
+                  hideExpression: 'model["guarantee"]!="Yes"'
+                },
+                {
+                  className: 'owner-repeater__address-1',
+                  type: 'input',
+                  key: 'dob',
+                  templateOptions: {
+                    label: 'Date of Birth',
+                    placeholder: '',
+                    addonLeft: {
+                      class: 'fa fa-calendar'
+                    }
+                  },
+                  hideExpression: 'model["guarantee"]!="Yes"'
+                },
+                {
+                  className: 'owner-repeater__address-city',
+                  type: 'radio',
+                  key: 'property',
+                  templateOptions: {
+                    label: 'Own Property?',
+                    valueProp: 'value',
+                    keyProp: 'name',
+                    defaultValue: 'No',
+                    options: [
+                      {
+                        name: 'Yes',
+                        value: true
+                      },
+                      {
+                        name: 'No',
+                        value: false
+                      }
+                    ]
+                  },
+                  hideExpression: 'model["guarantee"]!="Yes"'
+                },
+                {
+                  className: 'owner-repeater__address-city',
+                  type: 'radio',
+                  key: 'creditCheck',
+                  templateOptions: {
+                    label: 'I acknowledge that InvestNextDoor has permission to run a credit check.',
+                    valueProp: 'value',
+                    keyProp: 'name',
+                    defaultValue: 'Yes',
+                    options: [
+                      {
+                        name: 'Yes',
+                        value: true
+                      },
+                      {
+                        name: 'No',
+                        value: false
+                      }
+                    ]
+                  },
+                  hideExpression: 'model["guarantee"]!="Yes"'
+                },
+                {
+                  className: 'owner-repeater__address-postal',
+                  type: 'input',
+                  key: 'email',
+                  templateOptions: {
+                    label: 'Send request for credit check approval to',
+                    placeholder: '',
+                    addonLeft: {
+                      class: 'fa fa-envelope'
+                    }
+                  },
+                  hideExpression: 'model["guarantee"]!="Yes"'
                 }
               ]
             },
@@ -1825,6 +1947,9 @@ function FormService(appConfig) {
                   label: 'Based on the securities commission regulations of each province I may be required to provide more information.',
                   placeholder: '',
                   description: ''
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
                 }
               }
             ]
@@ -1930,6 +2055,93 @@ function FormService(appConfig) {
           {
             noFormControl: true,
             template: '<h3 class="form-subtitle">General</h3>'
+          },
+          {
+            className: 'display-flex',
+            fieldGroup: [
+              {
+                className: 'flex-1',
+                type: 'date',
+                key: 'basics.submitted',
+                templateOptions: {
+                  label: 'Listing Submitted',
+                  placeholder: '',
+                  description: '',
+                  addonLeft: {
+                    class: 'fa fa-calendar'
+                  }
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
+                }
+              },
+              {
+                className: 'flex-1',
+                type: 'date',
+                key: 'basics.approved',
+                templateOptions: {
+                  label: 'Listing Approved',
+                  placeholder: '',
+                  description: '',
+                  addonLeft: {
+                    class: 'fa fa-calendar'
+                  }
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
+                }
+              },
+              {
+                className: 'flex-1',
+                type: 'date',
+                key: 'basics.published',
+                templateOptions: {
+                  label: 'Listing Start',
+                  placeholder: '',
+                  description: '',
+                  addonLeft: {
+                    class: 'fa fa-calendar'
+                  }
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
+                }
+              },
+              {
+                className: 'flex-1',
+                type: 'input',
+                key: 'basics.benchmarkRate',
+                templateOptions: {
+                  type: 'number',
+                  label: 'Benchmark Rate',
+                  placeholder: '',
+                  description: '',
+                  addonLeft: {
+                    class: 'fa fa-percent'
+                  }
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
+                }
+              },
+              {
+                className: 'flex-1',
+                type: 'input',
+                key: 'basics.listedRate',
+                templateOptions: {
+                  type: 'number',
+                  label: 'Listed Rate',
+                  placeholder: '',
+                  description: '',
+                  addonLeft: {
+                    class: 'fa fa-percent'
+                  }
+                },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.disabled'
+                }
+              }
+            ]
           },
           {
             className: 'display-flex',
@@ -2048,27 +2260,6 @@ function FormService(appConfig) {
               },
               {
                 className: 'flex-1',
-                type: 'date',
-                key: 'basics.published',
-                templateOptions: {
-                  label: 'Listing Start',
-                  placeholder: '',
-                  description: '',
-                  addonLeft: {
-                    class: 'fa fa-calendar'
-                  }
-                },
-                expressionProperties: {
-                  'templateOptions.disabled': 'formState.disabled'
-                }
-              }
-            ]
-          },
-          {
-            className: 'display-flex',
-            fieldGroup: [
-              {
-                className: 'flex-1',
                 type: 'input',
                 key: 'basics.investment.max',
                 templateOptions: {
@@ -2100,7 +2291,12 @@ function FormService(appConfig) {
                 expressionProperties: {
                   'templateOptions.disabled': 'formState.disabled'
                 }
-              },
+              }
+            ]
+          },
+          {
+            className: 'display-flex',
+            fieldGroup: [
               {
                 className: 'flex-1',
                 type: 'input',
@@ -2118,28 +2314,6 @@ function FormService(appConfig) {
                   'templateOptions.disabled': 'formState.disabled'
                 }
               },
-              {
-                className: 'flex-1',
-                type: 'input',
-                key: 'basics.benchmarkRate',
-                templateOptions: {
-                  type: 'number',
-                  label: 'Benchmark Rate',
-                  placeholder: '',
-                  description: '',
-                  addonLeft: {
-                    class: 'fa fa-percent'
-                  }
-                },
-                expressionProperties: {
-                  'templateOptions.disabled': 'formState.disabled'
-                }
-              }
-            ]
-          },
-          {
-            className: 'display-flex',
-            fieldGroup: [
               {
                 className: 'flex-1',
                 type: 'input',

@@ -9,7 +9,7 @@
       <span>Average Rate</span>
     </div><!-- /.widget__subtitle -->
 
-    <form class="widget__form" ng-show="makeOutbid">
+    <form class="widget__form" ng-show="makeOutbid && showCurrentOffersWidget">
       <ul class="form__rows">
         <li class="form__row">
           <select chosen="rates" data-placeholder="Rate*" ng-model="offerWidget.newOffer.rate" ng-options="rate.value as rate.label for rate in rates"></select>
@@ -23,7 +23,7 @@
       </ul><!-- /.form__rows -->
     </form><!-- /.widget__form -->
 
-    <form class="widget__form" ng-hide="makeOutbid">
+    <form class="widget__form" ng-hide="makeOutbid || !showCurrentOffersWidget">
       <ul class="form__rows">
         <li class="form__row">
           <p>Outbit current investors!</p>

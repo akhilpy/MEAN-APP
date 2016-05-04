@@ -130,6 +130,10 @@ export function update(req, res, next) {
           user.address = savedUser.address;
         }
 
+        if(savedUser.filters) {
+          user.filters = savedUser.filters;
+        }
+
         if(savedUser.investor) {
           user.investor = savedUser.investor;
         }

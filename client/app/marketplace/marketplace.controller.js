@@ -3,12 +3,20 @@
 (function() {
 
 class MarketplaceController {
-  constructor(listings, ListingService, $scope) {
+  constructor(listings, ListingService, $scope, $q, $rootScope) {
     var vm = this;
     vm.$scope = $scope;
-    vm.allListings = listings.data;
+    vm.$rootScope = $rootScope;
+    vm.ListingService = ListingService;
+    vm.allListings = [];
 
-    vm.$scope.sortType = 'general.businessName';
+    angular.forEach(listings.data, function(listing, key) {
+      if(listing.details.listingType === 'Marketplace') {
+        vm.allListings.push(listing);
+      }
+    });
+
+    vm.$scope.sortType = '-date';
     vm.$scope.sortReverse = false;
     vm.$scope.searchListings = '';
 
@@ -27,6 +35,24 @@ class MarketplaceController {
       searchOffers: ''
     }
 
+    vm.$scope.savedFilters = false;
+    this.$scope.defaultFilter = {
+      rate: 0,
+      term: 0,
+      minimum: 0,
+      distance: 0
+    }
+
+    ListingService.getCurrentUser()
+    .then(user => {
+      if(user.filters.marketplace) {
+        vm.$scope.defaultFilter = user.filters.marketplace;
+      }
+    })
+    .then(() => {
+      vm.$rootScope.$broadcast('updateChosen');
+    });
+
     vm.$scope.filterTerm = function(val) {
       return function(item) {
         return item.details.term >= val;
@@ -39,6 +65,32 @@ class MarketplaceController {
       }
     }
 
+    vm.$scope.filterMinimum = function(val) {
+      return function(item) {
+        return item.admin.basics.investment.min >= val;
+      }
+    }
+  }
+
+  filterSave(filters) {
+    var vm = this;
+    vm.ListingService.saveMarketplaceFilters(filters)
+    .then(() => {
+      vm.$scope.savedFilters = true;
+    })
+    .catch(err => {
+      vm.$scope.savedFilters = false;
+    });
+  }
+
+  filterClear() {
+    this.$scope.defaultFilter = {
+      rate: 0,
+      term: 0,
+      minimum: 0,
+      distance: 0
+    };
+    this.$rootScope.$broadcast('resetChosen');
   }
 }
 

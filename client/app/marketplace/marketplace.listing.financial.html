@@ -1,4 +1,45 @@
-<div class="general-content__section financial-details">
+<div class="general-content__section financial-details" ng-show="!viewFinancial">
+  <header class="general-content__section--header">
+    <h3 class="general-content__section--title">
+      Request Access
+    </h3><!-- /.general-content__section--title -->
+  </header><!-- /.general-content__section--header -->
+
+  <p>Access to the financial details requires approval from the business. By clicking below you agree that we can tell the business to contact you and provide your name, email, city, province and investor status. You agree that the business can contact you to verify your information prior to allowing you access to their information.</p>
+
+  <a href="#" ng-click="vm.requestDetails()" ng-disabled="requested" class="button">{{requested ? requested : 'Request Details'}}</a>
+</div><!-- /.general-content__section -->
+
+<div class="general-content__section financial-details" ng-show="viewFinancial">
+  <ul class="financial-details__large">
+    <li>
+      {{vm.currentListing.admin.scores.rating}}
+      <span>Credit Grade <a href="#"><i class="fa fa-question-circle"></i></a></span>
+    </li>
+    <li>
+      {{vm.currentListing.admin.basics.benchmarkRate}}%
+      <span>Benchmark Interest Rate <a href="#"><i class="fa fa-question-circle"></i></a></span>
+    </li>
+    <li>
+      {{vm.currentListing.admin.bankStatements.cashFlow}}%
+      <span>Free Cash Flow Ratio <a href="#"><i class="fa fa-question-circle"></i></a></span>
+    </li>
+  </ul><!-- /.financial-details__large -->
+  <ul class="financial-details__large last">
+    <li>
+      {{vm.currentListing.admin.scores.cds}}%
+      <span>Debt to Income Ratio <a href="#"><i class="fa fa-question-circle"></i></a></span>
+    </li>
+    <li>
+      {{vm.currentListing.admin.scores.cds}}%
+      <span>Probability of Default <a href="#"><i class="fa fa-question-circle"></i></a></span>
+    </li>
+    <li>
+      {{vm.currentListing.admin.scores.bfrs}}%
+      <span>Probability of Business Failure <a href="#"><i class="fa fa-question-circle"></i></a></span>
+    </li>
+  </ul><!-- /.financial-details__large -->
+
   <header class="general-content__section--header">
     <h3 class="general-content__section--title">
       Details
@@ -10,32 +51,36 @@
       <table class="table--basic general-content__table">
         <tbody>
           <tr>
-            <th><strong>Total Outstanding Debt:</strong></th>
-            <td>&nbsp;{{vm.currentListing.financial.debt | currency}}</td>
+            <th><strong>12 Month Revenue:</strong></th>
+            <td>&nbsp;{{vm.currentListing.financial.revenue | currency}}</td>
           </tr>
           <tr>
-            <th><strong>12 Month Review:</strong></th>
+            <th><strong>Projected Revenue:</strong></th>
+            <td>&nbsp;{{vm.currentListing.financial.projection | currency}}</td>
+          </tr>
+          <tr>
+            <th><strong>Expected Growth:</strong></th>
+            <td>&nbsp;%</td>
+          </tr>
+          <tr>
+            <th><strong>Loan to New Revenue Ratio:</strong></th>
+            <td>&nbsp;{{vm.currentListing.admin.financials.loanRatio}}%</td>
+          </tr>
+          <tr>
+            <th><strong>Location Owned:</strong></th>
             <td>&nbsp;</td>
           </tr>
           <tr>
-            <th><strong>Assets:</strong></th>
-            <td>&nbsp;{{vm.currentListing.financial.assets}}</td>
+            <th><strong>2 Year Tax Returns Provided:</strong></th>
+            <td>&nbsp;{{vm.currentListing.admin.underwriting.taxReturns}}</td>
           </tr>
           <tr>
-            <th><strong>Current Inventory:</strong></th>
-            <td>&nbsp;{{vm.currentListing.financial.inventory}}</td>
+            <th><strong>Business banking information provided:</strong></th>
+            <td>&nbsp;{{vm.currentListing.admin.underwriting.taxReturns}}</td>
           </tr>
           <tr>
-            <th><strong>Accounts Receivable:</strong></th>
-            <td>&nbsp;{{vm.currentListing.financial.receivable}}</td>
-          </tr>
-          <tr>
-            <th><strong>Owner Contribution:</strong></th>
-            <td>&nbsp;</td>
-          </tr>
-          <tr>
-            <th><strong>Owners:</strong></th>
-            <td>&nbsp;</td>
+            <th><strong>First lien position on the Note:</strong></th>
+            <td>&nbsp;{{vm.currentListing.admin.underwriting.taxLiens}}</td>
           </tr>
           <tr>
             <th><strong>Personal Guarantee:</strong></th>
@@ -82,7 +127,7 @@
   </ul><!-- /.general-content__detail-wrapper -->
 </div><!-- /.general-content__section -->
 
-<div class="general-content__section financial-files" ng-show="vm.hasFiles">
+<div class="general-content__section financial-files" ng-show="vm.hasFiles && viewFinancial">
   <header class="general-content__section--header">
     <h3 class="general-content__section--title">
       Additional Files

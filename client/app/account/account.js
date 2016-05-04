@@ -41,7 +41,7 @@ angular.module('investnextdoorCaApp')
               if (user.role === 'borrower') {
                 $state.go('dashboard.borrower.actions.index');
               } else if (user.role === 'investor') {
-                $state.go('dashboard.investor.actions');
+                $state.go('dashboard.investor.actions.index');
               } else if (user.role === 'admin') {
                 $state.go('admin.index');
               }
@@ -147,6 +147,22 @@ angular.module('investnextdoorCaApp')
       .state('dashboard.investor.actions', {
         url: '/actions',
         templateUrl: 'app/account/dashboard/investor/dashboard.actions.html',
+        authenticate: true,
+        abstract: true
+      })
+      .state('dashboard.investor.actions.index', {
+        url: '',
+        templateUrl: 'app/account/dashboard/investor/dashboard.actions.index.html',
+        authenticate: true
+      })
+      .state('dashboard.investor.actions.account', {
+        url: '/account',
+        templateUrl: 'app/account/dashboard/investor/dashboard.actions.account.html',
+        authenticate: true
+      })
+      .state('dashboard.investor.actions.addAccount', {
+        url: '/add-account',
+        templateUrl: 'app/account/dashboard/investor/dashboard.actions.add-account.html',
         authenticate: true
       })
       .state('dashboard.investor.investments', {
@@ -194,7 +210,7 @@ angular.module('investnextdoorCaApp')
         },
       })
       .state('listing', {
-        url: '/account/listing',
+        url: '/account/listing/:id',
         templateUrl: 'app/account/listing/listing.html',
         resolve: {
           currentUser: function() { return {}; },

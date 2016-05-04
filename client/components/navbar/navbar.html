@@ -18,14 +18,41 @@
     <nav id="site-navigation" class="main-navigation" role="navigation" collapse="{{nav.isCollapsed}}">
       <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false" type="button" ng-click="nav.isCollapsed = !nav.isCollapsed"><i class="fa fa-navicon"></i></button>
       <ul class="main-menu">
-        <li ng-repeat="item in nav.menu" ui-sref-active="active" class="{{item.class}}">
-            <a ui-sref="{{item.state}}">{{item.title}}</a>
+        <li ui-sref-active="active" class="has-button" ng-if="button==='default'">
+          <a ui-sref="login">Become a Borrower</a>
+        </li><!-- /.has-button -->
+        <li ui-sref-active="active" class="has-button" ng-if="button==='borrower'">
+          <a ui-sref="dashboard.borrower.actions.index">Create Listing</a>
+        </li><!-- /.has-button -->
+        <li ui-sref-active="active" class="has-button" ng-if="button==='investor'">
+          <a ui-sref="marketplace.index">Marketplace</a>
+        </li><!-- /.has-button -->
+
+        <li ui-sref-active="active">
+          <a ui-sref="borrow.index">Borrow</a>
+        </li>
+        <li ui-sref-active="active">
+          <a ui-sref="invest.index">Invest</a>
+          <ul class="sub-menu">
+            <li ng-show="nav.isLoggedIn()">
+              <a ui-sref="marketplace.index">Marketplace</a>
+            </li>
+            <li ng-show="!nav.isLoggedIn()">
+              <a ui-sref="login">Marketplace</a>
+            </li>
+          </ul><!-- /.sub-menu -->
+        </li>
+        <li ui-sref-active="active">
+          <a ui-sref="faq">FAQ</a>
         </li>
         <li ng-hide="nav.isLoggedIn()" ui-sref-active="active"><a ui-sref="login">Signup | Login</a></li>
         <li ng-show="nav.isLoggedIn()" ui-sref-active="active">
-          <a ui-sref="dashboard.index">Account</a>
+          <a ui-sref="dashboard.index">Hi, {{nav.currentUser.name.first}} <i class="fa fa-cog"></i></a>
           <ul class="sub-menu">
+            <li><a ui-sref="dashboard.index">Dashboard</a></li>
             <li ng-show="nav.isAdmin()"><a ui-sref="admin.index">Admin</a></li>
+            <li ng-show="nav.isInvestor()"><a ui-sref="marketplace.index">Marketplace</a></li>
+            <li ng-show="hasListing"><a ui-sref="listing.general({id: listingID})">Listing</a></li>
             <li><a ui-sref="profile">Profile</a></li>
             <li><a ui-sref="logout">Logout</a></li>
           </ul><!-- /.sub-menu -->

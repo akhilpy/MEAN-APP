@@ -498,6 +498,37 @@ a.social-button {
   }
 }
 
+.owner-repeater {
+
+  .formly__repeater--section .formly {
+    flex-wrap: wrap;
+  }
+
+  .owner-repeater__name {
+    width: 50%;
+    padding-right: rem(20);
+  }
+
+  .owner-repeater__percentage {
+    width: 25%;
+    padding-right: rem(20);
+  }
+
+  .owner-repeater__guarantee {
+    width: 25%;
+    padding-right: rem(20);
+  }
+
+  .owner-repeater__address-1,
+  .owner-repeater__address-city,
+  .owner-repeater__address-province,
+  .owner-repeater__address-postal {
+    width: 25%;
+    padding-right: rem(20);
+    margin-top: rem(20);
+  }
+}
+
 .display-flex-inline {
   display: inline-flex;
 }
@@ -507,6 +538,23 @@ a.social-button {
   display: block;
   width: 100%;
   margin-bottom: rem(20);
+
+  &.disabled {
+    input {
+      pointer-events: none;
+      background: $color-grey-pale;
+
+      &:focus,
+      &:hover,
+      &:active {
+        border-color: $color-grey-light;
+      }
+    }
+
+    label {
+      pointer-events: none;
+    }
+  }
 }
 
 .formly__repeater {
@@ -555,6 +603,13 @@ a.social-button {
   &:hover {
     background: $color-slate-med;
   }
+
+  .disabled & {
+    pointer-events: none;
+    &:hover {
+      background: $color-primary-med;
+    }
+  }
 }
 
 .formly__repeater--remove {
@@ -569,6 +624,14 @@ a.social-button {
   &:hover {
     background: none;
     color: $color-grey-light;
+  }
+
+  .disabled & {
+    pointer-events: none;
+
+    &:hover {
+      color: rgba($color-grey-light, 0.6);
+    }
   }
 }
 

@@ -6,20 +6,20 @@
       <label>Amount Funded</label>
       <div class="input-group">
         <div class="input-group-addon"><i class="fa fa-usd"></i></div>
-        <p class="input-style has-addon">$</p>
+        <p class="input-style has-addon">{{details.funded.amount | currency}}</p>
       </div><!-- /.input-group -->
     </div><!-- /.flex-1 -->
     <div class="flex-1">
       <label>Percentage Funded</label>
       <div class="input-group">
         <div class="input-group-addon"><i class="fa fa-percent"></i></div>
-        <p class="input-style has-addon">%</p>
+        <p class="input-style has-addon">{{details.funded.percentage}}%</p>
       </div><!-- /.input-group -->
     </div><!-- /.flex-1 -->
     <div class="flex-1">
       <label>Offers</label>
       <div class="input-group">
-        <div class="input-group-addon"><i class="fa fa-percent"></i></div>
+        <div class="input-group-addon"><i class="fa fa-calculator"></i></div>
         <p class="input-style has-addon"><a href="#">Offers Table</a></p>
       </div><!-- /.input-group -->
     </div><!-- /.flex-1 -->
@@ -27,7 +27,7 @@
       <label>Borrower Rate</label>
       <div class="input-group">
         <div class="input-group-addon"><i class="fa fa-percent"></i></div>
-        <p class="input-style has-addon">{{vm.currentListing.admin.basics.userRate}}</p>
+        <p class="input-style has-addon">{{vm.currentListing.admin.basics.userRate}}%</p>
       </div><!-- /.input-group -->
     </div><!-- /.flex-1 -->
   </div><!-- /.display-flex -->
@@ -39,28 +39,28 @@
       <label>Projected Monthly Payment</label>
       <div class="input-group">
         <div class="input-group-addon"><i class="fa fa-usd"></i></div>
-        <p class="input-style has-addon">$</p>
+        <p class="input-style has-addon">{{details.monthlyPayment | currency}}</p>
       </div><!-- /.input-group -->
     </div><!-- /.flex-1 -->
     <div class="flex-1">
       <label>Average Rate Offered</label>
       <div class="input-group">
-        <div class="input-group-addon"><i class="fa fa-usd"></i></div>
-        <p class="input-style has-addon">$</p>
+        <div class="input-group-addon"><i class="fa fa-percent"></i></div>
+        <p class="input-style has-addon">{{details.averageRate}}%</p>
       </div><!-- /.input-group -->
     </div><!-- /.flex-1 -->
     <div class="flex-1">
       <label>Funded Date</label>
       <div class="input-group">
         <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-        <p class="input-style has-addon">$</p>
+        <p class="input-style has-addon">mm/dd/yyyy</p>
       </div><!-- /.input-group -->
     </div><!-- /.flex-1 -->
     <div class="flex-1">
       <label>Completed Date</label>
       <div class="input-group">
         <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-        <p class="input-style has-addon">$</p>
+        <p class="input-style has-addon">{{vm.currentListing.admin.basics.completed}}</p>
       </div><!-- /.input-group -->
     </div><!-- /.flex-1 -->
   </div><!-- /.display-flex -->
@@ -71,26 +71,29 @@
       <label>Repaid Date</label>
       <div class="input-group">
         <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-        <p class="input-style has-addon">$</p>
+        <p class="input-style has-addon">mm/dd/yyyy</p>
       </div><!-- /.input-group -->
     </div><!-- /.flex-1 -->
     <div class="flex-1">
       <label>Repayment Amount</label>
       <div class="input-group">
-        <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-        <p class="input-style has-addon">$</p>
+        <div class="input-group-addon"><i class="fa fa-usd"></i></div>
+        <p class="input-style has-addon">{{details.totalRepayment | currency}}</p>
       </div><!-- /.input-group -->
     </div><!-- /.flex-1 -->
     <div class="flex-1">
       <label>IND Monthly Fee</label>
       <div class="input-group">
         <div class="input-group-addon"><i class="fa fa-usd"></i></div>
-        <p class="input-style has-addon">$</p>
+        <p class="input-style has-addon">{{details.monthlyFees | currency}}</p>
       </div><!-- /.input-group -->
     </div><!-- /.flex-1 -->
     <div class="flex-1">
       <label>Repayments</label>
-      <p class="input-style has-addon"><a href="#">Repayment Table</a></p>
+      <div class="input-group">
+        <div class="input-group-addon"><i class="fa fa-calculator"></i></div>
+        <p class="input-style has-addon"><a href="#">Repayment Table</a></p>
+      </div><!-- /.input-group -->
     </div><!-- /.flex-1 -->
   </div><!-- /.display-flex -->
 </div><!-- /.formly-field-group -->
@@ -114,7 +117,7 @@
       <label>Payment Processing ID</label>
       <div class="input-group">
         <div class="input-group-addon"><i class="fa fa-hashtag"></i></div>
-        <p class="input-style has-addon">$</p>
+        <p class="input-style has-addon">#</p>
       </div><!-- /.input-group -->
     </div><!-- /.flex-1 -->
     <div class="flex-1">

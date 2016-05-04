@@ -1,6 +1,8 @@
 'use strict';
 
+var geocoder = require('node-geocoder')('google', 'http');
 import mongoose from 'mongoose';
+
 mongoose.Promise = require('bluebird');
 
 import {Schema} from 'mongoose';
@@ -27,8 +29,14 @@ var owners = {
 	},
 	guarantee: {
 		type: String,
-		default: ''
-	}
+		default: 'No'
+	},
+	address: address,
+	dob: Date,
+	property: Boolean,
+	creditCheck: Boolean,
+	email: String,
+	score: Number
 };
 
 var managers = {
@@ -131,8 +139,13 @@ var basics = {
 		default: 'open'
 	},
 	listingType: String,
+	submitted: Date,
+	approved: Date,
 	published: Date,
+	funded: Date,
 	deadline: Date,
+	completed: Date,
+	repaid: Date,
 	investment: {
 		max: {
 			type: Number,
@@ -251,17 +264,17 @@ var ListingSchema = new Schema({
 		default: Date.now
 	},
 	general: {
-		businessName: String,
+		businessName: {
+			type: String,
+			default: ''
+		},
 		doingBusinessName: String,
 		contactName: String,
 		email: String,
 		phone: Number,
 		website: String,
 		address: address,
-		founded: {
-			type: Date,
-			default: Date.now
-		},
+		founded: Date,
 		structure: String,
 		industry: String,
 		naics: String,
@@ -369,7 +382,11 @@ var ListingSchema = new Schema({
 ListingSchema.pre('save', function (next) {
 
 	if(!this.admin.basics.listedRate) {
-		this.admin.basics.listedRate = this.get('admin.basics.benchmarkRate');
+		if(this.admin.basics.userRate) {
+			this.admin.basics.listedRate = this.get('admin.basics.userRate');
+		} else {
+			this.admin.basics.listedRate = null;
+		}
 	}
 
 	if(!this.admin.basics.listingType) {
@@ -385,6 +402,35 @@ ListingSchema.pre('save', function (next) {
 
   next();
 });
+
+ListingSchema
+  .virtual('general.location')
+  .get(function() {
+		var address = '';
+
+		if(this.general.address.street) {
+			address = address + ' ' + this.general.address.street;
+		}
+		if(this.general.address.city) {
+			address = address + ' ' + this.general.address.city;
+		}
+		if(this.general.address.province) {
+			address = address + ' ' + this.general.address.province;
+		}
+		if(this.general.address.postal) {
+			address = address + ' ' + this.general.address.postal;
+		}
+
+		if(address !== '') {
+			return geocoder.geocode(address)
+			.then(data => {
+				return data;
+			});
+		}
+  });
+
+
+ListingSchema.set('toJSON', { virtuals: true });
 
 ListingSchema.plugin(autopopulate);
 export default mongoose.model('Listing', ListingSchema);

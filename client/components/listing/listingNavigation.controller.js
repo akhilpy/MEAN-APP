@@ -10,6 +10,7 @@ class ListingNavigationController {
     if($state.params) {
       nav.currentID = $state.params.id;
     }
+
   }
 
   saveForm() {

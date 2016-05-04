@@ -29,30 +29,32 @@
             .then(offers => {
               angular.forEach(offers, function(currentOffer, key) {
                 if(currentOffer.listing._id === listing._id && currentOffer.user._id === user._id) {
-                  hasCurrentOffer = true;
+                  if(currentOffer.status === 'live' || currentOffer.status === 'pending') {
+                    hasCurrentOffer = true;
 
-                  var credit = {
-                    amount: currentOffer.amount,
-                    listing: listing._id,
-                    entry: 'Credit',
-                    kind: 'Offer'
-                  };
-                  promises.push(Transactions.create(user, credit));
+                    var credit = {
+                      amount: currentOffer.amount,
+                      listing: listing._id,
+                      entry: 'Credit',
+                      kind: 'Offer'
+                    };
+                    promises.push(Transactions.create(user, credit));
 
-                  var debit = {
-                    amount: offer.amount,
-                    listing: listing._id,
-                    entry: 'Debit',
-                    kind: 'Offer'
-                  };
-                  promises.push(Transactions.create(user, debit));
+                    var debit = {
+                      amount: offer.amount,
+                      listing: listing._id,
+                      entry: 'Debit',
+                      kind: 'Offer'
+                    };
+                    promises.push(Transactions.create(user, debit));
 
-                  currentOffer.amount = offer.amount;
-                  currentOffer.rate = offer.rate;
-                  currentOffer.term = offer.term;
-                  currentOffer.date = new Date().toISOString();
-                  Offers.updateOffer(currentOffer)
-                  promises.push(currentOffer);
+                    currentOffer.amount = offer.amount;
+                    currentOffer.rate = offer.rate;
+                    currentOffer.term = offer.term;
+                    currentOffer.date = new Date().toISOString();
+                    Offers.updateOffer(currentOffer)
+                    promises.push(currentOffer);
+                  }
                 }
               });
 
@@ -176,7 +178,9 @@
             rejected: [],
             outbid: [],
             accepted: [],
-            complete: []
+            complete: [],
+            unpaid: [],
+            closed: []
           };
           var promises = [];
           var offers = response.data;
@@ -246,14 +250,17 @@
         return Offers.getListingOffers(listing._id)
           .then(offers => {
 
-            var sortedOffers = $filter('orderBy')(offers.live, ['rate', 'date']);
+            var sortedOffers = $filter('orderBy')(offers.all, ['rate', 'date']);
 
             angular.forEach(sortedOffers, function(offer, key) {
               total += total + offer.amount;
 
-              if(total > goal) {
-                promises.push(lowestOffers.push(offer));
+              if(offer.status === 'pending' || offer.status === 'live') {
+                if(total > goal) {
+                  promises.push(lowestOffers.push(offer));
+                }
               }
+
             });
 
             angular.forEach(lowestOffers, function(offer, key) {
@@ -284,7 +291,7 @@
           .then(response => {
             if(response.data) {
               angular.forEach(response.data, function(offer, key) {
-                if(offer.status === 'pending' || offer.status === 'live' || offer.status === 'rejected') {
+                if(offer.status === 'pending' || offer.status === 'live' || offer.status === 'rejected' || offer.status === 'accepted') {
                   promises.push(offers.push(offer));
                 }
               });
@@ -301,7 +308,7 @@
               .then(response => {
                 if(response.data) {
                   angular.forEach(response.data, function(offer, key) {
-                    if(offer.status === 'pending' || offer.status === 'live' || offer.status === 'rejected') {
+                    if(offer.status === 'pending' || offer.status === 'live' || offer.status === 'rejected' || offer.status === 'accepted') {
                       promises.push(offers.push(offer));
                     }
                   });
@@ -333,7 +340,7 @@
           .then(response => {
             if(response.data) {
               angular.forEach(response.data, function(investment, key) {
-                if(investment.status === 'accepted' || investment.status === 'complete' || investment.status === 'closed') {
+                if(investment.status === 'complete' || investment.status === 'unpaid' || investment.status === 'closed') {
                   promises.push(investments.push(investment));
                 }
               });
@@ -350,7 +357,7 @@
               .then(response => {
                 if(response.data) {
                   angular.forEach(response.data, function(investment, key) {
-                    if(investment.status === 'accepted' || investment.status === 'complete' || investment.status === 'closed') {
+                    if(investment.status === 'complete' || investment.status === 'unpaid' || investment.status === 'closed') {
                       promises.push(investments.push(investment));
                     }
                   });

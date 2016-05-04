@@ -21,7 +21,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="offer in offers | orderBy: ['status', '-rate']" ng-class="{'row-disabled': offer.status!=='live' && offer.status!=='accepted'}">
+    <tr ng-repeat="offer in offers | orderBy: ['-rate', 'status']" ng-class="{'row-disabled': offer.status!=='live' && offer.status!=='accepted'}">
       <td class="status">
         <i ng-show=offer.status==='pending' class="fa pending"></i>
         <i ng-show=offer.status==='live' class="fa fa-bolt new"></i>
@@ -43,5 +43,5 @@
   </tbody>
 </table>
 
-<p ng-show="amountReached">To complete your loan accepting each offer and sign the related agreement.</p>
+<p ng-show="amountReached">To complete your loan accept each offer and sign the related agreement.</p>
 <a ui-sref="dashboard.borrower.actions.complete" class="button" ng-class="{'disabled': !loanComplete}" ng-if="amountReached || loanComplete">Complete Loan</a>

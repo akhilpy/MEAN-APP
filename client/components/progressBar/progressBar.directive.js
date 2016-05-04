@@ -6,7 +6,9 @@ angular.module('investnextdoorCaApp')
       templateUrl: 'components/progressBar/progressBar.html',
       restrict: 'EA',
       link: function (scope, element, attrs) {
-        scope.progress = attrs.progressBar;
+        attrs.$observe('progressBar', function() {
+          scope.progress = attrs.progressBar;
+        });
       }
     };
   });

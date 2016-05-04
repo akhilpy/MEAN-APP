@@ -79,22 +79,22 @@ class ListingController {
 
     vm.submitted = true;
 
-    if (form.$valid) {
-      vm.ListingService.saveOne(savedListing, vm.listingID).then(data => {
-        vm.$scope.saving = false;
-      });
-    }
+    vm.ListingService.saveOne(savedListing, vm.listingID)
+    .then(data => {
+      vm.$scope.saving = false;
+    })
+    .catch(err => {
+      console.log(err);
+    });
+
   }
 
   submitListing(form) {
     var vm = this;
     vm.submitted = true;
     vm.saveListing(form);
-
-    if (form.$valid) {
-      vm.ListingService.submitOne(vm.listingID);
-      vm.$state.go('dashboard.index');
-    }
+    vm.ListingService.submitOne(vm.listingID);
+    vm.$state.go('dashboard.index');
   }
 }
 

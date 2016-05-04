@@ -87,6 +87,7 @@ class BorrowerController {
 
       if(newListings.length > 0) {
         $scope.notifications.listings = newListings.length;
+        $scope.publishListings = newListings;
       }
     });
 
@@ -285,12 +286,14 @@ class BorrowerController {
     request.status = 'Rejected';
     return this.$scope.Borrower.updateRequest(request).then(() => {
       vm.$scope.notifications.requests -= 1;
+      vm.socket.syncUpdates('request', vm.$scope.requests);
     });
   }
 
   approveRequest(request) {
     request.status = 'Approved';
     return this.$scope.Borrower.updateRequest(request);
+    vm.socket.syncUpdates('request', vm.$scope.requests);
   }
 
   completeLoan() {
@@ -328,8 +331,10 @@ class BorrowerController {
 
   createListing() {
     var vm = this;
-    vm.Listings.createOne({});
-    vm.$state.go('listing.general');
+    vm.Listings.createOne({}).then(response => {
+      var listingID = response.data._id;
+      vm.$state.go('listing.general', {id: listingID});
+    });
   }
 
 }

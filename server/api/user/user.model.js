@@ -123,6 +123,26 @@ var UserSchema = new Schema({
 		type: Number,
 		default: 0
 	},
+	filters: {
+		marketplace: {
+			rate: {
+				type: Number,
+				default: 0
+			},
+			term: {
+				type: Number,
+				default: 0
+			},
+			minimum: {
+				type: Number,
+				default: 0
+			},
+			distance: {
+				type: Number,
+				default: 0
+			}
+		}
+	},
 	borrower: {
 		status: {
 			type: String,
@@ -153,7 +173,7 @@ var UserSchema = new Schema({
 		},
 		maximum: {
 			type: Number,
-			default: 0
+			default: 2500
 		},
 		offers: [{
 			type: Schema.ObjectId,

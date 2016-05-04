@@ -49,11 +49,11 @@ function InvestorService($http, Offers, ListingService, $q) {
                 total += investment.amount;
 
                 if(investment.status === 'complete') {
-                  forecast += investment.interest;
+                  forecast += investment.cost;
                 }
 
                 if(investment.status === 'paid' || investment.status === 'closed') {
-                  interest += investment.interest;
+                  interest += investment.cost;
                 }
               });
 

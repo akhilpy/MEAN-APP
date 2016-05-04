@@ -3,11 +3,12 @@
 (function() {
 
 class AdminController {
-  constructor(listings, users, offers, ListingService, $state, $stateParams, $scope, Auth, $filter) {
+  constructor(listings, users, offers, ListingService, $state, $stateParams, $scope, Auth, $filter, socket, $rootScope) {
     var vm = this;
     vm.$state = $state;
     vm.$filter = $filter;
     vm.$scope = $scope;
+    vm.socket = socket;
     vm.$stateParams = $stateParams;
     vm.ListingService = ListingService;
     vm.Auth = Auth;
@@ -29,6 +30,14 @@ class AdminController {
 
     vm.adminEditing = true;
     vm.searchTerm = '';
+
+    $rootScope.$on('updateUsers', function() {
+      vm.socket.syncUpdates('user', vm.users);
+    });
+
+    $scope.$on('$destroy', function() {
+      vm.socket.unsyncUpdates('user');
+    });
 
     $scope.$watch('vm.searchTerm', function(val) {
       vm.allListings = vm.$filter('filter')(vm.listings, val);

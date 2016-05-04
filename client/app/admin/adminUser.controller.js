@@ -3,9 +3,12 @@
 (function() {
 
 class AdminUserController {
-  constructor(currentUser, $state, Form, $http) {
+  constructor(currentUser, $state, Form, $http, socket, $rootScope) {
     var vm = this;
     vm.$http = $http;
+    vm.$state = $state;
+    vm.$rootScope = $rootScope;
+    vm.socket = socket;
     vm.Form = Form;
     vm.user = currentUser;
 
@@ -14,7 +17,7 @@ class AdminUserController {
     vm.borrowerProfile = vm.Form.getBorrowerProfile();
     vm.borrowerAdmin = vm.Form.getBorrowerAdmin();
 
-    vm.user.newRole = vm.user.role;
+    vm.user.newRole = currentUser.role;
   }
 
   updateInvestor(form) {
@@ -25,11 +28,12 @@ class AdminUserController {
     vm.submitted = true;
 
     if (form.$valid) {
-      vm.$http.put('/api/users/' + vm.user._id, {
+      return vm.$http.put('/api/users/' + vm.user._id, {
         user: vm.user
       })
       .then(() => {
-        //console.log('updated');
+        vm.$state.go('admin.users.index');
+        vm.$rootScope.$broadcast('updateUsers');
       })
       .catch(err => {
         vm.errors.other = err.message;
@@ -42,11 +46,12 @@ class AdminUserController {
     vm.submitted = true;
 
     if (form.$valid) {
-      vm.$http.put('/api/users/' + vm.user._id, {
+      return vm.$http.put('/api/users/' + vm.user._id, {
         user: vm.user
       })
       .then(() => {
-        //console.log('updated');
+        vm.$state.go('admin.users.index');
+        vm.$rootScope.$broadcast('updateUsers');
       })
       .catch(err => {
         vm.errors.other = err.message;

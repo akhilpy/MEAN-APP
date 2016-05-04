@@ -417,7 +417,13 @@ function BorrowerService($http, Offers, $q, ListingService) {
 
         return $q.all(promises)
         .then(function() {
-          return $http.post('/api/repayments', repayment);
+          return $http.post('/api/repayments', repayment)
+          .then(() => {
+            var date = new Date;
+            listing.completed = date.toISOString();
+            listing.status = 'closed';
+            return $http.put('/api/listings' + listing._id, listing)
+          });
         });
       });
     },

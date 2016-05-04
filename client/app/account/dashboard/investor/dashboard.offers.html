@@ -4,6 +4,7 @@
   <li><i class="fa fa-legal review"></i> In Review</li>
   <li><i class="fa fa-bolt new"></i> Active</li>
   <li><i class="fa fa-times pending"></i> Outbid</li>
+  <li><i class="fa fa-check success"></i> Accepted</li>
   <li><i class="fa fa-times warning"></i> Rejected</li>
 </ul><!-- /.general-content__table-keys -->
 
@@ -23,6 +24,7 @@
         <i ng-show=offer.status==='pending' class="fa fa-legal review"></i>
         <i ng-show=offer.status==='live' class="fa fa-bolt new"></i>
         <i ng-show=offer.status==='outbid' class="fa fa-times pending"></i>
+        <i ng-show=offer.status==='accepted' class="fa fa-check success"></i>
         <i ng-show=offer.status==='rejected' class="fa fa-times warning"></i>
       </td>
       <td>{{offer.date | date}}</td>

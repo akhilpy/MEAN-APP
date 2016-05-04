@@ -38,23 +38,15 @@
       <td><p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae voluptatibus labore ducimus minus quas nihil consequuntur quibusdam enim adipisci tempore.</p></td>
       <td><a href="#" ui-sref="dashboard.borrower.actions.account" class="button small edit">Verify</a></td>
     </tr>
-    <tr>
-      <td class="status">
-        <i class="fa fa-times warning"></i>
-      </td>
-      <td>Set Your Rate</td>
-      <td><p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae voluptatibus labore ducimus minus quas nihil consequuntur quibusdam enim adipisci tempore.</p></td>
-      <td><a href="#" class="button small edit">Set</a></td>
-    </tr>
-    <tr>
+    <tr ng-repeat="listing in publishListings">
       <td class="status">
         <i class="fa fa-times warning"></i>
       </td>
       <td>Publish Your Listing</td>
       <td><p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae voluptatibus labore ducimus minus quas nihil consequuntur quibusdam enim adipisci tempore.</p></td>
-      <td><a href="#" class="button small edit">Publish</a></td>
+      <td><a ui-sref="dashboard.borrower.listings.actions({id: listing._id})" class="button small edit">Publish</a></td>
     </tr>
-    <tr>
+    <tr ng-if="currentListing.admin.basics.status==='active'">
       <td class="status">
         <i class="fa fa-times warning"></i>
       </td>
@@ -62,7 +54,7 @@
       <td><p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae voluptatibus labore ducimus minus quas nihil consequuntur quibusdam enim adipisci tempore.</p></td>
       <td><a href="#" class="button small edit">Share</a></td>
     </tr>
-    <tr>
+    <tr ng-show="amountReached">
       <td class="status">
         <i class="fa fa-times warning"></i>
       </td>

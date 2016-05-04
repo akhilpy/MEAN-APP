@@ -80,24 +80,29 @@
     <h4>Filter Results</h4>
     <ul class="marketplace-filters__list">
       <li class="marketplace-filter__wrapper">
-        <select chosen="vm.filters.distances" data-placeholder="Distance" disable_search_threshold="15" ng-options="filter.value as filter.label for filter in vm.filters.distances track by filter.value" ng-model="vm.filter.distance"></select>
+        <select chosen="vm.filters.distances" data-placeholder="Distance" disable_search_threshold="15" ng-options="filter.value as filter.label for filter in vm.filters.distances" ng-model="defaultFilter.distance"></select>
       </li><!-- /.marketplace-filter__wrapper -->
       <li class="marketplace-filter__wrapper">
-        <select chosen="vm.filters.rates" data-placeholder="Interest Rate" disable_search_threshold="15" ng-options="filter.value as filter.label for filter in vm.filters.rates track by filter.value" ng-model="vm.filter.rate" ng-init="vm.filter.rate=0"></select>
+        <select chosen="vm.filters.rates" data-placeholder="Interest Rate" disable_search_threshold="15" ng-options="filter.value as filter.label for filter in vm.filters.rates" ng-model="defaultFilter.rate"></select>
       </li><!-- /.marketplace-filter__wrapper -->
       <li class="marketplace-filter__wrapper">
-        <select chosen="vm.filters.minimums" data-placeholder="Minimum" disable_search_threshold="15" ng-options="filter.value as filter.label for filter in vm.filters.minimums track by filter.value" ng-model="vm.filter.minimum"></select>
+        <select chosen="vm.filters.minimums" data-placeholder="Minimum" disable_search_threshold="15" ng-options="filter.value as filter.label for filter in vm.filters.minimums" ng-model="defaultFilter.minimum"></select>
       </li><!-- /.marketplace-filter__wrapper -->
       <li class="marketplace-filter__wrapper">
-        <select chosen="vm.filters.terms" data-placeholder="Term" disable_search_threshold="15" ng-options="filter.value as filter.label for filter in vm.filters.terms track by filter.value" ng-model="vm.filter.term" ng-init="vm.filter.term=0"></select>
+        <select chosen="vm.filters.terms" data-placeholder="Term" disable_search_threshold="15" ng-options="filter.value as filter.label for filter in vm.filters.terms" ng-model="defaultFilter.term"></select>
       </li><!-- /.marketplace-filter__wrapper -->
       <li class="marketplace-filter__wrapper">
-        <select chosen="vm.filters.purposes" data-placeholder="Purpose" disable_search_threshold="15" ng-options="filter.value as filter.label for filter in vm.filters.purposes track by filter.value" ng-model="filterPurpose.details.usage" ></select>
+        <select chosen="vm.filters.purposes" data-placeholder="Purpose" disable_search_threshold="15" ng-options="filter.value as filter.label for filter in vm.filters.purposes" ng-model="filterPurpose.details.usage" ></select>
       </li><!-- /.marketplace-filter__wrapper -->
       <li class="marketplace-filter__wrapper">
-        <select chosen="vm.filters.times" data-placeholder="Time Remaining" disable_search_threshold="15" ng-options="filter.value as filter.label for filter in vm.filters.times track by filter.value" ng-model="vm.filter.time"></select>
+        <select chosen="vm.filters.times" data-placeholder="Time Remaining" disable_search_threshold="15" ng-options="filter.value as filter.label for filter in vm.filters.times" ng-model="defaultFilter.time"></select>
       </li><!-- /.marketplace-filter__wrapper -->
     </ul><!-- /.marketplace-filters__list -->
+
+    <ul class="marketplace-filters__actions">
+      <li><a href="#" ng-click="vm.filterClear()">Clear Filters</a></li>
+      <li><a href="#" ng-click="vm.filterSave(defaultFilter)">{{savedFilters ? 'Saved' : 'Save Filters'}}</a></li>
+    </ul><!-- /.marketplace-filters__actions -->
   </div><!-- /.marketplace-filters -->
 </div><!-- /.marketplace-filters__wrapper -->
 
@@ -138,7 +143,7 @@
             </a>
           </th>
           <th>
-            <a href="#" ng-click="sortType = 'admin.basics.userRate'; sortReverse = !sortReverse">
+            <a href="#" ng-click="sortType = 'admin.basics.listedRate'; sortReverse = !sortReverse">
               Rate
               <span class="sort-icon">
                 <i class="fa fa-angle-down"></i>
@@ -147,7 +152,7 @@
             </a>
           </th>
           <th>
-            <a href="#" ng-click="sortType = 'term'; sortReverse = !sortReverse">
+            <a href="#" ng-click="sortType = 'details.term'; sortReverse = !sortReverse">
               Term
               <span class="sort-icon">
                 <i class="fa fa-angle-down"></i>
@@ -181,14 +186,14 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="listing in vm.allListings | orderBy:sortType:sortReverse | filter: filterRate(vm.filter.rate) | filter: filterTerm(vm.filter.term) | filter: filterPurpose">
+        <tr ng-repeat="listing in vm.allListings | orderBy:sortType:sortReverse | filter: filterRate(defaultFilter.rate) | filter: filterTerm(defaultFilter.term) | filter: filterMinimum(defaultFilter.minimum) | filter: filterPurpose">
           <td>{{listing.general.businessName}}</td>
           <td>{{listing.general.address.city}} {{listing.general.address.province}}</td>
           <td>{{listing.general.industry}}</td>
-          <td>{{listing.admin.basics.userRate}}%</td>
+          <td>{{listing.admin.basics.listedRate}}%</td>
           <td>{{listing.details.term}} Mo</td>
           <td>{{listing.admin.basics.deadline | amCalendar}}</td>
-          <td></td>
+          <td>{{listing.admin.scores.cds}}%</td>
           <td><a ui-sref="marketplace.listing.profile({id: listing._id})" class="button small">Details</a></td>
         </tr>
       </tbody>

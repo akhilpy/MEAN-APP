@@ -88,4 +88,30 @@
   }
 }
 
+.financial-details__large {
+  @include list-zero;
+  display: flex;
+
+  li {
+    @include font-size(70);
+    font-weight: 700;
+    flex: 1;
+    line-height: 1;
+    border: 5px solid $color-white;
+    padding: rem(20);
+    background: $color-grey-pale;
+
+    span {
+      @include font-size(14);
+      text-transform: uppercase;
+      display: block;
+      margin-top: rem(5);
+    }
+  }
+
+  &.last {
+    margin-bottom: rem(40);
+  }
+}
+
 /*=====  End of Listing  ======*/

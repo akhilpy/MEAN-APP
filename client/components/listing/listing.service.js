@@ -15,6 +15,10 @@ function ListingService($location, $cookies, $q, $resource, $http, Auth, User, $
     getCurrentUser() {
       return Auth.getCurrentUser(null)
       .then(user => {
+        if(Object.keys(user).length === 0 && JSON.stringify(user) === JSON.stringify({})) {
+          return false;
+        }
+
         if(!user.borrower.listings[0]) {
           var currentUser = User.get();
           var value = (currentUser.hasOwnProperty('$promise')) ?
@@ -39,7 +43,10 @@ function ListingService($location, $cookies, $q, $resource, $http, Auth, User, $
      * @return {String}
      */
     getUser(userID) {
-      return User.getOne({id: userID});
+      return $http.get('/api/users/' + userID)
+      .then(response => {
+        return response.data;
+      });
     },
 
 
@@ -176,6 +183,8 @@ function ListingService($location, $cookies, $q, $resource, $http, Auth, User, $
       return Listing.getOne(listingID)
         .then(listing => {
           var listing = listing.data;
+          var date = new Date;
+          listing.admin.basics.submitted = date.toISOString();
           listing.admin.basics.status = 'review';
           return $http.put('/api/listings/' + listingID, listing);
         });
@@ -296,7 +305,7 @@ function ListingService($location, $cookies, $q, $resource, $http, Auth, User, $
      * @return {String}
      */
     requestMore(listing) {
-      return Auth.getCurrentUser(null)
+      return Listing.getCurrentUser()
         .then(user => {
           return $http.put('/api/listings/request-more/' + listing._id, {
             user: user
@@ -348,6 +357,26 @@ function ListingService($location, $cookies, $q, $resource, $http, Auth, User, $
 
 
     /**
+     * Add a listing to your bookmarks
+     *
+     * @return {String}
+     */
+    saveMarketplaceFilters(filters) {
+      return Listing.getCurrentUser()
+        .then(user => {
+          user.filters.marketplace = filters;
+          return $http.put('/api/users/' + user._id, {
+            user: user
+          });
+        })
+        .catch(err => {
+          console.log(err.message);
+        });
+    },
+
+
+
+    /**
      * Calculate an investment based on the provided paramters
      *
      * @return {String}
@@ -387,7 +416,7 @@ function ListingService($location, $cookies, $q, $resource, $http, Auth, User, $
      */
     getMinimum() {
       return [
-        {label: 'Minimum Amount (All)'},
+        {label: 'Minimum Amount (All)', value: 0},
         {label: '$500', value: 500},
         {label: '$1,000', value: 1000},
         {label: '$5,000', value: 5000},

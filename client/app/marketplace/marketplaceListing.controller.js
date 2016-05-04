@@ -3,23 +3,26 @@
 (function() {
 
 class MarketplaceListingController {
-  constructor(listing, offers, ListingService, Auth, $scope, ngDialog) {
+  constructor(listing, offers, ListingService, Auth, $scope, ngDialog, Offers, $q) {
     var vm = this;
     vm.ListingService = ListingService;
     vm.Auth = Auth;
     vm.$scope = $scope;
     vm.ngDialog = ngDialog;
+    vm.Offers = Offers;
     vm.currentListing = listing.data;
     vm.currentListing.link = window.location.href;
     vm.currentOffers = offers;
     vm.currentUser = Auth.getCurrentUser();
 
-    vm.requested = false;
+    vm.$scope.requested = false;
     vm.bookmarked = false;
     vm.hasManagers = false;
     vm.hasReviews = false;
     vm.hasOffers = false;
     vm.hasFiles = false;
+
+    vm.$scope.viewFinancial = false;
 
     if(vm.currentListing.social.managers && vm.currentListing.social.managers.length > 0) {
       vm.hasManagers = true;
@@ -72,12 +75,37 @@ class MarketplaceListingController {
       }
     };
 
+    vm.$scope.details = {
+      funded: {
+        amount: 0,
+        percentage: 0
+      },
+      averageRate: 0,
+      monthlyPayment: 0,
+      totalRepayment: 0,
+      monthlyFees: 0
+    };
+
     // check if user has already requested more info
     if(vm.currentListing.infoRequest.length > 0) {
+      var promises = [];
+      var requestButton = 'Request Pending';
+      var viewFinancial = false;
       angular.forEach(vm.currentListing.infoRequest, function(request) {
         if(request.user._id === vm.currentUser._id) {
-          vm.requested = 'Request ' + request.status;
+          requestButton = 'Request ' + request.status;
+          if(request.status === 'Approved') {
+            viewFinancial = true;
+          }
         }
+
+        promises.push(request);
+      });
+
+      $q.all(promises).then(function() {
+        vm.$scope.requested = requestButton;
+        vm.$scope.viewFinancial = viewFinancial;
+        return;
       });
     }
 
@@ -94,6 +122,37 @@ class MarketplaceListingController {
       title: 'Make an Offer',
       message: 'Details on your offer will be shown here.'
     }
+
+    vm.Offers.getListingOffers(vm.currentListing._id)
+    .then(offers => {
+      var promises = [];
+      var amountFunded = 0;
+      angular.forEach(offers.all, function(offer, key) {
+        if(offer.status !== 'pending' && offer.status !== 'outbid' && offer.status !== 'rejected') {
+          amountFunded += offer.amount;
+        }
+        promises.push(offer);
+      });
+
+      return $q.all(promises).then(function() {
+        var goal = vm.currentListing.details.amount;
+        vm.$scope.details.funded.percentage = +((amountFunded / goal) * 100).toFixed(0);
+        if(vm.$scope.details.funded.percentage > 100) {
+          vm.$scope.details.funded.percentage = 100;
+        }
+        return;
+      });
+    });
+  }
+
+  makeNewOffer() {
+    var vm = this;
+    vm.ngDialog.open({
+      template: 'app/marketplace/lightbox.offer.html',
+      controller: 'WidgetOfferController',
+      controllerAs: 'offerWidget',
+      scope: vm.$scope
+    });
   }
 
   bookmark() {
@@ -107,9 +166,9 @@ class MarketplaceListingController {
   }
 
   requestDetails() {
-    if(!this.requested) {
+    if(!this.$scope.requested) {
       this.ListingService.requestMore(this.currentListing);
-      this.requested = true;
+      this.$scope.requested = 'Request Pending';
     }
   }
 

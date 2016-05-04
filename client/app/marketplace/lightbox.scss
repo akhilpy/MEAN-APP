@@ -1,0 +1,15 @@
+.ngdialog.ngdialog-theme-default .ngdialog-close {
+  &:before {
+    //color: $color-primary-med;
+  }
+
+  &:hover {
+    &:before {
+      //color: $color-primary-dark;
+    }
+  }
+}
+
+.lightbox__inner {
+  padding: rem(10);
+}

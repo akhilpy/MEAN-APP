@@ -1,0 +1,29 @@
+<div class="lightbox__inner">
+  <header class="widget__header">
+    <h3 class="widget__title">Make an Offer</h3>
+  </header><!-- /.widget__header -->
+
+  <div class="widget__subtitle">
+    <h4>{{balance | currency}}</h4>
+    <span>Available Balance</span>
+  </div><!-- /.widget__subtitle -->
+
+  <form class="widget__form" ng-show="showOfferWidget">
+    <ul class="form__rows">
+      <li class="form__row">
+        <select chosen="rates" data-placeholder="Rate*" ng-model="offerWidget.newOffer.rate" ng-options="rate.value as rate.label for rate in rates"></select>
+      </li><!-- /.form__row -->
+      <li class="form__row">
+        <select chosen="amounts" data-placeholder="Amount*" ng-model="offerWidget.newOffer.amount" ng-options="amount.value as amount.label for amount in amounts"></select>
+      </li><!-- /.form__row -->
+      <li class="form__row form__row--submit ">
+        <button ng-click="offerWidget.makeOffer()">{{offered ? 'Offered' : 'Submit'}}</button>
+      </li><!-- /.form__row -->
+    </ul><!-- /.form__rows -->
+  </form><!-- /.widget__form -->
+  
+  <div class="widget__error" ng-hide="showOfferWidget">
+    <p>You cannot bid on this listing.</p>
+  </div><!-- /.widget__subtitle -->
+
+</div><!-- /.lightbox__inner -->

@@ -2,7 +2,7 @@
 /*jshint camelcase: false */
 
 angular.module('investnextdoorCaApp')
-  .directive('chosen', function() {
+  .directive('chosen', function($rootScope) {
     return {
       restrict: 'A',
       link: function (scope, element, attrs) {
@@ -18,11 +18,34 @@ angular.module('investnextdoorCaApp')
         });
 
         // update chosen if the select is disabled
+        scope.$watch(attrs.ngModel, function() {
+          element.trigger('chosen:updated');
+        });
+
+        scope.$watch('ngOptions', function() {
+          element.trigger('chosen:updated');
+        });
+
+        // update chosen if the select is disabled
         attrs.$observe('disabled', function() {
           element.trigger('chosen:updated');
         });
 
-        scope.$on('updateChosen', function() {
+        attrs.$observe('placeholder_text_single', function() {
+          element.trigger('chosen:updated');
+        });
+
+        attrs.$observe('placeholder_text_multiple', function() {
+          element.trigger('chosen:updated');
+        });
+
+        $rootScope.$on('updateChosen', function() {
+          console.log('updated');
+          element.trigger('chosen:updated');
+        });
+
+        $rootScope.$on('resetChosen', function() {
+          element.val(0);
           element.trigger('chosen:updated');
         });
 

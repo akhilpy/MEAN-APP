@@ -8,15 +8,24 @@ class WidgetCurrentOffersController {
     widget.ngDialog = ngDialog;
     widget.$scope = $scope;
     widget.$scope.makeOutbid = false;
+    widget.$scope.showCurrentOffersWidget = true;
 
-    if(this.$scope.vm.currentOffers.live.length > 0) {
-      var rates = 0
+    if($scope.vm.currentUser.role === 'borrower' || $scope.vm.currentListing.admin.basics.status === 'closed') {
+      widget.$scope.showCurrentOffersWidget = false;
+    }
 
-      angular.forEach(this.$scope.vm.currentOffers.live, function(offer) {
-        rates += offer.rate;
+    if(this.$scope.vm.currentOffers.all.length > 0) {
+      var rates = 0;
+      var averageOffers = [];
+
+      angular.forEach(this.$scope.vm.currentOffers.all, function(offer) {
+        if(offer.status === 'live' || offer.status === 'pending') {
+          rates += offer.rate;
+          averageOffers.push(offer);
+        }
       });
 
-      $scope.vm.averageRate = Math.ceil(rates / this.$scope.vm.currentOffers.live.length);
+      $scope.vm.averageRate = Math.ceil(rates / averageOffers.length);
     }
   }
 

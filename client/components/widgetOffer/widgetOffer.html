@@ -1,4 +1,4 @@
-<div class="widget__wrapper widget__make-an-offer">
+<div class="widget__wrapper widget__make-an-offer" ng-show="showOfferWidget">
   <div class="widget">
     <header class="widget__header">
       <h3 class="widget__title">Make an Offer</h3>
@@ -26,5 +26,17 @@
     <div class="widget__error" ng-show="error">
       <p>Your offer could not be placed as it exceeds your current maxmim offer.</p>
     </div>
+  </div><!-- /.widget -->
+</div><!-- /.widget__wrapper -->
+
+<div class="widget__wrapper widget__make-an-offer" ng-hide="showOfferWidget">
+  <div class="widget">
+    <header class="widget__header">
+      <h3 class="widget__title">Make an Offer</h3>
+    </header><!-- /.widget__header -->
+
+    <div class="widget__error">
+      <p>You cannot bid on this listing.</p>
+    </div><!-- /.widget__subtitle -->
   </div><!-- /.widget -->
 </div><!-- /.widget__wrapper -->
