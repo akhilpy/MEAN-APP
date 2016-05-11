@@ -27,7 +27,7 @@
   </ul><!-- /.financial-details__large -->
   <ul class="financial-details__large last">
     <li>
-      {{vm.currentListing.admin.scores.cds}}%
+      {{vm.currentListing.admin.financials.debtRatio}}%
       <span>Debt to Income Ratio <a href="#"><i class="fa fa-question-circle"></i></a></span>
     </li>
     <li>
@@ -60,7 +60,7 @@
           </tr>
           <tr>
             <th><strong>Expected Growth:</strong></th>
-            <td>&nbsp;%</td>
+            <td>&nbsp;{{vm.currentListing.financial.expectedGrowth}}</td>
           </tr>
           <tr>
             <th><strong>Loan to New Revenue Ratio:</strong></th>
@@ -68,7 +68,7 @@
           </tr>
           <tr>
             <th><strong>Location Owned:</strong></th>
-            <td>&nbsp;</td>
+            <td>&nbsp;{{vm.currentListing.financial.commercialSpace}}</td>
           </tr>
           <tr>
             <th><strong>2 Year Tax Returns Provided:</strong></th>

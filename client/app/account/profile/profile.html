@@ -35,6 +35,9 @@
               <div class="investor-profile" ng-show="profile.isInvestor()">
                 <div class="listing-form__wrapper listing-form__investor">
                   <formly-form model="profile.user" fields="profile.investorProfile" form="investor">
+                    <div class="form-message" ng-show="profile.hasErrors">
+                      <p>Please Complete All Required Fields</p>
+                    </div><!-- /.form-message -->
                     <div class="formly-submit">
                       <ul class="listing-form__pagination">
                         <li>&nbsp;</li>

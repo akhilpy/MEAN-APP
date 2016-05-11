@@ -46,7 +46,7 @@
             </div><!-- /.progress-bar__status -->
           </div><!-- /.progress-bar__wrapper -->
         </td>
-        <td class="time-remaining"><span class="warning">{{listing.admin.basics.deadline | amCalendar}}</span></td>
+        <td class="time-remaining"><span class="warning">{{vm.outputDeadline(vm.currentListing)}}</span></td>
       </tr>
       <tr class="listing-stat__label">
         <td>Rate</td>

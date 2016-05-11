@@ -22,6 +22,8 @@ class ProfileController {
 
     this.investorProfile = this.Form.getInvestorProfile();
     this.borrowerProfile = this.Form.getBorrowerProfile();
+
+    this.hasErrors = false;
   }
 
   changePassword(form) {
@@ -50,6 +52,7 @@ class ProfileController {
 
 
     if (form.$valid) {
+      vm.hasErrors = false;
       vm.$http.put('/api/users/' + vm.user._id, {
         user: vm.user
       })
@@ -94,6 +97,8 @@ class ProfileController {
       .catch(err => {
         vm.errors.other = err.message;
       });
+    } else {
+      vm.hasErrors = true;
     }
   }
 

@@ -126,11 +126,11 @@ function ListingService($location, $cookies, $q, $resource, $http, Auth, User, $
         if(response.data) {
           return response.data;
         } else {
-          return [];
+          return false;
         }
       })
       .catch(err => {
-        console.log(err.message);
+        return false;
       });
     },
 

@@ -10,6 +10,8 @@ import aws from './api/config/aws.js';
 
 export default function(app) {
   // Insert routes below
+  app.use('/api/utilities', require('./api/utility'));
+  app.use('/api/mails', require('./api/mail'));
   app.use('/api/repayments', require('./api/repayment'));
   app.use('/api/transactions', require('./api/transaction'));
   app.use('/api/offers', require('./api/offer'));
@@ -21,6 +23,7 @@ export default function(app) {
   app.use('/api/listings', require('./api/listing'));
   app.use('/api/users', require('./api/user'));
   app.get('/api/s3Policy', aws.getS3Policy);
+  app.post('/api/uploadToS3', aws.uploadToS3);
 
   app.use('/auth', require('./auth'));
 

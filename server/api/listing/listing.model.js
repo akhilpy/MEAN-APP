@@ -1,6 +1,7 @@
 'use strict';
 
 var geocoder = require('node-geocoder')('google', 'http');
+var moment = require('moment');
 import mongoose from 'mongoose';
 
 mongoose.Promise = require('bluebird');
@@ -126,7 +127,9 @@ var requester = {
 var file = {
 	name: String,
 	link: String,
-	size: String
+	size: String,
+	thumb: String,
+	slide: String
 };
 
 var basics = {
@@ -143,7 +146,6 @@ var basics = {
 	approved: Date,
 	published: Date,
 	funded: Date,
-	deadline: Date,
 	completed: Date,
 	repaid: Date,
 	investment: {
@@ -392,14 +394,6 @@ ListingSchema.pre('save', function (next) {
 	if(!this.admin.basics.listingType) {
 		this.admin.basics.listingType = this.get('details.listingType');
 	}
-
-	if(this.admin.basics.published) {
-		var published = this.admin.basics.published;
-		var deadline = new Date();
-		deadline.setDate(published.getDate() + 60);
-		this.admin.basics.deadline = deadline;
-	}
-
   next();
 });
 
@@ -428,6 +422,19 @@ ListingSchema
 			});
 		}
   });
+
+	ListingSchema
+	  .virtual('admin.basics.deadline')
+	  .get(function() {
+			if(this.admin.basics.published) {
+				var published = new Date(this.admin.basics.published);
+				var publishedDate = moment(published);
+				var deadline = publishedDate.add(60, 'days');
+				return deadline.toDate();
+			} else {
+				return new Date();
+			}
+	  });
 
 
 ListingSchema.set('toJSON', { virtuals: true });

@@ -161,7 +161,8 @@ function FormService(appConfig) {
               templateOptions: {
                 label: 'Username',
                 placeholder: 'username',
-                description: 'This name will appear to other users of the site (i.e. joe123, investor111)'
+                description: 'This name will appear to other users of the site (i.e. joe123, investor111)',
+                required: true
               }
             },
             {
@@ -170,7 +171,8 @@ function FormService(appConfig) {
               key: 'name.first',
               templateOptions: {
                 label: 'First Name',
-                placeholder: 'First'
+                placeholder: 'First',
+                required: true
               }
             },
             {
@@ -179,10 +181,8 @@ function FormService(appConfig) {
               key: 'name.last',
               templateOptions: {
                 label: 'Last Name',
-                placeholder: 'Last'
-              },
-              expressionProperties: {
-                'templateOptions.disabled': '!model.name.first'
+                placeholder: 'Last',
+                required: true
               }
             }
           ]
@@ -197,7 +197,8 @@ function FormService(appConfig) {
               templateOptions: {
                 type: 'email',
                 label: 'Email Address',
-                placeholder: 'name@host.com'
+                placeholder: 'name@host.com',
+                required: true
               }
             },
             {
@@ -207,7 +208,8 @@ function FormService(appConfig) {
               templateOptions: {
                 label: 'Phone',
                 placeholder: '(###) ###-####',
-                mask: '(999) 999-9999'
+                mask: '(999) 999-9999',
+                required: true
               }
             },
           ]
@@ -222,7 +224,8 @@ function FormService(appConfig) {
               templateOptions: {
                 label: 'Date of Birth',
                 placeholder: '',
-                description: 'We need your birth date for validation purposes.'
+                description: 'We need your birth date for validation purposes.',
+                required: true
               }
             },
             {
@@ -232,7 +235,8 @@ function FormService(appConfig) {
               templateOptions: {
                 label: 'Social Security Number',
                 placeholder: '###',
-                description: 'Please provide the last 3 digits of your social security number, this is required for verification purposes.'
+                description: 'Please provide the last 3 digits of your social security number, this is required for verification purposes.',
+                required: true
               }
             }
           ]
@@ -246,7 +250,8 @@ function FormService(appConfig) {
               key: 'address.street',
               templateOptions: {
                 label: 'Street Address',
-                placeholder: ''
+                placeholder: '',
+                required: true
               }
             },
             {
@@ -255,7 +260,8 @@ function FormService(appConfig) {
               key: 'address.city',
               templateOptions: {
                 label: 'City',
-                placeholder: ''
+                placeholder: '',
+                required: true
               }
             },
             {
@@ -267,7 +273,8 @@ function FormService(appConfig) {
                 labelProp: 'name',
                 valueProp: 'value',
                 options: provinces,
-                placeholder: 'Select'
+                placeholder: 'Select',
+                required: true
               }
             },
             {
@@ -276,7 +283,8 @@ function FormService(appConfig) {
               key: 'address.postal',
               templateOptions: {
                 label: 'Postal Code',
-                placeholder: ''
+                placeholder: '',
+                required: true
               }
             }
           ]

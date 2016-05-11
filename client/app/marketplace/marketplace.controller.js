@@ -3,9 +3,12 @@
 (function() {
 
 class MarketplaceController {
-  constructor(listings, ListingService, $scope, $q, $rootScope) {
+  constructor(listings, ListingService, $scope, $q, $rootScope, moment, Offers) {
     var vm = this;
     vm.$scope = $scope;
+    vm.$q = $q;
+    vm.Offers = Offers;
+    vm.moment = moment;
     vm.$rootScope = $rootScope;
     vm.ListingService = ListingService;
     vm.allListings = [];
@@ -45,6 +48,7 @@ class MarketplaceController {
 
     ListingService.getCurrentUser()
     .then(user => {
+      vm.currentUser = user;
       if(user.filters.marketplace) {
         vm.$scope.defaultFilter = user.filters.marketplace;
       }
@@ -91,6 +95,32 @@ class MarketplaceController {
       distance: 0
     };
     this.$rootScope.$broadcast('resetChosen');
+  }
+
+  outputDeadline(listing) {
+    return moment(listing.admin.basics.deadline).toNow(true);
+  }
+
+  hasOffers(listing) {
+    var vm = this;
+    var promises = [];
+
+    return vm.Offers.getListingOffers(listing._id)
+    .then(offers => {
+      var breakLoop = false;
+      var hasOffers = false;
+      angular.forEach(offers.live, function(offer, key) {
+        if(offer.user._id === vm.currentUser._id && !breakLoop) {
+          breakLoop = true;
+          hasOffers = true;
+        }
+        promises.push(offer);
+      });
+
+      return vm.$q.all(promises).then(function() {
+        return hasOffers;
+      });
+    });
   }
 }
 

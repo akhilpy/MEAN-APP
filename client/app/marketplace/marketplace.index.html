@@ -109,8 +109,8 @@
 <div class="marketplace-listings__wrapper">
   <div class="marketplace-listings">
     <ul class="general-content__table-keys">
-      <li><span class="table-key table-key--live"></span> Live offers</li>
-      <li><span class="table-key table-key--risk"></span> At risk of being outbid</li>
+      <li><i class="fa fa-bolt new"></i> Live Offers</li>
+      <li><i class="fa fa-exclamation review"></i> Outbid Offers</li>
     </ul><!-- /.general-content__table-keys -->
     <table>
       <thead>
@@ -192,9 +192,9 @@
           <td>{{listing.general.industry}}</td>
           <td>{{listing.admin.basics.listedRate}}%</td>
           <td>{{listing.details.term}} Mo</td>
-          <td>{{listing.admin.basics.deadline | amCalendar}}</td>
+          <td>{{vm.outputDeadline(listing)}}</td>
           <td>{{listing.admin.scores.cds}}%</td>
-          <td><a ui-sref="marketplace.listing.profile({id: listing._id})" class="button small">Details</a></td>
+          <td><a ui-sref="marketplace.listing.profile({id: listing._id})" class="button small">Details</a> <i class="fa fa-bolt new" ng-if="vm.hasOffers(listing)"></i> <i class="fa fa-exclamation review"></i></td>
         </tr>
       </tbody>
     </table>

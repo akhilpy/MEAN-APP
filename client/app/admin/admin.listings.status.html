@@ -1,10 +1,12 @@
-<div class="discussion-search">
+<div class="discussion-search admin">
   <form class="discussion-search__form">
     <label for="">Quick Search</label>
     <div class="discussion-search__form--fields">
       <input class="discussion-search__form--search" type="text" ng-model="vm.searchTerm">
     </div><!-- /.discussion-search__form--fields -->
   </form><!-- /.discussion-search__form -->
+
+  <button type="button" class="button" ng-class="{'disabled': !canExport}" ng-csv="exportListings" filename="listings.csv" lazy-load="true" csv-header="['ID', 'Business Name', 'Status', 'Submitted', 'Published', 'Completed', 'Amount', 'Borrower Rate', 'Benchmark Rate', 'Term', 'Expiration', 'Type', 'City', 'Province', 'Listing Title', 'User Email', 'Phone', '% Funded', '# of Offers', 'Affiliate']">Export All Listings</button>
 </div><!-- /.discussion-search -->
 
 <div class="marketplace-listings__wrapper">

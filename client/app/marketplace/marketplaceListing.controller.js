@@ -3,10 +3,11 @@
 (function() {
 
 class MarketplaceListingController {
-  constructor(listing, offers, ListingService, Auth, $scope, ngDialog, Offers, $q) {
+  constructor(listing, offers, ListingService, Auth, $scope, ngDialog, Offers, $q, Emails) {
     var vm = this;
     vm.ListingService = ListingService;
     vm.Auth = Auth;
+    vm.Emails = Emails;
     vm.$scope = $scope;
     vm.ngDialog = ngDialog;
     vm.Offers = Offers;
@@ -14,6 +15,8 @@ class MarketplaceListingController {
     vm.currentListing.link = window.location.href;
     vm.currentOffers = offers;
     vm.currentUser = Auth.getCurrentUser();
+
+    vm.currentListing.financial.expectedGrowth = vm.currentListing.financial.projection / vm.currentListing.financial.revenue;
 
     vm.$scope.requested = false;
     vm.bookmarked = false;
@@ -103,10 +106,24 @@ class MarketplaceListingController {
       });
 
       $q.all(promises).then(function() {
-        vm.$scope.requested = requestButton;
-        vm.$scope.viewFinancial = viewFinancial;
+        if(!vm.$scope.viewFinancial) {
+          vm.$scope.requested = requestButton;
+          vm.$scope.viewFinancial = viewFinancial;
+        }
         return;
       });
+    }
+
+    if(vm.Auth.isAdmin()) {
+      vm.$scope.viewFinancial = true;
+    } else if(vm.Auth.isBorrower() && vm.currentUser.borrower.listings.length > 0) {
+      var breakLoop = false;
+      angular.forEach(vm.currentUser.borrower.listings, function(listing, key) {
+        if(listing === vm.currentListing._id && !breakLoop) {
+          vm.$scope.viewFinancial = true;
+          breakLoop = true;
+        }
+      })
     }
 
     // check if user has already bookmarked the listing
@@ -188,6 +205,15 @@ class MarketplaceListingController {
       this.newComment.user = this.currentUser;
       this.currentListing.comments.push(this.newComment);
       this.newComment = '';
+
+      var html = '<p>' + vm.newComment.title + '</p>';
+      var email = {
+        from: 'ind@staging.work',
+        to: 'development@thesnug.io',
+        subject: 'A New Comment on Your Listing',
+        html: html
+      }
+      vm.Emails.new(email);
     }
   }
 
@@ -203,12 +229,25 @@ class MarketplaceListingController {
     comment.replies.push(comment.newReply);
     comment.hideComments = true;
     comment.newReply = '';
+
+    var html = '<p>' + comment.title + '</p>';
+    var email = {
+      from: 'ind@staging.work',
+      to: 'development@thesnug.io',
+      subject: 'A New Reply on Your Listing',
+      html: html
+    }
+    vm.Emails.new(email);
   }
 
   deleteReply(comment, reply) {
     var index = this.currentListing.comments.indexOf(comment);
     this.currentListing.comments[index].replies.splice(this.currentListing.comments[index].replies.indexOf(reply), 1);
     this.ListingService.deleteReply(comment, reply, this.currentListing);
+  }
+
+  outputDeadline(listing) {
+    return moment(listing.admin.basics.deadline).toNow(true);
   }
 
 }
