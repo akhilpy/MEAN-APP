@@ -191,6 +191,8 @@ Payments.prototype.addNewUser = function(input, callback) {
 		}
 	}
 
+	console.log(input);
+
 	auth_token_req(config.payments.user, config.payments.password, function(err, res){
 		if(!err){
 			user_details.method = 'ADM';
@@ -199,6 +201,7 @@ Payments.prototype.addNewUser = function(input, callback) {
 			url = trnact_url('ANU');
 			transact_post(function(data){
 				if(data.code === 200){
+					console.log(data);
 					if(typeof data.public_token === 'string'){
 						var key = new NodeRSA();
 						var keydata = data.public_token;

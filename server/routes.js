@@ -10,6 +10,7 @@ import aws from './api/config/aws.js';
 
 export default function(app) {
   // Insert routes below
+  app.use('/api/reports', require('./api/report'));
   app.use('/api/utilities', require('./api/utility'));
   app.use('/api/mails', require('./api/mail'));
   app.use('/api/repayments', require('./api/repayment'));

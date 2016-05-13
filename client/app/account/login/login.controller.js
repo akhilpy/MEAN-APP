@@ -19,6 +19,9 @@ class LoginController {
 
     this.signupFields = this.Form.getSignup();
     this.loginFields = this.Form.getLogin();
+
+    this.signupErrors = false;
+    this.loginErrors = false;
   }
 
   login(form) {
@@ -26,6 +29,7 @@ class LoginController {
     this.submitted = true;
 
     if (form.$valid) {
+      this.loginErrors = false;
       this.Auth.login({
         email: user.email,
         password: user.password
@@ -36,7 +40,10 @@ class LoginController {
       })
       .catch(err => {
         this.errors.other = err.message;
+        this.loginErrors = true;
       });
+    } else {
+      this.loginErrors = true;
     }
   }
 
@@ -46,6 +53,7 @@ class LoginController {
     this.submitted = true;
 
     if (form.$valid) {
+      vm.signupErrors = false;
       this.Auth.createUser({
         name: {
           first: user.name.first,
@@ -56,8 +64,14 @@ class LoginController {
         role: user.role.value
       })
       .then(() => {
-        // Account created, redirect to home
-        this.$state.go('dashboard.index');
+        // Account created, redirect to welcome or home
+        if(user.role.value === 'borrower') {
+          this.$state.go('borrow.welcome');
+        } else if(user.role.value === 'investor') {
+          this.$state.go('profile');
+        } else {
+          this.$state.go('dashboard.index');
+        }
       })
       .catch(err => {
         err = err.data;
@@ -69,6 +83,8 @@ class LoginController {
           this.errors[field] = error.message;
         });
       });
+    } else {
+      vm.signupErrors = true;
     }
   }
 }

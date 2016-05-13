@@ -114,6 +114,10 @@ var UserSchema = new Schema({
 		default: Date.now
 	},
 	lastActive: Date,
+	firstLogin: {
+		type: 'String',
+		default: true
+	},
   role: {
     type: String,
     default: 'borrower'

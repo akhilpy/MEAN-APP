@@ -10,6 +10,9 @@ function FormService(appConfig) {
 
   var Form = {
 
+    checkPassword(value) {
+      return /^(?=.*\d)(?=.*[a-zA-Z]).{6,20}$/.test(value);
+    },
 
     /**
      * Get Signup Fields
@@ -27,7 +30,8 @@ function FormService(appConfig) {
               key: 'name.first',
               templateOptions: {
                 label: 'First Name',
-                placeholder: 'First'
+                placeholder: 'First',
+                required: true
               }
             },
             {
@@ -36,7 +40,8 @@ function FormService(appConfig) {
               key: 'name.last',
               templateOptions: {
                 label: 'Last Name',
-                placeholder: 'Last'
+                placeholder: 'Last',
+                required: true
               },
               expressionProperties: {
                 'templateOptions.disabled': '!model.name.first'
@@ -54,7 +59,8 @@ function FormService(appConfig) {
               templateOptions: {
                 type: 'email',
                 label: 'Email Address',
-                placeholder: 'name@host.com'
+                placeholder: 'name@host.com',
+                required: true
               }
             },
             {
@@ -67,7 +73,8 @@ function FormService(appConfig) {
                 valueProp: 'value',
                 options: roles,
                 ngOptions: 'option.name for option in to.options track by option.value',
-                placeholder: 'Select'
+                placeholder: 'Select',
+                required: true
               }
             }
           ]
@@ -82,7 +89,19 @@ function FormService(appConfig) {
               templateOptions: {
                 type: 'password',
                 label: 'Password',
-                placeholder: 'Password'
+                placeholder: 'Password',
+                description: 'Minimum of 8 characters, including one uppercase and one number.',
+                required: true
+              },
+              validators: {
+                password: function($viewValue, $modelValue, scope) {
+                  var value = $modelValue || $viewValue;
+                  if(value) {
+                    return Form.checkPassword(value);
+                  } else {
+                    return true;
+                  }
+                }
               }
             },
             {
@@ -92,7 +111,8 @@ function FormService(appConfig) {
               templateOptions: {
                 type: 'password',
                 label: 'Confirm Password',
-                placeholder: 'Password'
+                placeholder: 'Password',
+                required: true
               }
             }
           ]
@@ -119,7 +139,8 @@ function FormService(appConfig) {
               templateOptions: {
                 type: 'email',
                 label: 'Email Address',
-                placeholder: 'name@host.com'
+                placeholder: 'name@host.com',
+                required: true
               }
             }
           ]
@@ -134,7 +155,8 @@ function FormService(appConfig) {
               templateOptions: {
                 type: 'password',
                 label: 'Password',
-                placeholder: 'Password'
+                placeholder: 'Password',
+                required: true
               }
             }
           ]

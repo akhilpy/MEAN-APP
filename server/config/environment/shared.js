@@ -14,6 +14,9 @@ exports = module.exports = {
     },{
       name: 'Investor',
       value: 'investor'
+    },{
+      name: 'Affiliate',
+      value: 'affiliate'
     }
   ],
   STRUCTURES: [

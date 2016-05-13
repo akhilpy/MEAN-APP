@@ -20,9 +20,8 @@ export function setup(User, config) {
           return done(null, user);
         }
 
-        console.log(profile);
-
         user = new User({
+          username: profile.id,
           name: {
             first: profile.displayName
           },

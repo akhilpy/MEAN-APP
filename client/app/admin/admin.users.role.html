@@ -1,3 +1,14 @@
+<div class="discussion-search admin">
+  <form class="discussion-search__form">
+    <label for="">Quick Search</label>
+    <div class="discussion-search__form--fields">
+      <input class="discussion-search__form--search" type="text" ng-model="vm.searchUsers">
+    </div><!-- /.discussion-search__form--fields -->
+  </form><!-- /.discussion-search__form -->
+
+  <button type="button" class="button" ng-class="{'disabled': !canExportUsers}" ng-csv="exportUsers" filename="users.csv" lazy-load="true" csv-header="['ID', 'First Name', 'Last Name', 'Email', 'Role', 'Join Date', 'Last Login', 'Status', 'FinAppsID', '# Listings', '$ Loaned', '# Offers', '$ Offered', '# Investment', '$ Invested', 'Affiliate']">Export All Users</button>
+</div><!-- /.discussion-search -->
+
 <div class="marketplace-listings__wrapper">
   <div class="marketplace-listings">
     <table>

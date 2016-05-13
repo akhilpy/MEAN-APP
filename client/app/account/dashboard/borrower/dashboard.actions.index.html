@@ -19,7 +19,7 @@
         <i class="fa fa-times warning"></i>
       </td>
       <td>Create a Listing</td>
-      <td><p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae voluptatibus labore ducimus minus quas nihil consequuntur quibusdam enim adipisci tempore.</p></td>
+      <td><p class="description">Start by creating a listing, you will be asked to provide information on your business and the funds that you are seeking.</p></td>
       <td><a href="#" ng-click="vm.createListing()" class="button small edit">Create</a></td>
     </tr>
     <tr>
@@ -27,7 +27,7 @@
         <i class="fa fa-times warning"></i>
       </td>
       <td>Add Bank Account</td>
-      <td><p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae voluptatibus labore ducimus minus quas nihil consequuntur quibusdam enim adipisci tempore.</p></td>
+      <td><p class="description">To complete the setup of your account you must your bank account .We are required to ensure you have an active Canadian bank account.</p></td>
       <td><a href="#" ui-sref="dashboard.borrower.actions.addAccount" class="button small edit">Add</a></td>
     </tr>
     <tr>
@@ -35,7 +35,7 @@
         <i class="fa fa-times warning"></i>
       </td>
       <td>Verify Bank Account</td>
-      <td><p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae voluptatibus labore ducimus minus quas nihil consequuntur quibusdam enim adipisci tempore.</p></td>
+      <td><p class="description">We've made two small deposits to your bank account. Verify your bank account by entering these amounts. Your account is not activated until this is complete.</p></td>
       <td><a href="#" ui-sref="dashboard.borrower.actions.account" class="button small edit">Verify</a></td>
     </tr>
     <tr ng-repeat="listing in publishListings">
@@ -43,7 +43,7 @@
         <i class="fa fa-times warning"></i>
       </td>
       <td>Publish Your Listing</td>
-      <td><p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae voluptatibus labore ducimus minus quas nihil consequuntur quibusdam enim adipisci tempore.</p></td>
+      <td><p class="description">Your listing has been approved. A benchmark interest rate has been provided. Please set your interest rate and publish your listing.</p></td>
       <td><a ui-sref="dashboard.borrower.listings.actions({id: listing._id})" class="button small edit">Publish</a></td>
     </tr>
     <tr ng-if="currentListing.admin.basics.status==='active'">
@@ -51,7 +51,7 @@
         <i class="fa fa-times warning"></i>
       </td>
       <td>Share Your Listing</td>
-      <td><p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae voluptatibus labore ducimus minus quas nihil consequuntur quibusdam enim adipisci tempore.</p></td>
+      <td><p class="description">Your listing is live.  Share your listing with your network.</p></td>
       <td><a href="#" class="button small edit">Share</a></td>
     </tr>
     <tr ng-show="amountReached">
@@ -59,7 +59,7 @@
         <i class="fa fa-times warning"></i>
       </td>
       <td>Complete Loan</td>
-      <td><p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae voluptatibus labore ducimus minus quas nihil consequuntur quibusdam enim adipisci tempore.</p></td>
+      <td><p class="description">Congrats! The funding level of your listing has been reached. Click complete to accept offers and complete the agreements.</p></td>
       <td><a href="#" ui-sref="dashboard.borrower.offers" class="button small edit">Complete</a></td>
     </tr>
     <tr>
@@ -67,8 +67,8 @@
         <i class="fa fa-times warning"></i>
       </td>
       <td>Discussion Board</td>
-      <td><p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae voluptatibus labore ducimus minus quas nihil consequuntur quibusdam enim adipisci tempore.</p></td>
-      <td><a href="#" class="button small edit">Join</a></td>
+      <td><p class="description">There is a new activity on your listing's discussion board.</p></td>
+      <td><a href="#" class="button small edit">View</a></td>
     </tr>
   </tbody>
 </table>

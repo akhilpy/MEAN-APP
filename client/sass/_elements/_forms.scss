@@ -27,7 +27,7 @@ input:not([type=submit]):not([type=file]):not([type=radio]):not([type=checkbox])
     -webkit-text-fill-color: $color-grey-med;
   }
 
-  &.ng-invalid {
+  &.ng-invalid.ng-touched {
     border-color: $color-warning;
   }
 
@@ -364,69 +364,6 @@ input[type="radio"] {
   #{$all-text-inputs} {
     border-radius: 0 $border-radius $border-radius 0;
   }
-}
-
-/*----------  Zocial  ----------*/
-
-.social-button,
-a.social-button {
-  @include font-primary(400);
-  @include font-size(16);
-  border: none;
-  box-shadow: none;
-  text-shadow: none;
-  border-radius: $border-radius;
-  padding: rem(8) rem(15);
-  background-image: none;
-  text-decoration: none;
-  color: $color-white;
-  line-height: 2.1;
-  display: inline-block;
-
-  &:before {
-    box-shadow: none;
-    display: inline-block;
-    vertical-align: middle;
-    float: none;
-    border-right: 1px solid rgba($color-white, 0.2);
-    margin: 0 rem(10) 0 0;
-    padding: 0 rem(15) 0 0;
-  }
-
-  &:hover,
-  &:focus {
-    color: $color-white;
-    background-image: none;
-  }
-
-  &.social-facebook {
-    background: #3C5B9A;
-
-    &:before {
-      font-family: $font-icons;
-      content: "\f09a";
-      padding: 0 rem(18) 0 rem(3);
-    }
-
-    &:hover {
-      background: #4664B2;
-    }
-  }
-
-  &.social-googleplus {
-    background: #DC4E40;
-
-    &:before {
-      font-family: $font-icons;
-      content: "\f0d5";
-      padding-right: rem(10);
-    }
-
-    &:hover {
-      background: #DB5032;
-    }
-  }
-
 }
 
 
@@ -811,9 +748,12 @@ a.social-button {
   text-align: center;
   font-weight: 400;
   color: $color-warning;
+  margin-bottom: rem(20);
 
   p {
+    @include font-size;
     color: $color-warning;
+    font-style: normal;
   }
 }
 
