@@ -113,6 +113,12 @@ export function update(req, res, next) {
         user.role = savedUser.newRole;
       }
 
+      if(savedUser.bankAccount) {
+        user.bankAccount = savedUser.bankAccount;
+      }
+
+      console.log(savedUser.bankAccount);
+
       if( savedUser.role === 'investor' ) {
         if(savedUser.phone) {
           user.phone = String(savedUser.phone);
@@ -141,7 +147,6 @@ export function update(req, res, next) {
         if(savedUser.attachments) {
           user.attachments = savedUser.attachments;
         }
-
       }
 
       if( savedUser.role === 'borrower' ) {

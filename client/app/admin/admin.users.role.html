@@ -81,7 +81,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="user in vm.users | orderBy:sortType:sortReverse">
+        <tr ng-repeat="user in vm.allUsers | orderBy:sortType:sortReverse">
           <td>{{user.joined | date}}</td>
           <td>{{user.username}}</td>
           <td>{{user.name.first}} {{user.name.last}}</td>

@@ -40,7 +40,6 @@ angular.module('investnextdoorCaApp')
         });
 
         $rootScope.$on('updateChosen', function() {
-          console.log('updated');
           element.trigger('chosen:updated');
         });
 

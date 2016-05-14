@@ -190,30 +190,34 @@ class MarketplaceListingController {
   }
 
   addComment() {
-    if(this.newComment) {
+    var vm = this;
 
-      if(this.newComment.tags) {
-        var tags = this.newComment.tags.split(',');
+    if(vm.newComment) {
+
+      if(vm.newComment.tags) {
+        var tags = vm.newComment.tags.split(',');
         tags.forEach(function(value) {
           value.trim();
         });
-        this.newComment.tags = tags;
+        vm.newComment.tags = tags;
       }
 
-      this.ListingService.addComment(this.newComment, this.currentListing);
-      this.newComment.date = new Date();
-      this.newComment.user = this.currentUser;
-      this.currentListing.comments.push(this.newComment);
-      this.newComment = '';
+      vm.ListingService.addComment(vm.newComment, vm.currentListing);
+      vm.newComment.date = new Date();
+      vm.newComment.user = vm.currentUser;
+      vm.currentListing.comments.push(vm.newComment);
 
-      var html = '<p>' + vm.newComment.title + '</p>';
-      var email = {
-        from: 'ind@staging.work',
-        to: 'development@thesnug.io',
-        subject: 'A New Comment on Your Listing',
-        html: html
-      }
-      vm.Emails.new(email);
+      vm.ListingService.getUserOne(vm.currentListing._id)
+      .then(user => {
+        var html = '<p>Hello, ' + user.name.first + '</p><p>' + vm.currentUser.username + ' has left you a commment on <a href="' + window.location.href + '">' + vm.currentListing.general.businessName + '</a> listing page.</p><p>"' + vm.newComment.text + '"</p><p>Visit your listing page to reply <a href="' + window.location.href + '">' + vm.currentListing.general.businessName + '</a>.</p><p>Thank you,<br>The InvestNextDoor Team</p>';
+        var email = {
+          to: user.email,
+          subject: 'Someone has left you a comment',
+          html: html
+        }
+        vm.Emails.new(email);
+        vm.newComment = '';
+      });
     }
   }
 

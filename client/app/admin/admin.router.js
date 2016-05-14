@@ -397,5 +397,33 @@ angular.module('investnextdoorCaApp.admin')
           parent: 'admin.offers.index'
         },
         authenticate: 'admin',
+      })
+      .state('admin.transactions', {
+        url: '/transactions',
+        templateUrl: 'app/admin/admin.transactions.html',
+        abstract: true,
+        authenticate: 'admin'
+      })
+      .state('admin.transactions.index', {
+        url: '',
+        templateUrl: 'app/admin/admin.transactions.type.html',
+        controller: 'AdminController',
+        controllerAs: 'vm',
+        ncyBreadcrumb: {
+          label: 'Transactions',
+          parent: 'admin.index'
+        },
+        authenticate: 'admin',
+      })
+      .state('admin.transactions.type', {
+        url: '/:method',
+        templateUrl: 'app/admin/admin.transactions.type.html',
+        controller: 'AdminController',
+        controllerAs: 'vm',
+        ncyBreadcrumb: {
+          label: '{{breadcrumb}}',
+          parent: 'admin.transactions.index'
+        },
+        authenticate: 'admin',
       });
   });

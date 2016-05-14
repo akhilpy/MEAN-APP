@@ -16,8 +16,8 @@ import Mail from './mail.model';
 
 var auth = {
   auth: {
-    api_key: 'key-6c5938117397093ab97d35f82d8bc3ae',
-    domain: 'staging.work'
+    api_key: 'key-ae8fa6acad8d9cc65e01de349b8fe847',
+    domain: 'mg.investnextdoor.ca'
   }
 }
 

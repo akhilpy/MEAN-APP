@@ -37,14 +37,19 @@ function BorrowerService($http, Offers, $q, ListingService) {
                 balance: user.borrower.balance,
                 amount: offers.total,
                 number: offers.active.length,
-                status: user.borrower.status
+                status: user.bankAccount.verified
               }
             })
             .catch(err => {
               console.log(err.message);
             });
           } else {
-            return {};
+            return {
+              balance: user.borrower.balance,
+              amount: 0,
+              number: 0,
+              status: user.bankAccount.verified
+            };
           }
         });
 

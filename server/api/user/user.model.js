@@ -15,17 +15,14 @@ var deepPopulate = require('mongoose-deep-populate')(mongoose);
 const authTypes = ['github', 'twitter', 'facebook', 'google'];
 
 var bankAccount = {
-	institution_number: Number,
+	institution_number: String,
 	branch_number: Number,
 	account_number: Number,
 	verified: {
 		type: Boolean,
 		default: false
 	},
-	verification: {
-		micro_debit_1: Number,
-		micro_debit_2: Number
-	}
+	verification: [Number]
 }
 
 var address = {

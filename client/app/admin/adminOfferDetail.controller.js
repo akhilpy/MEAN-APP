@@ -3,7 +3,7 @@
 (function() {
 
 class AdminOfferDetailController {
-  constructor(currentUser, offer, Offers) {
+  constructor(currentUser, offer, Offers, Emails) {
     var vm = this;
     vm.Offers = Offers;
 
@@ -24,6 +24,24 @@ class AdminOfferDetailController {
 
     if(status) {
       offer.status = status;
+    }
+
+    if(status === 'live') {
+      var html = '<p>Hello ' + offer.user.name.first + ',</p><p>Your offer of ' + offer.amount + ' for '  + offer.tate + '% to ' + offer.listing.general.businessName + ' is now live.  We will let you know if your offer is outbid or is accepted.</p><p>Thank you,<br>The InvestNextDoor Team</p>';
+      var email = {
+        to: offer.user.email,
+        subject: 'Your offer is now live.',
+        html: html
+      }
+      vm.Emails.new(email);
+    } else if(status === 'rejected') {
+      var html = '<p>Hello ' + offer.user.name.first + ',</p><p>Unfortunately your offer to ' + offer.listing.general.businessName + ' has been rejected.  You can either place another bid or check out our Marketplace for another potential business who would really appreciate your help!</p><p>Thank you,<br>The InvestNextDoor Team</p>';
+      var email = {
+        to: offer.user.email,
+        subject: 'Your offer has been rejected.',
+        html: html
+      }
+      vm.Emails.new(email);
     }
 
     vm.Offers.updateOffer(offer);

@@ -10,6 +10,8 @@
        * Send a new email
        */
       new(email) {
+        email.from = '"InvestNextDoor" <service@investnextdoor.ca>';
+
         return $http.post('/api/mails', email)
         .then(response => {
           if(response.statusText === "Created") {

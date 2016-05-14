@@ -3,7 +3,7 @@
 (function() {
 
 class BorrowerController {
-  constructor(Auth, Borrower, Offers, ListingService, Payments, $scope, $timeout, socket, $stateParams, $state, $q) {
+  constructor(Auth, Borrower, Offers, ListingService, Payments, $scope, $timeout, socket, $stateParams, $state, $q, ngDialog) {
     var vm = this;
 
     this.errors = {};
@@ -11,12 +11,15 @@ class BorrowerController {
     this.$scope = $scope;
     this.$q = $q;
     this.$state = $state;
+    this.ngDialog = ngDialog;
     this.$timeout = $timeout;
     this.socket = socket;
     this.Offers = Offers;
     this.Listings = ListingService;
     this.Payments = Payments;
     this.$scope.Borrower = Borrower;
+
+    vm.$scope.loading = false;
 
     this.account = {};
     this.$scope.repayment = {};
@@ -29,7 +32,9 @@ class BorrowerController {
     }
 
     this.actions = {
-      createListing: true
+      createListing: true,
+      addAccount: true,
+      verifyAccount: true
     }
 
     this.$scope.notifications = {
@@ -52,7 +57,7 @@ class BorrowerController {
     this.$scope.acceptedOffers = 0;
 
     Borrower.getInfo().then(borrowerInfo => {
-      this.$scope.borrowerInfo = borrowerInfo;
+      vm.$scope.borrowerInfo = borrowerInfo;
     });
 
     Borrower.getActions().then(actions => {
@@ -94,6 +99,18 @@ class BorrowerController {
     ListingService.getOne().then(listing => {
       vm.$scope.currentListing = listing.data;
       socket.syncUpdates('listing', this.$scope.currentListing);
+    });
+
+    ListingService.getCurrentUser()
+    .then(user => {
+      vm.$scope.currentUser = user;
+      if(user.bankAccount.institution_number) {
+        vm.actions.addAccount = false;
+      }
+
+      if(user.bankAccount.verified === true) {
+        vm.actions.verifyAccount = false;
+      }
     });
 
     Borrower.getOffers().then(offers => {
@@ -204,55 +221,60 @@ class BorrowerController {
     Borrower.getStatements();
   }
 
-  addBankAccount() {
+  addBankAccount(account) {
     var vm = this;
-    var account = vm.account;
 
-    if(Object.keys(account).length === 3) {
+    if(account) {
       vm.errors.addAccount = false;
+      vm.$scope.loading = false;
 
       return vm.Payments.addAccount(account)
       .then(response => {
         console.log(response);
-        if(response.data.status === 'success') {
-          console.log(response);
-        } else if(response.data.status === 'error') {
-          return vm.Payments.updateAccount(account)
-          .then(response => {
-            console.log(response);
-          })
+        if(response.data.status !== 'success') {
+          return vm.Payments.updateAccount(account);
         }
       })
       .then(() => {
         return vm.Payments.verifyAccount(account)
         .then(response => {
           console.log(response);
+          vm.$state.go('dashboard.borrower.actions.index');
         })
         .catch(err => {
-          console.log(err);
+          vm.$scope.loading = false;
+          vm.errors.addAccount = 'Please check your account details and try again.';
         });
       })
       .catch(err => {
-        console.log(err);
+        vm.$scope.loading = false;
+        vm.errors.addAccount = 'Please check your account details and try again.';
       });
     } else {
-      vm.errors.addAccount = 'Please complete all fields';
+      vm.$scope.loading = false;
+      vm.errors.addAccount = 'Please check your account details and try again.';
     }
 
   }
 
   confirmBankAccount() {
     var vm = this;
+    vm.errors.verifyAccount = false;
+    vm.$scope.loading = true;
 
-    return vm.$scope.Borrower.confirmBank(vm.bankAmount)
+    return vm.Payments.confirmAccount(vm.bankAmountA, vm.bankAmountB)
     .then(response => {
-      if(response.data) {
-        vm.$scope.currentUser = response.data[0];
-        vm.$scope.actions = vm.Borrower.getActions(response.data[0]);
+      if(response === true) {
+        vm.actions.verifyAccount = false;
+        vm.$state.go('dashboard.borrower.actions.index');
+      } else {
+        vm.$scope.loading = false;
+        vm.errors.verifyAccount = 'The provided values do not match the deposited amounts. Please verify and try again.';
       }
     })
     .catch(err => {
-      console.log(err);
+      vm.$scope.loading = false;
+      vm.errors.verifyAccount = 'The provided values do not match the deposited amounts. Please verify and try again.';
     });
   }
 
@@ -335,6 +357,21 @@ class BorrowerController {
       var listingID = response.data._id;
       vm.$state.go('listing.general', {id: listingID});
     });
+  }
+
+  addFunds() {
+    var vm = this;
+
+    console.log('add funds');
+
+    vm.ngDialog.open({
+      template: 'app/account/dashboard/borrower/lightbox.addFunds.html',
+      scope: vm.$scope
+    });
+  }
+
+  withdrawFunds() {
+    console.log('withdraw funds');
   }
 
 }

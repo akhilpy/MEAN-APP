@@ -5,7 +5,7 @@
       <li class="dashboard--details__element--wrapper dashboard--details__main">
         <div class="dashboard--details__element">
           <h2 class="dashboard--details__large">0</h2>
-          <p>Available Balance <a class="dashboard--details__add" href="#"><i class="fa fa-plus-circle"></i> Add</a> <a class="dashboard--details__withdraw" href="#"><i class="fa fa-minus-circle"></i> Withdraw</a></p>
+          <p>Available Balance <a class="dashboard--details__add" href="#" ng-click="vm.addFunds()"><i class="fa fa-plus-circle"></i> Add</a> <a class="dashboard--details__withdraw" href="#" ng-click="vm.withdrawFunds()"><i class="fa fa-minus-circle"></i> Withdraw</a></p>
         </div><!-- /.dashboard--details__element -->
       </li><!-- /.dashboard--details__element -->
       <li class="dashboard--details__element--wrapper">
@@ -22,9 +22,8 @@
       </li><!-- /.dashboard--details__element -->
       <li class="dashboard--details__element--wrapper">
         <div class="dashboard--details__element">
-          <h3 class="dashboard--details__medium">
-            <a ui-sref="dashboard.borrower.actions.account">{{currentUser.borrower.status==='Inactive' ? 'Confirm' : 'Active'}}</a>
-          </h3>
+          <h3 class="dashboard--details__medium" ng-show="!Borrower.info.status"><a ui-sref="dashboard.borrower.actions.account">Confirm</a></h3>
+          <h3 class="dashboard--details__medium" ng-show="Borrower.info.status">Confirmed</h3>
           <p>Borrower Status <a href="#"><i class="fa fa-question-circle"></i></a></p>
         </div><!-- /.dashboard--details__element -->
       </li><!-- /.dashboard--details__element -->

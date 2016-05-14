@@ -1,0 +1,27 @@
+<div class="lightbox__inner">
+  <header class="widget__header">
+    <h3 class="widget__title">Add Funds</h3>
+  </header><!-- /.widget__header -->
+
+  <div class="widget__subtitle">
+    <h4>{{currentUser.balance | currency}}</h4>
+    <span>Available Balance</span>
+  </div><!-- /.widget__subtitle -->
+
+  <form class="widget__form">
+    <ul class="form__rows">
+      <li class="form__row">
+        <label for="">Amount to Add</label>
+        <input type="text">
+      </li><!-- /.form__row -->
+      <li class="form__row form__row--submit ">
+        <button ng-click="">Add Funds</button>
+      </li><!-- /.form__row -->
+    </ul><!-- /.form__rows -->
+  </form><!-- /.widget__form -->
+
+  <div class="widget__error" ng-hide="showOfferWidget">
+    <p>Your funds could not be added.</p>
+  </div><!-- /.widget__subtitle -->
+
+</div><!-- /.lightbox__inner -->

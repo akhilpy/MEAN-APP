@@ -22,8 +22,8 @@
       </li><!-- /.dashboard--details__element -->
       <li class="dashboard--details__element--wrapper">
         <div class="dashboard--details__element">
-          <h3 class="dashboard--details__medium" ng-show="investorInfo.status==='Inactive'"><a ui-sref="dashboard.investor.actions.addAccount">Confirm</a></h3>
-          <h3 class="dashboard--details__medium" ng-show="investorInfo.status!=='Inactive'">{{investorInfo.level}}</h3>
+          <h3 class="dashboard--details__medium" ng-show="!investorInfo.status"><a ui-sref="dashboard.investor.actions.addAccount">Confirm</a></h3>
+          <h3 class="dashboard--details__medium" ng-show="investorInfo.status">{{investorInfo.level}}</h3>
           <p>Investor Status <a href="#"><i class="fa fa-question-circle"></i></a></p>
         </div><!-- /.dashboard--details__element -->
       </li><!-- /.dashboard--details__element -->

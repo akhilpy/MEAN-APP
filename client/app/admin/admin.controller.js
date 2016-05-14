@@ -3,7 +3,7 @@
 (function() {
 
 class AdminController {
-  constructor(listings, users, offers, ListingService, $state, $stateParams, $scope, Auth, $filter, socket, $rootScope, moment, $q, Offers, Emails, Report) {
+  constructor(listings, users, offers, ListingService, $state, $stateParams, $scope, Auth, $filter, socket, $rootScope, moment, $q, Offers, Emails, Report, Payments) {
     var vm = this;
     vm.$state = $state;
     vm.$q = $q;
@@ -13,22 +13,38 @@ class AdminController {
     vm.$stateParams = $stateParams;
     vm.ListingService = ListingService;
     vm.Offers = Offers;
+    vm.Payments = Payments;
     vm.Auth = Auth;
 
-    vm.listings = vm.$filter('orderBy')(listings.data, 'date', true);
-    vm.allListings = vm.listings;
-    vm.users = users.data;
-    vm.offers = offers.data;
-
-    vm.$scope.sortType = '-joined';
-    vm.$scope.sortReverse = false;
-    vm.$scope.searchListings = '';
+    vm.$scope.logs = [];
 
     if(vm.$stateParams.status) {
       vm.$scope.breadcrumb = vm.$stateParams.status;
     } else if(vm.$stateParams.role) {
       vm.$scope.breadcrumb = vm.$stateParams.role;
+    } else if(vm.$stateParams.method) {
+      vm.$scope.breadcrumb = vm.$stateParams.method;
+    } else {
+      vm.$scope.breadcrumb = false;
     }
+
+    Payments.getLogs('success', vm.$scope.breadcrumb)
+    .then(response => {
+      vm.$scope.logs = response.data;
+      console.log(response.data);
+    });
+
+    vm.listings = vm.$filter('orderBy')(listings.data, 'date', true);
+    vm.allListings = vm.listings;
+    vm.allUsers = vm.users;
+    vm.users = users.data;
+    vm.offers = offers.data;
+
+    vm.$scope.sortType = '-joined';
+    vm.$scope.logSort = '-datetime';
+    vm.$scope.sortReverse = false;
+    vm.searchListings = '';
+    vm.searchUsers = '';
 
     vm.adminEditing = true;
     vm.searchTerm = '';
@@ -46,7 +62,7 @@ class AdminController {
     });
 
     $scope.$watch('vm.searchUsers', function(val) {
-      vm.allListings = vm.$filter('filter')(vm.users, val);
+      vm.allUsers = vm.$filter('filter')(vm.users, val);
     });
 
     vm.$scope.exportListings = [];

@@ -64,7 +64,6 @@ export function verifyAccount(req, res) {
     return res.status(415).send({message:{error:'invalid_request',error_description:'Content type must be application/x-www-form-urlencoded.'}, status:'error'}).end;
   }
 	payments.verifyBankAccount(req.body, function(err, data) {
-    console.log(req.body);
 		var result = {};
 		if(data.code){
 			res.status(data.code);

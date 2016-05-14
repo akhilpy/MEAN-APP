@@ -1,0 +1,50 @@
+<div class="marketplace-listings__wrapper">
+  <div class="marketplace-listings">
+    <table>
+      <thead>
+        <tr>
+          <th>
+            <a href="#" ng-click="logSort = 'datetime'; sortReverse = !sortReverse">
+              Date
+              <span class="sort-icon">
+                <i class="fa fa-angle-down"></i>
+                <i class="fa fa-angle-up"></i>
+              </span>
+            </a>
+          </th>
+          <th>
+            <a href="#" ng-click="logSort = 'email'; sortReverse = !sortReverse">
+              Email
+              <span class="sort-icon">
+                <i class="fa fa-angle-down"></i>
+                <i class="fa fa-angle-up"></i>
+              </span>
+            </a>
+          </th>
+          <th>
+            <a href="#" ng-click="logSort = 'method'; sortReverse = !sortReverse">
+              Method
+              <span class="sort-icon">
+                <i class="fa fa-angle-down"></i>
+                <i class="fa fa-angle-up"></i>
+              </span>
+            </a>
+          </th>
+          <th>
+            <a href="#">
+              Detail
+            </a>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="log in logs | orderBy:logSort:sortReverse">
+          <td>{{log.datetime | date}}</td>
+          <td>{{log.email}}</td>
+          <td>{{log.method}}</td>
+          <td>{{log.response.detail}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div><!-- /.marketplace-listings -->
+</div><!-- /.marketplace-listings__wrapper -->

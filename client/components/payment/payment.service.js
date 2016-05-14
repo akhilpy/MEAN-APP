@@ -2,7 +2,7 @@
 
 (function() {
 
-  function PaymentService($location, $cookies, $http, User, Auth, ListingService) {
+  function PaymentService($location, $cookies, $http, User, Auth, ListingService, $q) {
     var currentUser = {};
 
     if ($cookies.get('token') && $location.path() !== '/logout') {
@@ -34,6 +34,15 @@
               transformRequest: transformRequest,
               data: account
             })
+            .then(response => {
+              user.bankAccount.institution_number = account.institution_number;
+              user.bankAccount.branch_number = account.branch_number;
+              user.bankAccount.account_number = account.account_number;
+              user.bankAccount.verified = false;
+              return $http.put('/api/users/' + user._id, {
+                user: user
+              });
+            })
             .catch(err => {
               return err;
             })
@@ -59,6 +68,18 @@
               transformRequest: transformRequest,
               data: account
             })
+            .then(response => {
+              user.bankAccount.institution_number = account.institution_number;
+              user.bankAccount.branch_number = account.branch_number;
+              user.bankAccount.account_number = account.account_number;
+              user.bankAccount.verified = false;
+              return $http.put('/api/users/' + user._id, {
+                user: user
+              }).
+              then(response => {
+                return response;
+              });
+            })
             .catch(err => {
               return err;
             })
@@ -74,7 +95,6 @@
       verifyAccount() {
         return ListingService.getCurrentUser()
           .then(user => {
-            console.log(user._id);
             var data = {
               email: user.email,
               user_id: user._id,
@@ -89,6 +109,41 @@
               transformRequest: transformRequest,
               data: data
             })
+            .then(response => {
+              var promises = [];
+
+              if(response.data.status === 'success' && response.data.message.length === 3) {
+                user.bankAccount.verification = [];
+
+                angular.forEach(response.data.message, function(message, key) {
+                  if(message.transaction_type === 'direct_debit') {
+                    user.bankAccount.verification.push(message.amount_in_cents);
+                  }
+                  var transaction = {
+                    user: user,
+                    details: message
+                  };
+                  promises.push(message);
+                  $http.post('/api/transactions', transaction)
+                  .then(response => {
+                    console.log(response);
+                  })
+                  .catch(err => {
+                    console.log(err);
+                  })
+                });
+
+                return $q.all(promises)
+                .then(() => {
+                  return response;
+                });
+              }
+            })
+            .then(() => {
+              return $http.put('/api/users/' + user._id, {
+                user: user
+              });
+            })
             .catch(err => {
               return err;
             });
@@ -97,6 +152,71 @@
             console.log(err);
           });
       },
+
+      /**
+       * Create a transaction
+       */
+      confirmAccount(valA, valB) {
+        var confirm = false;
+
+        return ListingService.getCurrentUser()
+        .then(user => {
+          if(user.bankAccount.verification.length > 0) {
+            if(valA === user.bankAccount.verification[0] || valB === user.bankAccount.verification[0]) {
+              confirm = true;
+            } else {
+              confirm = false;
+            }
+
+            if(valA === user.bankAccount.verification[1] || valB === user.bankAccount.verification[1]) {
+              confirm = true;
+            } else {
+              confirm = false;
+            }
+          }
+
+          if(confirm) {
+            user.bankAccount.verified = true;
+            return $http.put('/api/users/' + user._id, {
+              user: user
+            })
+            .then(response => {
+              if(response.status === 200) {
+                return true;
+              } else {
+                return false;
+              }
+            })
+            .catch(err => {
+              console.log(err);
+            });
+          }
+        })
+      },
+
+
+      /**
+       * Add Funds
+       */
+      addFunds(amount, user) {
+        var transaction = {
+          code: 'AFI',
+          transaction_type: 'direct_debit',
+          institution_number: user.bankAccount.institution_number,
+          branch_number: user.bankAccount.branch_number,
+          account_number: user.bankAccount.account_number,
+          amount_in_cents: amount
+        };
+
+        return $http({
+          method: 'POST',
+          url: '/api/payments/transaction',
+          headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+          transformRequest: transformRequest,
+          data: transaction
+        });
+      },
+
 
       /**
        * Create a transaction
@@ -115,6 +235,15 @@
        * Get all logs
        */
       getLogs(type, filters) {
+        var logs;
+        if(type === 'error') {
+          logs = 'ELG';
+        } else if (type === 'webhooks') {
+          logs = 'WLG';
+        } else {
+          logs = 'SLG';
+        }
+
         if(filters) {
           return $http({
             method: 'POST',
@@ -129,7 +258,7 @@
             url: '/api/payments/logs',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             transformRequest: transformRequest,
-            data: type
+            data: {method: logs}
           });
         }
 

@@ -76,7 +76,14 @@ export function show(req, res) {
 
 // Creates a new Transaction in the DB
 export function create(req, res) {
-  return Transaction.create(req.body)
+  var transaction = req.body
+
+  if(transaction.type) {
+    transaction.payment_type = transaction.type;
+    delete transaction.type;
+  }
+
+  return Transaction.create(transaction)
     .then(respondWithResult(res, 201))
     .catch(handleError(res));
 }

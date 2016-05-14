@@ -72,7 +72,7 @@ function InvestorService($http, Offers, ListingService, $q) {
               interest: interest,
               forecast: forecast,
               late: 0,
-              status: user.investor.status,
+              status: user.bankAccount.verified,
               level: user.investor.level
             };
         })

@@ -100,28 +100,6 @@ class MarketplaceController {
   outputDeadline(listing) {
     return moment(listing.admin.basics.deadline).toNow(true);
   }
-
-  hasOffers(listing) {
-    var vm = this;
-    var promises = [];
-
-    return vm.Offers.getListingOffers(listing._id)
-    .then(offers => {
-      var breakLoop = false;
-      var hasOffers = false;
-      angular.forEach(offers.live, function(offer, key) {
-        if(offer.user._id === vm.currentUser._id && !breakLoop) {
-          breakLoop = true;
-          hasOffers = true;
-        }
-        promises.push(offer);
-      });
-
-      return vm.$q.all(promises).then(function() {
-        return hasOffers;
-      });
-    });
-  }
 }
 
 angular.module('investnextdoorCaApp')

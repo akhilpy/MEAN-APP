@@ -22,7 +22,7 @@
       <td><p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae voluptatibus labore ducimus minus quas nihil consequuntur quibusdam enim adipisci tempore.</p></td>
       <td><a href="#" ui-sref="marketplace.index" class="button small edit">Go</a></td>
     </tr>
-    <tr>
+    <tr ng-show="vm.actions.addAccount">
       <td class="status">
         <i class="fa fa-times warning"></i>
       </td>
@@ -30,7 +30,7 @@
       <td><p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae voluptatibus labore ducimus minus quas nihil consequuntur quibusdam enim adipisci tempore.</p></td>
       <td><a href="#" ui-sref="dashboard.investor.actions.addAccount" class="button small edit">Add</a></td>
     </tr>
-    <tr>
+    <tr ng-show="vm.actions.verifyAccount">
       <td class="status">
         <i class="fa fa-times warning"></i>
       </td>

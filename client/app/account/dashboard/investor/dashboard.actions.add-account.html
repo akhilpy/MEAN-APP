@@ -6,21 +6,21 @@
         <label>Institution Number</label>
         <div class="input-group">
           <div class="input-group-addon"><i class="fa fa-hashtag"></i></div>
-          <input type="text" ng-model="vm.account.institution_number" placeholder="3 Digit Number">
+          <input type="text" ng-model="currentUser.bankAccount.institution_number" placeholder="3 Digit Number">
         </div><!-- /.input-group -->
       </div><!-- /.flex-1 -->
       <div class="flex-1">
         <label>Branch Number</label>
         <div class="input-group">
           <div class="input-group-addon"><i class="fa fa-hashtag"></i></div>
-          <input type="number" ng-model="vm.account.branch_number" placeholder="4-5 Digit Number">
+          <input type="number" ng-model="currentUser.bankAccount.branch_number" placeholder="4-5 Digit Number">
         </div><!-- /.input-group -->
       </div><!-- /.flex-1 -->
       <div class="flex-1">
         <label>Account Number</label>
         <div class="input-group">
           <div class="input-group-addon"><i class="fa fa-hashtag"></i></div>
-          <input type="number" ng-model="vm.account.account_number" placeholder="1-12 Digit Number">
+          <input type="number" ng-model="currentUser.bankAccount.account_number" placeholder="1-12 Digit Number">
         </div><!-- /.input-group -->
       </div><!-- /.flex-1 -->
     </div><!-- /.display-flex -->
@@ -32,7 +32,7 @@
     <ul class="listing-form__pagination">
       <li>&nbsp;</li>
       <li>
-        <button class="listing-form__save" type="submit" name="update" ng-click="vm.addBankAccount()">Add</button>
+        <button class="listing-form__save" type="submit" name="update" ng-click="vm.addBankAccount(currentUser.bankAccount)">Save</button>
       </li>
       <li>&nbsp;</li>
     </ul><!-- end of .listing-form__pagination -->

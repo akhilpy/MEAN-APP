@@ -29,7 +29,32 @@ var TransactionSchema = new mongoose.Schema({
     type: String,
     default: 'Debit'
   },
-  reference: String
+  reference: String,
+  details: {
+    amount_in_cents: {
+      type: Number,
+      default: 0
+    },
+    auto_withdraw: {
+      type: Boolean,
+      default: false
+    },
+    auto_withdrawl_token: Number,
+    created_by_user: String,
+    email: Number,
+    from_account: String,
+    link_url: Number,
+    message: Number,
+    process_on: Number,
+    state: String,
+    to_account: String,
+    to_fund: String,
+    token: String,
+    transaction_reference: Number,
+    transaction_type: String,
+    payment_type: String,
+    unique_reference: String
+  }
 });
 
 TransactionSchema.plugin(autopopulate);
