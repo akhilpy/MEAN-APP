@@ -10,7 +10,7 @@ function addLeadingChars(string, nrOfChars, leadingChar) {
 }
 
 // build folder structure
-function createPath(fileName) {
+function createPath() {
   var today = new Date();
   var year = today.getFullYear();
   var month = addLeadingChars(today.getMonth() + 1);

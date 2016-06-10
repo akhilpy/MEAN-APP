@@ -1,0 +1,31 @@
+<div class="lightbox__inner add-funds__widget">
+  <header class="widget__header">
+    <h3 class="widget__title">Withdraw Funds</h3>
+  </header><!-- /.widget__header -->
+
+  <div class="widget__subtitle">
+    <h4>{{currentUser.balance | currency}}</h4>
+    <span>Available Balance</span>
+  </div><!-- /.widget__subtitle -->
+
+  <form class="widget__form" ng-show="!vm.actions.verifyAccount">
+    <ul class="form__rows">
+      <li class="form__row">
+        <label for="">Amount to Withdraw</label>
+        <input type="number" ng-model="vm.withdrawFundsAmount">
+      </li><!-- /.form__row -->
+      <li class="form__row form__row--submit ">
+        <button ng-click="vm.withdrawFundsComplete()">Withdraw Funds</button>
+      </li><!-- /.form__row -->
+    </ul><!-- /.form__rows -->
+  </form><!-- /.widget__form -->
+
+  <div class="widget__error" ng-show="vm.actions.addAccount && vm.actions.verifyAccount">
+    <p>Have you added and verified your bank account?<br><br><a ui-sref="dashboard.borrower.actions.index" class="button">Account Actions</a></p>
+  </div><!-- /.widget__subtitle -->
+
+  <div class="widget__error" ng-show="vm.withdrawFundsError">
+    <p>{{vm.withdrawFundsErrorMessage}}</p>
+  </div><!-- /.widget__subtitle -->
+
+</div><!-- /.lightbox__inner -->

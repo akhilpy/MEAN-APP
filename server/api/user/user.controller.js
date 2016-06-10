@@ -50,6 +50,20 @@ export function role(req, res) {
 }
 
 /**
+ * Get list of affiliate users by role
+ */
+export function affiliate(req, res) {
+  var affiliate = req.params.id;
+  var role = req.params.role;
+
+  User.findAsync({ affiliate: affiliate, role: role }, '-salt -password')
+    .then(users => {
+      res.status(200).json(users);
+    })
+    .catch(handleError(res));
+}
+
+/**
  * Creates a new user
  */
 export function create(req, res, next) {
@@ -101,6 +115,8 @@ export function update(req, res, next) {
   var userID = req.body.user._id;
   var savedUser = req.body.user;
 
+  var adminAttachments = savedUser['investor.adminAttachments'];
+
   User.findByIdAsync(userID)
     .then(user => {
 
@@ -116,8 +132,6 @@ export function update(req, res, next) {
       if(savedUser.bankAccount) {
         user.bankAccount = savedUser.bankAccount;
       }
-
-      console.log(savedUser.bankAccount);
 
       if( savedUser.role === 'investor' ) {
         if(savedUser.phone) {
@@ -142,6 +156,9 @@ export function update(req, res, next) {
 
         if(savedUser.investor) {
           user.investor = savedUser.investor;
+          if(adminAttachments) {
+            user.investor.adminAttachments = adminAttachments;
+          }
         }
 
         if(savedUser.attachments) {

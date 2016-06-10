@@ -11,8 +11,13 @@
 
 import _ from 'lodash';
 import mongoose from 'mongoose';
+import async from 'async';
+
 import Listing from './listing.model';
+import Agreements from '../config/agreements.module';
 import User from '../user/user.model';
+
+var agreements = new Agreements();
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
@@ -91,9 +96,53 @@ export function showUser(req, res) {
 
   return User.findOne({
     'borrower.listings': listing
-  }).exec()
-    .then(respondWithResult(res))
-    .catch(handleError(res));
+  })
+  .exec()
+  .then(user => {
+    res.status(200).json(user);
+  })
+  .catch(handleError(res));
+}
+
+// Get all listings associated with an affiliate
+export function affiliateListings(req, res) {
+  var affiliate = req.params.id;
+  var listings = [];
+
+  return User.find({affiliate: affiliate})
+  .populate('borrower.listings')
+  .exec()
+  .then(users => {
+    async.forEach(users, function(user, callback) {
+      if(user.borrower.listings.length > 0) {
+        listings.push(user.borrower.listings[0]);
+      }
+      callback();
+    }, function() {
+      res.status(200).json(listings);
+    });
+  })
+  .catch(handleError(res));
+}
+
+// Get all investments associated with an affiliate
+export function affiliateInvestments(req, res) {
+  var affiliate = req.params.id;
+  var listings = [];
+
+  return User.find({affiliate: affiliate})
+  .exec()
+  .then(users => {
+    async.forEach(users, function(user, callback) {
+      if(user.borrower.listings.length > 0) {
+        listings.push(users.borrower.listings[0]);
+      }
+      callback();
+    }, function() {
+      res.status(200).json(listings);
+    });
+  })
+  .catch(handleError(res));
 }
 
 // Creates a new Listing in the DB
@@ -119,6 +168,8 @@ export function update(req, res) {
     delete req.body._id;
   }
 
+  req.body.terms.termSheet = agreements.termSheet(req.body, req.params.id);
+
   Listing.findByIdAsync(req.params.id)
     .then(handleEntityNotFound(res))
     .then(saveUpdates(req.body))
@@ -132,23 +183,16 @@ export function comment(req, res) {
     delete req.body._id;
   }
 
-  var userID = req.body.user._id;
   var newComment = req.body.comment;
-  var listing = req.body.listing;
+  newComment.user = req.body.user._id;
 
-  User.findByIdAsync(userID)
-    .then(user => {
-      newComment.user = user._id;
-      Listing.findByIdAndUpdate(req.params.id,
-        {$push: {comments: newComment}},
-        {safe: true, upsert: true},
-        function(err, listing) {
-          if(err) {
-            console.log(err);
-          }
-          respondWithResult(listing);
-        });
-    });
+  Listing.findByIdAndUpdate(req.params.id,
+    {$push: {comments: newComment}},
+    {safe: true, upsert: true},
+  )
+  .then(listing => {
+    res.status(200).json(listing);
+  });
 }
 
 
@@ -163,13 +207,11 @@ export function commentDelete(req, res) {
 
   Listing.findByIdAndUpdate(req.params.id,
     {$pull: {comments: {_id: comment._id}}},
-    {},
-    function(err, listing) {
-      if(err) {
-        console.log(err);
-      }
-      respondWithResult(listing);
-    });
+    {}
+  )
+  .then(listing => {
+    res.status(200).json(listing);
+  });
 }
 
 
@@ -181,25 +223,20 @@ export function reply(req, res) {
     delete req.body._id;
   }
 
-  var userID = req.body.user._id;
   var comment = req.body.comment;
   var reply = req.body.reply;
 
-  User.findByIdAsync(userID)
-    .then(user => {
-      reply.user = user._id;
+  Listing.findOneAndUpdate(
+    {comments: {"$elemMatch": {_id: comment._id}}},
+    {$push: { "comments.$.replies":  reply }},
+    function(err, listing) {
+      if(err) {
+        res.status(200).json({});
+      }
 
-      Listing.update(
-        {comments: {"$elemMatch": {_id: comment._id}}},
-        {$push: { "comments.$.replies":  reply }},
-        {upsert: false, safe: true},
-        function(err, listing) {
-          if(err) {
-            console.log(err);
-          }
-        }
-      );
-    });
+      res.status(200).json(listing);
+    }
+  );
 }
 
 
@@ -219,10 +256,12 @@ export function replyDelete(req, res) {
     {},
     function(err, listing) {
       if(err) {
-        console.log(err);
+        res.status(200).json({});
       }
-      respondWithResult(listing);
-    });
+
+      res.status(200).json(listing);
+    }
+  );
 }
 
 
@@ -251,6 +290,7 @@ export var requestMore = {
           });
       });
   },
+
   update: function(req, res) {
     if (req.body._id) {
       delete req.body._id;
@@ -258,18 +298,15 @@ export var requestMore = {
 
     var request = req.body.request;
 
-    Listing.update(
-      {'infoRequest._id': request._id},
+    Listing.findOneAndUpdate(
+      {infoRequest: {"$elemMatch": {_id: request._id}}},
       {$set: {'infoRequest.$.status': request.status}},
-      {},
       function(err, listing) {
         if(err) {
           console.log(err);
         }
-        respondWithResult(listing);
+        res.status(200).json(listing);
       });
-
-
   }
 };
 

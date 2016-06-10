@@ -1,0 +1,52 @@
+<div class="lightbox__inner add-funds__widget">
+  <header class="widget__header">
+    <h3 class="widget__title">Add Bank Account</h3>
+  </header><!-- /.widget__header -->
+
+  <div class="formly-field-group">
+    <div class="display-flex not-form">
+      <div class="flex-1">
+        <label>Institution Number</label>
+        <div class="input-group">
+          <div class="input-group-addon"><i class="fa fa-hashtag"></i></div>
+          <input type="text" ng-model="vm.user.bankAccount.institution_number" placeholder="3 Digit Number">
+        </div><!-- /.input-group -->
+      </div><!-- /.flex-1 -->
+    </div><!-- /.display-flex -->
+  </div><!-- /.formly-field-group -->
+  <div class="formly-field-group">
+    <div class="display-flex not-form">
+      <div class="flex-1">
+        <label>Branch Number</label>
+        <div class="input-group">
+          <div class="input-group-addon"><i class="fa fa-hashtag"></i></div>
+          <input type="number" ng-model="vm.user.bankAccount.branch_number" placeholder="4-5 Digit Number">
+        </div><!-- /.input-group -->
+      </div><!-- /.flex-1 -->
+    </div><!-- /.display-flex -->
+  </div><!-- /.formly-field-group -->
+  <div class="formly-field-group">
+    <div class="display-flex not-form">
+      <div class="flex-1">
+        <label>Account Number</label>
+        <div class="input-group">
+          <div class="input-group-addon"><i class="fa fa-hashtag"></i></div>
+          <input type="number" ng-model="vm.user.bankAccount.account_number" placeholder="1-12 Digit Number">
+        </div><!-- /.input-group -->
+      </div><!-- /.flex-1 -->
+    </div><!-- /.display-flex -->
+  </div><!-- /.formly-field-group -->
+  <div class="formly-field-group">
+    <div class="display-flex not-form">
+      <div class="flex-1">
+        <p>Your bank account will be immediately charged the $200 application fee on submission.</p>
+        <button class="listing-form__save" type="submit" name="update" ng-click="vm.submitListing(listing, vm.user.bankAccount)">Save &amp; Submit <i ng-show="loading" class="fa fa-spinner fa-spin"></i></button>
+      </div><!-- /.flex-1 -->
+    </div><!-- /.display-flex -->
+  </div><!-- /.formly-field-group -->
+
+  <div class="widget__error" ng-show="vm.errors.addAccount">
+    <p>{{vm.errors.addAccount}}</p>
+  </div><!-- /.widget__subtitle -->
+
+</div><!-- /.lightbox__inner -->

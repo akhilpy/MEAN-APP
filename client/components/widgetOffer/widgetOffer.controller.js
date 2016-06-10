@@ -34,6 +34,13 @@ class WidgetOfferController {
 
   makeOffer() {
     var widget = this;
+
+    if(widget.$scope.vm.currentUser.balance < widget.newOffer.amount) {
+      widget.$scope.error = true;
+      widget.$scope.errorMessage = 'This offer exceeds your current balance.<br><br><a href="/dashboard" class="button">Add Funds</a>';
+      return;
+    }
+
     if(widget.newOffer && !widget.$scope.offered) {
       widget.newOffer.listing = widget.$scope.vm.currentListing;
       widget.Offers.new(widget.newOffer, widget.newOffer.listing)
@@ -45,9 +52,11 @@ class WidgetOfferController {
           widget.$scope.error = false;
         } else {
           widget.$scope.error = true;
+          widget.$scope.errorMessage = 'Your offer could not be placed as it exceeds your current maximum offer.';
         }
       });
     }
+
   }
 }
 

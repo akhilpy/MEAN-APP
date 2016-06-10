@@ -13,6 +13,7 @@ import _ from 'lodash';
 import Listing from '../listing/listing.model';
 import Offer from '../offer/offer.model';
 import User from '../user/user.model';
+import Transaction from '../transaction/transaction.model';
 import async from 'async';
 import momemt from 'moment';
 
@@ -227,10 +228,104 @@ export function users(req, res) {
 
 // Transactions Report
 export function transactions(req, res) {
+  var returnedTransactions = [];
 
+  Transaction.find().populate('user').populate('listing').lean().exec()
+  .then(transactions => {
+    async.forEach(transactions, function(transaction, callback) {
+
+      var listingID = '';
+      if(transaction.listing) {
+        listingID = transaction.listing._id;
+      }
+
+      var userEmail = '';
+      var userID = '';
+      if(transaction.user) {
+        userEmail = transaction.user.email;
+        userID = transaction.user._id;
+      }
+
+      var preparedTransaction = {
+        userEmail: userEmail,
+        userID: userID,
+        transactionID: transaction._id,
+        transactionType: transaction.kind,
+        listingID: listingID,
+        offerID: '#',
+        amount: transaction.amount,
+        date: transaction.date,
+        paymentStatus: 'In Progress'
+      }
+
+      returnedTransactions.push(preparedTransaction);
+      callback();
+    });
+  })
+  .then(() => {
+    res.status(200).json(returnedTransactions);
+  })
+  .catch(err => {
+    console.log(err);
+  });
 }
 
 // Balance Report
 export function balances(req, res) {
+  var returnedBalances = [];
 
+  User.find({}, '-salt -password').populate('investor.offers').populate('investor.investments').lean().exec()
+  .then(users => {
+    async.forEach(users, function(user, callback) {
+      var status = '';
+      if(user.role === 'investor') {
+        status = user.investor.status;
+      } else if(user.role === 'borrower') {
+        status = user.borrower.status;
+      }
+
+      var offers = [];
+      var investments = [];
+      var amountOffered = 0;
+      var amountInvested = 0;
+      var transactionsNumber;
+
+      Transaction.find({user: user._id}).lean().exec()
+      .then(transactions => {
+        transactionsNumber = transactions.length;
+      });
+
+      if(user.investor && user.investor.offers) {
+        if(user.investor.offers.length > 0) {
+          async.forEach(user.investor.offers, function(offer, callback) {
+            if(offer.status === 'accepted' || offer.status === 'repayment' || offer.status === 'complete') {
+              investments.push(offer);
+              amountInvested += offer.amount
+            } else if(offer.status === 'pending' || offer.status === 'live' || offer.status === 'rejected' || offer.status === 'outbid') {
+              offers.push(offer);
+              amountOffered += offer.amount;
+            }
+
+            callback();
+          });
+        }
+      }
+
+      var returnedBalance = {
+        email: user.email || '',
+        id: user._id,
+        balance: user.balance || 0,
+        invested: amountInvested,
+        transactions: transactionsNumber || 0,
+        joined: user.joined || '',
+        affiliate: ''
+      };
+
+      returnedBalances.push(returnedBalance);
+      callback();
+    });
+  })
+  .then(() => {
+    res.status(200).json(returnedBalances);
+  })
 }

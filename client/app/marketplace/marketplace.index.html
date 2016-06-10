@@ -79,7 +79,7 @@
   <div class="marketplace-filters">
     <h4>Filter Results</h4>
     <ul class="marketplace-filters__list">
-      <li class="marketplace-filter__wrapper">
+      <li class="marketplace-filter__wrapper" ng-show="launch">
         <select chosen="vm.filters.distances" data-placeholder="Distance" disable_search_threshold="15" ng-options="filter.value as filter.label for filter in vm.filters.distances" ng-model="defaultFilter.distance"></select>
       </li><!-- /.marketplace-filter__wrapper -->
       <li class="marketplace-filter__wrapper">
@@ -108,7 +108,7 @@
 
 <div class="marketplace-listings__wrapper">
   <div class="marketplace-listings">
-    <ul class="general-content__table-keys">
+    <ul class="general-content__table-keys" ng-show="launch">
       <li><i class="fa fa-bolt new"></i> Live Offers</li>
       <li><i class="fa fa-exclamation review"></i> Outbid Offers</li>
     </ul><!-- /.general-content__table-keys -->
@@ -161,7 +161,7 @@
             </a>
           </th>
           <th>
-            <a href="#" ng-click="sortType = 'time'; sortReverse = !sortReverse">
+            <a href="#" ng-click="sortType = 'admin.basics.deadlineDays.value'; sortReverse = !sortReverse">
               Time
               <span class="sort-icon">
                 <i class="fa fa-angle-down"></i>
@@ -170,7 +170,7 @@
             </a>
           </th>
           <th>
-            <a href="#" ng-click="sortType = 'pod'; sortReverse = !sortReverse">
+            <a href="#" ng-click="sortType = 'admin.scores.cds'; sortReverse = !sortReverse">
               POD
               <span class="sort-icon">
                 <i class="fa fa-angle-down"></i>
@@ -186,13 +186,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="listing in vm.allListings | orderBy:sortType:sortReverse | filter: filterRate(defaultFilter.rate) | filter: filterTerm(defaultFilter.term) | filter: filterMinimum(defaultFilter.minimum) | filter: filterPurpose">
+        <tr ng-repeat="listing in vm.allListings | orderBy:sortType:sortReverse | filter: filterRate(defaultFilter.rate) | filter: filterTerm(defaultFilter.term) | filter: filterMinimum(defaultFilter.minimum) | filter: filterPurpose | filter: filterTime(defaultFilter.time)">
           <td>{{listing.general.businessName}}</td>
           <td>{{listing.general.address.city}} {{listing.general.address.province}}</td>
           <td>{{listing.general.industry}}</td>
           <td>{{listing.admin.basics.listedRate}}%</td>
           <td>{{listing.details.term}} Mo</td>
-          <td>{{vm.outputDeadline(listing)}}</td>
+          <td>{{listing.admin.basics.deadlineDays.value}} <span ng-show="listing.admin.basics.deadlineDays.type==='days'">Days</span></td>
           <td>{{listing.admin.scores.cds}}%</td>
           <td><a ui-sref="marketplace.listing.profile({id: listing._id})" class="button small">Details</a></td>
         </tr>

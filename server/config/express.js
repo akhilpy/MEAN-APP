@@ -19,6 +19,8 @@ import passport from 'passport';
 import session from 'express-session';
 import connectMongo from 'connect-mongo';
 import mongoose from 'mongoose';
+
+var paymentStatus = require('../api/payment/status.controller');
 var mongoStore = connectMongo(session);
 
 export default function(app) {
@@ -46,6 +48,8 @@ export default function(app) {
       db: 'investnextdoor-ca'
     })
   }));
+
+  app.post('/versapay_webhook', paymentStatus.update);
 
   /**
    * Lusca - express server security

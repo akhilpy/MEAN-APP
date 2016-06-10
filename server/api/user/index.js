@@ -10,6 +10,7 @@ router.get('/', auth.hasRole('admin'), controller.index);
 router.delete('/:id', auth.hasRole('admin'), controller.destroy);
 router.get('/me', auth.isAuthenticated(), controller.me);
 router.get('/role/:role', auth.hasRole('admin'), controller.role);
+router.get('/affiliate/:id/:role', auth.isAuthenticated(), controller.affiliate);
 router.put('/:id', auth.isAuthenticated(), controller.update);
 router.get('/:id', auth.isAuthenticated(), controller.show);
 router.get('/:id/bookmarks', auth.isAuthenticated(), controller.bookmarks);

@@ -18,6 +18,20 @@ function ReportService($http, Offers, ListingService, $q) {
       .then(response => {
         return response.data;
       });
+    },
+
+    transactions() {
+      return $http.get('/api/reports/transactions')
+      .then(response => {
+        return response.data;
+      });
+    },
+
+    balances() {
+      return $http.get('/api/reports/balances')
+      .then(response => {
+        return response.data;
+      });
     }
 
   };

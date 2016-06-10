@@ -32,8 +32,6 @@ function DropzoneService($http, $timeout) {
           $http.get('/api/s3Policy?mimeType=' + file.type + '&fileName=' + file.name).then(function(response) {
             file.uploadUrl = response.data.signed_request;
             file.downloadUrl = response.data.url;
-            console.log(file);
-            Dropzone.createCrops(file.downloadUrl);
             done();
           }, function() {
             console.log('could not create signed url');

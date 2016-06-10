@@ -76,6 +76,40 @@ export function status(req, res) {
     .catch(handleError(res));
 }
 
+// Get all offers associated with an affiliate
+export function affiliateOffers(req, res) {
+  var affiliate = req.params.id;
+  var offerStatus = ['pending', 'live', 'rejected', 'outbid'];
+
+  return User.find({affiliate: affiliate})
+  .exec()
+  .then(users => {
+    Offer.findAsync({user: {'$in': users}, status: {'$in': offerStatus}})
+    .then(offers => {
+      res.status(200).json(offers);
+    })
+    .catch(handleError(res));
+  })
+  .catch(handleError(res));
+}
+
+// Get all loans associated with an affiliate
+export function affiliateLoans(req, res) {
+  var affiliate = req.params.id;
+  var loanStatus = ['accepted', 'repayment', 'complete'];
+
+  return User.find({affiliate: affiliate})
+  .exec()
+  .then(users => {
+    Offer.findAsync({user: {'$in': users}, status: {'$in': loanStatus}})
+    .then(loans => {
+      res.status(200).json(loans);
+    })
+    .catch(handleError(res));
+  })
+  .catch(handleError(res));
+}
+
 // Gets a list of Offers from a listing
 export function listing(req, res) {
   var listingID = req.params.id;

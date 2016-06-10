@@ -12,6 +12,7 @@
 import _ from 'lodash';
 import Payment from './payment.model';
 import Payments from './payment.module';
+import Transaction from '../transaction/transaction.model';
 
 var payments = new Payments();
 

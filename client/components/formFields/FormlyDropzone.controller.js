@@ -27,7 +27,6 @@ class FormlyDropzoneCtrl {
           }
 
           $timeout(function() {
-
             if($scope.model[$scope.options.key].length < maxFiles) {
               $scope.model[$scope.options.key].push(savedFile);
               if($scope.model[$scope.options.key].length === maxFiles) {

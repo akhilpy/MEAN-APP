@@ -5,14 +5,14 @@
     </header><!-- /.widget__header -->
 
     <div class="widget__subtitle">
-      <h4>{{vm.averageRate}}%</h4>
+      <h4>{{vm.averageRate ? vm.averageRate : 'No Offers'}}<span ng-show="vm.averageRate">%</span></h4>
       <span>Average Rate</span>
     </div><!-- /.widget__subtitle -->
 
     <form class="widget__form" ng-show="makeOutbid && showCurrentOffersWidget">
       <ul class="form__rows">
         <li class="form__row">
-          <select chosen="rates" data-placeholder="Rate*" ng-model="offerWidget.newOffer.rate" ng-options="rate.value as rate.label for rate in rates"></select>
+          <select chosen="rates" data-placeholder="Rate*" ng-model="outbidRate" ng-options="rate.value as rate.label for rate in rates"></select>
         </li><!-- /.form__row -->
         <li class="form__row">
           <select chosen="amounts" data-placeholder="Amount*" ng-model="offerWidget.newOffer.amount" ng-options="amount.value as amount.label for amount in amounts"></select>

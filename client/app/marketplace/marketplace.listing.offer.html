@@ -43,7 +43,7 @@
           <span>{{vm.currentListing.details.jobs}}</span> Local Jobs
         </div><!-- /.offer-terms__snippet--info -->
       </div><!-- /.offer-terms__snippet -->
-      <a href="#" class="offer-terms__term-sheet button">View Term Sheet</a>
+      <a ng-show="vm.currentListing.terms.termSheet" href="{{vm.currentListing.terms.termSheet}}" class="offer-terms__term-sheet button" target="_blank">View Term Sheet</a>
     </li>
   </ul><!-- /.general-content__detail-wrapper -->
 

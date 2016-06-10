@@ -161,11 +161,11 @@ function ListingService($location, $cookies, $q, $resource, $http, Auth, User, $
      *
      * @return {String}
      */
-    saveOne(listing, listingID) {
-      return $http.put('/api/listings/' + listingID, listing)
+    saveOne(listing) {
+      return $http.put('/api/listings/' + listing._id, listing)
       .then(response => {
         if(response.status === 200) {
-          return true;
+          return response.data;
         } else {
           return false;
         }
@@ -234,18 +234,18 @@ function ListingService($location, $cookies, $q, $resource, $http, Auth, User, $
      *
      * @return {String}
      */
-    addComment(comment, listing) {
-      return Auth.getCurrentUser(null)
-        .then(user => {
-          return $http.put('/api/listings/comment/' + listing._id, {
-            user: user,
-            comment: comment,
-            listing: listing
-          });
-        })
-        .catch(err => {
-          console.log(err.message);
-        });
+    addComment(comment, listing, user) {
+      return $http.put('/api/listings/comment/' + listing._id, {
+        user: user,
+        comment: comment,
+        listing: listing
+      })
+      .then(response => {
+        return response.data;
+      })
+      .catch(err => {
+        return err;
+      });
     },
 
 
@@ -270,17 +270,17 @@ function ListingService($location, $cookies, $q, $resource, $http, Auth, User, $
      * @return {String}
      */
     addReply(listing, comment, reply) {
-      return Auth.getCurrentUser(null)
-        .then(user => {
-          return $http.put('/api/listings/reply/' + listing._id, {
-            user: user,
-            comment: comment,
-            reply: reply
-          });
-        })
-        .catch(err => {
-          console.log(err.message);
-        });
+      return $http.put('/api/listings/reply/' + listing._id, {
+        user: reply.user,
+        comment: comment,
+        reply: reply
+      })
+      .then(response => {
+        return response.data;
+      })
+      .catch(err => {
+        return err.message;
+      });
     },
 
 
@@ -547,12 +547,12 @@ function ListingService($location, $cookies, $q, $resource, $http, Auth, User, $
      */
     getTimes() {
       return [
-        {label: 'Time Remaining (All)'},
-        {label: 'Less than 12 hours', value: 12},
-        {label: 'Less than 24 hours', value: 24},
-        {label: 'Less than 5 days', value: 125},
-        {label: 'Less than 10 days', value: 240},
-        {label: 'Less than 30 days', value: 720},
+        {label: 'Time Remaining (All)', value: 60},
+        {label: 'Less than 12 hours', value: 0.5},
+        {label: 'Less than 24 hours', value: 1},
+        {label: 'Less than 5 days', value: 5},
+        {label: 'Less than 10 days', value: 10},
+        {label: 'Less than 30 days', value: 30},
       ];
     },
 

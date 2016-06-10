@@ -28,6 +28,9 @@
           return $http.post('/api/transactions', transaction)
           .then(response => {
             return transaction.user;
+          })
+          .catch(err => {
+            console.log(err);
           });
         });
       },
@@ -47,7 +50,13 @@
        * @return {String}
        */
       getUsers(userID) {
-        return $http.get('/api/transactions/user/' + userID);
+        return $http.get('/api/transactions/user/' + userID)
+        .then(response => {
+          return response.data;
+        })
+        .catch(err => {
+          return [];
+        })
       },
 
       /**
@@ -55,11 +64,23 @@
        *
        * @return {String}
        */
-      get(kind) {
-        if(kind) {
-          return $http.get('/api/transactions/' + kind);
+      get(entry) {
+        if(entry) {
+          return $http.get('/api/transactions/type/' + entry)
+          .then(response => {
+            return response.data;
+          })
+          .catch(err => {
+            return [];
+          });
         } else {
-          return $http.get('/api/transactions/');
+          return $http.get('/api/transactions/')
+          .then(response => {
+            return response.data;
+          })
+          .catch(err => {
+            return [];
+          });
         }
       }
 

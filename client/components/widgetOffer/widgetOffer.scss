@@ -1,9 +1,14 @@
 .widget__make-an-offer {
   .widget__error {
+    text-align: center;
+    font-weight: 400;
+    color: $color-warning;
+    margin-top: rem(20);
+
     p {
-      margin: rem(20) 0 0 0;
-      font-weight: 400;
-      text-align: center;
+      @include font-size;
+      color: $color-warning;
+      font-style: normal;
     }
   }
 }

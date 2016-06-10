@@ -3,7 +3,7 @@
 (function() {
 
 class MarketplaceListingController {
-  constructor(listing, offers, ListingService, Auth, $scope, ngDialog, Offers, $q, Emails) {
+  constructor(listing, offers, ListingService, Auth, $scope, ngDialog, Offers, $q, Emails, Affiliate) {
     var vm = this;
     vm.ListingService = ListingService;
     vm.Auth = Auth;
@@ -11,12 +11,13 @@ class MarketplaceListingController {
     vm.$scope = $scope;
     vm.ngDialog = ngDialog;
     vm.Offers = Offers;
+    vm.Affiliate = Affiliate;
     vm.currentListing = listing.data;
     vm.currentListing.link = window.location.href;
     vm.currentOffers = offers;
     vm.currentUser = Auth.getCurrentUser();
 
-    vm.currentListing.financial.expectedGrowth = vm.currentListing.financial.projection / vm.currentListing.financial.revenue;
+    vm.currentListing.financial.expectedGrowth = (vm.currentListing.financial.projection / vm.currentListing.financial.revenue) * 100 - 100;
 
     vm.$scope.requested = false;
     vm.bookmarked = false;
@@ -95,7 +96,7 @@ class MarketplaceListingController {
       var requestButton = 'Request Pending';
       var viewFinancial = false;
       angular.forEach(vm.currentListing.infoRequest, function(request) {
-        if(request.user._id === vm.currentUser._id) {
+        if(request.user._id === vm.currentUser._id && !viewFinancial) {
           requestButton = 'Request ' + request.status;
           if(request.status === 'Approved') {
             viewFinancial = true;
@@ -114,6 +115,19 @@ class MarketplaceListingController {
       });
     }
 
+    if(vm.Auth.isAffiliate()) {
+      vm.Affiliate.getListings()
+      .then(listings => {
+        angular.forEach(listings, function(listing, key) {
+          var breakLoop = false;
+          if(listing._id === vm.currentListing._id && !breakLoop) {
+            vm.$scope.viewFinancial = true;
+            breakLoop = true;
+          }
+        })
+      });
+    }
+
     if(vm.Auth.isAdmin()) {
       vm.$scope.viewFinancial = true;
     } else if(vm.Auth.isBorrower() && vm.currentUser.borrower.listings.length > 0) {
@@ -123,7 +137,7 @@ class MarketplaceListingController {
           vm.$scope.viewFinancial = true;
           breakLoop = true;
         }
-      })
+      });
     }
 
     // check if user has already bookmarked the listing
@@ -173,19 +187,45 @@ class MarketplaceListingController {
   }
 
   bookmark() {
-    if(!this.bookmarked) {
-      this.ListingService.addBookmark(this.currentListing);
-      this.bookmarked = true;
+    var vm = this;
+
+    if(!vm.bookmarked) {
+      vm.ListingService.addBookmark(vm.currentListing);
+      vm.bookmarked = true;
     } else {
-      this.ListingService.removeBookmark(this.currentListing);
-      this.bookmarked = false;
+      vm.ListingService.removeBookmark(vm.currentListing);
+      vm.bookmarked = false;
     }
   }
 
   requestDetails() {
-    if(!this.$scope.requested) {
-      this.ListingService.requestMore(this.currentListing);
-      this.$scope.requested = 'Request Pending';
+    var vm = this;
+
+    if(!vm.$scope.requested) {
+      vm.ListingService.requestMore(vm.currentListing);
+      vm.$scope.requested = 'Request Pending';
+
+      vm.ListingService.getUserOne(vm.currentListing._id)
+      .then(user => {
+        var email = {
+          firstname: user.name.first,
+          email: user.email,
+          investor: {
+            username: vm.currentUser.username,
+            email: vm.currentUser.email,
+            phone: vm.currentUser.phone,
+            city: vm.currentUser.address.city,
+            province: vm.currentUser.address.province,
+            status: vm.currentUser.investor.status
+          },
+          business: {
+            name: vm.currentListing.general.businessName,
+            id: vm.currentListing._id
+          }
+        };
+        vm.Emails.listingInvestorRequest(email);
+      });
+
     }
   }
 
@@ -202,52 +242,81 @@ class MarketplaceListingController {
         vm.newComment.tags = tags;
       }
 
-      vm.ListingService.addComment(vm.newComment, vm.currentListing);
-      vm.newComment.date = new Date();
-      vm.newComment.user = vm.currentUser;
-      vm.currentListing.comments.push(vm.newComment);
+      vm.ListingService.addComment(vm.newComment, vm.currentListing, vm.currentUser)
+      .then(listing => {
+        vm.newComment.date = new Date();
+        vm.newComment.user = vm.currentUser;
+        vm.newComment.replies = [];
+        vm.currentListing.comments.push(vm.newComment);
 
-      vm.ListingService.getUserOne(vm.currentListing._id)
-      .then(user => {
-        var html = '<p>Hello, ' + user.name.first + '</p><p>' + vm.currentUser.username + ' has left you a commment on <a href="' + window.location.href + '">' + vm.currentListing.general.businessName + '</a> listing page.</p><p>"' + vm.newComment.text + '"</p><p>Visit your listing page to reply <a href="' + window.location.href + '">' + vm.currentListing.general.businessName + '</a>.</p><p>Thank you,<br>The InvestNextDoor Team</p>';
-        var email = {
-          to: user.email,
-          subject: 'Someone has left you a comment',
-          html: html
-        }
-        vm.Emails.new(email);
-        vm.newComment = '';
+        vm.ListingService.getUserOne(vm.currentListing._id)
+        .then(user => {
+          var email = {
+            firstname: user.name.first,
+            author: vm.currentUser.username,
+            comment: vm.newComment.text,
+            email: user.email,
+            business: {
+              name: vm.currentListing.general.businessName,
+              id: vm.currentListing._id
+            }
+          }
+          vm.newComment = '';
+          return vm.Emails.listingNewComment(email);
+        });
       });
     }
   }
 
   deleteComment(comment) {
-    this.currentListing.comments.splice(this.currentListing.comments.indexOf(comment), 1);
-    this.ListingService.deleteComment(comment, this.currentListing);
+    var vm = this;
+
+    vm.currentListing.comments.splice(vm.currentListing.comments.indexOf(comment), 1);
+    vm.ListingService.deleteComment(comment, vm.currentListing);
   }
 
   addReply(comment) {
-    this.ListingService.addReply(this.currentListing, comment, comment.newReply);
-    comment.newReply.date = new Date();
-    comment.newReply.user = this.currentUser;
-    comment.replies.push(comment.newReply);
-    comment.hideComments = true;
-    comment.newReply = '';
+    var vm = this;
+    var currentListing = vm.currentListing;
 
-    var html = '<p>' + comment.title + '</p>';
-    var email = {
-      from: 'ind@staging.work',
-      to: 'development@thesnug.io',
-      subject: 'A New Reply on Your Listing',
-      html: html
+    var newComment = {
+      date: new Date(),
+      user: vm.currentUser,
+      text: comment.newReply.text
     }
-    vm.Emails.new(email);
+
+    vm.ListingService.addReply(currentListing, comment, newComment)
+    .then(listing => {
+      comment.replies.push(newComment);
+
+      vm.ListingService.getUserOne(currentListing._id)
+      .then(user => {
+        var email = {
+          firstname: user.name.first,
+          author: vm.currentUser.username,
+          comment: newComment.text,
+          originalComment: comment.text,
+          email: user.email,
+          business: {
+            name: currentListing.general.businessName,
+            id: currentListing._id
+          }
+        }
+        comment.newReply = '';
+        return vm.Emails.listingCommentReply(email);
+      });
+    })
+    .catch(err => {
+      console.log(err);
+    });
   }
 
   deleteReply(comment, reply) {
-    var index = this.currentListing.comments.indexOf(comment);
-    this.currentListing.comments[index].replies.splice(this.currentListing.comments[index].replies.indexOf(reply), 1);
-    this.ListingService.deleteReply(comment, reply, this.currentListing);
+    var vm = this;
+
+    var index = vm.currentListing.comments.indexOf(comment);
+    vm.currentListing.comments[index].replies.splice(vm.currentListing.comments[index].replies.indexOf(reply), 1);
+    vm.ListingService.deleteReply(comment, reply, vm.currentListing);
   }
 
   outputDeadline(listing) {

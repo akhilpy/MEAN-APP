@@ -12,4 +12,17 @@
 
 .lightbox__inner {
   padding: rem(10);
+
+  .widget__error {
+    @include font-primary(600);
+    text-align: center;
+    color: $color-warning;
+    margin-top: rem(20);
+
+    p {
+      @include font-size;
+      color: $color-warning;
+      font-style: normal;
+    }
+  }
 }

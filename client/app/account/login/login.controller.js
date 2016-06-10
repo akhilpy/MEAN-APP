@@ -3,9 +3,10 @@
 (function() {
 
 class LoginController {
-  constructor(Auth, $state, appConfig, Form, ListingService) {
+  constructor(Auth, $state, $stateParams, appConfig, Form, ListingService, Emails) {
     var vm = this;
     this.ListingService = ListingService;
+    this.Emails = Emails;
     this.user = {};
     this.newUser = {};
     this.errors = {};
@@ -22,6 +23,12 @@ class LoginController {
 
     this.signupErrors = false;
     this.loginErrors = false;
+
+    this.affiliate = null;
+
+    if($stateParams.ref) {
+      this.affiliate = $stateParams.ref;
+    }
   }
 
   login(form) {
@@ -61,14 +68,30 @@ class LoginController {
         },
         email: user.email,
         password: user.password,
-        role: user.role.value
+        role: user.role.value,
+        affiliate: vm.affiliate
       })
       .then(() => {
+        var email = {
+          firstname: user.name.first,
+          email: user.email
+        }
         // Account created, redirect to welcome or home
         if(user.role.value === 'borrower') {
-          this.$state.go('borrow.welcome');
+          vm.Emails.welcomeBorrower(email)
+          .then(() => {
+            this.$state.go('dashboard.index');
+          })
         } else if(user.role.value === 'investor') {
-          this.$state.go('profile');
+          vm.Emails.welcomeInvestor(email)
+          .then(() => {
+            this.$state.go('profile');
+          })
+        } else if(user.role.value === 'affiliate') {
+          vm.Emails.welcomeAffiliate(email)
+          .then(() => {
+            this.$state.go('dashboard.index');
+          })
         } else {
           this.$state.go('dashboard.index');
         }

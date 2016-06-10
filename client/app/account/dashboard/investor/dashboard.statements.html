@@ -11,12 +11,12 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="statement in statements">
-      <td>{{statement.date}}</td>
-      <td><strong>{{statement.type}}:</strong> {{statement.description}}</td>
-      <td class="dashboard__table--credits">{{statement.credit | currency}}</td>
-      <td class="dashboard__table--debits">{{statement.debit | currency}}</td>
-      <td>{{statement.balance | currency}}</td>
+    <tr ng-repeat="transaction in transactions | orderBy:transactionSort:sortReverse">
+      <td>{{transaction.date | date}}</td>
+      <td><strong>{{transaction.entry}}:</strong> {{transaction.description}}</td>
+      <td class="dashboard__table--credits">{{transaction.credit | currency}}</td>
+      <td class="dashboard__table--debits">{{transaction.debit | currency}}</td>
+      <td>{{transaction.balance | currency}}</td>
     </tr>
   </tbody>
 </table>

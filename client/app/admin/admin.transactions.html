@@ -1,12 +1,8 @@
 <ul class="dashboard__navigation--list">
   <li><a ui-sref-active="active" ui-sref="admin.transactions.index">All</a></li>
-  <li><a ui-sref-active="active" ui-sref="admin.transactions.type({method: 'ABA'})">ABA</a></li>
-  <li><a ui-sref-active="active" ui-sref="admin.transactions.type({method: 'CBF'})">CBF</a></li>
-  <li><a ui-sref-active="active" ui-sref="admin.transactions.type({method: 'AFI'})">AFI</a></li>
-  <li><a ui-sref-active="active" ui-sref="admin.transactions.type({method: 'WFI'})">WFI</a></li>
-  <li><a ui-sref-active="active" ui-sref="admin.transactions.type({method: 'COF'})">COF</a></li>
-  <li><a ui-sref-active="active" ui-sref="admin.transactions.type({method: 'SLF'})">SLF</a></li>
-  <li><a ui-sref-active="active" ui-sref="admin.transactions.type({method: 'CBR'})">CBR</a></li>
+  <li><a ui-sref-active="active" ui-sref="admin.transactions.type({entry: 'debit'})">Debit</a></li>
+  <li><a ui-sref-active="active" ui-sref="admin.transactions.type({entry: 'credit'})">Credit</a></li>
+  <li><a ui-sref-active="active" ui-sref="admin.transactions.type({entry: 'private'})">Private</a></li>
 </ul><!-- /.dashboard__navigation--list -->
 
 <ui-view class="admin-dashboard__main"></ui-view>

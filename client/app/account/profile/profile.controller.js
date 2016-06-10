@@ -50,7 +50,6 @@ class ProfileController {
     var changed = false;
     vm.submitted = true;
 
-
     if (form.$valid) {
       vm.hasErrors = false;
       vm.$http.put('/api/users/' + vm.user._id, {

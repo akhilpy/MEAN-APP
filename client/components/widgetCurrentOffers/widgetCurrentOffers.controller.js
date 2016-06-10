@@ -10,6 +10,8 @@ class WidgetCurrentOffersController {
     widget.$scope.makeOutbid = false;
     widget.$scope.showCurrentOffersWidget = true;
 
+    widget.$scope.outbidRate = widget.$scope.offerWidget.newOffer.rate - 1;
+
     if($scope.vm.currentUser.role === 'borrower' || $scope.vm.currentListing.admin.basics.status === 'closed') {
       widget.$scope.showCurrentOffersWidget = false;
     }
@@ -26,6 +28,8 @@ class WidgetCurrentOffersController {
       });
 
       $scope.vm.averageRate = Math.ceil(rates / averageOffers.length);
+    } else {
+      $scope.vm.averageRate = false;
     }
   }
 

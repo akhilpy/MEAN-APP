@@ -18,7 +18,7 @@
     <nav id="site-navigation" class="main-navigation" role="navigation" collapse="{{nav.isCollapsed}}">
       <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false" type="button" ng-click="nav.isCollapsed = !nav.isCollapsed"><i class="fa fa-navicon"></i></button>
       <ul class="main-menu">
-        <li ui-sref-active="active" class="has-button" ng-if="button==='default'">
+        <li ui-sref-active="active" class="has-button" ng-if="button==='default'" ng-hide="nav.isAffiliate()">
           <a ui-sref="login">Become a Borrower</a>
         </li><!-- /.has-button -->
         <li ui-sref-active="active" class="has-button" ng-if="button==='borrower'">
@@ -51,7 +51,8 @@
           <ul class="sub-menu">
             <li><a ui-sref="dashboard.index">Dashboard</a></li>
             <li ng-show="nav.isAdmin()"><a ui-sref="admin.index">Admin</a></li>
-            <li ng-show="nav.isInvestor()"><a ui-sref="marketplace.index">Marketplace</a></li>
+            <li ng-show="nav.isInvestor() || nav.isAffiliate()"><a ui-sref="marketplace.index">Marketplace</a></li>
+            <li ng-show="nav.isAffiliate()"><a ui-sref="dashboard.affiliate.index">Affiliates</a></li>
             <li ng-show="hasListing"><a ui-sref="listing.general({id: listingID})">Listing</a></li>
             <li><a ui-sref="profile">Profile</a></li>
             <li><a ui-sref="logout">Logout</a></li>

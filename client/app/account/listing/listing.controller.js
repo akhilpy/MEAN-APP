@@ -3,12 +3,16 @@
 (function() {
 
 class ListingController {
-  constructor($state, $scope, Form, ListingService, currentUser, currentListing) {
+  constructor($state, $scope, Form, ListingService, currentUser, currentListing, Payments, $http, Emails, $location, ngDialog) {
     var vm = this;
     vm.$state = $state;
     vm.$scope = $scope;
+    vm.$http = $http;
     vm.ListingService = ListingService;
+    vm.Payments = Payments;
+    vm.Emails = Emails;
     vm.Form = Form;
+    vm.ngDialog = ngDialog;
     vm.errors = {};
     vm.submitted = false;
     vm.$scope.saving = false;
@@ -54,32 +58,10 @@ class ListingController {
 
   saveListing(form) {
     var vm = this;
-    var savedListing = {};
     vm.$scope.saving = true;
-
-    if( vm.currentListing.general ) {
-      savedListing.general = vm.pageData(vm.currentListing, 'general');
-    }
-
-    if( vm.currentListing.details ) {
-      savedListing.details = vm.pageData(vm.currentListing, 'details');
-    }
-
-    if( vm.currentListing.financial ) {
-      savedListing.financial = vm.pageData(vm.currentListing, 'financial');
-    }
-
-    if( vm.currentListing.social ) {
-      savedListing.social = vm.pageData(vm.currentListing, 'social');
-    }
-
-    if( vm.currentListing.terms ) {
-      savedListing.terms = vm.pageData(vm.currentListing, 'terms');
-    }
-
     vm.submitted = true;
 
-    vm.ListingService.saveOne(savedListing, vm.listingID)
+    vm.ListingService.saveOne(vm.currentListing)
     .then(data => {
       vm.$scope.saving = false;
     })
@@ -89,20 +71,90 @@ class ListingController {
 
   }
 
-  submitListing(form) {
+  submitListing(form, account) {
     var vm = this;
     vm.submitted = true;
-    vm.saveListing(form);
-    vm.ListingService.submitOne(vm.listingID)
-    .then(() => {
-      var html = '<p>Hello ' + vm.user.name.first + ',</p><p>Your listing has been submitted.  In order to process your application the following steps need to be completed:</p><p>1. Verify your Bank Account - within 3 days you will recieve two small deposits in your bank account.  You will need to enter these amounts in your dashboard ' + vm.currentListing.general.businessName + '<br>.2. Owners with >25% ownership will need to complete a personal gaurantee form which has been emailed to them.</p><p>Once your account has been verified and we receive the owner forms we will process your application. You should expect a response within 2 business days.  You will then be able to review, update and publish your listing.</p><p>Don\'t hesitate to let us know if you have questions.</p><p>Thank you,<br>The InvestNextDoor Team</p>';
-      var email = {
-        to: vm.user.email,
-        subject: 'Your listing has been submitted.',
-        html: html
+
+    if(!vm.user.bankAccount.verified && !account) {
+
+      vm.ngDialog.open({
+        template: 'app/account/listing/lightbox.addAccount.html',
+        scope: vm.$scope
+      });
+
+    } else {
+
+      if(account) {
+        vm.errors.addAccount = false;
+        vm.$scope.loading = true;
+
+        vm.saveListing(form);
+
+        return vm.Payments.addAccount(account)
+        .then(response => {
+          if(response.data.status !== 'success') {
+            return vm.Payments.updateAccount(account);
+          }
+        })
+        .then(() => {
+          return vm.Payments.verifyAccount(account)
+          .then(response => {
+            vm.$scope.loading = false;
+
+            var transaction = {
+              user: vm.user,
+              method: 'CBF',
+              amount: 200,
+              type: 'direct_debit',
+              kind: 'Listing'
+            }
+
+            return vm.Payments.createTransaction(transaction)
+            .then(response => {
+              if(response.status === 'success') {
+                vm.$http.put('/api/users/' + vm.user._id, {
+                  user: vm.user
+                }).then(response => {
+                  return vm.ListingService.submitOne(vm.listingID)
+                  .then(() => {
+                    var email = {
+                      firstname: vm.user.name.first,
+                      email: vm.user.email,
+                      business: {
+                        name: vm.currentListing.general.businessName,
+                        id: vm.currentListing._id
+                      }
+                    }
+                    vm.ngDialog.close();
+                    vm.$state.go('dashboard.index');
+                    return vm.Emails.listingSubmitted(email);
+                  });
+                })
+                .catch(err => {
+                  console.log(err);
+                });
+              }
+            })
+            .catch(err => {
+              console.log(err);
+            });
+          })
+          .catch(err => {
+            vm.$scope.loading = false;
+            vm.errors.addAccount = 'Please check your account details and try again.';
+          });
+        })
+        .catch(err => {
+          vm.$scope.loading = false;
+          vm.errors.addAccount = 'Please check your account details and try again.';
+        });
+      } else {
+        vm.$scope.loading = false;
+        vm.errors.addAccount = 'Please check your account details and try again.';
       }
-    });
-    vm.$state.go('dashboard.index');
+
+    }
+
   }
 }
 

@@ -1,0 +1,31 @@
+<p ng-hide="vm.hasRepayments" class="dashboard__main--intro">No repayments.</p>
+
+<ul class="general-content__table-keys" ng-show="vm.hasRepayments">
+  <li><i class="fa fa-bolt new"></i> Upcoming</li>
+  <li><i class="fa fa-check success"></i> Paid</li>
+  <li><i class="fa fa-times warning"></i> Unpaid</li>
+</ul><!-- /.general-content__table-keys -->
+<table ng-show="vm.hasRepayments">
+  <thead>
+    <tr>
+      <th><a><i class="fa fa-circle-o"></i></a></th>
+      <th><a href="#">Date</a></th>
+      <th><a href="#">Listing</a></th>
+      <th><a href="#">Borrower</a></th>
+      <th><a href="#">Amount</a></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="payment in repayment.borrower.payments">
+      <td>
+        <i ng-show=payment.status==='Pending' class="fa fa-bolt new"></i>
+        <i ng-show=payment.status==='Completed' class="fa fa-check success"></i>
+        <i ng-show=payment.status==='Late' class="fa fa-times warning"></i>
+      </td>
+      <td>{{payment.date | date}}</td>
+      <td>{{repayment.listing.general.businessName}}</td>
+      <td>{{repayment.borrower.user.name.first}} {{repayment.borrower.user.name.last}}</td>
+      <td>{{payment.amount | currency}}</td>
+    </tr>
+  </tbody>
+</table>

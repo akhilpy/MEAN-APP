@@ -3,9 +3,10 @@
 (function() {
 
 class AdminOfferDetailController {
-  constructor(currentUser, offer, Offers, Emails) {
+  constructor(currentUser, offer, Offers, Emails, $scope) {
     var vm = this;
     vm.Offers = Offers;
+    vm.$scope = $scope;
 
     vm.offer = offer.data;
     vm.user = currentUser;
@@ -21,6 +22,7 @@ class AdminOfferDetailController {
 
   updateOffer(offer, status) {
     var vm = this;
+    vm.$scope.saving = true;
 
     if(status) {
       offer.status = status;
@@ -44,7 +46,13 @@ class AdminOfferDetailController {
       vm.Emails.new(email);
     }
 
-    vm.Offers.updateOffer(offer);
+    vm.Offers.updateOffer(offer)
+    .then(response => {
+      vm.$scope.saving = false;
+    })
+    .catch(err => {
+      console.log(err);
+    })
   }
 
 }

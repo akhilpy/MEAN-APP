@@ -160,7 +160,7 @@ Payments.prototype.addNewUser = function(input, callback) {
 		if(!validator.isEmail(usreml)){
 			return callback(true, {'code':412,'error':'email','error_description':'invalid email'});
 		}else{
-			user_details = {username:usrnme, password:usrpwd, email:usreml};
+			user_details = {username:usrnme, password:usrpwd, email:encodeURIComponent(usreml)};
 		}
 	}
 
@@ -206,7 +206,7 @@ Payments.prototype.addNewUser = function(input, callback) {
 						insnum = key.encrypt(insnum,'base64','utf8');
 						brnnum = key.encrypt(brnnum,'base64','utf8');
 						accnum = key.encrypt(accnum,'base64','utf8');
-						account_details = {institution_number:insnum, branch_number:brnnum, account_number:accnum, email:usreml};
+						account_details = {institution_number:insnum, branch_number:brnnum, account_number:accnum, email:encodeURIComponent(usreml)};
 						account_details.method = 'ADM';
 						body = account_details;
 						url = trnact_url('ABA');
@@ -297,7 +297,7 @@ Payments.prototype.updateBankAccount = function(input,callback){
 						insnum = key.encrypt(insnum,'base64','utf8');
 						brnnum = key.encrypt(brnnum,'base64','utf8');
 						accnum = key.encrypt(accnum,'base64','utf8');
-						account_details = {institution_number:insnum, branch_number:brnnum, account_number:accnum, email:usreml};
+						account_details = {institution_number:insnum, branch_number:brnnum, account_number:accnum, email:encodeURIComponent(usreml)};
 						account_details.method = 'ADM';
 						body = account_details;
 						url = trnact_url('ABA');
@@ -323,6 +323,7 @@ Payments.prototype.performTransact = function(input, callback){
 	var usrnme = '';
 	var usrpwd = '';
 	var usreml = '';
+	var user_details = {};
 	if(input.username && input.password && input.email){
 		usrnme = validator.trim(input.username);
 		usrpwd = validator.trim(input.password);
@@ -345,11 +346,11 @@ Payments.prototype.performTransact = function(input, callback){
 		return callback(true, {'code':412,'error':'business_name','error_description':'business_name or first_name and last_name required'});
 	}else{
 		if(input.business_name){
-			usrbnm = validator.trim(input.business_name);
+			var usrbnm = validator.trim(input.business_name);
 			user_details.business_name = usrbnm;
 		}else if(input.first_name && input.last_name){
-			usrfnm = validator.trim(input.first_name);
-			usrlnm = validator.trim(input.last_name);
+			var usrfnm = validator.trim(input.first_name);
+			var usrlnm = validator.trim(input.last_name);
 			user_details.first_name = usrfnm;
 			user_details.last_name = usrlnm;
 		}else{

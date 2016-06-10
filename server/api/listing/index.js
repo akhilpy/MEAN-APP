@@ -7,6 +7,8 @@ var router = express.Router();
 
 router.get('/', controller.index);
 router.get('/status/:status', controller.status);
+router.get('/affiliate/:id/listings', controller.affiliateListings);
+router.get('/affiliate/:id/investments', controller.affiliateInvestments);
 router.get('/user/:id', controller.showUser);
 router.get('/:id', controller.show);
 router.post('/', controller.create);

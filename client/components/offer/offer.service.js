@@ -2,7 +2,7 @@
 
 (function() {
 
-  function OfferService($http, Auth, $q, $filter, Transactions, ListingService) {
+  function OfferService($http, Auth, $q, $filter, Transactions, ListingService, Emails) {
 
     var Offers = {
 
@@ -28,7 +28,7 @@
             return Offers.getUserOffers(user._id)
             .then(offers => {
               angular.forEach(offers, function(currentOffer, key) {
-                if(currentOffer.listing._id === listing._id && currentOffer.user._id === user._id) {
+                if(currentOffer.listing && currentOffer.listing._id === listing._id && currentOffer.user._id === user._id) {
                   if(currentOffer.status === 'live' || currentOffer.status === 'pending') {
                     hasCurrentOffer = true;
 
@@ -36,7 +36,8 @@
                       amount: currentOffer.amount,
                       listing: listing._id,
                       entry: 'Credit',
-                      kind: 'Offer'
+                      kind: 'Offer',
+                      description: 'Refunded Offer on Listing ' + listing.general.businessName
                     };
                     promises.push(Transactions.create(user, credit));
 
@@ -44,7 +45,8 @@
                       amount: offer.amount,
                       listing: listing._id,
                       entry: 'Debit',
-                      kind: 'Offer'
+                      kind: 'Offer',
+                      description: 'Made Offer on Listing ' + listing.general.businessName
                     };
                     promises.push(Transactions.create(user, debit));
 
@@ -66,11 +68,34 @@
                     amount: offer.amount,
                     listing: listing._id,
                     entry: 'Debit',
-                    kind: 'Offer'
+                    kind: 'Offer',
+                    description: 'Made Offer on Listing ' + listing.general.businessName
                   };
 
                   Transactions.create(user, debit)
                   .then(user => {
+                    var investorEmail = {
+                      firstname: user.name.first,
+                      email: user.email,
+                      business: {
+                        name: listing.general.businessName,
+                        id: listing._id
+                      }
+                    }
+                    Emails.offerPending(investorEmail);
+
+                    ListingService.getUserOne(listing._id)
+                    .then(user => {
+                      var borrowerEmail = {
+                        firstname: user.name.first,
+                        email: user.email,
+                        amount: offer.amount,
+                        rate: offer.rate,
+                        username: offer.user.username
+                      }
+                      Emails.listingNewOffer(borrowerEmail);
+                    });
+
                     return $http.post('/api/offers', {
                       user: user,
                       offer: offer
@@ -258,6 +283,21 @@
               if(offer.status === 'pending' || offer.status === 'live') {
                 if(total > goal) {
                   promises.push(lowestOffers.push(offer));
+
+                  ListingService.getUserOne(offer.listing._id)
+                  .then(user => {
+                    var email = {
+                      firstname: user.name.first,
+                      email: user.email,
+                      business: {
+                        name: offer.listing.general.businessName,
+                        id: offer.listing._id
+                      },
+                      amount: offer.listing.details.amount,
+                      deadline: offer.listing.admin.basics.deadline
+                    }
+                    Emails.listingFundingPending(email);
+                  });
                 }
               }
 
@@ -265,6 +305,26 @@
 
             angular.forEach(lowestOffers, function(offer, key) {
               offer.status = 'outbid';
+
+              var credit = {
+                amount: offer.amount,
+                listing: listing._id,
+                entry: 'Credit',
+                kind: 'Offer',
+                description: 'Refunded Offer on Listing ' + listing.general.businessName
+              };
+
+              var email = {
+                firstname: offer.user.name.first,
+                email: offer.user.email,
+                business: {
+                  name: offer.listing.general.businessName,
+                  id: offer.listing._id
+                }
+              }
+              Emails.offerOutbid(email);
+
+              promises.push(Transactions.create(offer.user, credit));
               promises.push(Offers.updateOffer(offer));
             });
 
@@ -398,6 +458,20 @@
        * @return {String}
        */
       updateOffer(offer) {
+        if(offer.status === 'approved') {
+          var email = {
+            firstname: offer.user.name.first,
+            email: offer.user.email,
+            business: {
+              name: offer.listing.general.businessName,
+              id: offer.listing._id
+            },
+            amount: offer.amount,
+            rate: offer.rate
+          }
+          Emails.offerApproved(email);
+        }
+
         return $http.put('/api/offers/' + offer._id, offer);
       },
 

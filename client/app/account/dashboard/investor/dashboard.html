@@ -4,8 +4,8 @@
     <ul class="dashboard--details__list dashboard--details__upper">
       <li class="dashboard--details__element--wrapper dashboard--details__main">
         <div class="dashboard--details__element">
-          <h2 class="dashboard--details__large">{{investorInfo.balance | currency}}</h2>
-          <p>Available Balance <a class="dashboard--details__add" href="#"><i class="fa fa-plus-circle"></i> Add</a> <a class="dashboard--details__withdraw" href="#"><i class="fa fa-minus-circle"></i> Withdraw</a></p>
+          <h2 class="dashboard--details__large">{{currentUser.balance | currency}}</h2>
+          <p>Available Balance <a class="dashboard--details__add" href="#" ng-click="vm.addFundsPop()"><i class="fa fa-plus-circle"></i> Add</a> <a class="dashboard--details__withdraw" href="#" ng-click="vm.withdrawFundsPop()"><i class="fa fa-minus-circle"></i> Withdraw</a></p>
         </div><!-- /.dashboard--details__element -->
       </li><!-- /.dashboard--details__element -->
       <li class="dashboard--details__element--wrapper">
@@ -40,14 +40,14 @@
       <li class="dashboard--details__element--wrapper">
         <div class="dashboard--details__element">
           <h3 class="dashboard--details__medium positive">{{investorInfo.interest | currency}}</h3>
-          <p>Interest Earned <a href="#"><i class="fa fa-question-circle"></i></a></p>
+          <p>Net Interest Earned <a href="#"><i class="fa fa-question-circle"></i></a></p>
           <a href="#">See Breakdown</a>
         </div><!-- /.dashboard--details__element -->
       </li><!-- /.dashboard--details__element -->
       <li class="dashboard--details__element--wrapper">
         <div class="dashboard--details__element">
           <h3 class="dashboard--details__medium positive">{{investorInfo.forecast | currency}}</h3>
-          <p>Income Pending <a href="#"><i class="fa fa-question-circle"></i></a></p>
+          <p>Net Interest Pending <a href="#"><i class="fa fa-question-circle"></i></a></p>
           <a href="#">See Breakdown</a>
         </div><!-- /.dashboard--details__element -->
       </li><!-- /.dashboard--details__element -->

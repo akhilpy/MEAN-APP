@@ -17,7 +17,8 @@ var TransactionSchema = new mongoose.Schema({
   balance: Number,
   user: {
     type: Schema.ObjectId,
-		ref: 'User'
+		ref: 'User',
+    autopopulate: true
   },
   listing: {
     type: Schema.ObjectId,
@@ -29,6 +30,7 @@ var TransactionSchema = new mongoose.Schema({
     type: String,
     default: 'Debit'
   },
+  description: String,
   reference: String,
   details: {
     amount_in_cents: {
@@ -50,7 +52,7 @@ var TransactionSchema = new mongoose.Schema({
     to_account: String,
     to_fund: String,
     token: String,
-    transaction_reference: Number,
+    transaction_reference: String,
     transaction_type: String,
     payment_type: String,
     unique_reference: String

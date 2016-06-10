@@ -204,6 +204,21 @@ function AuthService($location, $http, $cookies, $q, appConfig, Util, User) {
   },
 
   /**
+   * Check if a user is an affiliate
+   *   (synchronous|asynchronous)
+   *
+   * @param  {Function|*} callback - optional, function(is)
+   * @return {Bool|Promise}
+   */
+ isAffiliate() {
+   if( currentUser.role === 'affiliate' ) {
+     return true;
+   } else {
+     return false;
+   }
+ },
+
+  /**
    * Check if a user is an investor
    *   (synchronous|asynchronous)
    *

@@ -320,8 +320,8 @@ function FormService(appConfig) {
               key: 'investor.increase',
               templateOptions: {
                 type: 'checkbox',
-                label: 'Request increase to $1500 per offer limit.',
-                description: 'Due to securities regulations if you wish to invest more than $1500 in each listing you will need to apply for the appropriate investor status. Please indicate your interest and we will contact you shortly.'
+                label: 'Request increase to $2,500 per offer limit.',
+                description: 'Due to securities regulations if you wish to invest more than $2,500 in each listing you will need to apply for the appropriate investor status. Please indicate your interest and we will contact you shortly.'
               }
             },
             {
@@ -353,7 +353,7 @@ function FormService(appConfig) {
               type: 'dropzone',
               key: 'attachments',
               templateOptions: {
-                kye: 'attachments',
+                key: 'attachments',
                 type: 'input',
                 label: 'Attach any Relevant Supporting Documentation.'
               },
@@ -543,6 +543,16 @@ function FormService(appConfig) {
                 label: 'Notes',
                 description: ''
               }
+            },
+            {
+              className: 'flex-1',
+              type: 'dropzone',
+              key: 'investor.adminAttachments',
+              templateOptions: {
+                key: 'investor.adminAttachments',
+                type: 'input',
+                label: 'Attachments'
+              },
             }
           ]
         }
@@ -1250,7 +1260,7 @@ function FormService(appConfig) {
                 type: 'radio',
                 key: 'commercialSpace',
                 templateOptions: {
-                  label: 'Do you own your commercial space?',
+                  label: 'Does the business own commercial space?',
                   options: [
                     {
                       name: 'Yes',
@@ -1956,7 +1966,7 @@ function FormService(appConfig) {
                 type: 'checkbox',
                 key: 'authority',
                 templateOptions: {
-                  label: 'I agree that I have the authority to place this listing and issue the related security. InvestNextDoor is not, and will not act in any intermediary capacity between my business and investors, and that I am wholly responsible for ensuring all legal and regulatory compliance is completed for my security offering.',
+                  label: 'I agree that I have the authority to place this listing and issue the related security and that the information provided in the application is valid and accurate. A personal credit check and guarantee will be required for all owners with more than 25% ownership.',
                   placeholder: '',
                   description: ''
                 },
@@ -2045,7 +2055,7 @@ function FormService(appConfig) {
                   label: 'Phone Number',
                   placeholder: '###-###-####',
                   mask: '(999) 999-9999',
-                  description: 'Required so that questions may be asked by purchasers and security regulatory authority or regulators.',
+                  description: 'Required so that questions may be asked by purchasers and/or security regulatory authorities or regulators.',
                   addonLeft: {
                     class: 'fa fa-phone'
                   }
@@ -2204,6 +2214,10 @@ function FormService(appConfig) {
                     {
                       name: 'Closed',
                       value: 'closed'
+                    },
+                    {
+                      name: 'Cancelled',
+                      value: 'cancelled'
                     }
                   ],
                   description: ''

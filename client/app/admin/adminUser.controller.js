@@ -22,10 +22,17 @@ class AdminUserController {
 
   updateInvestor(form) {
     var vm = this;
-    var address = {};
-    var investor = {};
-
     vm.submitted = true;
+
+    if(vm.user.investor.level === 'Accredited - Verified') {
+      var email = {
+        firstname: vm.user.name.first,
+        email: vm.user.email,
+        maxOffer: vm.user.investor.limit,
+        maxLimit: vm.user.investor.limit
+      };
+      vm.Emails.investorStatusUpdate(email);
+    }
 
     if (form.$valid) {
       return vm.$http.put('/api/users/' + vm.user._id, {
@@ -36,6 +43,7 @@ class AdminUserController {
         vm.$rootScope.$broadcast('updateUsers');
       })
       .catch(err => {
+        console.log(err);
         vm.errors.other = err.message;
       });
     }

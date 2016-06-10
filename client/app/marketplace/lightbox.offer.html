@@ -21,7 +21,11 @@
       </li><!-- /.form__row -->
     </ul><!-- /.form__rows -->
   </form><!-- /.widget__form -->
-  
+
+  <div class="widget__error" ng-show="error">
+    <p>{{errorMessage}}</p>
+  </div>
+
   <div class="widget__error" ng-hide="showOfferWidget">
     <p>You cannot bid on this listing.</p>
   </div><!-- /.widget__subtitle -->

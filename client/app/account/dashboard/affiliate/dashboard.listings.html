@@ -1,0 +1,94 @@
+<div class="marketplace-listings__wrapper">
+  <div class="marketplace-listings">
+    <table>
+      <thead>
+        <tr>
+          <th>
+            <a href="#" ng-click="sortType = 'date'; sortReverse = !sortReverse">
+              Created
+              <span class="sort-icon">
+                <i class="fa fa-angle-down"></i>
+                <i class="fa fa-angle-up"></i>
+              </span>
+            </a>
+          </th>
+          <th>
+            <a href="#" ng-click="sortType = 'general.businessName'; sortReverse = !sortReverse">
+              Business
+              <span class="sort-icon">
+                <i class="fa fa-angle-down"></i>
+                <i class="fa fa-angle-up"></i>
+              </span>
+            </a>
+          </th>
+          <th>
+            <a href="#" ng-click="sortType = 'general.address.city'; sortReverse = !sortReverse">
+              Location
+              <span class="sort-icon">
+                <i class="fa fa-angle-down"></i>
+                <i class="fa fa-angle-up"></i>
+              </span>
+            </a>
+          </th>
+          <th>
+            <a href="#" ng-click="sortType = 'general.industry'; sortReverse = !sortReverse">
+              Industry
+              <span class="sort-icon">
+                <i class="fa fa-angle-down"></i>
+                <i class="fa fa-angle-up"></i>
+              </span>
+            </a>
+          </th>
+          <th>
+            <a href="#" ng-click="sortType = 'admin.basics.userRate'; sortReverse = !sortReverse">
+              Rate
+              <span class="sort-icon">
+                <i class="fa fa-angle-down"></i>
+                <i class="fa fa-angle-up"></i>
+              </span>
+            </a>
+          </th>
+          <th>
+            <a href="#" ng-click="sortType = 'details.term'; sortReverse = !sortReverse">
+              Term
+              <span class="sort-icon">
+                <i class="fa fa-angle-down"></i>
+                <i class="fa fa-angle-up"></i>
+              </span>
+            </a>
+          </th>
+          <th>
+            <a href="#" ng-click="sortType = 'time'; sortReverse = !sortReverse">
+              Time
+              <span class="sort-icon">
+                <i class="fa fa-angle-down"></i>
+                <i class="fa fa-angle-up"></i>
+              </span>
+            </a>
+          </th>
+          <th>
+            <a href="#" ng-click="sortType = 'pod'; sortReverse = !sortReverse">
+              POD
+              <span class="sort-icon">
+                <i class="fa fa-angle-down"></i>
+                <i class="fa fa-angle-up"></i>
+              </span>
+            </a>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="listing in vm.affiliate.listings | orderBy:sortType:sortReverse">
+          <td>{{listing.date | date}}</td>
+          <td><a ui-sref="marketplace.listing.profile({id: listing._id})">{{listing.general.businessName}}</a></td>
+          <td>{{listing.general.address.city}} {{listing.general.address.province}}</td>
+          <td>{{listing.general.industry}}</td>
+          <td>{{listing.admin.basics.listedRate}}%</td>
+          <td>{{listing.details.term}} Months</td>
+          <td>{{listing.admin.basics.deadline | amCalendar}}</td>
+          <td>{{listing.admin.scores.cds}}%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div><!-- /.marketplace-listings -->
+</div><!-- /.marketplace-listings__wrapper -->

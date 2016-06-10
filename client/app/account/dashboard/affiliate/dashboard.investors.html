@@ -1,0 +1,90 @@
+<div class="marketplace-listings__wrapper">
+  <div class="marketplace-listings">
+    <table>
+      <thead>
+        <tr>
+          <th>
+            <a href="#" ng-click="sortType = 'joined'; sortReverse = !sortReverse">
+              Joined
+              <span class="sort-icon">
+                <i class="fa fa-angle-down"></i>
+                <i class="fa fa-angle-up"></i>
+              </span>
+            </a>
+          </th>
+          <th>
+            <a href="#" ng-click="sortType = 'username'; sortReverse = !sortReverse">
+              Username
+              <span class="sort-icon">
+                <i class="fa fa-angle-down"></i>
+                <i class="fa fa-angle-up"></i>
+              </span>
+            </a>
+          </th>
+          <th>
+            <a href="#" ng-click="sortType = 'name.last'; sortReverse = !sortReverse">
+              Name
+              <span class="sort-icon">
+                <i class="fa fa-angle-down"></i>
+                <i class="fa fa-angle-up"></i>
+              </span>
+            </a>
+          </th>
+          <th>
+            <a href="#" ng-click="sortType = 'email'; sortReverse = !sortReverse">
+              Email
+              <span class="sort-icon">
+                <i class="fa fa-angle-down"></i>
+                <i class="fa fa-angle-up"></i>
+              </span>
+            </a>
+          </th>
+          <th>
+            <a href="#" ng-click="sortType = 'role'; sortReverse = !sortReverse">
+              Role
+              <span class="sort-icon">
+                <i class="fa fa-angle-down"></i>
+                <i class="fa fa-angle-up"></i>
+              </span>
+            </a>
+          </th>
+          <th>
+            <a href="#" ng-click="sortType = 'borrower.status'; sortReverse = !sortReverse">
+              Status
+              <span class="sort-icon">
+                <i class="fa fa-angle-down"></i>
+                <i class="fa fa-angle-up"></i>
+              </span>
+            </a>
+          </th>
+          <th>
+            <a href="#" ng-click="sortType = 'borrower.level'; sortReverse = !sortReverse">
+              Level
+              <span class="sort-icon">
+                <i class="fa fa-angle-down"></i>
+                <i class="fa fa-angle-up"></i>
+              </span>
+            </a>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="user in vm.affiliate.investors | orderBy:sortType:sortReverse">
+          <td>{{user.joined | date}}</td>
+          <td>{{user.username}}</td>
+          <td>{{user.name.first}} {{user.name.last}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.role}}</td>
+          <td>
+            <span ng-show="user.role==='investor'">{{user.investor.status}}</span>
+            <span ng-show="user.role==='borrower'">{{user.borrower.status}}</span>
+          </td>
+          <td>
+            <span ng-show="user.role==='investor'">{{user.investor.level}}</span>
+            <span ng-show="user.role==='borrower'">{{user.borrower.level}}</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div><!-- /.marketplace-listings -->
+</div><!-- /.marketplace-listings__wrapper -->

@@ -360,7 +360,11 @@ var ListingSchema = new Schema({
 		fullName: String,
 		position: String,
 		phone: Number,
-		signature: String
+		signature: String,
+		termSheet: {
+			type: String,
+			default: ''
+		}
 	},
 	comments: [comment],
 	infoRequest: [requester],
@@ -435,6 +439,31 @@ ListingSchema
 				return new Date();
 			}
 	  });
+
+		ListingSchema
+		  .virtual('admin.basics.deadlineDays')
+		  .get(function() {
+				if(this.admin.basics.published) {
+					var published = new Date(this.admin.basics.published);
+					var publishedDate = moment(published);
+					var deadline = publishedDate.add(60, 'days');
+					var now = moment();
+					var difference =  deadline.diff(now, 'days');
+					if(difference < 1) {
+						return {
+							type: 'hours',
+							value: moment(deadline).toNow(true)
+						};
+					} else {
+						return {
+							type: 'days',
+							value: difference
+						};
+					}
+				} else {
+					return 0;
+				}
+		  });
 
 
 ListingSchema.set('toJSON', { virtuals: true });

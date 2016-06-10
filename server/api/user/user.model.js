@@ -119,6 +119,10 @@ var UserSchema = new Schema({
     type: String,
     default: 'borrower'
   },
+	affiliate: {
+		type: Schema.ObjectId,
+		ref: 'User'
+	},
 	bankAccount: bankAccount,
 	balance: {
 		type: Number,
@@ -141,6 +145,10 @@ var UserSchema = new Schema({
 			distance: {
 				type: Number,
 				default: 0
+			},
+			time: {
+				type: Number,
+				default: 60
 			}
 		}
 	},
@@ -184,7 +192,8 @@ var UserSchema = new Schema({
 		repayments: [repayment],
 		notifications: Boolean,
 		requests: String,
-		notes: String
+		notes: String,
+		adminAttachments: [file]
 	},
   password: String,
   provider: String,

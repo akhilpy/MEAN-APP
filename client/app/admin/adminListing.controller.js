@@ -3,12 +3,13 @@
 (function() {
 
 class AdminListingController {
-  constructor(currentListing, ListingService, $stateParams, $state, Form, $scope, Offers, $q) {
+  constructor(currentListing, ListingService, $stateParams, $state, Form, $scope, Offers, $q, Borrower, Emails) {
     var vm = this;
     vm.$state = $state;
     vm.$scope = $scope;
     vm.ListingService = ListingService;
     vm.Offers = Offers;
+    vm.Emails = Emails;
     vm.Form = Form;
 
     vm.currentListing = currentListing.data;
@@ -44,6 +45,11 @@ class AdminListingController {
 
     vm.Offers.getListingOffers(vm.listingID)
     .then(offers => {
+      if(offers.all.length > 0) {
+        vm.hasOffers = true;
+        vm.$scope.offers = offers.all;
+      }
+
       var promises = [];
       var amountFunded = 0;
       var averageRate = 0;
@@ -87,7 +93,17 @@ class AdminListingController {
     vm.ListingService.getUserOne(vm.listingID)
     .then(user => {
       vm.currentBorrower = user;
+
+      Borrower.getRepayments(user)
+      .then(response => {
+        if(response.data && response.data[0]) {
+          this.hasRepayments = true;
+          this.$scope.repayment = response.data[0];
+        }
+      });
     });
+
+
 
     vm.$scope.$on('saveForm', function() {
       var form = vm.$scope.listing;
@@ -97,39 +113,66 @@ class AdminListingController {
 
   saveListing(form) {
     var vm = this;
-    var savedListing = {};
+    vm.$scope.saving = true;
 
-    if( vm.currentListing.general ) {
-      savedListing.general = vm.pageData(vm.currentListing, 'general');
-    }
+    if(vm.currentListing.admin.basics.status === 'approved' && !vm.currentListing.admin.basics.approved) {
 
-    if( vm.currentListing.details ) {
-      savedListing.details = vm.pageData(vm.currentListing, 'details');
-    }
+      vm.ListingService.getUserOne(vm.currentListing._id)
+      .then(user => {
+        var email = {
+          firstname: user.name.first,
+          email: user.email,
+          business: {
+            name: vm.currentListing.general.businessName,
+            id: vm.currentListing._id
+          }
+        };
+        vm.Emails.listingApproved(email);
+      })
 
-    if( vm.currentListing.financial ) {
-      savedListing.financial = vm.pageData(vm.currentListing, 'financial');
-    }
-
-    if( vm.currentListing.social ) {
-      savedListing.social = vm.pageData(vm.currentListing, 'social');
-    }
-
-    if( vm.currentListing.terms ) {
-      savedListing.terms = vm.pageData(vm.currentListing, 'terms');
-    }
-
-    if( vm.currentListing.admin ) {
-      savedListing.admin = vm.pageData(vm.currentListing, 'admin');
-    }
-
-    if(vm.currentListing.admin.basics.status === 'approved') {
       var date = new Date;
       vm.currentListing.admin.basics.approved = date.toISOString();
+
+    } else if(vm.currentListing.admin.basics.status === 'cancelled') {
+
+      vm.ListingService.getUserOne(vm.currentListing._id)
+      .then(user => {
+        var email = {
+          firstname: user.name.first,
+          email: user.email,
+          business: {
+            name: vm.currentListing.general.businessName,
+            id: vm.currentListing._id
+          }
+        };
+        vm.Emails.listingRejected(email);
+      });
+
+    } else if(vm.currentListing.admin.basics.status === 'closed') {
+
+      vm.ListingService.getUserOne(vm.currentListing._id)
+      .then(user => {
+        var email = {
+          firstname: user.name.first,
+          email: user.email,
+          business: {
+            name: vm.currentListing.general.businessName,
+            id: vm.currentListing._id
+          }
+        };
+        vm.Emails.listingCancelled(email);
+      });
+
     }
 
     vm.submitted = true;
-    vm.ListingService.saveOne(savedListing, vm.listingID);
+    vm.ListingService.saveOne(vm.currentListing)
+    .then(data => {
+      vm.$scope.saving = false;
+    })
+    .catch(err => {
+      console.log(err);
+    });
   }
 
 }

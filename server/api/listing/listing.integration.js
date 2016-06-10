@@ -154,7 +154,10 @@ describe('Listing API:', function() {
         .send({
           general: {
             businessName: 'Updated Listing',
-            doingBusinessName: 'This is the updated listing!!!'
+            doingBusinessName: 'This is the updated listing!!!',
+          },
+          terms: {
+            termSheet: ''
           }
         })
         .expect(200)

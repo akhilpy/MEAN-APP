@@ -12,6 +12,13 @@
 import _ from 'lodash';
 import Transaction from './transaction.model';
 
+// nightly cron to check payment status and collect payments
+var CronJob = require('cron').CronJob;
+new CronJob('00 01 00 * * *', function() {
+  console.log('checking transaction status');
+  console.log('collecting loan repayments');
+}, null, true, 'America/Los_Angeles');
+
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
   return function(entity) {
@@ -59,9 +66,29 @@ function handleError(res, statusCode) {
   };
 }
 
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 // Gets a list of Transactions
 export function index(req, res) {
   return Transaction.find().exec()
+    .then(respondWithResult(res))
+    .catch(handleError(res));
+}
+
+// Gets a list of Transactions
+export function user(req, res) {
+  return Transaction.find({user: req.params.id}).exec()
+    .then(respondWithResult(res))
+    .catch(handleError(res));
+}
+
+// Gets a list of Transactions
+export function entry(req, res) {
+  var entry = capitalizeFirstLetter(req.params.entry);
+
+  return Transaction.find({entry: entry}).exec()
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
@@ -76,7 +103,7 @@ export function show(req, res) {
 
 // Creates a new Transaction in the DB
 export function create(req, res) {
-  var transaction = req.body
+  var transaction = req.body;
 
   if(transaction.type) {
     transaction.payment_type = transaction.type;

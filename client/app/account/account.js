@@ -4,7 +4,7 @@ angular.module('investnextdoorCaApp')
   .config(function($stateProvider) {
     $stateProvider
       .state('login', {
-        url: '/login',
+        url: '/login?ref',
         templateUrl: 'app/account/login/login.html',
         controller: 'LoginController',
         controllerAs: 'vm'
@@ -41,6 +41,8 @@ angular.module('investnextdoorCaApp')
               if (user.role === 'borrower') {
                 $state.go('dashboard.borrower.actions.index');
               } else if (user.role === 'investor') {
+                $state.go('dashboard.investor.actions.index');
+              } else if (user.role === 'affiliate') {
                 $state.go('dashboard.investor.actions.index');
               } else if (user.role === 'admin') {
                 $state.go('admin.index');
@@ -333,6 +335,49 @@ angular.module('investnextdoorCaApp')
           label: 'Terms',
           parent: 'dashboard.borrower'
         }
+      })
+      .state('dashboard.affiliate', {
+        url: '/affiliate',
+        templateUrl: 'app/account/dashboard/affiliate/dashboard.html',
+        authenticate: true,
+        abstract: true,
+        controller: 'AffiliateController',
+        controllerAs: 'vm'
+      })
+      .state('dashboard.affiliate.index', {
+        url: '',
+        templateUrl: 'app/account/dashboard/affiliate/dashboard.index.html',
+        authenticate: true,
+      })
+      .state('dashboard.affiliate.investors', {
+        url: '/investors',
+        templateUrl: 'app/account/dashboard/affiliate/dashboard.investors.html',
+        authenticate: true,
+      })
+      .state('dashboard.affiliate.investments', {
+        url: '/investments',
+        templateUrl: 'app/account/dashboard/affiliate/dashboard.investments.html',
+        authenticate: true,
+      })
+      .state('dashboard.affiliate.offers', {
+        url: '/offers',
+        templateUrl: 'app/account/dashboard/affiliate/dashboard.offers.html',
+        authenticate: true,
+      })
+      .state('dashboard.affiliate.borrowers', {
+        url: '/borrowers',
+        templateUrl: 'app/account/dashboard/affiliate/dashboard.borrowers.html',
+        authenticate: true,
+      })
+      .state('dashboard.affiliate.listings', {
+        url: '/listings',
+        templateUrl: 'app/account/dashboard/affiliate/dashboard.listings.html',
+        authenticate: true,
+      })
+      .state('dashboard.affiliate.loans', {
+        url: '/loans',
+        templateUrl: 'app/account/dashboard/affiliate/dashboard.loans.html',
+        authenticate: true,
       });
   })
   .run(function($rootScope) {

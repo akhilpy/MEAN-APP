@@ -1,8 +1,4 @@
 <div class="listing-form__wrapper dashboard__form--wrapper">
-  <h3 class="form-subtitle">Agreements</h3>
-  <p>Agreements go here.</p>
-
-  <hr class="form-break">
   <h3 class="form-subtitle">Repayment Schedule</h3>
   <table class="table--dark">
     <thead>
@@ -27,6 +23,20 @@
 
   <hr class="form-break">
   <h3 class="form-subtitle">Signing</h3>
+  <p>
+    Funded: {{acceptedOffers | currency}}<br>
+    Service Fees: -{{vm.serviceFees(acceptedOffers) | currency}}<br>
+    Total to be transferred: {{vm.transferredAmount(acceptedOffers) | currency}}
+  </p>
+
+  <p>By signing below you agree that:</p>
+  <ul>
+    <li>You have had the opportunity to review the offers with your counsel, accounting or others as you feel necessary or appropriate.</li>
+    <li>You authorize InvestNextDoor to withdraw re-payments automatically from the bank account provided according the schedule provided.</li>
+    <li>You consent for on-going review of your bank accounts and credit reports to ensure covenants are met.</li>
+    <li>All Representations and Warranties in agreement and information provided in the listing are still valid and accurate.</li>
+  </ul>
+
   <div class="formly-field-group">
     <div class="display-flex not-form">
       <div class="offset-third">

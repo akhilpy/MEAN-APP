@@ -8,6 +8,7 @@ class NavbarController {
     vm.isAdmin = Auth.isAdmin;
     vm.isBorrower = Auth.isBorrower;
     vm.isInvestor = Auth.isInvestor;
+    vm.isAffiliate = Auth.isAffiliate;
     vm.ListingService = ListingService;
     vm.getCurrentUser = Auth.getCurrentUser;
     vm.site = appConfig.SITE;
@@ -20,7 +21,7 @@ class NavbarController {
       if(!user) {
         return false;
       }
-      
+
       if(user.role === 'borrower') {
         vm.$scope.button = 'borrower';
         Borrower.getApplications().then(listings => {

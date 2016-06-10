@@ -187,6 +187,42 @@ angular.module('investnextdoorCaApp.admin')
         },
         authenticate: 'admin'
       })
+      .state('admin.editlisting.offers', {
+        url: '/:id/offers',
+        templateUrl: 'app/admin/admin.editlisting.offers.html',
+        controller: 'AdminListingController',
+        controllerAs: 'vm',
+        resolve: {
+          currentListing: ['$stateParams', 'ListingService',
+            function($stateParams, ListingService) {
+              return ListingService.getOne($stateParams.id);
+            }
+          ]
+        },
+        ncyBreadcrumb: {
+          label: 'Offers',
+          parent: 'admin.listings.index'
+        },
+        authenticate: 'admin'
+      })
+      .state('admin.editlisting.repayments', {
+        url: '/:id/repayments',
+        templateUrl: 'app/admin/admin.editlisting.repayments.html',
+        controller: 'AdminListingController',
+        controllerAs: 'vm',
+        resolve: {
+          currentListing: ['$stateParams', 'ListingService',
+            function($stateParams, ListingService) {
+              return ListingService.getOne($stateParams.id);
+            }
+          ]
+        },
+        ncyBreadcrumb: {
+          label: 'Repayments',
+          parent: 'admin.listings.index'
+        },
+        authenticate: 'admin'
+      })
       .state('admin.users', {
         url: '/users',
         templateUrl: 'app/admin/admin.users.html',
@@ -416,7 +452,7 @@ angular.module('investnextdoorCaApp.admin')
         authenticate: 'admin',
       })
       .state('admin.transactions.type', {
-        url: '/:method',
+        url: '/:entry',
         templateUrl: 'app/admin/admin.transactions.type.html',
         controller: 'AdminController',
         controllerAs: 'vm',

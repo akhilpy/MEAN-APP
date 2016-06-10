@@ -7,6 +7,8 @@
   </form><!-- /.discussion-search__form -->
 
   <button type="button" class="button" ng-class="{'disabled': !canExportUsers}" ng-csv="exportUsers" filename="users.csv" lazy-load="true" csv-header="['ID', 'First Name', 'Last Name', 'Email', 'Role', 'Join Date', 'Last Login', 'Status', 'FinAppsID', '# Listings', '$ Loaned', '# Offers', '$ Offered', '# Investment', '$ Invested', 'Affiliate']">Export All Users</button>
+
+  <button type="button" class="button" ng-class="{'disabled': !canExportBalances}" ng-csv="exportBalances" filename="balances.csv" lazy-load="true" csv-header="['Email', 'ID', 'Balance', 'Invested', '# of Transactions', 'Join Date', 'Affiliate']">Export User Balances</button>
 </div><!-- /.discussion-search -->
 
 <div class="marketplace-listings__wrapper">

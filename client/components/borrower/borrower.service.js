@@ -34,7 +34,7 @@ function BorrowerService($http, Offers, $q, ListingService) {
               return offers;
             }).then(offers => {
               return {
-                balance: user.borrower.balance,
+                balance: user.balance,
                 amount: offers.total,
                 number: offers.active.length,
                 status: user.bankAccount.verified
@@ -45,7 +45,7 @@ function BorrowerService($http, Offers, $q, ListingService) {
             });
           } else {
             return {
-              balance: user.borrower.balance,
+              balance: user.balance,
               amount: 0,
               number: 0,
               status: user.bankAccount.verified
@@ -318,7 +318,7 @@ function BorrowerService($http, Offers, $q, ListingService) {
       this.monthly = {
         principal: +(amount / term).toFixed(2),
         interest: +(this.cost / term).toFixed(2),
-        fees: +((this.total * 0.04) / term).toFixed(2),
+        fees: +((this.total * 0.01) / term).toFixed(2),
         total: this.monthlyPayment
       };
     },
@@ -353,7 +353,7 @@ function BorrowerService($http, Offers, $q, ListingService) {
         promises.push(repayment);
       });
 
-      monthly.fees = +( ( (total * 0.04) + 700) / term ).toFixed(2);
+      monthly.fees = +(total * 0.01).toFixed(2);
       monthly.total = monthly.principal + monthly.interest + monthly.fees;
 
       repayment.repayments = repayments;
@@ -440,14 +440,19 @@ function BorrowerService($http, Offers, $q, ListingService) {
      *
      * @return {String}
      */
-    getRepayments() {
-      return ListingService.getCurrentUser()
-        .then(user => {
-          return $http.get('/api/repayments/borrower/' + user._id);
-        })
-        .catch(err => {
-          console.log(err.message);
-        });
+    getRepayments(user) {
+      if(user) {
+        return $http.get('/api/repayments/borrower/' + user._id);
+      } else {
+        return ListingService.getCurrentUser()
+          .then(user => {
+            return $http.get('/api/repayments/borrower/' + user._id);
+          })
+          .catch(err => {
+            console.log(err.message);
+          });
+      }
+
     }
 
   };

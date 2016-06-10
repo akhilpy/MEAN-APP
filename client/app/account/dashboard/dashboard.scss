@@ -266,3 +266,26 @@
     max-width: 50%;
   }
 }
+
+
+
+/*-----  Widgets  ------*/
+
+.add-funds__widget {
+  text-align: center;
+
+  .widget__error {
+    text-align: center;
+    font-weight: 400;
+    color: $color-warning;
+    margin-top: rem(20);
+
+    p {
+      @include font-primary(600);
+      @include font-size;
+      color: $color-warning;
+      font-style: normal;
+      margin: 0;
+    }
+  }
+}

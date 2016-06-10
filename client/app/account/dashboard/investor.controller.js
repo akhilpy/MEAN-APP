@@ -3,12 +3,16 @@
 (function() {
 
 class InvestorController {
-  constructor(Investor, Offers, $scope, ListingService, $q, Payments, $state) {
+  constructor(Investor, Offers, $scope, ListingService, $q, Payments, $state, Transactions, ngDialog, $http) {
     var vm = this;
     this.errors = {};
     this.submitted = false;
+    this.$q = $q;
+    this.$http = $http;
+    this.ngDialog = ngDialog;
     this.ListingService = ListingService;
     this.Payments = Payments;
+    this.Transactions = Transactions;
     this.$scope = $scope;
     this.$state = $state;
 
@@ -18,6 +22,9 @@ class InvestorController {
     this.hasBookmarks = false;
 
     vm.$scope.loading = false;
+
+    vm.$scope.transactions = [];
+    vm.$scope.transactionSort = '-date';
 
     this.actions = {
       addAccount: true,
@@ -79,6 +86,29 @@ class InvestorController {
       if(user.bankAccount.verified === true) {
         vm.actions.verifyAccount = false;
       }
+
+      var promises = [];
+      var filteredTransactions = [];
+
+      Transactions.getUsers(user._id)
+      .then(transactions => {
+        angular.forEach(transactions, function(transaction, key) {
+          if(transaction.entry !== 'Private') {
+            if(transaction.entry === 'Debit') {
+              transaction.debit = transaction.amount;
+              transaction.credit = null;
+            } else if (transaction.entry === 'Credit') {
+              transaction.credit = transaction.amount;
+              transaction.debit = null;
+            }
+            filteredTransactions.push(transaction);
+          }
+          promises.push(transaction);
+        });
+        vm.$q.all(promises).then(function() {
+          vm.$scope.transactions = filteredTransactions;
+        });
+      });
     });
 
     this.$scope.statements = Investor.getStatements();
@@ -128,10 +158,13 @@ class InvestorController {
     vm.errors.verifyAccount = false;
     vm.$scope.loading = true;
 
-    return vm.Payments.confirmAccount(vm.bankAmountA, vm.bankAmountB)
+    var valueA = (vm.bankAmountA * 100);
+    var valueB = (vm.bankAmountB * 100);
+
+    return vm.Payments.confirmAccount(valueA, valueB)
     .then(response => {
       if(response === true) {
-        vm.$state.go('dashboard.borrower.actions.index');
+        vm.$state.go('dashboard.investor.actions.index');
       } else {
         vm.$scope.loading = false;
         vm.errors.verifyAccount = 'The provided values do not match the deposited amounts. Please verify and try again.';
@@ -140,6 +173,93 @@ class InvestorController {
     .catch(err => {
       vm.$scope.loading = false;
       vm.errors.verifyAccount = 'The provided values do not match the deposited amounts. Please verify and try again.';
+    });
+  }
+
+  addFundsPop() {
+    var vm = this;
+    vm.ngDialog.open({
+      template: 'app/account/dashboard/borrower/lightbox.addFunds.html',
+      scope: vm.$scope
+    });
+  }
+
+  addFundsComplete() {
+    var vm = this;
+
+    var transaction = {
+      user: vm.$scope.currentUser,
+      method: 'AFI',
+      amount: vm.addFundsAmount,
+      type: 'direct_debit',
+      kind: 'Deposit'
+    }
+
+    vm.Payments.createTransaction(transaction)
+    .then(response => {
+      if(response.status === 'success') {
+        vm.$scope.currentUser.balance += vm.addFundsAmount;
+        vm.$http.put('/api/users/' + vm.$scope.currentUser._id, {
+          user: vm.$scope.currentUser
+        })
+        .then(response => {
+          vm.ngDialog.close();
+          vm.addFundsError = false;
+        })
+        .catch(err => {
+          vm.addFundsErrorMessage = 'There was an error updating your balance.'
+          vm.addFundsError = true;
+        })
+      }
+    })
+    .catch(err => {
+      vm.addFundsErrorMessage = 'There was an error adding funds from your bank account.'
+      vm.addFundsError = true;
+    });
+  }
+
+  withdrawFundsPop() {
+    var vm = this;
+    vm.ngDialog.open({
+      template: 'app/account/dashboard/borrower/lightbox.withdrawFunds.html',
+      scope: vm.$scope
+    });
+  }
+
+  withdrawFundsComplete() {
+    var vm = this;
+
+    var transaction = {
+      user: vm.$scope.currentUser,
+      method: 'WFI',
+      amount: vm.withdrawFundsAmount,
+      type: 'direct_credit',
+      kind: 'Withdrawl'
+    }
+
+    vm.Payments.createTransaction(transaction)
+    .then(response => {
+      if(response.status === 'success') {
+        vm.$scope.currentUser.balance -= vm.withdrawFundsAmount;
+        vm.$http.put('/api/users/' + vm.$scope.currentUser._id, {
+          user: vm.$scope.currentUser
+        })
+        .then(response => {
+          vm.ngDialog.close();
+          vm.withdrawFundsError = false;
+        })
+        .catch(err => {
+          vm.withdrawFundsErrorMessage = 'There was an error updating your balance.'
+          vm.withdrawFundsError = true;
+        })
+      } else if(response === false) {
+        vm.withdrawFundsErrorMessage = 'Please check the amount you are trying to withdraw and try again.';
+        vm.withdrawFundsError = true;
+      }
+    })
+    .catch(err => {
+      vm.withdrawFundsErrorMessage = 'There was an error withdrawing funds to your bank account.'
+      vm.withdrawFundsError = true;
     });
   }
 }
