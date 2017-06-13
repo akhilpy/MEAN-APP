@@ -3,6 +3,12 @@
 angular.module('investnextdoorCaApp')
   .config(function($stateProvider) {
     $stateProvider
+	.state('signup', {
+        url: '/signup',
+        templateUrl: 'app/account/signup/signup.html',
+        controller: 'SignupController',
+        controllerAs: 'vm'
+      })
       .state('login', {
         url: '/login?ref',
         templateUrl: 'app/account/login/login.html',

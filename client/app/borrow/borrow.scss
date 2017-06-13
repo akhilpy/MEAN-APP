@@ -57,3 +57,409 @@
     }
   }
 }
+
+/* Start Borrow Welcome Guest Page */
+
+footer{
+	position:relative;
+	z-index:999;
+}
+.clearfix{
+	clear:both;
+}
+
+.loan-viewer{
+	position:relative;
+	over-flow:hidden;
+	min-height:500px;
+}
+
+.btn-blue{
+	background-color:#69b7be !important;
+	color:#fff;
+	
+	&:hover{
+		background-color:#579b9e !important;
+	}
+}
+.btn-green{
+	background-color:#49b74a !important;
+	color:#fff;
+	
+	&:hover{
+		background-color:#40a340 !important;
+	}
+}
+.borrow-content-typo{
+	p{
+		font-size:14px;
+		font-color:#40535c;
+	}
+	
+	h2{
+		font-size:28px;
+		font-weight:300;
+		color:#40535c;
+	}
+	h3{
+		font-size:18px;
+		font-weight:300;
+		color:#40535c;
+	}
+}
+
+
+.borrow-welcome-type-box{
+	max-width:400px;
+	width:100%;
+	margin: 0 auto;
+	padding-top: rem(50);
+	
+	h2{
+		span{
+			font-size: 30px;
+			display: block;
+			padding-top: 30px;
+			text-transform: uppercase;
+		}
+	}
+	
+	.borrow-welcome-type-cover{
+		width:100%;
+		float:left;
+		padding-bottom: rem(50);
+		
+		.borrow-welcome-type{
+			width:50%;
+			float:left;
+			position:relative;
+			text-align:center;
+			
+			.person-type,
+			.business-type{
+				width: 120px;
+				height: 120px;
+				margin:rem(15) auto;
+				text-align:center;
+				border-radius:50%;
+				padding:rem(30);
+				display:block;
+				
+				img{
+					width:100%;
+				}
+			}
+			.person-type{
+				background:#3678a3;
+				
+			}
+			.business-type{
+				background:#57a67d;
+				
+				img{
+					max-width:43px;
+				}
+			}
+		}
+	}
+}
+
+
+/* Start Borrow Verification Page */
+
+.borrow-verification-box{
+	width:100%;
+	max-width:900px;
+	margin:rem(15) auto;
+	position:relative;
+	
+	.borrow-verify-form{
+		position:relative;
+		width:100%;
+		padding: rem(30) 0;
+		
+		.verify-form-box{
+			position:relative;
+			padding: 0 rem(30);
+			
+			
+			&.gray-light-bg{
+				background:#efefef;
+			}
+			.verify-field{
+				padding-bottom:rem(20);
+				
+				.half-field{
+					width:50%;
+					display:inline-block;
+					float:left;
+					
+					&.first{
+						/*padding-right:rem(15);*/
+						@media screen and (max-width: 767px) {
+							padding-right:0;
+							padding-bottom:rem(20);
+						}
+					}
+					
+					&.last{
+						/*padding-left:rem(15);*/
+						@media screen and (max-width: 767px) {
+							padding-left:0;
+						}
+					}
+					
+					@media screen and (max-width: 767px) {
+						width:100%;
+					}
+					
+				}
+				
+				select{
+				  display:block;
+				  transition: all 250ms linear;
+				  font-size: 14px;
+				  font-size: 1.4rem;
+				  padding: 1rem;
+				  width: 100%;
+				  border: 1px solid #c4c4c4;
+				  outline: none;
+				  border-radius: 3px;
+				  
+				  &:hover, &:focus{
+					  border-color: #ffa200;
+					  outline: none;
+				  }
+			  }
+			}
+			
+		}
+	}
+}
+
+.txt-l{
+	text-align:left !important;
+}
+.txt-r{
+	text-align:right !important;
+}
+.txt-c{
+	text-align:center !important;
+}
+.vertical-t{
+	vertical-align:top !important;
+}
+.vertical-m{
+	vertical-align:middle !important;
+}
+.vertical-b{
+	vertical-align:bottom !important;
+}
+.display-table{
+	width:100%;
+	display: table;
+	
+	.table-cell-50{
+		width:50%;
+		display:table-cell;
+	}
+}
+
+@media screen and (max-width: 767px) {
+	.borrow-verification-box{
+		.borrow-verify-form.display-table{
+			display: block;
+			
+			.verify-form-box.table-cell-50{
+				display: block;
+				width:100%;
+				padding:rem(30);
+			}
+		}
+	}
+}
+
+
+/* Start Borrow Permission Page */
+
+.permission-thumbs-up{
+	position:relative;
+	padding: rem(30) 0;
+	
+	img{
+		width:100%;
+		max-width:120px;
+	}
+}
+.pd-lr-30{
+	padding-left:rem(30);
+	padding-right:rem(30);
+}
+.mx-w-500{
+	max-width: 500px;
+}
+
+/* Start Borrow Loan Type Page */
+
+.term-loan{
+	position:relative;
+	text-align:left;
+	padding:0 rem(30) rem(15);
+	
+	.term-loan-icon{
+		width:100px;
+		float:left;
+		padding-right:rem(30);
+		
+		img{
+			width:100%;
+		}
+		
+		&.icon-reverse{
+			padding: rem(10) rem(30) 0 0;
+		}
+		&.icon-card{
+			padding: rem(22) rem(30) 0 0;
+		}
+	}
+	.term-loan-cont{
+	    padding: rem(18) 0;
+		h2{
+			margin:0;
+			span{
+				font-size:22px;
+				font-weight:bold;
+				text-transform:uppercase;
+				display:block;
+			}
+		}
+	}
+}
+
+.loan-list-box{
+	text-align:center;
+	padding: rem(30) 0;
+	
+	.loan-list{
+		margin:0 auto;
+		padding:0;
+		max-width:360px;
+		
+
+		li{
+			list-style:none;
+			position:relative;
+			margin-bottom:rem(15);
+			text-align:left;
+			display:inline-block;
+			width:49%;
+			
+			a{
+				color:#69b7be;
+				font-weight:300;
+				font-size:16px;
+				
+				&:hover{
+					color:#579b9e
+				}
+			}
+			.loan-icon{
+				display:inline-block;
+				margin-right:rem(15);
+				vertical-align:middle;
+				
+				&.icon-file{
+					width:20px;
+				}
+				&.icon-reverse{
+					width:20px;
+				}
+				&.icon-home{
+					width:20px;
+				}
+				&.icon-card{
+					width:20px;
+				}
+			}
+		}
+	}
+}
+
+/* Start Borrow Processing Page */
+.coffee-box{
+	padding: rem(120) 0;
+	
+	img{
+		padding-bottom: rem(60);
+	}
+}
+
+/* Start Borrow Request Approved Page */
+.borrow-req-approved-box{
+	position:relative;
+	width:100%;
+	padding: rem(30);
+	text-align:left;
+	
+	.summary-list li{
+		line-height:30px;
+	}
+	
+	.borrow-btn-box{
+		position:relative;
+		padding: rem(30) 0;
+	} 
+}
+
+
+
+
+
+
+/* Start Animation on Loan Pages */
+
+.loan__main.ng-enter,
+.loan__main.ng-leave      { position:absolute; left:30px; right:30px;
+    transition:0.5s all ease; -moz-transition:0.5s all ease; -webkit-transition:0.5s all ease; 
+}
+    
+/* enter animation */
+.loan__main.ng-enter            { 
+    -webkit-animation:slideInRight 0.5s both ease;
+	-moz-animation:slideInRight 0.5s both ease;
+	animation:slideInRight 0.5s both ease; 
+}
+
+/* leave animation */
+.loan__main.ng-leave            { 
+    -webkit-animation:slideOutLeft 0.5s both ease;
+	-moz-animation:slideOutLeft 0.5s both ease;
+	animation:slideOutLeft 0.5s both ease;   
+}
+
+/* ANIMATIONS
+============================================================================= */
+/* slide out to the left */
+@keyframes slideOutLeft {
+	to 		{ transform: translateY(-200%); }
+}
+@-moz-keyframes slideOutLeft {	
+	to 		{ -moz-transform: translateY(-200%); }
+}
+@-webkit-keyframes slideOutLeft {
+	to 		{ -webkit-transform: translateY(-200%); }
+}
+
+/* slide in from the right */
+@keyframes slideInRight {
+	from 	{ transform:translateY(200%); }
+	to 		{ transform: translateY(0); }
+}
+@-moz-keyframes slideInRight {
+	from 	{ -moz-transform:translateY(200%); }
+	to 		{ -moz-transform: translateY(0); }
+}
+@-webkit-keyframes slideInRight {
+	from 	{ -webkit-transform:translateY(200%); }
+	to 		{ -webkit-transform: translateY(0); }
+}

@@ -1,0 +1,77 @@
+<div class="page-template-default">
+  <div id="page" class="site">
+    <navbar></navbar>
+
+    <div id="content" class="site-content">
+      <header class="entry-header">
+        <h1 class="entry-title">Sign Up</h1>
+      </header>
+
+      <div id="primary" class="content-area">
+        <main id="main" class="site-main" role="main">
+          <div class="content-wrapper">
+
+            <ul class="account__forms--list">
+              <li class="account__form">
+                <div class="form__wrapper signup-form">
+                  <h2 class="account__form--title">Great, let’s get started!</h2>
+
+              		<div class="formly-field-group formly-field-group__social">
+                		<oauth-buttons></oauth-buttons>
+              		</div><!-- /.formly-field-group -->
+                    
+                    <div class="borrow-verification-box borrow-content-typo">
+                        <div class="pd-lr-30">
+                            <p>We do need your permission to conduct a credit check.</p>
+                            
+                            <label><input type="checkbox" /> <i>Yes, I give my permission for < Sample Bank > to obtain my credit report, and to securely view my banking history.</i></label>
+                        </div>
+                        
+                        <div class="borrow-verify-form">
+                            <div class="verify-form-box">
+                                <form>
+                                    <div class="verify-field">
+                                        <input type="text" placeholder="Name of Digital Signature" required="required" />
+                                    </div>
+                                    <div class="verify-field">
+                                        <input type="text" placeholder="Date" required="required" />
+                                    </div>
+                                    <div class="verify-field">
+                                        <button type="submit">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+
+            	    <div class="formly-field-group formly-field-group__underlined">
+            	      <p>or fill out the info below</p>
+            	    </div><!-- /.formly-field-group -->
+
+                  <formly-form model="vm.newUser" fields="vm.signupFields" form="signup">
+                    <div class="formly-field-group">
+                      <div class="form-message" ng-show="vm.signupErrors">
+                        <p>Please complete all required fields.</p>
+                      </div><!-- /.form-message -->
+                      <p>By signing up, you agree to our <a ui-sref="legal.privacypolicy">Privacy Policy</a>, E-Sigature Policy and the <a ui-sref="legal.termsofservice">Terms of Service</a>.</p>
+                    </div><!-- /.formly-field-group -->
+                    <div class="formly-submit signup">
+                      <button type="submit" name="signup" class="button formly-signup" ng-click="vm.register(signup)">Signup</button>
+                    </div><!-- /.formly-submit -->
+                  </formly-form>
+                </div><!-- /.form__wrapper signup-form -->
+              </li><!-- end of .account__form -->
+
+              <!-- end of .account__form -->
+
+            </ul><!-- end of .account__forms--list -->
+
+          </div><!-- /.content-wrapper -->
+        </main><!-- /.site-main -->
+      </div><!-- /.content-area -->
+    </div><!-- #content -->
+
+    <footer></footer>
+  </div><!-- /#page.site -->
+</div><!-- /.page-template-default -->

@@ -10,6 +10,7 @@
     <title>InvestNextDoor</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(client) app/vendor.css -->
       <!-- bower:css -->
@@ -103,13 +104,14 @@
       <script src="components/auth/auth.module.js"></script>
       <script src="components/templates/templates.module.js"></script>
       <script src="components/util/util.module.js"></script>
-      <script src="components/dropzone/dropzone.directive.js"></script>
+      <script src="components/contentEditable/contentEditable.directive.js"></script>
       <script src="app/account/dashboard/dashboard.controller.js"></script>
       <script src="app/account/dashboard/investor.controller.js"></script>
       <script src="app/account/listing/listing.controller.js"></script>
       <script src="app/account/login/login.controller.js"></script>
       <script src="app/account/profile/profile.controller.js"></script>
       <script src="app/account/settings/settings.controller.js"></script>
+      <script src="app/account/signup/signup.controller.js"></script>
       <script src="app/admin/admin.controller.js"></script>
       <script src="app/about/about.controller.js"></script>
       <script src="app/admin/admin.router.js"></script>
@@ -123,6 +125,8 @@
       <script src="app/blog/blog.js"></script>
       <script src="app/borrow/borrow.controller.js"></script>
       <script src="app/borrow/borrow.js"></script>
+      <script src="app/borrow/loan-enquiry/loan.controller.js"></script>
+      <script src="app/borrow/loan-enquiry/loan.js"></script>
       <script src="app/contact/contact.controller.js"></script>
       <script src="app/contact/contact.js"></script>
       <script src="app/faq/faq.controller.js"></script>
@@ -131,6 +135,11 @@
       <script src="app/invest/invest.js"></script>
       <script src="app/legal/legal.controller.js"></script>
       <script src="app/legal/legal.js"></script>
+      <script src="app/lender/businessLoan.controller.js"></script>
+      <script src="app/lender/consumerLoan.controller.js"></script>
+      <script src="app/lender/lender.controller.js"></script>
+      <script src="app/lender/lender.js"></script>
+      <script src="app/lender/lenderinfo.controller.js"></script>
       <script src="app/main/main.controller.js"></script>
       <script src="app/main/main.js"></script>
       <script src="app/marketplace/marketplace.controller.js"></script>
@@ -145,9 +154,9 @@
       <script src="components/borrower/borrower.service.js"></script>
       <script src="components/breadcrumbs/breadcrumbs.directive.js"></script>
       <script src="components/chosen/chosen.directive.js"></script>
-      <script src="components/contentEditable/contentEditable.directive.js"></script>
-      <script src="components/dateObject/dateObject.directive.js"></script>
       <script src="app/about/about.js"></script>
+      <script src="components/dateObject/dateObject.directive.js"></script>
+      <script src="components/dropzone/dropzone.directive.js"></script>
       <script src="components/dropzone/dropzone.service.js"></script>
       <script src="components/email/email.service.js"></script>
       <script src="components/field/text.directive.js"></script>
@@ -157,6 +166,7 @@
       <script src="components/formFields/formFields.service.js"></script>
       <script src="components/formFields/formlyFields.service.js"></script>
       <script src="components/investor/investor.service.js"></script>
+      <script src="components/lender/lender.service.js"></script>
       <script src="components/listing/listing.service.js"></script>
       <script src="components/listing/listingNavigation.controller.js"></script>
       <script src="components/listing/listingNavigation.directive.js"></script>
@@ -168,6 +178,10 @@
       <script src="components/meter/meter.controller.js"></script>
       <script src="components/meter/meter.directive.js"></script>
       <script src="components/mongoose-error/mongoose-error.directive.js"></script>
+      <script src="components/navbar-lender/lenderNavbar.controller.js"></script>
+      <script src="components/navbar-lender/lenderNavbar.directive.js"></script>
+      <script src="components/navbar-loanenquiry/navbar-loanenquiry.controller.js"></script>
+      <script src="components/navbar-loanenquiry/navbar-loanenquiry.directive.js"></script>
       <script src="components/navbar/navbar.controller.js"></script>
       <script src="components/navbar/navbar.directive.js"></script>
       <script src="components/oauth-buttons/oauth-buttons.controller.js"></script>

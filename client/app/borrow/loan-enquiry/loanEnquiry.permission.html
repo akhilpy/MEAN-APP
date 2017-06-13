@@ -1,0 +1,49 @@
+<div id="content" class="site-content">
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
+
+      <div class="block--wrapper">
+        <div class="block block__cta-block">
+          <div class="borrow-verification-box borrow-content-typo mx-w-500">
+              <h3>Great!  Let’s get started!</h3>
+              <div class="permission-thumbs-up">
+                  <img src="assets/images/borrow/thums-up-icon.png" alt="Person" />
+              </div>
+              <div class="pd-lr-30">
+                  <p>We do need your permission to conduct a credit check.</p>
+                  <form name="signature">
+                  <label><input type="checkbox" name="check" ng-model="checked.check"/> <i>Yes, I give my permission for < Sample Bank > to obtain my credit report, and to securely view my banking history.</i></label>
+              </div>
+              
+              <div class="borrow-verify-form">
+                  <div class="verify-form-box">
+                          <form name="signature">
+                          <div class="verify-field">
+                              <input type="text" placeholder=" Name of Digital Signature" ng-model="vm.signature" name="Signature" required="required" ng-disabled=!checked.check />
+                              <div ng-show="signature.$submitted || signature.Signature.$touched">
+<span ng-show="signature.Signature.$error.required">Enter your digital signature.</span>
+                          </div>
+                          </div>
+                          <div class="verify-field">
+                              <input type="date" placeholder="Date" required="required" ng-model="vm.date" ng-disabled=!checked.check />
+                               <span class="error" ng-show="signature.input.$error.date">
+         Not a valid date!</span>
+                          </div>
+                          <div class="verify-field">
+                              <button  type="submit" class="btn-green"  ng-click="vm.sendSignature(signature)" ng-disabled=!checked.check>Submit</button>
+                          </div>
+                      </form>
+                  </div>
+                  <div class="clearfix"></div>
+              </div>
+          </div>
+          <div class="clearfix"></div>
+        </div><!-- end of .block block__grey-block -->
+      </div><!-- end of .block--wrapper block__grey-block--wrapper -->
+
+      <!-- end of .block--wrapper block__grey-block--wrapper -->
+
+
+    </main>
+  </div><!-- /.content-area -->
+</div><!-- #content -->

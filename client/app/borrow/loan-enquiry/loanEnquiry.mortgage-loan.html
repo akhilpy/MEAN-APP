@@ -1,0 +1,59 @@
+<div id="content" class="site-content">
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
+
+      <div class="block--wrapper">
+        <div class="block block__cta-block">
+          <div class="borrow-verification-box borrow-content-typo mx-w-500">
+              <div class="term-loan">
+                  <div class="term-loan-icon icon-reverse">
+                      <img src="assets/images/borrow/home-icon.png" alt="Person" />
+                  </div>
+                  <div class="term-loan-cont">
+                      <h2><span>Awesome!</span> A Mortgage.</h2>
+                  </div>
+                  <div class="clearfix"></div>
+              </div>
+              <div class="pd-lr-30 txt-l">
+                  <p>Just a few more questions and your application will be complete!</p>
+              </div>
+              
+              <div class="borrow-verify-form">
+                  <div class="verify-form-box txt-l">
+                      <form name ="mortgageloan">
+                          <div class="verify-field">
+                              <label>How much would you like to borrow?</label>
+                              <input type="number" ng-model="vm.loanvalue" min="20000" max="20000000" placeholder="Min $20,000 - Max $20,000,000" required="required" />
+                          </div>
+                          <div class="verify-field">
+                              <label>What mortgage term would you like?</label>
+                              <select chosen="getLoanYear"  data-placeholder="Year" disable_search_threshold="15" ng-model="vm.borrow.getloanyears" ng-options="option.value as option.label for option in getloanyears"></select>
+                              <div class="clearfix"></div>
+                          </div>
+                          <div class="verify-field">
+                              <label>How much do you have for a down payment?</label>
+                              <input type="number" ng-model="vm.downpayment" placeholder="Min: $4,000 - Max: $5,000,000" min="4000" max="5000000" required="required" />
+                          </div>
+                          <div class="verify-field">
+                              <label>What type of property are you buying?</label>
+                              <select chosen="getpropertytypes"  data-placeholder="type of property" disable_search_threshold="15" ng-model="vm.borrow.getpropertytypes" ng-options="option.value as option.label for option in getpropertytypes"></select>
+                          </div>
+                          <div class="verify-field">
+                              <button type="submit" class="btn-green" ng-click="vm.getMortgageLoan(mortgageloan)">Submit</button>
+                          </div>
+                          <!--ui-sref="borrow.loanEnquiry.processing"-->
+                      </form>
+                  </div>
+                  <div class="clearfix"></div>
+              </div>
+          </div>
+          <div class="clearfix"></div>
+        </div><!-- end of .block block__grey-block -->
+      </div><!-- end of .block--wrapper block__grey-block--wrapper -->
+
+      <!-- end of .block--wrapper block__grey-block--wrapper -->
+
+
+    </main>
+  </div><!-- /.content-area -->
+</div><!-- #content -->

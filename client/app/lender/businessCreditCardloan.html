@@ -1,0 +1,1129 @@
+
+<nav id="header" class="navbar menu">
+  <div id="header-container" class="container navbar-container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+      <a id="brand" class="navbar-brand" href="#"> <img src="../assets/images/lender/lenderlogo.png" alt=""> </a> </div>
+      <div id="navbar" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav pull-right">
+          <li class="active"><a href="#">PRODUCTS</a></li>
+          <li><a href="#about">SOLUTIONS</a></li>
+          <li><a class="m-btn" href="#contact">REQUEST A DEMO</a></li>
+        </ul>
+      </div>
+      <!-- /.nav-collapse --> 
+    </div>
+    <!-- /.container --> 
+  </nav><div class="container">
+<div class="row">
+<h2 class="underline"> Business Credit Loan Thresholds:-</h2>
+
+<p>Please fill out your institution’s thresholds for each of the credit variables below, that you would like the system to use to process a borrower’s application.</p>
+<p>For each product you would like to issue through IND Engage, please identify the minimum and maximum thresholds for each of the following “Essential” underwriting criteria, and indicate if any criteria have minimum “Auto-approval” thresholds, or “Auto-decline” thresholds. If there are additional criteria you require, please consult our Underwriting Master List and add them to the “Other” section.</p>
+ 
+ 
+<h3></h3>
+
+<div class="table-area table-responsive">
+<table border="1">
+
+<tr>
+<th align="center" colspan="1"><strong>SECTION HEADER</strong></th>
+<th align="center" colspan="3"><strong>PRODUCT SCORE</strong></th>
+</tr>
+
+<tr>
+<th></th>
+<th>Auto-approval</th>
+<th>Auto-decline</th>
+<th>Pre-approval</th>
+</tr>
+<tr>
+<td colspan="4">SCORE SUMMARY</td>
+
+</tr>
+<tr>
+<td>SCORE SUMMARY - WILL I GET PAID?</td>
+<td> 
+<input type="radio" ng-model="vm.getPaidAutoApprove" ng-value="true">Yes
+<input type="radio" ng-model="vm.getPaidAutoApprove" ng-value="false">NO
+<span ng-show="vm.getPaidAutoApprove">
+<input type="text" class="tl-Inputbox" ng-model="vm.getPaidApproveLimit">
+</span>
+</td>
+<td><input type="radio"  ng-model="vm.getPaidAutoDecline" ng-value="true">Yes
+<input type="radio"  ng-model="vm.getPaidAutoDecline" ng-value="false">NO
+<span ng-show="vm.getPaidAutoDecline">
+<input type="text" class="tl-Inputbox" ng-model="vm.getPaidDeclineLimit">
+</span>
+</td>
+<td><input type="text" class="tl-Inputbox" ng-model="vm.getPaid"></td>
+
+</tr> 
+
+<tr>
+<td>SCORE SUMMARY - LIKELIHOOD OF SEVERE DELINQUENCY
+</td>
+<td> 
+<input type="radio"  ng-model="vm.severeDelinquencyAutoApprove" ng-value="true">Yes
+<input type="radio"  ng-model="vm.severeDelinquencyAutoApprove" ng-value="false">NO
+<span ng-show="vm.severeDelinquencyAutoApprove">
+<input type="text" class="tl-Inputbox" ng-model="vm.severeDelinquencyApproveLimit">
+</span>
+</td>
+<td><input type="radio"  ng-model="vm.severeDelinquencyAutoDecline" ng-value="true">Yes
+<input type="radio"  ng-model="vm.severeDelinquencyAutoDecline" ng-value="false">NO
+<span ng-show="vm.severeDelinquencyAutoDecline">
+<input type="text" class="tl-Inputbox" ng-model="vm.severeDelinquencyDeclineLimit">
+</span></td>
+<td><input type="text" class="tl-Inputbox" ng-model="vm.severeDelinquency"></td>
+</tr>
+
+<tr>
+<td>SCORE SUMMARY - WHEN WILL I GET PAID?</td>
+<td> 
+<input type="radio"  ng-model="vm.whenGetPaidAutoApprove" ng-value="true">Yes
+<input type="radio"  ng-model="vm.whenGetPaidAutoApprove" ng-value="false">NO
+<span ng-show="vm.whenGetPaidAutoApprove">
+<input type="text" class="tl-Inputbox" ng-model="vm.whenGetPaidApproveLimit">
+</span>
+  </td>
+<td><input type="radio"  ng-model="vm.whenGetPaidAutoDecline" ng-value="true">Yes
+<input type="radio"  ng-model="vm.whenGetPaidAutoDecline" ng-value="false">NO
+<span ng-show="vm.whenGetPaidAutoDecline">
+<input type="text" class="tl-Inputbox" ng-model="vm.whenGetPaidDeclineLimit">
+</span></td>
+<td><input type="text" class="tl-Inputbox" ng-model="vm.whenGetPaid"></td>
+</tr>
+
+<tr>
+<td>SCORE SUMMARY - LIKELIHOOD COMPANY WILL CEASE BUSINESS</td>
+<td> 
+<input type="radio"  ng-model="vm.ceaseBusinessAutoApprove" ng-value="true">Yes
+<input type="radio"  ng-model="vm.ceaseBusinessAutoApprove" ng-value="false">NO
+<span ng-show="vm.ceaseBusinessAutoApprove">
+<input type="text" class="tl-Inputbox" ng-model="vm.ceaseBusinessApproveLimit">
+</span>
+  </td>
+<td><input type="radio"  ng-model="vm.ceaseBusinessAutoDecline" ng-value="true">Yes
+<input type="radio"  ng-model="vm.ceaseBusinessAutoDecline" ng-value="false">NO
+<span ng-show="vm.ceaseBusinessAutoDecline">
+<input type="text" class="tl-Inputbox" ng-model="vm.ceaseBusinessDeclineLimit">
+</span></td>
+<td><input type="text" class="tl-Inputbox" ng-model="vm.ceaseBusiness"></td>
+</tr>
+
+<tr>
+<td>BANK REPORT ON FILE</td>
+<td> 
+<input type="radio"  ng-model="vm.bankReportOnFileAutoApprove" ng-value="true">Yes
+<input type="radio"  ng-model="vm.bankReportOnFileAutoApprove" ng-value="false">NO
+<span ng-show="vm.bankReportOnFileAutoApprove">
+<input type="text" class="tl-Inputbox" ng-model="vm.bankReportOnFileApproveLimit">
+</span>
+  </td>
+<td><input type="radio"  ng-model="vm.bankReportOnFileAutoDecline" ng-value="true">Yes
+<input type="radio"  ng-model="vm.bankReportOnFileAutoDecline" ng-value="false">NO
+<span ng-show="vm.bankReportOnFileAutoDecline">
+<input type="text" class="tl-Inputbox" ng-model="vm.bankReportOnFileDeclineLimit">
+</span></td>
+<td><input type="text" class="tl-Inputbox" ng-model="vm.bankReportOnFile"></td>
+</tr>
+
+
+<tr>
+<td>CORPORATE SEARCH ON FILE</td>
+<td> 
+<input type="radio"  ng-model="vm.corporateSearchOnFileAutoApprove" ng-value="true">Yes
+<input type="radio"  ng-model="vm.corporateSearchOnFileAutoApprove" ng-value="false">NO
+<span ng-show="vm.corporateSearchOnFileAutoApprove">
+<input type="text" class="tl-Inputbox" ng-model="vm.corporateSearchOnFileApproveLimit">
+</span>
+  </td>
+<td><input type="radio"  ng-model="vm.corporateSearchOnFileAutoDecline" ng-value="true">Yes
+<input type="radio"  ng-model="vm.corporateSearchOnFileAutoDecline" ng-value="false">NO
+<span ng-show="vm.corporateSearchOnFileAutoDecline">
+<input type="text" class="tl-Inputbox" ng-model="vm.corporateSearchOnFileDeclineLimit">
+</span></td>
+<td><input type="text" class="tl-Inputbox" ng-model="vm.corporateSearchOnFile"></td>
+</tr>
+
+<tr>
+<td>NUMBER OF INQUIRIES ON FILE</td>
+<td> 
+<input type="radio"  ng-model="vm.numberOfInquiriesOnFileAutoApprove" ng-value="true">Yes
+<input type="radio"  ng-model="vm.numberOfInquiriesOnFileAutoApprove" ng-value="false">NO
+<span ng-show="vm.numberOfInquiriesOnFileAutoApprove">
+<input type="text" class="tl-Inputbox" ng-model="vm.numberOfInquiriesOnFileApproveLimit">
+</span>
+  </td>
+<td><input type="radio"  ng-model="vm.numberOfInquiriesOnFileAutoDecline" ng-value="true">Yes
+<input type="radio"  ng-model="vm.numberOfInquiriesOnFileAutoDecline" ng-value="false">NO
+<span ng-show="vm.numberOfInquiriesOnFileAutoDecline">
+<input type="text" class="tl-Inputbox" ng-model="vm.numberOfInquiriesOnFileDeclineLimit">
+</span></td>
+<td><input type="text" class="tl-Inputbox" ng-model="vm.numberOfInquiriesOnFile"></td>
+</tr>
+
+<tr>
+<td>NUMBER OF ACCOUNTS REPORTING</td>
+<td> 
+<input type="radio"  ng-model="vm.numberOfAccountsReportingAutoApprove" ng-value="true">Yes
+<input type="radio"  ng-model="vm.numberOfAccountsReportingAutoApprove" ng-value="false">NO
+<span ng-show="vm.numberOfAccountsReportingAutoApprove">
+<input type="text" class="tl-Inputbox" ng-model="vm.numberOfAccountsReportingApproveLimit">
+</span>
+  </td>
+<td><input type="radio"  ng-model="vm.numberOfAccountsReportingAutoDecline" ng-value="true">Yes
+<input type="radio"  ng-model="vm.numberOfAccountsReportingAutoDecline" ng-value="false">NO
+<span ng-show="vm.numberOfAccountsReportingAutoDecline">
+<input type="text" class="tl-Inputbox" ng-model="vm.numberOfAccountsReportingDeclineLimit">
+</span></td>
+<td><input type="text" class="tl-Inputbox" ng-model="vm.numberOfAccountsReporting"></td>
+</tr>
+
+<tr>
+<td>AMOUNT</td>
+<td> 
+<input type="radio"  ng-model="vm.amountAutoApprove" ng-value="true">Yes
+<input type="radio"  ng-model="vm.amountAutoApprove" ng-value="false">NO
+<span ng-show="vm.amountAutoApprove">
+<input type="text" class="tl-Inputbox" ng-model="vm.amountApproveLimit">
+</span>
+  </td>
+<td><input type="radio"  ng-model="vm.amountAutoDecline" ng-value="true">Yes
+<input type="radio"  ng-model="vm.amountAutoDecline" ng-value="false">NO
+<span ng-show="vm.amountAutoDecline">
+<input type="text" class="tl-Inputbox" ng-model="vm.amountDeclineLimit">
+</span></td>
+<td><input type="text" class="tl-Inputbox" ng-model="vm.amount"></td>
+</tr>
+
+<tr>
+<td>NUMBER OF DELINQUENTCIES</td>
+<td> 
+<input type="radio"  ng-model="vm.numberOfDelinquenciesAutoApprove" ng-value="true">Yes
+<input type="radio"  ng-model="vm.numberOfDelinquenciesAutoApprove" ng-value="false">NO
+<span ng-show="vm.numberOfDelinquenciesAutoApprove">
+<input type="text" class="tl-Inputbox" ng-model="vm.numberOfDelinquenciesApproveLimit">
+</span>
+  </td>
+<td><input type="radio"  ng-model="vm.numberOfDelinquenciesDeclineLimit" ng-value="true">Yes
+<input type="radio"  ng-model="vm.numberOfDelinquenciesDeclineLimit" ng-value="false">NO
+<span ng-show="vm.numberOfDelinquenciesDeclineLimit">
+<input type="text" class="tl-Inputbox" ng-model="vm.numberOfDelinquenciesDeclineLimit">
+</span></td>
+<td><input type="text" class="tl-Inputbox" ng-model="vm.numberOfDelinquencies"></td>
+</tr>
+
+<tr>
+<td>MOST SEVERE STATUS/DATE</td>
+<td> 
+<input type="radio"  ng-model="vm.mostSevereStatusDateAutoApprove" ng-value="true">Yes
+<input type="radio"  ng-model="vm.mostSevereStatusDateAutoApprove" ng-value="false">NO
+<span ng-show="vm.mostSevereStatusDateAutoApprove">
+<input type="text" class="tl-Inputbox" ng-model="vm.mostSevereStatusDateApproveLimit">
+</span>
+  </td>
+<td><input type="radio"  ng-model="vm.mostSevereStatusDateAutoDecline" ng-value="true">Yes
+<input type="radio"  ng-model="vm.mostSevereStatusDateAutoDecline" ng-value="false">NO
+<span ng-show="vm.mostSevereStatusDateAutoDecline">
+<input type="text" class="tl-Inputbox" ng-model="vm.mostSevereStatusDateDeclineLimit">
+</span></td>
+<td><input type="text" class="tl-Inputbox" ng-model="vm.mostSevereStatusDate"></td>
+</tr>
+
+<tr>
+<td>NUMBER OF ACCOUNTS CHARGED OFF</td>
+<td> 
+<input type="radio"  ng-model="vm.numberOfAccountsChargedOffAutoApprove" ng-value="true">Yes
+<input type="radio"  ng-model="vm.numberOfAccountsChargedOffAutoApprove" ng-value="false">NO
+<span ng-show="vm.numberOfAccountsChargedOffAutoApprove">
+<input type="text" class="tl-Inputbox" ng-model="vm.numberOfAccountsChargedOffApproveLimit">
+</span>
+  </td>
+<td><input type="radio"  ng-model="vm.numberOfAccountsChargedOffAutoDecline" ng-value="true">Yes
+<input type="radio"  ng-model="vm.numberOfAccountsChargedOffAutoDecline" ng-value="false">NO
+<span ng-show="vm.numberOfAccountsChargedOffAutoDecline">
+<input type="text" class="tl-Inputbox" ng-model="vm.numberOfAccountsChargedOffDeclineLimit">
+</span></td>
+<td><input type="text" class="tl-Inputbox" ng-model="vm.numberOfAccountsChargedOff"></td>
+</tr>
+
+<tr>
+<td>LARGEST WRITE OFF AMOUNT</td>
+<td> 
+<input type="radio"  ng-model="vm.writeOffAmountAutoApprove" ng-value="true">Yes
+<input type="radio"  ng-model="vm.writeOffAmountAutoApprove" ng-value="false">NO
+<span ng-show="vm.writeOffAmountAutoApprove">
+<input type="text" class="tl-Inputbox" ng-model="vm.writeOffAmountApproveLimit">
+</span>
+  </td>
+<td><input type="radio"  ng-model="vm.writeOffAmountAutoDecline" ng-value="true">Yes
+<input type="radio"  ng-model="vm.writeOffAmountAutoDecline" ng-value="false">NO
+<span ng-show="vm.writeOffAmountAutoDecline">
+<input type="text" class="tl-Inputbox" ng-model="vm.writeOffAmountDeclineLimit">
+</span></td>
+<td><input type="text" class="tl-Inputbox" ng-model="vm.writeOffAmount"></td>
+</tr>
+<tr>
+<td>LARGEST WRITE OFF Date</td>
+<td> 
+<input type="radio"  ng-model="vm.writeOffdateAutoApprove" ng-value="true">Yes
+<input type="radio"  ng-model="vm.writeOffdateAutoApprove" ng-value="false">NO
+<span ng-show="vm.writeOffdateAutoApprove">
+<input type="text" class="tl-Inputbox" ng-model="vm.writeOffdateApproveLimit">
+</span>
+  </td>
+<td><input type="radio"  ng-model="vm.writeOffdateAutoDecline" ng-value="true">Yes
+<input type="radio"  ng-model="vm.writeOffdateAutoDecline" ng-value="false">NO
+<span ng-show="vm.writeOffdateAutoDecline">
+<input type="text" class="tl-Inputbox" ng-model="vm.writeOffdateDeclineLimit">
+</span></td>
+<td><input type="text" class="tl-Inputbox" ng-model="vm.writeOffdate"></td>
+</tr>
+
+<tr>
+<td>TOTAL CURRENT CREDIT EXPOSURE</td>
+<td> 
+<input type="radio"  ng-model="vm.totalCurrentCreditExposureAutoApprove" ng-value="true">Yes
+<input type="radio"  ng-model="vm.totalCurrentCreditExposureAutoApprove" ng-value="false">NO
+<span ng-show="vm.totalCurrentCreditExposureAutoApprove">
+<input type="text" class="tl-Inputbox" ng-model="vm.totalCurrentCreditExposureApproveLimit">
+</span>
+  </td>
+<td><input type="radio"  ng-model="vm.totalCurrentCreditExposureAutoDecline" ng-value="true">Yes
+<input type="radio"  ng-model="vm.totalCurrentCreditExposureAutoDecline" ng-value="false">NO
+<span ng-show="vm.totalCurrentCreditExposureAutoDecline">
+<input type="text" class="tl-Inputbox" ng-model="vm.totalCurrentCreditExposureDeclineLimit">
+</span></td>
+<td><input type="text" class="tl-Inputbox" ng-model="vm.totalCurrentCreditExposure"></td>
+</tr>
+
+<tr>
+<td>TOTAL OUTSTANDING</td>
+<td> 
+<input type="radio"  ng-model="vm.totalOutstandingAutoApprove" ng-value="true">Yes
+<input type="radio"  ng-model="vm.totalOutstandingAutoApprove" ng-value="false">NO
+<span ng-show="vm.totalOutstandingAutoApprove">
+<input type="text" class="tl-Inputbox" ng-model="vm.totalOutstandingApproveLimit">
+</span>
+  </td>
+<td><input type="radio"  ng-model="vm.totalOutstandingAutoDecline" ng-value="true">Yes
+<input type="radio"  ng-model="vm.totalOutstandingAutoDecline" ng-value="false">NO
+<span ng-show="vm.totalOutstandingAutoDecline">
+<input type="text" class="tl-Inputbox" ng-model="vm.totalOutstandingDeclineLimit">
+</span></td>
+<td><input type="text" class="tl-Inputbox" ng-model="vm.totalOutstanding"></td>
+</tr>
+
+<tr>
+<td>TOTAL CURRENT BALANCE</td>
+<td> 
+<input type="radio"  ng-model="vm.totalCurrentBalanceAutoApprove" ng-value="true">Yes
+<input type="radio"  ng-model="vm.totalCurrentBalanceAutoApprove" ng-value="false">NO
+<span ng-show="vm.totalCurrentBalanceAutoApprove">
+<input type="text" class="tl-Inputbox" ng-model="vm.totalCurrentBalanceApproveLimit">
+</span>
+  </td>
+<td><input type="radio"  ng-model="vm.totalCurrentBalanceAutoDecline" ng-value="true">Yes
+<input type="radio"  ng-model="vm.totalCurrentBalanceAutoDecline" ng-value="false">NO
+<span ng-show="vm.totalCurrentBalanceAutoDecline">
+<input type="text" class="tl-Inputbox" ng-model="vm.totalCurrentBalanceDeclineLimit">
+</span></td>
+<td><input type="text" class="tl-Inputbox" ng-model="vm.totalCurrentBalance"></td>
+</tr>
+
+<tr>
+<td colspan="4">DEROGATORY SUMMARY</td>
+</tr>
+<tr>
+<td>DEROGATORY SUMMARY - NUMBER ON FILE  RETURNED CHEQUES</td>
+<td> 
+<input type="radio"  ng-model="vm.numberOnFileReturnedChequesAutoApprove" ng-value="true">Yes
+<input type="radio"  ng-model="vm.numberOnFileReturnedChequesAutoApprove" ng-value="false">NO
+<span ng-show="vm.numberOnFileReturnedChequesAutoApprove">
+<input type="text" class="tl-Inputbox" ng-model="vm.numberOnFileReturnedChequesApproveLimit">
+</span>
+  </td>
+<td><input type="radio"  ng-model="vm.numberOnFileReturnedChequesAutoDecline" ng-value="true">Yes
+<input type="radio"  ng-model="vm.numberOnFileReturnedChequesAutoDecline" ng-value="false">NO
+<span ng-show="vm.numberOnFileReturnedChequesAutoDecline">
+<input type="text" class="tl-Inputbox" ng-model="vm.numberOnFileReturnedChequesDeclineLimit">
+</span></td>
+<td><input type="text" class="tl-Inputbox" ng-model="vm.numberOnFileReturnedCheques"></td>
+</tr>
+
+<tr>
+<td>DEROGATORY SUMMARY - NUMBER ON FILE  COLLECTIONS</td>
+<td> 
+<input type="radio"  ng-model="vm.numberOnFileCollectionsAutoApprove" ng-value="true">Yes
+<input type="radio"  ng-model="vm.numberOnFileCollectionsAutoApprove" ng-value="false">NO
+<span ng-show="vm.numberOnFileCollectionsAutoApprove">
+<input type="text" class="tl-Inputbox" ng-model="vm.numberOnFileCollectionsApproveLimit">
+</span>
+  </td>
+<td><input type="radio"  ng-model="vm.numberOnFileCollectionsAutoDecline" ng-value="true">Yes
+<input type="radio"  ng-model="vm.numberOnFileCollectionsAutoDecline" ng-value="false">NO
+<span ng-show="vm.numberOnFileCollectionsAutoDecline">
+<input type="text" class="tl-Inputbox" ng-model="vm.numberOnFileCollectionsDeclineLimit">
+</span></td>
+<td><input type="text" class="tl-Inputbox" ng-model="vm.numberOnFileCollections"></td>
+</tr>
+
+
+<tr>
+<td>DEROGATORY SUMMARY - NUMBER ON FILE  LEGAL SUITS</td>
+<td> 
+<input type="radio"  ng-model="vm.numberOnFileLegalSuitsAutoApprove" ng-value="true">Yes
+<input type="radio"  ng-model="vm.numberOnFileLegalSuitsAutoApprove" ng-value="false">NO
+<span ng-show="vm.numberOnFileLegalSuitsAutoApprove">
+<input type="text" class="tl-Inputbox" ng-model="vm.numberOnFileLegalSuitsApproveLimit">
+</span>
+  </td>
+<td><input type="radio"  ng-model="vm.numberOnFileLegalSuitsAutoDecline" ng-value="true">Yes
+<input type="radio"  ng-model="vm.numberOnFileLegalSuitsAutoDecline" ng-value="false">NO
+<span ng-show="vm.numberOnFileLegalSuitsAutoDecline">
+<input type="text" class="tl-Inputbox" ng-model="vm.numberOnFileLegalSuitsDeclineLimit">
+</span></td>
+<td><input type="text" class="tl-Inputbox" ng-model="vm.numberOnFileLegalSuits"></td>
+</tr>
+
+<tr>
+<td>DEROGATORY SUMMARY - NUMBER ON FILE  JUDGEMENTS</td>
+<td> 
+<input type="radio"  ng-model="vm.numberOnFileJudgementsAutoApprove" ng-value="true">Yes
+<input type="radio"  ng-model="vm.numberOnFileJudgementsAutoApprove" ng-value="false">NO
+<span ng-show="vm.numberOnFileJudgementsAutoApprove">
+<input type="text" class="tl-Inputbox" ng-model="vm.numberOnFileJudgementsApproveLimit">
+</span>
+  </td>
+<td><input type="radio"  ng-model="vm.numberOnFileJudgementsAutoDecline" ng-value="true">Yes
+<input type="radio"  ng-model="vm.numberOnFileJudgementsAutoDecline" ng-value="false">NO
+<span ng-show="vm.numberOnFileJudgementsAutoDecline">
+<input type="text" class="tl-Inputbox" ng-model="vm.numberOnFileJudgementsDeclineLimit">
+</span></td>
+<td><input type="text" class="tl-Inputbox" ng-model="vm.numberOnFileJudgements"></td>
+</tr>
+
+<tr>
+<td>DEROGATORY SUMMARY - NUMBER ON FILE  OTHER LEGAL INFO</td>
+<td> 
+<input type="radio"  ng-model="vm.numberOnFileOtherLegalInfoAutoApprove" ng-value="true">Yes
+<input type="radio"  ng-model="vm.numberOnFileOtherLegalInfoAutoApprove" ng-value="false">NO
+<span ng-show="vm.numberOnFileOtherLegalInfoAutoApprove">
+<input type="text" class="tl-Inputbox" ng-model="vm.numberOnFileOtherLegalInfoApproveLimit">
+</span>
+  </td>
+<td><input type="radio"  ng-model="vm.numberOnFileOtherLegalInfoAutoDecline" ng-value="true">Yes
+<input type="radio"  ng-model="vm.numberOnFileOtherLegalInfoAutoDecline" ng-value="false">NO
+<span ng-show="vm.numberOnFileOtherLegalInfoAutoDecline">
+<input type="text" class="tl-Inputbox" ng-model="vm.numberOnFileOtherLegalInfoDeclineLimit">
+</span></td>
+<td><input type="text" class="tl-Inputbox" ng-model="vm.numberOnFileOtherLegalInfo"></td>
+</tr>
+
+<tr>
+<td>DEROGATORY SUMMARY - NUMBER ON FILE LIENS</td>
+<td> 
+<input type="radio"  ng-model="vm.numberOnFileLiensAutoApprove" ng-value="true">Yes
+<input type="radio"  ng-model="vm.numberOnFileLiensAutoApprove" ng-value="false">NO
+<span ng-show="vm.numberOnFileLiensAutoApprove">
+<input type="text" class="tl-Inputbox" ng-model="vm.numberOnFileLiensApproveLimit">
+</span>
+</td>
+<td><input type="radio"  ng-model="vm.numberOnFileLiensAutoDecline" ng-value="true">Yes
+<input type="radio"  ng-model="vm.numberOnFileLiensAutoDecline" ng-value="false">NO
+<span ng-show="vm.numberOnFileLiensAutoDecline">
+<input type="text" class="tl-Inputbox" ng-model="vm.numberOnFileLiensDeclineLimit">
+</span></td>
+<td><input type="text" class="tl-Inputbox" ng-model="vm.numberOnFileLiens"></td>
+</tr>
+
+<tr>
+<td>DEROGATORY SUMMARY - TOTAL AMOUNT ON FILE</td>
+<td> 
+<input type="radio"  ng-model="vm.totalAmountOnFileAutoApprove" ng-value="true">Yes
+<input type="radio"  ng-model="vm.totalAmountOnFileAutoApprove" ng-value="false">NO
+<span ng-show="vm.totalAmountOnFileAutoApprove">
+<input type="text" class="tl-Inputbox" ng-model="vm.totalAmountOnFileApproveLimit">
+</span>
+  </td>
+<td><input type="radio"  ng-model="vm.totalAmountOnFileAutoDecline" ng-value="true">Yes
+<input type="radio"  ng-model="vm.totalAmountOnFileAutoDecline" ng-value="false">NO
+<span ng-show="vm.totalAmountOnFileAutoDecline">
+<input type="text" class="tl-Inputbox" ng-model="vm.totalAmountOnFileDeclineLimit">
+</span></td>
+<td><input type="text" class="tl-Inputbox" ng-model="vm.totalAmountOnFile"></td>
+</tr>
+
+<tr>
+<td>DEROGATORY SUMMARY - DATE OF LAST ITEM</td>
+<td colspan="3"> 
+<input type="text" class="tl-Inputbox" ng-model="vm.dateOfLastitem">
+</td>
+</tr>
+
+<tr>
+<td>DEROGATORY SUMMARY - COMMENTS ON FILE</td>
+<td colspan="3"> 
+<input type="text" class="tl-Inputbox" ng-model="vm.commentsOnFile">
+</td>
+</tr>
+
+<tr>
+<td colspan="4">CREDIT REFERENCE SUMMARY</td>
+
+</tr>
+
+<tr>
+<td> CREDIT REFERENCE SUMMARY - PI SCORE - 90 DAY</td>
+<td> 
+<input type="radio"  ng-model="vm.pIScore90DayAutoApprove" ng-value="true">Yes
+<input type="radio"  ng-model="vm.pIScore90DayAutoApprove" ng-value="false">NO
+<span ng-show="vm.pIScore90DayAutoApprove">
+<input type="text" class="tl-Inputbox" ng-model="vm.pIScore90DayApproveLimit">
+</span>
+  </td>
+<td><input type="radio"  ng-model="vm.pIScore90DayAutoDecline" ng-value="true">Yes
+<input type="radio"  ng-model="vm.pIScore90DayAutoDecline" ng-value="false">NO
+<span ng-show="vm.pIScore90DayAutoDecline">
+<input type="text" class="tl-Inputbox" ng-model="vm.pIScore90DayDeclineLimit">
+</span></td>
+<td><input type="text" class="tl-Inputbox" ng-model="vm.pIScore90Day"></td>
+</tr>
+
+
+<tr>
+<td>CREDIT REFERENCE SUMMARY -PI SCORE - 13 MONTH</td>
+<td> 
+<input type="radio"  ng-model="vm.pIScore13MonthAutoApprove" ng-value="true">Yes
+<input type="radio"  ng-model="vm.pIScore13MonthAutoApprove" ng-value="false">NO
+<span ng-show="vm.pIScore13MonthAutoApprove">
+<input type="text" class="tl-Inputbox" ng-model="vm.pIScore13MonthApproveLimit">
+</span>
+  </td>
+<td><input type="radio"  ng-model="vm.pIScore13MonthAutoDecline" ng-value="true">Yes
+<input type="radio"  ng-model="vm.pIScore13MonthAutoDecline" ng-value="false">NO
+<span ng-show="vm.pIScore13MonthAutoDecline">
+<input type="text" class="tl-Inputbox" ng-model="vm.pIScore13MonthDeclineLimit">
+</span></td>
+<td><input type="text" class="tl-Inputbox" ng-model="vm.pIScore13Month"></td>
+</tr>
+
+<tr>
+<td>CREDIT REFERENCE SUMMARY -PI SCORE - ALL REFERENCES</td>
+<td> 
+<input type="radio"  ng-model="vm.pIScoreAllReferencesAutoApprove" ng-value="true">Yes
+<input type="radio"  ng-model="vm.pIScoreAllReferencesAutoApprove" ng-value="false">NO
+<span ng-show="vm.pIScoreAllReferencesAutoApprove">
+<input type="text" class="tl-Inputbox" ng-model="vm.pIScoreAllReferencesApproveLimit">
+</span>
+  </td>
+<td><input type="radio"  ng-model="vm.pIScoreAllReferencesAutoDecline" ng-value="true">Yes
+<input type="radio"  ng-model="vm.pIScoreAllReferencesAutoDecline" ng-value="false">NO
+<span ng-show="vm.pIScoreAllReferencesAutoDecline">
+<input type="text" class="tl-Inputbox" ng-model="vm.pIScoreAllReferencesDeclineLimit">
+</span></td>
+<td><input type="text" class="tl-Inputbox" ng-model="vm.pIScoreAllReferences"></td>
+</tr>
+
+<tr>
+<td>CREDIT REFERENCE SUMMARY -HIGH CREDIT</td>
+<td> 
+<input type="radio"  ng-model="vm.highCreditAutoApprove" ng-value="true">Yes
+<input type="radio"  ng-model="vm.highCreditAutoApprove" ng-value="false">NO
+<span ng-show="vm.highCreditAutoApprove">
+<input type="text" class="tl-Inputbox" ng-model="vm.highCreditApproveLimit">
+</span>
+  </td>
+<td><input type="radio"  ng-model="vm.highCreditAutoDecline" ng-value="true">Yes
+<input type="radio"  ng-model="vm.highCreditAutoDecline" ng-value="false">NO
+<span ng-show="vm.highCreditAutoDecline">
+<input type="text" class="tl-Inputbox" ng-model="vm.highCreditDeclineLimit">
+</span></td>
+<td><input type="text" class="tl-Inputbox" ng-model="vm.highCredit"></td>
+</tr>
+
+
+<tr>
+<td>CREDIT REFERENCE SUMMARY -TOTAL OWING</td>
+<td> 
+<input type="radio"  ng-model="vm.totalOwingAutoApprove" ng-value="true">Yes
+<input type="radio"  ng-model="vm.totalOwingAutoApprove" ng-value="false">NO
+<span ng-show="vm.totalOwingAutoApprove">
+<input type="text" class="tl-Inputbox" ng-model="vm.totalOwingApproveLimit">
+</span>
+  </td>
+<td><input type="radio"  ng-model="vm.totalOwingAutoDecline" ng-value="true">Yes
+<input type="radio"  ng-model="vm.totalOwingAutoDecline" ng-value="false">NO
+<span ng-show="vm.totalOwingAutoDecline">
+<input type="text" class="tl-Inputbox" ng-model="vm.totalOwingDeclineLimit">
+</span></td>
+<td><input type="text" class="tl-Inputbox" ng-model="vm.totalOwing"></td>
+</tr>
+
+<tr>
+<td>CREDIT REFERENCE SUMMARY -CURRENT</td>
+<td> 
+<input type="radio"  ng-model="vm.currentAutoApprove" ng-value="true">Yes
+<input type="radio"  ng-model="vm.currentAutoApprove" ng-value="false">NO
+<span ng-show="vm.currentAutoApprove">
+<input type="text" class="tl-Inputbox" ng-model="vm.currentApproveLimit">
+</span>
+  </td>
+<td><input type="radio"  ng-model="vm.currentAutoDecline" ng-value="true">Yes
+<input type="radio"  ng-model="vm.currentAutoDecline" ng-value="false">NO
+<span ng-show="vm.currentAutoDecline">
+<input type="text" class="tl-Inputbox" ng-model="vm.currentDeclineLimit">
+</span></td>
+<td><input type="text" class="tl-Inputbox" ng-model="vm.current"></td>
+</tr>
+
+<tr>
+<td>CREDIT REFERENCE DETAIL  - TOTAL PAST DUE</td>
+<td> 
+<input type="radio"  ng-model="vm.totalPastDueAutoApprove" ng-value="true">Yes
+<input type="radio"  ng-model="vm.totalPastDueAutoApprove" ng-value="false">NO
+<span ng-show="vm.totalPastDueAutoApprove">
+<input type="text" class="tl-Inputbox" ng-model="vm.totalPastDueApproveLimit">
+</span>
+  </td>
+<td><input type="radio"  ng-model="vm.totalPastDueAutoDecline" ng-value="true">Yes
+<input type="radio"  ng-model="vm.totalPastDueAutoDecline" ng-value="false">NO
+<span ng-show="vm.totalPastDueAutoDecline">
+<input type="text" class="tl-Inputbox" ng-model="vm.totalPastDueDeclineLimit">
+</span></td>
+<td><input type="text" class="tl-Inputbox" ng-model="vm.totalPastDue"></td>
+</tr>
+
+<tr>
+<td>CREDIT REFERENCE DETAIL  - BALANCE AMOUNT</td>
+<td> 
+<input type="radio"  ng-model="vm.balanceAmountAutoApprove" ng-value="true">Yes
+<input type="radio"  ng-model="vm.balanceAmountAutoApprove" ng-value="false">NO
+<span ng-show="vm.balanceAmountAutoApprove">
+<input type="text" class="tl-Inputbox" ng-model="vm.balanceAmountApproveLimit">
+</span>
+  </td>
+<td><input type="radio"  ng-model="vm.balanceAmountAutoDecline" ng-value="true">Yes
+<input type="radio"  ng-model="vm.balanceAmountAutoDecline" ng-value="false">NO
+<span ng-show="vm.balanceAmountAutoDecline">
+<input type="text" class="tl-Inputbox" ng-model="vm.balanceAmountDeclineLimit">
+</span></td>
+<td><input type="text" class="tl-Inputbox" ng-model="vm.balanceAmount"></td>
+</tr>
+
+<tr>
+<td>CREDIT REFERENCE DETAIL  - CURRENT BALANCE</td>
+<td> 
+<input type="radio"  ng-model="vm.currentBalanceAutoApprove" ng-value="true">Yes
+<input type="radio"  ng-model="vm.currentBalanceAutoApprove" ng-value="false">NO
+<span ng-show="vm.currentBalanceAutoApprove">
+<input type="text" class="tl-Inputbox" ng-model="vm.currentBalanceApproveLimit">
+</span>
+ </td>
+<td><input type="radio"  ng-model="vm.currentBalanceAutoDecline" ng-value="true">Yes
+<input type="radio"  ng-model="vm.currentBalanceAutoDecline" ng-value="false">NO
+<span ng-show="vm.currentBalanceAutoDecline">
+<input type="text" class="tl-Inputbox" ng-model="vm.currentBalanceDeclineLimit">
+</span></td>
+<td><input type="text" class="tl-Inputbox" ng-model="vm.currentBalance"></td>
+</tr>
+
+
+<tr>
+<td colspan="4">QUARTERLY PAYMENT TREND </td> 
+<tr>
+<td>QUARTERLY PAYMENT TREND - PAYMENT INDEX</td>
+<td> 
+<input type="radio"  ng-model="vm.paymentIndexAutoApprove" ng-value="true">Yes
+<input type="radio"  ng-model="vm.paymentIndexAutoApprove" ng-value="false">NO
+<span ng-show="vm.paymentIndexAutoApprove">
+<input type="text" class="tl-Inputbox" ng-model="vm.paymentIndexApproveLimit">
+</span>
+  </td>
+<td><input type="radio"  ng-model="vm.paymentIndexAutoDecline" ng-value="true">Yes
+<input type="radio"  ng-model="vm.paymentIndexAutoDecline" ng-value="false">NO
+<span ng-show="vm.paymentIndexAutoDecline">
+<input type="text" class="tl-Inputbox" ng-model="vm.paymentIndexDeclineLimit">
+</span></td>
+<td><input type="text" class="tl-Inputbox" ng-model="vm.paymentIndex"></td>
+</tr>
+
+<tr>
+<td>QUARTERLY PAYMENT TREND - CREDIT INFORMATION SCORE</td>
+<td> 
+<input type="radio"  ng-model="vm.creditInformationScoreAutoApprove" ng-value="true">Yes
+<input type="radio"  ng-model="vm.creditInformationScoreAutoApprove" ng-value="false">NO
+<span ng-show="vm.creditInformationScoreAutoApprove">
+<input type="text" class="tl-Inputbox" ng-model="vm.creditInformationScoreApproveLimit">
+</span>
+  </td>
+<td><input type="radio"  ng-model="vm.creditInformationScoreAutoDecline" ng-value="true">Yes
+<input type="radio"  ng-model="vm.creditInformationScoreAutoDecline" ng-value="false">NO
+<span ng-show="vm.creditInformationScoreAutoDecline">
+<input type="text" class="tl-Inputbox" ng-model="vm.creditInformationScoreDeclineLimit">
+</span></td>
+<td><input type="text" class="tl-Inputbox" ng-model="vm.creditInformationScore"></td>
+</tr>
+
+<tr>
+<td>QUARTERLY PAYMENT TREND - TOTAL AMOUNT</td>
+<td> 
+<input type="radio"  ng-model="vm.totalAmountAutoApprove" ng-value="true">Yes
+<input type="radio"  ng-model="vm.totalAmountAutoApprove" ng-value="false">NO
+<span ng-show="vm.totalAmountAutoApprove">
+<input type="text" class="tl-Inputbox" ng-model="vm.totalAmountApproveLimit">
+</span>
+  </td>
+<td><input type="radio"  ng-model="vm.totalAmountAutoDecline" ng-value="true">Yes
+<input type="radio"  ng-model="vm.totalAmountAutoDecline" ng-value="false">NO
+<span ng-show="vm.totalAmountAutoDecline">
+<input type="text" class="tl-Inputbox" ng-model="vm.totalAmountDeclineLimit">
+</span></td>
+<td><input type="text" class="tl-Inputbox" ng-model="vm.totalAmount"></td>
+</tr>
+
+
+<tr>
+<td>QUARTERLY PAYMENT TREND - CURRENT AMOUNT</td>
+<td> 
+<input type="radio"  ng-model="vm.currentAmountAutoApprove" ng-value="true">Yes
+<input type="radio"  ng-model="vm.currentAmountAutoApprove" ng-value="false">NO
+<span ng-show="vm.currentAmountAutoApprove">
+<input type="text" class="tl-Inputbox" ng-model="vm.currentAmountApproveLimit">
+</span>
+  </td>
+<td><input type="radio"  ng-model="vm.currentAmountAutoDecline" ng-value="true">Yes
+<input type="radio"  ng-model="vm.currentAmountAutoDecline" ng-value="false">NO
+<span ng-show="vm.currentAmountAutoDecline">
+<input type="text" class="tl-Inputbox" ng-model="vm.currentAmountDeclineLimit">
+</span></td>
+<td><input type="text" class="tl-Inputbox" ng-model="vm.currentAmount"></td>
+</tr>
+
+
+<tr>
+<td colspan="4">COLLECTION DETAIL</td>
+</tr>
+
+<tr>
+<td>COLLECTION DETAIL -REPORTED</td>
+<td> 
+<input type="radio"  ng-model="vm.reportedAutoApprove" ng-value="true">Yes
+<input type="radio"  ng-model="vm.reportedAutoApprove" ng-value="false">NO
+<span ng-show="vm.reportedAutoApprove">
+<input type="text" class="tl-Inputbox" ng-model="vm.reportedApproveLimit">
+</span>
+  </td>
+<td><input type="radio"  ng-model="vm.reportedAutoDecline" ng-value="true">Yes
+<input type="radio"  ng-model="vm.reportedAutoDecline" ng-value="false">NO
+<span ng-show="vm.reportedAutoDecline">
+<input type="text" class="tl-Inputbox" ng-model="vm.reportedDeclineLimit">
+</span></td>
+<td><input type="text" class="tl-Inputbox" ng-model="vm.reported"></td>
+</tr>
+
+<tr>
+<td>COLLECTION DETAIL -CREDITOR</td>
+<td colspan="3"><input type="text" class="tl-Inputbox" ng-model="vm.creditor"></td>
+</tr>
+
+
+<tr>
+<td>COLLECTION DETAIL -COLLECTION AGENCY</td>
+
+<td colspan="3"><input type="text" class="tl-Inputbox" ng-model="vm.collectionAgency"></td>
+</tr>
+
+<tr>
+<td>COLLECTION DETAIL -DEBTOR</td>
+
+<td colspan="3"><input type="text" class="tl-Inputbox" ng-model="vm.debtor"></td>
+</tr>
+
+<tr>
+<td>COLLECTION DETAIL -CLAIM PLACED </td>
+
+<td colspan="3"><input type="text" class="tl-Inputbox" ng-model="vm.claimPlaced"></td>
+</tr>
+
+<tr>
+<td>COLLECTION DETAIL -CLAIM AMOUNT</td>
+
+<td colspan="3"><input type="text" class="tl-Inputbox" ng-model="vm.claimAmount"></td>
+</tr>
+
+<tr>
+<td>COLLECTION DETAIL -STATUS UPDATE</td>
+
+<td colspan="3"><input type="text" class="tl-Inputbox" ng-model="vm.statusUpdate"></td>
+</tr>
+
+<tr>
+<td>COLLECTION DETAIL -AMOUNT PAID</td>
+<td colspan="3"><input type="text" class="tl-Inputbox" ng-model="vm.amountPaid"></td>
+</tr>
+
+
+
+<tr>
+<td>COLLECTION DETAIL -DATE PAID</td>
+
+<td colspan="3"><input type="text" class="tl-Inputbox" ng-model="vm.datePaid"></td>
+</tr>
+
+<tr>
+<td>COLLECTION DETAIL -ACCOUNT BALANCE</td>
+
+<td colspan="3"><input type="text" class="tl-Inputbox" ng-model="vm.accountBalance"></td>
+</tr>
+
+<tr>
+<td>COLLECTION DETAIL -STATUS  </td>
+
+<td colspan="3"><input type="text" class="tl-Inputbox" ng-model="vm.status"></td>
+</tr>
+
+<tr>  
+<td colspan="4">LEGAL DETAILS</td>
+</tr>
+
+<tr>
+<td>LEGAL DETAILS -REPORTED</td>
+<td> 
+<input type="radio"  ng-model="vm.legalReportedAutoApprove" ng-value="true">Yes
+<input type="radio"  ng-model="vm.legalReportedAutoApprove" ng-value="false">NO
+<span ng-show="vm.legalReportedAutoApprove">
+<input type="text" class="tl-Inputbox" ng-model="vm.legalReportedApproveLimit">
+</span>
+  </td>
+<td><input type="radio"  ng-model="vm.legalReportedAutoDecline" ng-value="true">Yes
+<input type="radio"  ng-model="vm.legalReportedAutoDecline" ng-value="false">NO
+<span ng-show="vm.legalReportedAutoDecline">
+<input type="text" class="tl-Inputbox" ng-model="vm.legalReportedDeclineLimit">
+</span></td>
+<td><input type="text" class="tl-Inputbox" ng-model="vm.legalReported"></td>
+</tr>
+
+<tr>
+<td>LEGAL DETAILS -LEGAL ACTION</td>
+<td colspan="3"> 
+<input type="text" class="tl-Inputbox" ng-model="vm.legalAction">
+</td></tr>
+
+<tr>
+<td>LEGAL DETAILS -COURT</td>
+<td colspan="3"> 
+<input type="text" class="tl-Inputbox" ng-model="vm.legalCourt">
+</td></tr>
+
+<tr>
+<td>LEGAL DETAILS -DEFENDANT</td>
+<td colspan="3"> 
+<input type="text" class="tl-Inputbox" ng-model="vm.defendant">
+</td>
+</tr>
+
+<tr>
+<td> LEGAL DETAILS -CLAIM DATE</td>
+<td colspan="3"> 
+<input type="text" class="tl-Inputbox" ng-model="vm.claimDate">
+</td>
+</tr>
+<tr>
+<td>LEGAL DETAILS -CLAIM NUMBER</td>
+<td colspan="3"> 
+<input type="text" class="tl-Inputbox" ng-model="vm.claimNumber">
+</td>
+</tr>
+
+<tr>
+<td>LEGAL DETAILS -PLANTIFF</td>
+<td colspan="3"> 
+<input type="text" class="tl-Inputbox" ng-model="vm.plantiff">
+</td></tr>
+
+<tr>
+<td>LEGAL DETAILS -AMOUNT</td>
+<td colspan="3"> 
+<input type="text" class="tl-Inputbox" ng-model="vm.legalAmount">
+</td></tr>
+
+<tr>
+<td>LEGAL DETAILS -SECURITY</td>
+<td colspan="3"> 
+<input type="text" class="tl-Inputbox" ng-model="vm.security">
+</td></tr>
+
+<tr>
+<td>LEGAL DETAILS -REASON</td>
+<td colspan="3"> 
+<input type="text" class="tl-Inputbox" ng-model="vm.reason">
+</td>
+</tr>
+<tr>
+<td colspan="4">BUSINESS CREDIT DATA ESSENTIAL</td>
+</tr>
+<tr>
+<td>EMPLOYEE SIZE</td>
+<td> 
+<input type="radio"  ng-model="vm.bEmployeeSizeAutoApprove" ng-value="true">Yes
+<input type="radio"  ng-model="vm.bEmployeeSizeAutoApprove" ng-value="false">NO
+<span ng-show="vm.bEmployeeSizeAutoApprove">
+<input type="text" class="tl-Inputbox" ng-model="vm.bEmployeeSizeApproveLimit">
+</span>
+  </td>
+<td><input type="radio"  ng-model="vm.bEmployeeSizeAutoDecline" ng-value="true">Yes
+<input type="radio"  ng-model="vm.bEmployeeSizeAutoDecline" ng-value="false">NO
+<span ng-show="vm.bEmployeeSizeAutoDecline">
+<input type="text" class="tl-Inputbox" ng-model="vm.bEmployeeSizeDeclineLimit">
+</span></td>
+<td><input type="text" class="tl-Inputbox" ng-model="vm.businessEmployeeSize"></td>
+</tr>
+<tr>
+<td>Sales Volume</td>
+<td> 
+<input type="radio"  ng-model="vm.salesVolumeAutoApprove" ng-value="true">Yes
+<input type="radio"  ng-model="vm.salesVolumeAutoApprove" ng-value="false">NO
+<span ng-show="vm.salesVolumeAutoApprove">
+<input type="text" class="tl-Inputbox" ng-model="vm.salesVolumeApproveLimit">
+</span>
+  </td>
+<td><input type="radio"  ng-model="vm.salesVolumeAutoDecline" ng-value="true">Yes
+<input type="radio"  ng-model="vm.salesVolumeAutoDecline" ng-value="false">NO
+<span ng-show="vm.salesVolumeAutoDecline">
+<input type="text" class="tl-Inputbox" ng-model="vm.salesVolumeDeclineLimit">
+</span></td>
+<td><input type="text" class="tl-Inputbox" ng-model="vm.salesVolume"></td>
+</tr>
+<tr>
+<td> SIC </td>
+<td> 
+<input type="radio"  ng-model="vm.ofSICAutoApprove" ng-value="true">Yes
+<input type="radio"  ng-model="vm.ofSICAutoApprove" ng-value="false">NO
+<span ng-show="vm.ofSICAutoApprove">
+<input type="text" class="tl-Inputbox" ng-model="vm.ofSICApproveLimit">
+</span>
+  </td>
+<td><input type="radio"  ng-model="vm.ofSICAutoDecline" ng-value="true">Yes
+<input type="radio"  ng-model="vm.ofSICAutoDecline" ng-value="false">NO
+<span ng-show="vm.ofSICAutoDecline">
+<input type="text" class="tl-Inputbox" ng-model="vm.ofSICDeclineLimit">
+</span></td>
+<td><input type="text" class="tl-Inputbox" ng-model="vm.ofSIC"></td>
+</tr>
+<tr>
+<td>NAI</td>
+<td> 
+<input type="radio"  ng-model="vm.ofNAICSAutoApprove" ng-value="true">Yes
+<input type="radio"  ng-model="vm.ofNAICSAutoApprove" ng-value="false">NO
+<span ng-show="vm.ofNAICSAutoApprove">
+<input type="text" class="tl-Inputbox" ng-model="vm.ofNAICSApproveLimit">
+</span>
+  </td>
+<td><input type="radio"  ng-model="vm.ofNAICSAutoDecline" ng-value="true">Yes
+<input type="radio"  ng-model="vm.ofNAICSAutoDecline" ng-value="false">NO
+<span ng-show="vm.ofNAICSAutoDecline">
+<input type="text" class="tl-Inputbox" ng-model="vm.ofNAICSDeclineLimit">
+</span></td>
+<td><input type="text" class="tl-Inputbox" ng-model="vm.ofNAICS"></td>
+</tr>
+<tr>
+<td colspan="4">OTHER</td>
+</tr>
+<tr>
+<td>EMPLOYEE SIZE</td>
+<td> 
+<input type="radio"  ng-model="vm.ofEmployeeSizeCategoryAutoApprove" ng-value="true">Yes
+<input type="radio"  ng-model="vm.ofEmployeeSizeCategoryAutoApprove" ng-value="false">NO
+<span ng-show="vm.ofEmployeeSizeCategoryAutoApprove">
+<input type="text" class="tl-Inputbox" ng-model="vm.ofEmployeeSizeCategoryApproveLimit">
+</span>
+  </td>
+<td><input type="radio"  ng-model="vm.ofEmployeeSizeCategoryAutoDecline" ng-value="true">Yes
+<input type="radio"  ng-model="vm.ofEmployeeSizeCategoryAutoDecline" ng-value="false">NO
+<span ng-show="vm.ofEmployeeSizeCategoryAutoDecline">
+<input type="text" class="tl-Inputbox" ng-model="vm.ofEmployeeSizeCategoryDeclineLimit">
+</span></td>
+<td><input type="text" class="tl-Inputbox" ng-model="vm.ofEmployeeSizeCategory"></td>
+</tr>
+<tr>
+<td>SALES</td>
+<td> 
+<input type="radio"  ng-model="vm.salesAutoApprove" ng-value="true">Yes
+<input type="radio"  ng-model="vm.salesAutoApprove" ng-value="false">NO
+<span ng-show="vm.salesAutoApprove">
+<input type="text" class="tl-Inputbox" ng-model="vm.salesApproveLimit">
+</span>
+  </td>
+<td><input type="radio"  ng-model="vm.salesAutoDecline" ng-value="true">Yes
+<input type="radio"  ng-model="vm.salesAutoDecline" ng-value="false">NO
+<span ng-show="vm.salesAutoDecline">
+<input type="text" class="tl-Inputbox" ng-model="vm.salesDeclineLimit">
+</span></td>
+<td><input type="text" class="tl-Inputbox" ng-model="vm.sales"></td>
+</tr>
+<tr>
+<td>SALES VOLUME</td>
+<td> 
+<input type="radio"  ng-model="vm.ofSalesVolumeAutoApprove" ng-value="true">Yes
+<input type="radio"  ng-model="vm.ofSalesVolumeAutoApprove" ng-value="false">NO
+<span ng-show="vm.ofSalesVolumeAutoApprove">
+<input type="text" class="tl-Inputbox" ng-model="vm.ofSalesVolumeApproveLimit">
+</span>
+  </td>
+<td><input type="radio"  ng-model="vm.ofSalesVolumeAutoDecline" ng-value="true">Yes
+<input type="radio"  ng-model="vm.ofSalesVolumeAutoDecline" ng-value="false">NO
+<span ng-show="vm.ofSalesVolumeAutoDecline">
+<input type="text" class="tl-Inputbox" ng-model="vm.ofSalesVolumeDeclineLimit">
+</span></td>
+<td><input type="text" class="tl-Inputbox" ng-model="vm.ofSalesVolume"></td>
+</tr>
+
+
+<td>NUMBER OF ACCOUNTS </td>
+<td> 
+<input type="radio"  ng-model="vm.numberOfAccountsAutoApprove" ng-value="true">Yes
+<input type="radio"  ng-model="vm.numberOfAccountsAutoApprove" ng-value="false">NO
+<span ng-show="vm.numberOfAccountsAutoApprove">
+<input type="text" class="tl-Inputbox" ng-model="vm.numberOfAccountsApproveLimit">
+</span>
+  </td>
+<td><input type="radio"  ng-model="vm.numberOfAccountsAutoDecline" ng-value="true">Yes
+<input type="radio"  ng-model="vm.numberOfAccountsAutoDecline" ng-value="false">NO
+<span ng-show="vm.numberOfAccountsAutoDecline">
+<input type="text" class="tl-Inputbox" ng-model="vm.numberOfAccountsDeclineLimit">
+</span></td>
+<td><input type="text" class="tl-Inputbox" ng-model="vm.numberOfAccounts"></td>
+</tr>
+<tr>
+<td>BALANCE
+</td>
+<td> 
+<input type="radio"  ng-model="vm.balanceAutoApprove" ng-value="true">Yes
+<input type="radio"  ng-model="vm.balanceAutoApprove" ng-value="false">NO
+<span ng-show="vm.balanceAutoApprove">
+<input type="text" class="tl-Inputbox" ng-model="vm.balanceApproveLimit">
+</span>
+  </td>
+<td><input type="radio"  ng-model="vm.balanceAutoDecline" ng-value="true">Yes
+<input type="radio"  ng-model="vm.balanceAutoDecline" ng-value="false">NO
+<span ng-show="vm.balanceAutoDecline">
+<input type="text" class="tl-Inputbox" ng-model="vm.balanceDeclineLimit">
+</span></td>
+<td><input type="text" class="tl-Inputbox" ng-model="vm.balance"></td>
+</tr>
+
+<tr>
+<td>NUMBER OF RETURNED CHEQUES</td>
+<td> 
+<input type="radio"  ng-model="vm.numberOfReturnedChequesAutoApprove" ng-value="true">Yes
+<input type="radio"  ng-model="vm.numberOfReturnedChequesAutoApprove" ng-value="false">NO
+<span ng-show="vm.numberOfReturnedChequesAutoApprove">
+<input type="text" class="tl-Inputbox" ng-model="vm.numberOfReturnedChequesApproveLimit">
+</span>
+  </td>
+<td><input type="radio"  ng-model="vm.numberOfReturnedChequesAutoDecline" ng-value="true">Yes
+<input type="radio"  ng-model="vm.numberOfReturnedChequesAutoDecline" ng-value="false">NO
+<span ng-show="vm.numberOfReturnedChequesAutoDecline">
+<input type="text" class="tl-Inputbox" ng-model="vm.numberOfReturnedChequesDeclineLimit">
+</span></td>
+<td><input type="text" class="tl-Inputbox" ng-model="vm.numberOfReturnedCheques"></td>
+</tr>
+<tr>
+<td>NUMBER OF CREDIT LINES
+</td>
+<td> 
+<input type="radio"  ng-model="vm.numberOfCreditLinesAutoApprove" ng-value="true">Yes
+<input type="radio"  ng-model="vm.numberOfCreditLinesAutoApprove" ng-value="false">NO
+<span ng-show="vm.numberOfCreditLinesAutoApprove">
+<input type="text" class="tl-Inputbox" ng-model="vm.numberOfCreditLinesApproveLimit">
+</span>
+  </td>
+<td><input type="radio"  ng-model="vm.numberOfCreditLinesAutoDecline" ng-value="true">Yes
+<input type="radio"  ng-model="vm.numberOfCreditLinesAutoDecline" ng-value="false">NO
+<span ng-show="vm.numberOfCreditLinesAutoDecline">
+<input type="text" class="tl-Inputbox" ng-model="vm.numberOfCreditLinesDeclineLimit">
+</span></td>
+<td><input type="text" class="tl-Inputbox" ng-model="vm.numberOfCreditLines"></td>
+</tr>
+<tr>
+<td>RATING
+</td>
+<td> 
+<input type="radio"  ng-model="vm.ofRatingAutoApprove" ng-value="true">Yes
+<input type="radio"  ng-model="vm.ofRatingAutoApprove" ng-value="false">NO
+<span ng-show="vm.ofRatingAutoApprove">
+<input type="text" class="tl-Inputbox" ng-model="vm.ofRatingApproveLimit">
+</span>
+  </td>
+<td><input type="radio"  ng-model="vm.ofRatingAutoDecline" ng-value="true">Yes
+<input type="radio"  ng-model="vm.ofRatingAutoDecline" ng-value="false">NO
+<span ng-show="vm.ofRatingAutoDecline">
+<input type="text" class="tl-Inputbox" ng-model="vm.ofRatingDeclineLimit">
+</span></td>
+<td><input type="text" class="tl-Inputbox" ng-model="vm.ofRating"></td>
+</tr>
+
+<tr>
+<td>AUTHORIZED AMOUNT
+</td>
+<td> 
+<input type="radio"  ng-model="vm.authorizedAmountAutoApprove" ng-value="true">Yes
+<input type="radio"  ng-model="vm.authorizedAmountAutoApprove" ng-value="false">NO
+<span ng-show="vm.authorizedAmountAutoApprove">
+<input type="text" class="tl-Inputbox" ng-model="vm.authorizedAmountApproveLimit">
+</span>
+  </td>
+<td><input type="radio"  ng-model="vm.authorizedAmountAutoDecline" ng-value="true">Yes
+<input type="radio"  ng-model="vm.authorizedAmountAutoDecline" ng-value="false">NO
+<span ng-show="vm.authorizedAmountAutoDecline">
+<input type="text" class="tl-Inputbox" ng-model="vm.authorizedAmountDeclineLimit">
+</span></td>
+<td><input type="text" class="tl-Inputbox" ng-model="vm.authorizedAmount"></td>
+</tr><tr>
+<td>NUMBER OF LOANS
+</td>
+<td> 
+<input type="radio"  ng-model="vm.numberOfLoansAutoApprove" ng-value="true">Yes
+<input type="radio"  ng-model="vm.numberOfLoansAutoApprove" ng-value="false">NO
+<span ng-show="vm.numberOfLoansAutoApprove">
+<input type="text" class="tl-Inputbox" ng-model="vm.numberOfLoansApproveLimit">
+</span>
+  </td>
+<td><input type="radio"  ng-model="vm.numberOfLoansAutoDecline" ng-value="true">Yes
+<input type="radio"  ng-model="vm.numberOfLoansAutoDecline" ng-value="false">NO
+<span ng-show="vm.numberOfLoansAutoDecline">
+<input type="text" class="tl-Inputbox" ng-model="vm.numberOfLoansDeclineLimit">
+</span></td>
+<td><input type="text" class="tl-Inputbox" ng-model="vm.numberOfLoans"></td>
+</tr>
+<tr>
+<td>BALANCE OWING
+</td>
+<td> 
+<input type="radio"  ng-model="vm.balanceOwingAutoApprove" ng-value="true">Yes
+<input type="radio"  ng-model="vm.balanceOwingAutoApprove" ng-value="false">NO
+<span ng-show="vm.balanceOwingAutoApprove">
+<input type="text" class="tl-Inputbox" ng-model="vm.balanceOwingApproveLimit">
+</span>
+  </td>
+<td><input type="radio"  ng-model="vm.balanceOwingAutoDecline" ng-value="true">Yes
+<input type="radio"  ng-model="vm.balanceOwingAutoDecline" ng-value="false">NO
+<span ng-show="vm.balanceOwingAutoDecline">
+<input type="text" class="tl-Inputbox" ng-model="vm.balanceOwingDeclineLimit">
+</span></td>
+<td><input type="text" class="tl-Inputbox" ng-model="vm.balanceOwing"></td>
+</tr>
+</table>
+</div>
+<p>Please ensure these thresholds are correct before submitting.  Once submitted, changes must be processed through a manual request to your account manager.</p>
+<p> You can also save your work-in-progress, by clicking the Save Progress button.</p>
+<button class="btn btn-info" ng-click="vm.saveProgress()">Save Progress</button>
+<button class="btn btn-info" ng-click="vm.submit()">Submit</button>
+</div>
+</div>
+
+<footer></footer>

@@ -19,7 +19,7 @@
       <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false" type="button" ng-click="nav.isCollapsed = !nav.isCollapsed"><i class="fa fa-navicon"></i></button>
       <ul class="main-menu">
         <li ui-sref-active="active" class="has-button" ng-if="button==='default'" ng-hide="nav.isAffiliate()">
-          <a ui-sref="login">Become a Borrower</a>
+          <a ui-sref="borrow.loanEnquiry.index">Become a Borrower</a>
         </li><!-- /.has-button -->
         <li ui-sref-active="active" class="has-button" ng-if="button==='borrower'">
           <a ui-sref="dashboard.borrower.actions.index">Create Listing</a>
@@ -47,7 +47,7 @@
         </li>
         <li ng-hide="nav.isLoggedIn()" ui-sref-active="active"><a ui-sref="login">Signup | Login</a></li>
         <li ng-show="nav.isLoggedIn()" ui-sref-active="active">
-          <a ui-sref="dashboard.index">Hi, {{nav.currentUser.name.first}} <i class="fa fa-cog"></i></a>
+          <a ui-sref="dashboard.index">Hi,{{nav.currentUser.name.first}} <i class="fa fa-cog"></i></a>
           <ul class="sub-menu">
             <li><a ui-sref="dashboard.index">Dashboard</a></li>
             <li ng-show="nav.isAdmin()"><a ui-sref="admin.index">Admin</a></li>

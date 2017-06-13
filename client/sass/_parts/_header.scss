@@ -20,6 +20,9 @@ html #wpadminbar {
   border-bottom: 1px solid $color-white;
   z-index: 9;
 
+  &.borrow-header{
+   background: #fff;
+  }
   .admin-bar & {
     top: rem(32);
 

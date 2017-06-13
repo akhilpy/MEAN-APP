@@ -7,7 +7,7 @@
       var vm = this;
       vm.$scope = $scope;
       vm.Borrower = Borrower;
-
+	  
       vm.$scope.rates = ListingService.getRates('Select');
       vm.$scope.terms = ListingService.getTerms('Select');
 
@@ -96,6 +96,7 @@
         //console.log('accordionA is ready!');
       });
     }
+	
 
     calculateLoan() {
       this.calculate = false;
@@ -103,11 +104,14 @@
       this.borrow = {};
       this.$scope.$parent.$broadcast('updateChosen');
     }
+	
+	
 
     resetLoan() {
       this.$scope.$parent.$broadcast('updateChosen');
       this.calculate = true;
     }
+	
   }
 
   angular.module('investnextdoorCaApp')

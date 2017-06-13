@@ -81,8 +81,32 @@
       margin-bottom: rem(10);
     }
   }
-
+	
+	&.borrow-menu{
+		
+		a{
+			font-size:12px;
+			font-weight:500px;
+			color:#40535c;
+			
+			&:hover {
+			  color:#dfdce3;
+			}
+		}
+	} 
+	
   a {
+  
+  	&.btn-blue{
+		background-color:#69b7be;
+		border-radius:3px;
+		color:#fff;
+		
+		&:hover{
+			background-color:#579b9e;
+		}
+	}
+	
     @include font-size(19);
     @include font-primary(600);
     text-transform: uppercase;
@@ -96,6 +120,8 @@
     @include breakpoint(mobile) {
       padding: rem(10) 0;
     }
+	
+	
   }
 
   .sub-menu {

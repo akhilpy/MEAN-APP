@@ -1,0 +1,52 @@
+<div class="site-header__wrapper borrow-header" ng-controller="NavbarLoanenquiryController">
+  <div class="site-header__notice">
+    <div class="site-header__notice--inner">
+      <p>Know a few small businesses that would make great investments? <a ui-sref="recommend">Recommend one today</a></p>
+    </div><!-- end of .site-header__notice--inner -->
+  </div><!-- end of .site-header__notice -->
+
+  <header id="masthead" class="site-header" role="banner">
+    <div class="site-branding">
+      <h1 class="site-title">
+        <a href="/" rel="home">
+          <img src="assets/images/borrow/sample-logo.png" alt="{{navs.site.title}}">
+        </a>
+      </h1>
+      <h2 class="site-description screen-reader-text">{{navs.site.description}}</h2>
+    </div>
+
+    <navs id="site-navigation" class="main-navigation" role="navigation" collapse="{{navs.isCollapsed}}">
+      <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false" type="button" ng-click="navs.isCollapsed = !navs.isCollapsed"><i class="fa fa-navicon"></i></button>
+      <ul class="main-menu borrow-menu">
+        <li ui-sref-active="active" class="has-button" ng-if="button==='borrower'">
+          <a ui-sref="dashboard.borrower.actions.index">Create Listing</a>
+        </li><!-- /.has-button -->
+        <li ui-sref-active="active" class="has-button" ng-if="button==='investor'">
+          <a ui-sref="marketplace.index">Marketplace</a>
+        </li><!-- /.has-button -->
+
+        <li ui-sref-active="active">
+          <a ui-sref="borrow.index">Borrow</a>
+        </li>
+        <li ui-sref-active="active">
+          <a ui-sref="invest.index">Invest</a>
+          <ul class="sub-menu">
+            <li ng-show="navs.isLoggedIn()">
+              <a ui-sref="marketplace.index">Marketplace</a>
+            </li>
+            <li ng-show="!navs.isLoggedIn()">
+              <a ui-sref="login">Marketplace</a>
+            </li>
+          </ul><!-- /.sub-menu -->
+        </li>
+        <li ui-sref-active="active">
+          <a ui-sref="faq">FAQ</a>
+        </li>
+        <li   ng-hide="navs.isLoggedIn()" ui-sref-active="active">
+          <a ui-sref="login">logIn</a>
+        </li>
+        <li ng-hide="navs.isLoggedIn()" ui-sref-active="active"><a ui-sref="signup" class="btn-blue">Signup</a></li>
+      </ul><!-- end of .main-menu -->
+    </navs><!-- #site-navsigation -->
+  </header><!-- #masthead -->
+</div>

@@ -1,0 +1,62 @@
+<div id="content" class="site-content">
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
+
+      <div class="block--wrapper">
+        <div class="block block__cta-block">
+          <div class="borrow-verification-box borrow-content-typo mx-w-500">
+              <div class="term-loan">
+                  <div class="term-loan-icon">
+                      <img src="assets/images/borrow/text-file-icon.png" alt="Person" />
+                  </div>
+                  <div class="term-loan-cont">
+                      <h2><span>Awesome!</span> A Term Loan.</h2>
+                  </div>
+                  <div class="clearfix"></div>
+              </div>
+              <div class="pd-lr-30 txt-l">
+                  <p>Just a few more questions and your application will be complete!</p>
+              </div>
+              
+              <div class="borrow-verify-form">
+                  <div class="verify-form-box txt-l">
+                      <form name="termloan" >
+                          <div class="verify-field">
+                              <label>How much would you like to borrow?</label>
+                              <input type="number" ng-model="vm.loanvalue"  min="1000" max="1000000" placeholder="Min $1,000 - Max $1,000,000" required="required" />
+                          </div>
+                          <div class="verify-field">
+                              <label>How long would you like to take to repay?</label>
+                              
+                              <div class="half-field last">
+                                 <select chosen="getRepayYears" data-placeholder="Year" disable_search_threshold="15" ng-model="vm.borrow.getrepayyears" ng-options="option.value as option.label for option in getrepayyears" ng-change="getMonths()"></select>
+                              </div>
+                              
+                              <div class="half-field first">
+                                  <select chosen="termrepays" data-placeholder="Month" disable_search_threshold="15" ng-model="vm.borrow.termrepay" ng-options="option.value as option.label for option in termrepays"></select>
+                              </div>
+                              <div class="clearfix"></div>
+                          </div>
+                          <div class="verify-field">
+                              <label>What are you going to use the loan for?</label>
+                             <select chosen="getLoanPurposes" data-placeholder="Purposes" disable_search_threshold="15" ng-model="vm.borrow.getloanpurpose" ng-options="option.value as option.label for option in getloanpurposes"></select>
+                          </div>
+                          <div class="verify-field">
+                              <button type="submit" ng-click="vm.getTermLoan(termloan)" class="btn-green">Submit</button>
+                              <!--ui-sref="borrow.loanEnquiry.processing"-->
+                          </div>
+                      </form>
+                  </div>
+                  <div class="clearfix"></div>
+              </div>
+          </div>
+          <div class="clearfix"></div>
+        </div><!-- end of .block block__grey-block -->
+      </div><!-- end of .block--wrapper block__grey-block--wrapper -->
+
+      <!-- end of .block--wrapper block__grey-block--wrapper -->
+
+
+    </main>
+  </div><!-- /.content-area -->
+</div><!-- #content -->

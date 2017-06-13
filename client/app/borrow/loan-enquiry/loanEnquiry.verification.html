@@ -1,0 +1,56 @@
+<div id="content" class="site-content">
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
+
+      <div class="block--wrapper">
+        <div class="block block__cta-block">
+          <div class="borrow-verification-box borrow-content-typo">
+              <h3>We need to verify your identity.</h3>
+              
+              <p>Please provide your email or phone number and we’ll send you a verification code to input into the box below.</p>
+              
+              <div class="borrow-verify-form display-table">
+                  <div class="verify-form-box table-cell-50">
+                      <form name="form">
+                          <div class="verify-field">
+                              <input type="email" name='email' ng-model="vm.email" placeholder="Email" required="required" />
+                              <div ng-show="form.$submitted || form.email.$touched">
+<span ng-show="form.email.$error.required">Enter your email.</span>
+<span ng-show="form.email.$error.email">Please enter a valid email.</span>
+</div>
+                          </div>
+                          <div class="verify-field">
+                              <input type="text" name='phone' ng-model="vm.phone" placeholder="Phone"  ng-pattern="onlyNumbers" required="required" />
+                              <div ng-show="form.$submitted || form.phone.$touched">
+                              <span ng-show="form.phone.$error.required"> Please Enter your Phone number.</span>
+                          </div></div>
+                          <div class="verify-field txt-l">
+                              <button type="submit" ng-click="vm.sendCode(form)" class="btn-green">Submit</button>
+                          </div>
+                      </form>
+                  </div>
+                  <div class="verify-form-box table-cell-50">
+                      <form name="name">
+                          <div class="verify-field">
+                              <input type="text"  ng-model="vm.verificationcode" placeholder="Varification Code" required="required" />
+                          </div>
+                          <div class="verify-field">
+                              <button type= "submit" ui-sref="borrow.loanEnquiry.permission" ng-click="vm.verifyCode(form)" class="btn-green">
+                            Submit Code</button>
+                           <!-- " -->
+                          </div>
+                      </form>
+                  </div>
+                  <div class="clearfix"></div>
+              </div>
+          </div>
+          <div class="clearfix"></div>
+        </div><!-- end of .block block__grey-block -->
+      </div><!-- end of .block--wrapper block__grey-block--wrapper -->
+
+      <!-- end of .block--wrapper block__grey-block--wrapper -->
+
+
+    </main>
+  </div><!-- /.content-area -->
+</div><!-- #content -->
